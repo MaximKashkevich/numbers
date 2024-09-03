@@ -71,11 +71,14 @@
                 </a>
             </div>
             <div>
-                <button
-                    class="py-[14px] px-[50px] border-2 border-blue-500 rounded-[100px] text-10 font-bold text-blue-500 hover:bg-blue-500 hover:text-white transition">
-                    ADD LISTING
-                </button>
+                <ButtonBlue class="py-[14px] px-[60px]">
+                    Add Listing
+                </ButtonBlue>
             </div>
         </header>
     </div>
 </template>
+
+<script >
+import ButtonBlue from './Button-blue/ButtonBlue.vue';
+</script>
