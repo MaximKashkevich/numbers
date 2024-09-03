@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="max-w-[1440px] mx-20">
         <header class="m-auto h-full justify-between flex items-center">
             <img src="/public/assets/logo.png" alt="Logo">
             <ul class="justify-between flex items-center gap-[30px]">
