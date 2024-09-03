@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-between items-start pl-[60px] pr-[60px] pt-[70px]">
+    <div class="flex justify-between items-start pl-[60px] pr-[60px] pt-[100px]">
         <div class="w-[650px] h-[650px]">
             <h1 class="font-roboto text-[50px] font-medium uppercase tracking-wide leading-none w-[400px]">
                 Welcome <span class="pr-[15px]">to</span>Numbers.ae
@@ -71,6 +71,7 @@
 <script>
 import ButtonLogin from './Button-login/ButtonLogin.vue';
 import ButtonBlue from './Button-blue/ButtonBlue.vue';
+
 </script>
 
 <style>
