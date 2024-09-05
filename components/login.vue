@@ -11,7 +11,9 @@
             </p>
             <div class="flex items-end h-[350px]">
                 <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
-                    No account? <span><a class="text-[#2356e0d2]" href="">Sign up.</a></span>
+                    No account? <span>
+                        <NuxtLink @click="onClickSignUP" class="text-[#2356e0d2] cursor-pointer">Sign up.</NuxtLink>
+                    </span>
                 </h2>
             </div>
         </div>
@@ -59,7 +61,7 @@
                         Remember me
                     </label>
                 </div>
-                <ButtonBlue @click="onClickSignUP" class="w-[300px] py-[14px]">
+                <ButtonBlue class="w-[300px] py-[14px]">
                     Sign in
                 </ButtonBlue>
             </div>

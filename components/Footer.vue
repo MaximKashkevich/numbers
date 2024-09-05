@@ -1,6 +1,6 @@
 <template>
     <div class="mt-[150px] mx-20">
-        <footer>
+        <footer class="pb-10">
             <div class="flex items-center justify-between">
                 <img src="/public/assets/footerLogo.png" alt="footerLogo">
                 <ul>

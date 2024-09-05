@@ -1,6 +1,6 @@
 <template>
     <!-- Мутный фон -->
-    <div class="h-[1400px] w-full absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm snap-none">
+    <div class="h-[2000px] w-[1400px] absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm snap-none">
     </div>
 
     <div class="fixed top-0 left-0 w-full overflow-hidden flex items-center justify-center z-20">

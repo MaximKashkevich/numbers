@@ -1,6 +1,7 @@
 <template>
     <div>
         <Registration v-if="signUp" :onClickSignUP="onClickSignUP" />
+        <!-- ENTRANCE -->
         <Header />
         <Login :onClickSignUP="onClickSignUP" />
         <Footer />
