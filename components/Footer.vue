@@ -39,8 +39,8 @@
                 </div>
                 <div>
                     <ButtonBlue class="py-[14px] px-[60px] ml-[120px]">
-                    Add Listing
-                </ButtonBlue>
+                        Add Listing
+                    </ButtonBlue>
                 </div>
                 <div class="justify-between flex items-center gap-[30px]">
                     <a href="#">

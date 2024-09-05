@@ -1,14 +1,25 @@
 <template>
-
- <Header />
- <login />
- <Footer />
+    <div>
+        <Registration v-if="signUp" :onClickSignUP="onClickSignUP" />
+        <Header />
+        <Login :onClickSignUP="onClickSignUP" />
+        <Footer />
+    </div>
 </template>
 
-<script>
-import Header from "./components/Header";
-import login from "./components/login.vue";
-import Footer from "./components/Footer.vue";
+<script setup>
+// Доустановить ts
+import Header from './components/Header.vue';
+import Login from './components/login.vue';
+import Footer from './components/Footer.vue';
+import Registration from './components/Registration/Registration.vue';
+
+import { ref } from 'vue'
+
+const signUp = ref(false)
+
+const onClickSignUP = () => {
+    signUp.value = !signUp.value;
+    console.log(signUp)
+}
 </script>
-
-
