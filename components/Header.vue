@@ -3,7 +3,7 @@
         <header class="m-auto h-full justify-between flex items-center">
             <img src="/public/assets/logo.png" alt="Logo">
             <ul class="justify-between flex items-center gap-[30px]">
-                <li><a href="#"
+                <li><a href="./PlateNumbers.vue"
                         class="leading-[19.2px] text-black font-normal hover:text-blue-400 transition cursor-default">Plate
                         Numbers</a>
                 </li>

@@ -1,14 +1,18 @@
 <template>
 
- <Header />
+<Header/>
  <login />
- <Footer />
+ <Footer/>
 </template>
 
 <script>
 import Header from "./components/Header";
 import login from "./components/login.vue";
 import Footer from "./components/Footer.vue";
+import PlateNumbers from "./components/PlateNumbers.vue";
 </script>
+<style>
+
+</style>
 
 

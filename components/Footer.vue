@@ -1,7 +1,7 @@
 <template>
-    <div class="mt-[150px] mx-20">
-        <footer>
-            <div class="flex items-center justify-between">
+    <div class="mt-[150px]  mx-20">
+        <footer class="mb-[55px]">
+            <div class="flex items-center justify-between ">
                 <img src="/public/assets/footerLogo.png" alt="footerLogo">
                 <ul>
                     <li><a href="#"
@@ -32,15 +32,15 @@
                     </li>
                 </ul>
             </div>
-            <div class="flex items-center justify-between mt-[50px]">
+            <div class="flex items-center justify-between mt-[150px]">
                 <div>
                     <span>© Numbers.ae. All rights reserved 2024</span>
                     <span><br />Privacy Policy</span>
                 </div>
                 <div>
                     <ButtonBlue class="py-[14px] px-[60px] ml-[120px]">
-                    Add Listing
-                </ButtonBlue>
+                        Add Listing
+                    </ButtonBlue>
                 </div>
                 <div class="justify-between flex items-center gap-[30px]">
                     <a href="#">

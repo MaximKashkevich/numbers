@@ -9,7 +9,7 @@
                 way to purchase or sell Plate and Mobile Numbers in Dubai, Abu Dhabi,
                 and other Emirates.
             </p>
-            <div class="flex items-end h-[350px]">
+            <div class="flex items-end h-[390px]">
                 <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
                     No account? <span><a class="text-[#2356e0d2]" href="">Sign up.</a></span>
                 </h2>
