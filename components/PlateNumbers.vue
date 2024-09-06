@@ -1,5 +1,7 @@
 <template>
     <Header />
+
+    <!-- Навигация -->
     <nav class="mb-[30px] mt-[30px]">
         <ul class="flex gap-[5px] pl-[100px]">
             <li>
@@ -15,12 +17,13 @@
         </ul>
     </nav>
 
-    <div class="flex justify-center pt-[30px]">
+    <!-- Контент -->
+    <div class="flex justify-center pt-[30px] md: px-[30px]">
         <div
-            class="flex flex-wrap justify-between px-[30px] md: gap-[80px] lg:gap-[250px] min-w-[200px]  max-w-[1900px] sm:justify-center   ">
+            class="flex flex-wrap justify-between px-[30px] md:gap-[80px] lg:gap-[250px] min-w-[200px] max-w-[1900px] sm:justify-center">
             <!-- Левая часть -->
-            <div class="flex-1 min-w-[250px] max-w-[350px]  ">
-                <h1 class="  font-medium text-[35px] leading-[42px] mb-[10px]">
+            <div class="flex-1 min-w-[250px] max-w-[350px] mb-[70px]">
+                <h1 class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px]">
                     Du mobile number for sale
                 </h1>
                 <p class="text-[12px] font-normal leading-[14.4px] opacity-30">
@@ -32,42 +35,37 @@
                 <p class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px] mb-[10px]">
                     Description:
                 </p>
-                <p class="text-[16px] font-normal leading-[20px] mb-[70px]">
+                <p class="text-[16px] font-normal leading-[20px] mb-[80px]">
                     ETISALAT VIP Prepaid Fancy Mobile number For Sale. Call or WhatsApp 055-4400750.
                 </p>
-
                 <a href="#" class="text-[#005DCA] text-[20px] font-bold leading-[24px]">
                     See full collection
                 </a>
             </div>
 
             <!-- Центральная часть -->
-            <div class="flex-1  min-w-[700px]  h-[470px] rounded-[20px] bg-white border-[2px] border-[#B3B3B3]">
+            <div
+                class="flex-1 min-w-[300px] w-[700px] h-[470px] mb: min-w-[400px]    rounded-[20px] bg-white border-[2px] border-[#B3B3B3] mb-[70px]">
                 <div class="flex justify-between w-full p-[30px]">
                     <ButtonShare />
                     <ButtonLike />
                 </div>
-
-                <div class="flex flex-col items-center justify-center h-full ">
+                <div class="flex flex-col items-center justify-center h-full">
                     <div class="flex items-center justify-center" id="top">
-                        <img src="../public/assets/image.svg" alt="">
-
+                        <img class="max-w-[50px] min-w-[250px]" src="../public/assets/image.svg" alt="">
                     </div>
-                    <div id="bottom" class="flex justify-center gap-2 ">
+                    <div id="bottom" class="flex justify-center gap-2 mt-[125px]">
                         <div class="pagination-circle w-[8px] h-[8px] border-[#B3B3B3] bg-black rounded-full"></div>
                         <div class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"></div>
                         <div class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"></div>
                         <div class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"></div>
                     </div>
                 </div>
-
-
             </div>
 
             <!-- Правая часть -->
-            <div class="flex-1 max-w-[350px]  ">
-
-                <div class="flex items-center space-x-2 ">
+            <div class="flex-1 max-w-[350px] ">
+                <div class="flex items-center space-x-2">
                     <img src="../public/assets/avatar.svg" alt="" class="w-10 h-10 rounded-full">
                     <div>
                         <h2 class="text-[35px] font-medium leading-[42px]">
@@ -79,8 +77,7 @@
                     </div>
                     <img src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
                 </div>
-
-                <div class="flex gap-[25px] mt-[30px] ">
+                <div class="flex gap-[25px] mt-[30px]">
                     <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
                         Posted Today
                     </p>
@@ -88,16 +85,12 @@
                         12 Views
                     </p>
                 </div>
-
-
-
-                <div class="w-[212] mt-[30px] ">
+                <div class="w-[212] mt-[30px]">
                     <button
                         class="w-full w-[315px] h-[54px] border-2 font-medium border-[#000] rounded-[100px] text-[20px] font-bold text-[#000] hover:bg-white hover:text-black transition flex items-center justify-center space-x-2">
                         Show number
                         <img src="../public/assets/phone.svg" alt="" class="pl-[30px]">
                     </button>
-
                     <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center mt-[212px]">
                         Buy as NFT
                     </ButtonBlue>
@@ -105,32 +98,49 @@
             </div>
         </div>
     </div>
-<div class="mt-[150px]">
-    <div class="pl-[100px]">
-    <div class="flex  w-[1320px] items-center">
-        <h3 class="w-[376px] h-[60px] text-[50px] font-normal leading-[60px] text-left">
-            Similar numbers:
-        </h3>
-        <div class="flex-grow pr-[100px] "></div> 
-        <div class="flex gap-[30px] mt-[5px]">
-            <LeftArrow class="w-[50px]" />
-            <RightArrow class="w-[50px]" />
+
+    <!-- Слайдер -->
+    <div class="mt-[150px] px-[30px]">
+        <div class="flex justify-center">
+            <div class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center">
+                <h3 class="max-w-[376px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px] ">
+                    Similar numbers:
+                </h3>
+                <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
+                <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3  mb-[20px]">
+                    <LeftArrow class="w-[50px]" ref="prevEl" />
+                    <RightArrow class="w-[50px]" ref="nextEl" />
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center items-center mt-[50px]">
+            <div class="lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px]">
+                <swiper :navigation="{ nextEl: nextEl, prevEl: prevEl }" :modules="modules" class="mySwiper">
+                    <swiper-slide>
+                        <Card />
+                        <Card />
+                        <Card />
+                    </swiper-slide>
+                    <swiper-slide>
+                        <Card />
+                        <Card />
+                        <Card />
+                    </swiper-slide>
+                    <swiper-slide>
+                        <Card />
+                        <Card />
+                        <Card />
+                    </swiper-slide>
+                </swiper>
+            </div>
         </div>
     </div>
-</div>
-<div class="flex  justify-center items-center mt-[50px] ">
-   <div class="w-[1320px] h-[410px] flex  gap-[20px]">
-    <Card/>
-    <Card/>
-    <Card/>
-    
-   
-</div> 
-</div>
-</div>
-    
 
-<Footer/>
+
+
+
+
+    <Footer />
 </template>
 
 <script>
@@ -139,9 +149,44 @@ import ButtonLike from './ButtonLike.vue';
 import ButtonBlue from './Button-blue/ButtonBlue.vue';
 import RightArrow from './RightArrow.vue';
 import LeftArrow from './LeftArrow.vue';
-import  Card  from './Card.vue';
-import  Header  from './Header.vue';
-import  Footer  from './Footer.vue';
+import Card from './Card.vue';
+import Header from './Header.vue';
+import Footer from './Footer.vue';
+
+
+
+import { ref } from 'vue';
+
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+// Import required modules
+import { Navigation } from 'swiper/modules';
+
+export default {
+    components: {
+        Swiper,
+        SwiperSlide,
+        LeftArrow,
+        RightArrow,
+        Card,
+    },
+    setup() {
+        const nextEl = ref(null);
+        const prevEl = ref(null);
+
+        return {
+            modules: [Navigation],
+            nextEl,
+            prevEl,
+        };
+    },
+};
 </script>
 
 <style>
@@ -156,4 +201,41 @@ import  Footer  from './Footer.vue';
     margin-top: 125px;
     gap: 8px;
 }
+
+#app {}
+
+html,
+
+
+body {
+
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+}
+
+.swiper {
+    width: 1320px;
+    height: 300px;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.swiper-slide img {
+
+    width: 370px;
+
+
+}
+
+
 </style>

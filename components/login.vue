@@ -11,7 +11,9 @@
             </p>
             <div class="flex items-end h-[390px]">
                 <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
-                    No account? <span><a class="text-[#2356e0d2]" href="">Sign up.</a></span>
+                    No account? <span>
+                        <NuxtLink @click="onClickSignUP" class="text-[#2356e0d2] cursor-pointer">Sign up.</NuxtLink>
+                    </span>
                 </h2>
             </div>
         </div>
@@ -38,7 +40,7 @@
                             <label for="" class=" text-[14px] font-medium leading-[16.8px] ">Login, e–mail or
                                 username:</label>
                             <input
-                                class="bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] text-[#B3B3B3] placeholder-custom mb-[10px]" 
+                                class="bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] text-[#B3B3B3] placeholder-custom mb-[10px]"
                                 placeholder="username@gmail.com or 050 123 45 67 or JohnSnow_123" type="email"
                                 id="email">
                         </div>
@@ -64,43 +66,20 @@
                 </ButtonBlue>
             </div>
         </div>
-
     </div>
 </template>
 
-<script>
+<script setup>
 import ButtonLogin from './Button-login/ButtonLogin.vue';
 import ButtonBlue from './Button-blue/ButtonBlue.vue';
 
+import { defineProps } from 'vue'
+
+defineProps({
+    onClickSignUP: {
+        type: Function,
+        required: true
+    }
+})
+
 </script>
-
-<style>
-.placeholder-custom::placeholder {
-    color: #B3B3B3;
-    font-size: 14px;
-
-}
-
-.custom-checkbox {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #B3B3B3;
-    border-radius: 4px;
-    background-color: white;
-    cursor: pointer;
-    position: relative;
-}
-
-.custom-checkbox:checked::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 6px;
-    height: 10px;
-    border: solid #005DCA;
-    border-width: 0 2px 2px 0;
-    transform: translate(-50%, -60%) rotate(45deg);
-}
-</style>
