@@ -75,7 +75,7 @@
                             Online
                         </p>
                     </div>
-                    <img src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
+                    <img class="pl-[110px] pb-[35px]" src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
                 </div>
                 <div class="flex gap-[25px] mt-[30px]">
                     <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
