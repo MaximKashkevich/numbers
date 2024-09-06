@@ -45,7 +45,7 @@
 
             <!-- Центральная часть -->
             <div
-                class="flex-1 min-w-[300px] w-[700px] h-[470px] mb: min-w-[400px]    rounded-[20px] bg-white border-[2px] border-[#B3B3B3] mb-[70px]">
+                class="flex-1 min-w-[280px] w-[700px] h-[470px] mb: min-w-[400px]    rounded-[20px] bg-white border-[2px] border-[#B3B3B3] mb-[70px]">
                 <div class="flex justify-between w-full p-[30px]">
                     <ButtonShare />
                     <ButtonLike />
@@ -86,11 +86,9 @@
                     </p>
                 </div>
                 <div class="w-[212] mt-[30px]">
-                    <button
-                        class="w-full w-[315px] h-[54px] border-2 font-medium border-[#000] rounded-[100px] text-[20px] font-bold text-[#000] hover:bg-white hover:text-black transition flex items-center justify-center space-x-2">
-                        Show number
-                        <img src="../public/assets/phone.svg" alt="" class="pl-[30px]">
-                    </button>
+                    <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center ">
+                        Call 058 210 03 10
+                    </ButtonBlue>
                     <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center mt-[212px]">
                         Buy as NFT
                     </ButtonBlue>
@@ -99,42 +97,47 @@
         </div>
     </div>
 
-    <!-- Слайдер -->
-    <div class="mt-[150px] px-[30px]">
-        <div class="flex justify-center">
-            <div class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center">
-                <h3 class="max-w-[376px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px] ">
-                    Similar numbers:
-                </h3>
-                <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
-                <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3  mb-[20px]">
-                    <LeftArrow class="w-[50px]" ref="prevEl" />
-                    <RightArrow class="w-[50px]" ref="nextEl" />
-                </div>
-            </div>
+  <!-- Слайдер -->
+  <div class="mt-[150px] px-[30px]">
+    <div class="flex justify-center">
+      <div class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center">
+        <h3 class="max-w-[376px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px] ">
+          Similar numbers:
+        </h3>
+        <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
+        <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3 mb-[20px]">
+          <!-- Обертка для рефов -->
+          <div ref="prevEl" class="w-[50px]">
+            <LeftArrow />
+          </div>
+          <div ref="nextEl" class="w-[50px]">
+            <RightArrow />
+          </div>
         </div>
-        <div class="flex justify-center items-center mt-[50px]">
-            <div class="lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px]">
-                <swiper :navigation="{ nextEl: nextEl, prevEl: prevEl }" :modules="modules" class="mySwiper">
-                    <swiper-slide>
-                        <Card />
-                        <Card />
-                        <Card />
-                    </swiper-slide>
-                    <swiper-slide>
-                        <Card />
-                        <Card />
-                        <Card />
-                    </swiper-slide>
-                    <swiper-slide>
-                        <Card />
-                        <Card />
-                        <Card />
-                    </swiper-slide>
-                </swiper>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="flex justify-center items-center mt-[50px]">
+      <div class="lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px]">
+        <swiper :navigation="{ nextEl: nextEl, prevEl: prevEl }" :modules="modules" class="mySwiper">
+          <swiper-slide>
+            <Card />
+            <Card />
+            <Card />
+          </swiper-slide>
+          <swiper-slide>
+            <Card />
+            <Card />
+            <Card />
+          </swiper-slide>
+          <swiper-slide>
+            <Card />
+            <Card />
+            <Card />
+          </swiper-slide>
+        </swiper>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -169,23 +172,30 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
 export default {
-    components: {
-        Swiper,
-        SwiperSlide,
-        LeftArrow,
-        RightArrow,
-        Card,
-    },
-    setup() {
-        const nextEl = ref(null);
-        const prevEl = ref(null);
+  components: {
+    Swiper,
+    SwiperSlide,
+    LeftArrow,
+    RightArrow,
+    Card,
+  },
+  setup() {
+    const nextEl = ref(null);
+    const prevEl = ref(null);
 
-        return {
-            modules: [Navigation],
-            nextEl,
-            prevEl,
-        };
-    },
+   
+    onMounted(() => {
+      if (!nextEl.value || !prevEl.value) {
+        console.error('Navigation elements not found');
+      }
+    });
+
+    return {
+      modules: [Navigation],
+      nextEl,
+      prevEl,
+    };
+  },
 };
 </script>
 
