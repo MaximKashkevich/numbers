@@ -11,7 +11,7 @@
     </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 // Доустановить ts 
 import Header from './components/Header.vue';
 import Login from './components/Login.vue';
@@ -23,3 +23,5 @@ import PlateNumbers from './components/PlateNumbers.vue';
 import { useSignUpStore } from '@/stores/signUp';
 
 const counter = useSignUpStore();
+
+</script>

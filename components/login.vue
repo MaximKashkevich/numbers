@@ -64,7 +64,7 @@
                         </div>
 
                         <ButtonBlue class="w-[300px] py-[14px]">
-                            Sign in
+                            <NuxtLink>Sign in</NuxtLink>
                         </ButtonBlue>
                     </form>
 

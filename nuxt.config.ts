@@ -10,12 +10,12 @@ export default defineNuxtConfig({
     },
   },
 
-  build: {
-    transpile: [
-      // ...другие значения
-      "typescript",
-    ],
-  },
+  // build: {
+  //   transpile: [
+  //     // ...другие значения
+  //     "typescript",
+  //   ],
+  // },
 
   compatibilityDate: "2024-09-03",
 });
