@@ -70,10 +70,10 @@ import ButtonBlue from './Button-blue/ButtonBlue.vue';
     font-size: clamp(18px, 16px, 20px);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 768px) {
     .header-list{
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
        
    
     }

@@ -4,7 +4,7 @@
        <div>
            <Registration v-if="signUp" :onClickSignUP="onClickSignUP" />
            <Header />
-           <Login :onClickSignUP="onClickSignUP" />
+           <PlateNumbers/>
            <Footer />
        </div>
    </template>
@@ -16,6 +16,7 @@
    import Login from './components/Login.vue';
    import Footer from './components/Footer.vue';
    import Registration from './components/Registration/Registration.vue';
+   import PlateNumbers from './components/PlateNumbers.vue';
    import { ref } from 'vue'
    const signUp = ref(false)
    const onClickSignUP = () => {

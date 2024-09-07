@@ -1,8 +1,8 @@
 <template>
-    <Header />
+  
 
     <!-- Навигация -->
-    <nav class="mb-[30px] mt-[30px]">
+    <nav class="mb-[30px] mt-[30px] navigation">
         <ul class="flex gap-[5px] pl-[100px]">
             <li>
                 <a href="#" class="hover:text-[#005DCA] transition cursor-default">Home /</a>
@@ -22,8 +22,8 @@
         <div
             class="flex flex-wrap justify-between px-[30px] md:gap-[80px] lg:gap-[250px] min-w-[200px] max-w-[1900px] sm:justify-center">
             <!-- Левая часть -->
-            <div class="flex-1 min-w-[250px] max-w-[350px] mb-[70px]">
-                <h1 class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px]">
+            <div class="flex-1 min-w-[250px] max-w-[350px] mb-[70px] title">
+                <h1 class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px title-2">
                     Du mobile number for sale
                 </h1>
                 <p class="text-[12px] font-normal leading-[14.4px] opacity-30">
@@ -64,7 +64,7 @@
             </div>
 
             <!-- Правая часть -->
-            <div class="flex-1 max-w-[350px] ">
+            <div class="flex-1 max-w-[350px] right-panel ">
                 <div class="flex items-center space-x-2">
                     <img src="../public/assets/avatar.svg" alt="" class="w-10 h-10 rounded-full">
                     <div>
@@ -143,7 +143,7 @@
 
 
 
-    <Footer />
+   
 </template>
 
 <script>
@@ -247,5 +247,19 @@ body {
 
 }
 
+@media (max-width: 768px){
+.navigation{
+  display: none;
+}
+
+.title{
+  margin-top: 70px;
+  text-align: center;
+}
+
+.right-panel{
+  margin-left: 10px;
+}
+}
 
 </style>
