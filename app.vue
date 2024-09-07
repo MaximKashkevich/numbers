@@ -1,27 +1,27 @@
 <template>
+    <div>
+        <!-- <Verification /> -->
+        <Registration v-if="counter.signUp" :signUp="counter.signUp" />
 
+        <!-- Сделать компонент Entrance для регистрации -->
+        <Header />
+        <Login />
+        <Footer />
 
-
-
-
- <PlateNumbers/>
-
+        <!-- <PlateNumbers /> -->
+    </div>
 </template>
 
+<script lang="ts" setup>
+// Доустановить ts 
+import Header from './components/Header.vue';
+import Login from './components/Login.vue';
+import Footer from './components/Footer.vue';
+import Registration from './components/Registration/Registration.vue';
+import Verification from './components/Verification.vue';
+import PlateNumbers from './components/PlateNumbers.vue';
 
-<script>
-import Header from "./components/Header";
-import Login from "./components/Login.vue";
-import Footer from "./components/Footer.vue";
-import PlateNumbers from "./components/PlateNumbers.vue";
-import Registration from "./components/Registration/Registration.vue";
+import { useSignUpStore } from '@/stores/signUp';
 
-import { ref } from 'vue'
-
-const signUp = ref(false)
-
-const onClickSignUP = () => {
-    signUp.value = !signUp.value;
-    console.log(signUp)
-}
+const counter = useSignUpStore();
 </script>

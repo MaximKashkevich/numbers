@@ -103,7 +103,8 @@
     <div class="mt-[150px] px-[30px]">
         <div class="flex justify-center">
             <div class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center">
-                <h3 class="max-w-[376px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px] ">
+                <h3
+                    class="max-w-[376px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px] ">
                     Similar numbers:
                 </h3>
                 <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
@@ -162,7 +163,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 
 
 // Import Swiper styles
-import 'swiper/css';
+import "swiper/css"
 import 'swiper/css/navigation';
 
 // Import required modules
@@ -236,6 +237,4 @@ body {
 
 
 }
-
-
 </style>
