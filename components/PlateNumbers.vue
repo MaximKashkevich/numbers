@@ -1,8 +1,8 @@
 <template>
-    <Header />
+  
 
     <!-- Навигация -->
-    <nav class="mb-[30px] mt-[30px]">
+    <nav class="mb-[30px] mt-[30px] navigation">
         <ul class="flex gap-[5px] pl-[100px]">
             <li>
                 <a href="#" class="hover:text-[#005DCA] transition cursor-default">Home /</a>
@@ -22,8 +22,8 @@
         <div
             class="flex flex-wrap justify-between px-[30px] md:gap-[80px] lg:gap-[250px] min-w-[200px] max-w-[1900px] sm:justify-center">
             <!-- Левая часть -->
-            <div class="flex-1 min-w-[250px] max-w-[350px] mb-[70px]">
-                <h1 class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px]">
+            <div class="flex-1 min-w-[250px] max-w-[350px] mb-[70px] title">
+                <h1 class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px title-2">
                     Du mobile number for sale
                 </h1>
                 <p class="text-[12px] font-normal leading-[14.4px] opacity-30">
@@ -45,7 +45,7 @@
 
             <!-- Центральная часть -->
             <div
-                class="flex-1 min-w-[300px] w-[700px] h-[470px] mb: min-w-[400px]    rounded-[20px] bg-white border-[2px] border-[#B3B3B3] mb-[70px]">
+                class="flex-1 min-w-[280px] w-[700px] h-[470px] mb: min-w-[400px]    rounded-[20px] bg-white border-[2px] border-[#B3B3B3] mb-[70px]">
                 <div class="flex justify-between w-full p-[30px]">
                     <ButtonShare />
                     <ButtonLike />
@@ -64,7 +64,7 @@
             </div>
 
             <!-- Правая часть -->
-            <div class="flex-1 max-w-[350px] ">
+            <div class="flex-1 max-w-[350px] right-panel ">
                 <div class="flex items-center space-x-2">
                     <img src="../public/assets/avatar.svg" alt="" class="w-10 h-10 rounded-full">
                     <div>
@@ -75,7 +75,7 @@
                             Online
                         </p>
                     </div>
-                    <img src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
+                    <img class="pl-[110px] pb-[35px]" src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
                 </div>
                 <div class="flex gap-[25px] mt-[30px]">
                     <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
@@ -86,11 +86,9 @@
                     </p>
                 </div>
                 <div class="w-[212] mt-[30px]">
-                    <button
-                        class="w-full w-[315px] h-[54px] border-2 font-medium border-[#000] rounded-[100px] text-[20px] font-bold text-[#000] hover:bg-white hover:text-black transition flex items-center justify-center space-x-2">
-                        Show number
-                        <img src="../public/assets/phone.svg" alt="" class="pl-[30px]">
-                    </button>
+                    <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center ">
+                        Call 058 210 03 10
+                    </ButtonBlue>
                     <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center mt-[212px]">
                         Buy as NFT
                     </ButtonBlue>
@@ -99,6 +97,7 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <!-- Слайдер -->
     <div class="mt-[150px] px-[30px]">
         <div class="flex justify-center">
@@ -134,14 +133,55 @@
                     </swiper-slide>
                 </swiper>
             </div>
+=======
+  <!-- Слайдер -->
+  <div class="mt-[150px] px-[30px]">
+    <div class="flex justify-center">
+      <div class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center">
+        <h3 class="max-w-[376px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px] ">
+          Similar numbers:
+        </h3>
+        <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
+        <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3 mb-[20px]">
+          <!-- Обертка для рефов -->
+          <div ref="prevEl" class="w-[50px]">
+            <LeftArrow />
+          </div>
+          <div ref="nextEl" class="w-[50px]">
+            <RightArrow />
+          </div>
+>>>>>>> df5903621aa6e9021d4ee57a8a54636f68ea5d53
         </div>
+      </div>
     </div>
+    <div class="flex justify-center items-center mt-[50px]">
+      <div class="sm:w-[640px] md:w-[1000px] lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px] px-[30px]">
+        <swiper :navigation="{ nextEl: nextEl, prevEl: prevEl }" :modules="modules" class="mySwiper">
+          <swiper-slide>
+            <Card />
+            <Card />
+            <Card />
+          </swiper-slide>
+          <swiper-slide>
+            <Card />
+            <Card />
+            <Card />
+          </swiper-slide>
+          <swiper-slide>
+            <Card />
+            <Card />
+            <Card />
+          </swiper-slide>
+        </swiper>
+      </div>
+    </div>
+  </div>
 
 
 
 
 
-    <Footer />
+   
 </template>
 
 <script>
@@ -170,23 +210,30 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
 export default {
-    components: {
-        Swiper,
-        SwiperSlide,
-        LeftArrow,
-        RightArrow,
-        Card,
-    },
-    setup() {
-        const nextEl = ref(null);
-        const prevEl = ref(null);
+  components: {
+    Swiper,
+    SwiperSlide,
+    LeftArrow,
+    RightArrow,
+    Card,
+  },
+  setup() {
+    const nextEl = ref(null);
+    const prevEl = ref(null);
 
-        return {
-            modules: [Navigation],
-            nextEl,
-            prevEl,
-        };
-    },
+   
+    onMounted(() => {
+      if (!nextEl.value || !prevEl.value) {
+        console.error('Navigation elements not found');
+      }
+    });
+
+    return {
+      modules: [Navigation],
+      nextEl,
+      prevEl,
+    };
+  },
 };
 </script>
 
@@ -237,4 +284,23 @@ body {
 
 
 }
+<<<<<<< HEAD
+=======
+
+@media (max-width: 768px){
+.navigation{
+  display: none;
+}
+
+.title{
+  margin-top: 70px;
+  text-align: center;
+}
+
+.right-panel{
+  margin-left: 10px;
+}
+}
+
+>>>>>>> df5903621aa6e9021d4ee57a8a54636f68ea5d53
 </style>

@@ -1,8 +1,7 @@
 <template>
     <div>
         <!-- <Verification /> -->
-        <Registration v-if="counter.signUp" :signUp="counter.signUp" />
-
+        <Registration v-if="counter.signUp" />
         <!-- Сделать компонент Entrance для регистрации -->
         <Header />
         <Login />
@@ -24,4 +23,3 @@ import PlateNumbers from './components/PlateNumbers.vue';
 import { useSignUpStore } from '@/stores/signUp';
 
 const counter = useSignUpStore();
-</script>
