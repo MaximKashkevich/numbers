@@ -1,8 +1,8 @@
 <template>
     <div class="justify-between mx-20 pt-[20px]">
         <header class="min-w-[200px] min-h-[20px] justify-between flex items-center flex-wrap">
-            <img src="/public/assets/logo.png" alt="Logo">
-            <ul class="justify-between flex items-center gap-[40px]  py-[30px] px-[10px] flex-wrap ">
+            <img src="/public/assets/logo.png" class="header-img" alt="Logo">
+            <ul class="justify-between flex items-center gap-[50px]  py-[30px] px-[10px] flex-wrap header-list ">
                 <li><a href="./PlateNumbers.vue"
                         class=" text-link leading-[19.2px] text-black font-normal hover:text-blue-400 transition cursor-default">Plate
                         Numbers</a>
@@ -17,7 +17,7 @@
                         class=" text-link leading-[19.2px] text-black font-normal hover:text-blue-400 transition cursor-default">Gallery</a>
                 </li>
             </ul>
-
+       
             <a href="#">
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="1.25" y="0.75" width="22.5" height="22.5" rx="11.25" stroke="black" stroke-width="1.5" />
@@ -53,7 +53,7 @@
 
 
             <div>
-                <ButtonBlue class="py-[14px] px-[60px] mt-[20px] ">
+                <ButtonBlue class="py-[14px] px-[60px]  ml-[20px]  buttons">
                     Add Listing
                 </ButtonBlue>
             </div>
@@ -68,5 +68,27 @@ import ButtonBlue from './Button-blue/ButtonBlue.vue';
 <style>
 .text-link {
     font-size: clamp(18px, 16px, 20px);
+}
+
+@media (max-width: 400px) {
+    .header-list{
+        margin-top: 20px;
+        margin-bottom: 20px;
+       
+   
+    }
+
+    .buttons {
+        margin-left: 1px;
+        margin-bottom: 40px;
+        margin-top: 40px
+    }
+
+    .header-img{
+        display: flex;
+      
+    }
+
+
 }
 </style>

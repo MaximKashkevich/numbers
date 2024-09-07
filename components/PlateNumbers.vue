@@ -117,7 +117,7 @@
       </div>
     </div>
     <div class="flex justify-center items-center mt-[50px]">
-      <div class="lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px]">
+      <div class="sm:w-[640px] md:w-[1000px] lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px] px-[30px]">
         <swiper :navigation="{ nextEl: nextEl, prevEl: prevEl }" :modules="modules" class="mySwiper">
           <swiper-slide>
             <Card />
