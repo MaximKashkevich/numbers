@@ -1,6 +1,6 @@
 <template>
     <div class="  flex-1 min-w-[300px]  max-w-[426px]  h-[300px] rounded-[20px] bg-white border-[2px] border-[#B3B3B3]">
-        <img class="mt-[40px]" src="../public/assets/numbers.svg" alt="">
+        <img class="mt-[40px] ml-[15px]" src="../public/assets/numbers.svg" alt="">
         <div class="flex items-center mt-[40px] gap-[235px] pl-[20px]">
             <h1 class="w-[99px] h-[24px] text-[20px] font-medium leading-[24px] ">2 000 AED</h1>
             <ButtonLike class="w-[24px] h-[20px] " />
