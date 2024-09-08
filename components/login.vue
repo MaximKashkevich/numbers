@@ -13,7 +13,7 @@
                 <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
                     No account?
                     <span>
-                        <NuxtLink @click="counter.onClickSignUP" class="text-[#2356e0d2] cursor-pointer">Sign up.
+                        <NuxtLink @click="signUp.onClickSignUP" class="text-[#2356e0d2] cursor-pointer">Sign up.
                         </NuxtLink>
                     </span>
                 </h2>
@@ -81,7 +81,7 @@ import ButtonBlue from './Button-blue/ButtonBlue.vue';
 
 import { useSignUpStore } from '@/stores/signUp';
 
-const counter = useSignUpStore();
+const signUp = useSignUpStore();
 
 
 </script>

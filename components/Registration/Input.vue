@@ -1,8 +1,11 @@
 <template>
     <div class="mb-2">
         <label class="block mb-4 leading-[16.8px]">{{ title }}</label>
-        <input :type="type" :placeholder="placeholder"
-            class="border px-8 py-[30px] rounded-[50px] h-[52px] w-[650px]" />
+        <form action="">
+            <input :type="type" :placeholder="placeholder"
+                class="border px-8 py-[30px] rounded-[50px] h-[52px] w-[650px]" />
+
+        </form>
     </div>
 </template>
 
