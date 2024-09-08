@@ -99,43 +99,7 @@
     </div>
 
 
-    <!-- Слайдер -->
-    <div class="mt-[150px] px-[30px]">
-        <div class="flex justify-center">
-            <div class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center">
-                <h3
-                    class="max-w-[376px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px] ">
-                    Similar numbers:
-                </h3>
-                <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
-                <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3  mb-[20px]">
-                    <LeftArrow class="w-[50px]" ref="prevEl" />
-                    <RightArrow class="w-[50px]" ref="nextEl" />
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="flex justify-center items-center mt-[50px]">
-        <div class="lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px]">
-            <swiper :navigation="{ nextEl: nextEl, prevEl: prevEl }" :modules="modules" class="mySwiper">
-                <swiper-slide>
-                    <Card />
-                    <Card />
-                    <Card />
-                </swiper-slide>
-                <swiper-slide>
-                    <Card />
-                    <Card />
-                    <Card />
-                </swiper-slide>
-                <swiper-slide>
-                    <Card />
-                    <Card />
-                    <Card />
-                </swiper-slide>
-            </swiper>
-        </div>
-    </div>
+v>
 
 
     <!-- Слайдер -->

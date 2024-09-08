@@ -1,6 +1,8 @@
 <template>
+     
     <div class="mt-[150px] mx-20">
-        <footer class="pb-10 ">
+         <div class="  w-full h-[1px] bg-[#BFBFBF]  "></div>
+        <footer class="pb-10 mt-[70px] ">
             <div class="flex items-center justify-between flex-wrap">
 
                 <img src="../public/assets/footerLogo.png" alt="footerLogo">
