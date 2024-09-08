@@ -16,7 +16,8 @@
     "pinia": "^2.2.2",
     "swiper": "^10.3.1",
     "vite-plugin-vue-inspector": "^5.2.0",
-    "vue": "latest"
+    "vue": "latest",
+    "vue-validate": "^1.0.1"
   },
   "devDependencies": {
     "@nuxt/typescript": "^2.8.1",
