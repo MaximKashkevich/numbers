@@ -1,14 +1,14 @@
 <template>
+  
+        <!-- <Verification /> -->
+        <Registration v-if="counter.signUp" />
+        <!-- Сделать компонент Entrance для регистрации -->
+        <Header />
+        <Login />
+        <Footer />
 
    
-       <div>
-           <Registration v-if="signUp" :onClickSignUP="onClickSignUP" />
-           <Header />
-          
-          <BuyNumbers/>
-          
-           <Footer />
-       </div>
+ >
    </template>
    
   
@@ -27,3 +27,6 @@
        console.log(signUp)
    }
    </script>
+
+ 
+

@@ -2,7 +2,7 @@
     <div class="flex justify-between items-start pl-[60px] pr-[60px] pt-[100px]">
         <div class="w-[650px] h-[650px]">
             <h1 class="font-roboto text-[50px] font-medium uppercase tracking-wide leading-none w-[400px]">
-                Welcome <span class="pr-[15px]">to</span>Numbers.ae
+                Welcome <span class="pr-[15px]">to</span> Numbers.ae
             </h1>
             <p class="w-[500px] pt-[30px]">
                 Numbers.ae is a Web service aimed to create an easy and convenient
@@ -11,8 +11,10 @@
             </p>
             <div class="flex items-end h-[390px]">
                 <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
-                    No account? <span>
-                        <NuxtLink @click="onClickSignUP" class="text-[#2356e0d2] cursor-pointer">Sign up.</NuxtLink>
+                    No account?
+                    <span>
+                        <NuxtLink @click="counter.onClickSignUP" class="text-[#2356e0d2] cursor-pointer">Sign up.
+                        </NuxtLink>
                     </span>
                 </h2>
             </div>
@@ -25,61 +27,61 @@
             <div class="button-container flex flex-col gap-[20px] pt-[40px]">
                 <div class="flex gap-[20px]">
                     <ButtonLogin>
-                        <img src="../public/assets/google-logo.svg" alt="icon" class="w-[90px] h-[30px]" />
+                        <img src="../public/assets/google-logo.svg" alt="Google" class="w-[90px] h-[30px]" />
                     </ButtonLogin>
                     <ButtonLogin>
-                        <img src="../public/assets/facebook-logo.webp" alt="icon" class="w-[100px] h-[20px]" />
+                        <img src="../public/assets/facebook-logo.webp" alt="Facebook" class="w-[100px] h-[20px]" />
                     </ButtonLogin>
                 </div>
                 <div class="pt-[70px]">
                     <h3 class="w-[600px] h-[42px] font-roboto text-[35px] font-medium leading-[42px] text-left">
                         Or login with username and password
                     </h3>
-                    <form action="" class="pt-[30px]">
+                    <form class="pt-[30px]">
                         <div>
-                            <label for="" class=" text-[14px] font-medium leading-[16.8px] ">Login, e–mail or
+                            <label for="username" class="text-[14px] font-medium leading-[16.8px]">Login, e–mail or
                                 username:</label>
                             <input
-                                class="bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] text-[#B3B3B3] placeholder-custom mb-[10px]"
-                                placeholder="username@gmail.com or 050 123 45 67 or JohnSnow_123" type="email"
-                                id="email">
+                                class="bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom mb-[10px]"
+                                placeholder="username@gmail.com or 050 123 45 67 or JohnSnow_123" type="text"
+                                id="username">
                         </div>
 
                         <div>
-                            <label for="" class="text-[14px] font-medium leading-[16.8px] h-[20px]  ">Password:</label>
+                            <label for="password"
+                                class="text-[14px] font-medium leading-[16.8px] h-[20px]">Password:</label>
                             <input
-                                class="bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] text-[#B3B3B3] placeholder-custom "
+                                class="bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom"
                                 placeholder="xxxxxxx" type="password" id="password">
                         </div>
 
+                        <div class="flex items-center">
+                            <input id="remember-me" type="checkbox"
+                                class="custom-checkbox h-4 w-4 border border-gray-300 rounded focus:ring-0" />
+                            <label for="remember-me" class="ml-2 block text-sm text-[#B3B3B3]">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <ButtonBlue class="w-[300px] py-[14px]">
+                            <NuxtLink>Sign in</NuxtLink>
+                        </ButtonBlue>
                     </form>
+
+
                 </div>
-                <div class="flex items-center">
-                    <input id="remember-me" type="checkbox" v-model="checked"
-                        class="custom-checkbox h-4 w-4 border border-gray-300 rounded focus:ring-0" />
-                    <label for="remember-me" class="ml-2 block text-sm text-[#B3B3B3]">
-                        Remember me
-                    </label>
-                </div>
-                <ButtonBlue class="w-[300px] py-[14px]">
-                    Sign in
-                </ButtonBlue>
             </div>
         </div>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import ButtonLogin from './Button-login/ButtonLogin.vue';
 import ButtonBlue from './Button-blue/ButtonBlue.vue';
 
-import { defineProps } from 'vue'
+import { useSignUpStore } from '@/stores/signUp';
 
-defineProps({
-    onClickSignUP: {
-        type: Function,
-        required: true
-    }
-})
+const counter = useSignUpStore();
+
 
 </script>

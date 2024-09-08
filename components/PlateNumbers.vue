@@ -1,5 +1,5 @@
 <template>
-  
+
 
     <!-- Навигация -->
     <nav class="mb-[30px] mt-[30px] navigation">
@@ -75,7 +75,8 @@
                             Online
                         </p>
                     </div>
-                    <img class="pl-[110px] pb-[35px]" src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
+                    <img class="pl-[110px] pb-[35px]" src="../public/assets/iconamoon_attention-circle-light.svg"
+                        alt="">
                 </div>
                 <div class="flex gap-[25px] mt-[30px]">
                     <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
@@ -97,53 +98,96 @@
         </div>
     </div>
 
-  <!-- Слайдер -->
-  <div class="mt-[150px] px-[30px]">
-    <div class="flex justify-center">
-      <div class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center">
-        <h3 class="max-w-[376px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px] ">
-          Similar numbers:
-        </h3>
-        <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
-        <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3 mb-[20px]">
-          <!-- Обертка для рефов -->
-          <div ref="prevEl" class="w-[50px]">
-            <LeftArrow />
-          </div>
-          <div ref="nextEl" class="w-[50px]">
-            <RightArrow />
-          </div>
+
+    <!-- Слайдер -->
+    <div class="mt-[150px] px-[30px]">
+        <div class="flex justify-center">
+            <div class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center">
+                <h3
+                    class="max-w-[376px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px] ">
+                    Similar numbers:
+                </h3>
+                <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
+                <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3  mb-[20px]">
+                    <LeftArrow class="w-[50px]" ref="prevEl" />
+                    <RightArrow class="w-[50px]" ref="nextEl" />
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     <div class="flex justify-center items-center mt-[50px]">
-      <div class="sm:w-[640px] md:w-[1000px] lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px] px-[30px]">
-        <swiper :navigation="{ nextEl: nextEl, prevEl: prevEl }" :modules="modules" class="mySwiper">
-          <swiper-slide>
-            <Card />
-            <Card />
-            <Card />
-          </swiper-slide>
-          <swiper-slide>
-            <Card />
-            <Card />
-            <Card />
-          </swiper-slide>
-          <swiper-slide>
-            <Card />
-            <Card />
-            <Card />
-          </swiper-slide>
-        </swiper>
-      </div>
+        <div class="lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px]">
+            <swiper :navigation="{ nextEl: nextEl, prevEl: prevEl }" :modules="modules" class="mySwiper">
+                <swiper-slide>
+                    <Card />
+                    <Card />
+                    <Card />
+                </swiper-slide>
+                <swiper-slide>
+                    <Card />
+                    <Card />
+                    <Card />
+                </swiper-slide>
+                <swiper-slide>
+                    <Card />
+                    <Card />
+                    <Card />
+                </swiper-slide>
+            </swiper>
+        </div>
     </div>
-  </div>
+
+
+    <!-- Слайдер -->
+    <div class="mt-[150px] px-[30px]">
+        <div class="flex justify-center">
+            <div class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center">
+                <h3
+                    class="max-w-[376px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px] ">
+                    Similar numbers:
+                </h3>
+                <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
+                <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3 mb-[20px]">
+                    <!-- Обертка для рефов -->
+                    <div ref="prevEl" class="w-[50px]">
+                        <LeftArrow />
+                    </div>
+                    <div ref="nextEl" class="w-[50px]">
+                        <RightArrow />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center items-center mt-[50px]">
+            <div
+                class="sm:w-[640px] md:w-[1000px] lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px] px-[30px]">
+                <swiper :navigation="{ nextEl: nextEl, prevEl: prevEl }" :modules="modules" class="mySwiper">
+                    <swiper-slide>
+                        <Card />
+                        <Card />
+                        <Card />
+                    </swiper-slide>
+                    <swiper-slide>
+                        <Card />
+                        <Card />
+                        <Card />
+                    </swiper-slide>
+                    <swiper-slide>
+                        <Card />
+                        <Card />
+                        <Card />
+                    </swiper-slide>
+                </swiper>
+            </div>
+        </div>
+    </div>
 
 
 
 
 
-   
+
 </template>
 
 <script>
@@ -165,41 +209,41 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 
 
 // Import Swiper styles
-import 'swiper/css';
+import "swiper/css"
 import 'swiper/css/navigation';
 
 // Import required modules
 import { Navigation } from 'swiper/modules';
 
 export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-    LeftArrow,
-    RightArrow,
-    Card,
-  },
-  setup() {
-    const nextEl = ref(null);
-    const prevEl = ref(null);
+    components: {
+        Swiper,
+        SwiperSlide,
+        LeftArrow,
+        RightArrow,
+        Card,
+    },
+    setup() {
+        const nextEl = ref(null);
+        const prevEl = ref(null);
 
-   
-    onMounted(() => {
-      if (!nextEl.value || !prevEl.value) {
-        console.error('Navigation elements not found');
-      }
-    });
 
-    return {
-      modules: [Navigation],
-      nextEl,
-      prevEl,
-    };
-  },
+        onMounted(() => {
+            if (!nextEl.value || !prevEl.value) {
+                console.error('Navigation elements not found');
+            }
+        });
+
+        return {
+            modules: [Navigation],
+            nextEl,
+            prevEl,
+        };
+    },
 };
 </script>
 
-<style>
+<style scoped>
 .active {
     background-color: #000;
 }
@@ -247,19 +291,18 @@ body {
 
 }
 
-@media (max-width: 768px){
-.navigation{
-  display: none;
-}
+@media (max-width: 768px) {
+    .navigation {
+        display: none;
+    }
 
-.title{
-  margin-top: 70px;
-  text-align: center;
-}
+    .title {
+        margin-top: 70px;
+        text-align: center;
+    }
 
-.right-panel{
-  margin-left: 10px;
+    .right-panel {
+        margin-left: 10px;
+    }
 }
-}
-
 </style>
