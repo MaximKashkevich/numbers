@@ -69,7 +69,7 @@ import ButtonBlue from './Button-blue/ButtonBlue.vue';
 .text-link {
     font-size: clamp(18px, 16px, 20px);
 }
-
+ 
 @media (max-width: 768px) {
     .header-list{
         margin-top: 20px;

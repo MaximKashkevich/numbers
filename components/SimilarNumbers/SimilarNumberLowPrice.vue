@@ -1,18 +1,18 @@
 <template>
     <div class="flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[2px] border-[#BFBFBF]">
-        <img class="mt-[40px] px-[20px]" src="../../public/assets/Rectangle 73.png" alt="">
+        <img class="mt-[40px] px-[20px]" :src="imageSrc" alt="">
+
         <div class="flex items-center mt-[40px] gap-[235px] pl-[20px]">
             <div class="w-[110px] flex gap-[25px]">
-                <h1 class="min-w-[110px] h-[24px] text-[#EA0038] text-[20px] font-medium leading-[24px]">15 000 AED</h1>
+                <h1 class="min-w-[110px] h-[24px] text-[#EA0038] text-[20px] font-medium leading-[24px]">
+                    {{ currentPrice }} AED
+                </h1>
                 <h1 class="min-w-[110px] h-[24px] text-[#BFBFBF] text-[15px] font-medium leading-[24px] custom-strike">
-                    20 000 AED</h1>
+                    {{ originalPrice }} AED
+                </h1>
             </div>
 
-
-
-
-            <!-- Динамическое переключение компонентов -->
-            <component :is="liked ? 'HeartRed' : 'ButtonLike'" class="w-[24px] h-[20px]" @click="toggleLike" />
+            <component :is="liked ? 'HeartRed' : 'ButtonLike'" class="w-[24px] h-[20px] img-like mini-img-like" @click="toggleLike" />
         </div>
 
         <div class="mt-[30px] pl-[20px]">
@@ -21,7 +21,7 @@
                     Emirate:
                 </p>
                 <p class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
-                    Dubai
+                    {{ emirate }}
                 </p>
             </div>
 
@@ -30,7 +30,7 @@
                     Posted Today
                 </p>
                 <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
-                    12 Views
+                    {{ views }} Views
                 </p>
             </div>
         </div>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 import ButtonLike from '../ButtonLike.vue';
 import HeartRed from '../HeartRed.vue';
 
@@ -46,15 +47,39 @@ export default {
         ButtonLike,
         HeartRed,
     },
-    data() {
-        return {
-            liked: false, // Состояние для управления кнопкой
-        };
-    },
-    methods: {
-        toggleLike() {
-            this.liked = !this.liked; // Переключение состояния "лайка"
+    props: {
+        imageSrc: {
+            type: String,
+            default: '../../public/assets/Rectangle 73.png',
         },
+        currentPrice: {
+            type: Number,
+            default: 15000,
+        },
+        originalPrice: {
+            type: Number,
+            default: 20000,
+        },
+        emirate: {
+            type: String,
+            default: 'Dubai',
+        },
+        views: {
+            type: Number,
+            default: 12,
+        },
+    },
+    setup() {
+        const liked = ref(false);
+
+        const toggleLike = () => {
+            liked.value = !liked.value;
+        };
+
+        return {
+            liked,
+            toggleLike,
+        };
     },
 };
 </script>
@@ -75,5 +100,14 @@ export default {
   opacity: 1;         
 }
 
-
+@media (max-width: 500px){
+    .img-like{
+        margin-left: -70px;
+    }
+  }
+  @media (max-width: 400px){
+    .mini-img-like{
+        margin-left: -120px;
+    }
+  }
 </style>

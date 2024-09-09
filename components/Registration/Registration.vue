@@ -1,15 +1,17 @@
 <template>
 
     <!-- Мутный фон -->
-    <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-10"></div>
+    <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-10" aria-hidden="true"></div>
 
     <!-- Контейнер карточки -->
-    <div class="fixed inset-0 flex items-center justify-center z-20 py-[10px]">
-        <div class="w-[750px] h-full bg-white shadow-lg p-6 rounded-[20px]  flex flex-col order-2 overflow-y-auto ">
+    <div class="fixed inset-0 flex items-center justify-center z-20 py-[10px]" role="dialog"
+        aria-labelledby="dialog-title">
+        <div class="w-[750px] h-full bg-white shadow-lg p-6 rounded-[20px] flex flex-col overflow-y-auto">
+
             <!-- Заголовок и кнопка закрытия -->
             <div class="relative mb-8">
-                <h1 class="text-[35px] font-medium leading-[42px]">Sign in</h1>
-                <NuxtLink class="absolute top-0 right-0" to="/">
+                <h1 id="dialog-title" class="text-[35px] font-medium leading-[42px]">Sign in</h1>
+                <NuxtLink class="absolute top-0 right-0" to="/" aria-label="Close">
                     <svg @click="signUp.onClickSignUP" width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -20,28 +22,37 @@
             </div>
 
             <!-- Поля ввода -->
-            <div class="flex flex-col gap-4 mb-6">
-                <div v-for="(field, index) in inputTitle" :key="index">
-                    <TextInput :title="field.title" :type="field.type" :placeholder="field.placeholder"
-                        class="w-full" />
-                </div>
-            </div>
+            <form @submit.prevent="verification.onClickSignIn" class="flex flex-col gap-4 mb-6">
+                <fieldset>
+                    <legend class="sr-only">Sign In Form</legend>
 
-            <!-- Чекбокс и кнопка -->
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <input id="remember-me" type="checkbox"
-                        class="custom-checkbox h-4 w-4 border border-gray-300 rounded focus:ring-0" />
-                    <label class="ml-2 block text-sm text-[#B3B3B3]">
-                        <span>I have read and agree</span>
-                        <span><br />with terms and conditions</span>
-                    </label>
-                </div>
-                <button @click="verification.onClickSignIn"
-                    class="border-2 font-medium w-[300px] py-[14px] border-blue-500 rounded-[100px] text-[20px] font-bold text-blue-500 hover:bg-blue-500 hover:text-white transition">
-                    Sign In
-                </button>
-            </div>
+                    <!-- Список полей ввода -->
+                    <ul class=" flex-col gap-4">
+                        <li v-for="(field, index) in inputTitle" :key="index" class="flex flex-col">
+                            <label :for="'field' + index" class="text-sm font-medium text-gray-700">{{ field.title
+                                }}</label>
+                            <TextInput :id="'field' + index" :type="field.type" :placeholder="field.placeholder"
+                                class="w-full" />
+                        </li>
+                    </ul>
+
+                    <!-- Чекбокс и кнопка на одной линии -->
+                    <div class="flex items-center justify-between mt-[45px]">
+                        <div class="flex items-center">
+                            <input id="remember-me" type="checkbox"
+                                class="custom-checkbox h-4 w-4 border border-gray-300 rounded focus:ring-0" />
+                            <label for="remember-me" class="ml-2 block text-sm text-[#B3B3B3]">
+                                <span>I have read and agree</span>
+                                <span><br />with terms and conditions</span>
+                            </label>
+                        </div>
+                        <button @click="useSignInStore.onClickSignIn"
+                            class="border-2 font-medium w-[300px] py-[14px] border-blue-500 rounded-[100px] text-[20px] font-bold text-blue-500 hover:bg-blue-500 hover:text-white transition">
+                            Sign In
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
 
@@ -49,9 +60,7 @@
 
 <script setup lang="ts">
 import TextInput from './Input.vue';
-import Verification from '../Verification.vue';
 import { ref } from 'vue';
-
 import { useSignUpStore } from '@/stores/signUp';
 import { useSignInStore } from '@/stores/verification'
 
@@ -65,22 +74,19 @@ interface Input {
     placeholder: string;
 }
 
-// массив input полей
+// Массив input полей
 const inputTitle = ref<Input[]>([
     { title: 'Your Email:', type: 'email', value: '', placeholder: 'username@gmail.com' },
-    { title: 'Choose login:', type: 'password', value: '', placeholder: 'JohnSnow_123' },
+    { title: 'Choose login:', type: 'text', value: '', placeholder: 'JohnSnow_123' },
     { title: 'Full name:', type: 'text', value: '', placeholder: 'John Snow' },
     { title: 'Mobile number:', type: 'tel', value: '', placeholder: '050 123 45 67' },
     { title: 'Password:', type: 'password', value: '', placeholder: 'xxxxxxx' },
     { title: 'Password again:', type: 'password', value: '', placeholder: 'xxxxxxx' },
 ]);
 
-
-
 </script>
 
 <style scoped>
-/* Обновите стили для TextInput, если необходимо */
 .text-input {
     width: 100%;
     padding: 10px;

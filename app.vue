@@ -6,9 +6,9 @@
         <Verification v-if="verification.signIn" />
 
         <Header />
-        <BuyNumbers/>
+        <PlateNumbers/>
         <Footer />
-        <PlateNumbers />
+       
     </div>
 </template>
 
@@ -21,6 +21,7 @@ import Login from "./components/Login.vue";
 import Registration from "./components/Registration/Registration.vue";
 import Verification from "./components/Verification.vue";
 import PlateNumbers from "./components/PlateNumbers.vue";
+import BuyNumbers from "./components/BuyNumbers/BuyNumbers.vue"
 
 
 import { useSignUpStore } from '@/stores/signUp';
