@@ -50,7 +50,7 @@ export default {
     props: {
         imageSrc: {
             type: String,
-            default: '../../public/assets/Rectangle 73.png',
+             default: '/assets/Rectangle 73.png',
         },
         currentPrice: {
             type: Number,
@@ -94,7 +94,7 @@ export default {
   position: absolute;
   width: 100px;       
   height: 0;        
-  top: 9.5px;         
+  top: 11px;         
  right: 20px;     
   border-top: 1px solid #BFBFBF; 
   opacity: 1;         

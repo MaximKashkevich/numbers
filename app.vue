@@ -6,7 +6,7 @@
         <Verification v-if="verification.signIn" />
 
         <Header />
-        <PlateNumbers/>
+        <BuyNumbers/>
         <Footer />
        
     </div>

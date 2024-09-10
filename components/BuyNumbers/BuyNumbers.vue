@@ -44,15 +44,20 @@
             </h3>
             <div class="flex gap-[20px] items-center flex-wrap">
                 <div>
-                    <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]" for="type">Type:</label>
+                    <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
+                        for="type">Type:</label>
                     <div class="mt-[10px] flex gap-[10px]">
-                        <button class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center">Plate</button>
-                        <button class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center">Mobile</button>
+                        <button
+                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center">Plate</button>
+                        <button
+                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center">Mobile</button>
                     </div>
                 </div>
                 <div>
-                    <label for="emirate" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate:</label>
-                    <select id="emirate" name="emirate" class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
+                    <label for="emirate"
+                        class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate:</label>
+                    <select id="emirate" name="emirate"
+                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                         <option value="city">Dubai</option>
                         <option value="city">Abu Dhabi</option>
                         <option value="city">Ajman</option>
@@ -62,15 +67,19 @@
                     </select>
                 </div>
                 <div>
-                    <label for="code" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Code:</label>
-                    <select id="code" name="code" class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
+                    <label for="code"
+                        class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Code:</label>
+                    <select id="code" name="code"
+                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                         <option>AA</option>
                         <option>None</option>
                     </select>
                 </div>
                 <div>
-                    <label for="sort" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Sort by:</label>
-                    <select id="sort" name="sort" class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
+                    <label for="sort" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Sort
+                        by:</label>
+                    <select id="sort" name="sort"
+                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                         <option>Latest</option>
                     </select>
                 </div>
@@ -83,7 +92,8 @@
             <h3 class="text-[16px] font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px]">
                 Featured:
             </h3>
-            <div class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px]">
+            <div
+                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px]">
                 <CardPlate />
                 <CardPlate />
                 <CardPlate />
@@ -92,50 +102,223 @@
                 <CardPlate />
                 <CardPlate />
             </div>
-            <ButtonBlue class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] font-bold text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap">
+            <ButtonBlue
+                class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] font-bold text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap">
                 View all Promoted listings
             </ButtonBlue>
         </div>
         <div>
-            <h3 class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px]">
+            <h3
+                class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px]">
                 Similar numbers:
             </h3>
-            <div class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px]">
+            <div
+                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px]">
+                <SimilarNumber />
+                <SimilarNumber />
                 <SimilarNumber />
                 <SimilarNumberLowPrice />
-                <SimilarNumber />
-                <SimilarNumberLowPrice />
-                <SimilarNumber />
                 <SimilarNumberLowPrice />
             </div>
             <ButtonBlue class="w-[428px] mt-[50px] uppercase blue-button">
                 View 7508 more plate numbers
             </ButtonBlue>
         </div>
+        <div
+            class="w-full min-w-[330px] bg-[#FFFFFF] h-[500px] rounded-[20px] px-[50px] py-[80px] mt-[150px] text-container">
+            <h3 class="w-[1000px] text-[50px] font-normal leading-[60px] text-left mini-title">
+                You can create an ad to buy a number, and registered users who are selling rooms will be able to contact
+                you with their offer.
+            </h3>
+            <p class="w-[1000px] text-[16px] font-normal leading-[19.2px] text-left mt-[20px] mini-text">
+                View ads for purchase is available only for registered users
+            </p>
+            <ButtonBlue class="w-[384px] mt-[70px] order-list ">
+                View purchase orders list
+            </ButtonBlue>
+        </div>
+        <h3 class="w-[198px] h-[60px]  text-[50px] font-light leading-[60px] text-left mt-[150px]">
+            Licenses
+        </h3>
+        <div
+            class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px] mt-[50px] grid-2">
+            <CardLicenses />
+            <CardLicenses />
+            <CardLicenses />
+        </div>
+
+        <h3 class="w-[91px] h-[60px]  text-[50px] font-normal leading-[60px] text-left mt-[150px]">
+            FAQ
+        </h3>
+
+        <div>
+            <ul class="mt-[70px] space-y-6">
+                <li>
+                    <div class="flex flex-wrap py-[25px] justify-between items-start">
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
+                                How do I login?
+                            </p>
+                            <span
+                                class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
+                                You can easily update your account information. Just go to your Dashboard page and click
+                                on the Settings link. From here you can do whatever you like with your information.
+                            </span>
+                        </div>
+                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active" />
+                    </div>
+                    <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
+                </li>
+
+                <li>
+                    <div class="flex flex-wrap py-[25px] justify-between items-start">
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
+                                Can I create more than one account?
+                            </p>
+                            <span
+                                class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
+                                You can easily update your account information. Just go to your Dashboard page and click
+                                on the Settings link. From here you can do whatever you like with your information.
+                            </span>
+                        </div>
+                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active" />
+                    </div>
+                    <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
+                </li>
+
+                <li>
+                    <div class="flex flex-wrap py-[25px] justify-between items-start">
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
+                                How do I change my account information?
+                            </p>
+                            <span
+                                class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
+                                You can easily update your account information. Just go to your Dashboard page and click
+                                on the Settings link. From here you can do whatever you like with your information.
+                            </span>
+                        </div>
+                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active" />
+                    </div>
+                    <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
+                </li>
+
+                <li>
+                    <div class="flex flex-wrap py-[25px] justify-between items-start">
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
+                                How can I create or delete a listing?
+                            </p>
+                            <span
+                                class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
+                                You can easily update your account information. Just go to your Dashboard page and click
+                                on the Settings link. From here you can do whatever you like with your information.
+                            </span>
+                        </div>
+                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active" />
+                    </div>
+                    <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
+                </li>
+            </ul>
+
+
+        </div>
+
+
+        <div class="flex flex-wrap gap-[20px] justify-center md:justify-between">
+    <!-- Форма ввода -->
+    <form @submit.prevent="" class="flex flex-col gap-4 mb-6 w-full md:w-[650px]">
+        <fieldset>
+            <div class="mt-[50px] md:mt-[150px]">
+                <h3 class="text-3xl md:text-5xl font-normal leading-[40px] md:leading-[60px] text-left w-full md:w-[650px] h-[80px] md:h-[120px] form-title">
+                    Do you still have questions or have suggestions?
+                </h3>
+                <p class="text-sm md:text-base font-normal leading-[18px] md:leading-[19.2px] text-left w-full md:w-[650px] h-[38px] md:h-[19px] mt-[10px] md:mt-[20px] mb-[30px] md:mb-[70px]">
+                    Leave your contacts and question or suggestion and we will contact you to discuss.
+                </p>
+            </div>
+            <legend class="sr-only">Contact Form</legend>
+
+            <!-- Список полей ввода -->
+            <ul class="flex flex-col gap-4">
+                <li v-for="(field, index) in inputTitle" :key="index" class="flex flex-col">
+                    <label :for="'field' + index" class="text-sm font-medium text-gray-700">{{ field.title }}</label>
+                    <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :id="'field' + index"
+                        :type="field.type !== 'textarea' ? field.type : undefined"
+                        :placeholder="field.placeholder" v-model="field.value"
+                        class="w-full h-[50px] max-h-[150px] gap-[10px] rounded-[100px] border-[1px] pl-[20px]" />
+                </li>
+            </ul>
+
+            <ButtonBlue class="w-[220px] mt-[30px] md:mt-[50px] self-start" @click="">
+                Send
+            </ButtonBlue>
+        </fieldset>
+    </form>
+
+    <!-- Изображение -->
+    <div class="mt-[50px] md:mt-[150px] w-full md:w-auto">
+        <img src="../../public/assets/city.png" alt="City Image" class="rounded-lg w-full md:w-auto" />
     </div>
+</div>
+    </div>
+
+
+
 </template>
 
-<script setup>
+<script setup lang="ts">
 import ButtonBlue from '../Button-blue/ButtonBlue.vue';
 import CardPlate from '../CardPlate/CardPlate.vue';
 import SimilarNumber from '../SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../SimilarNumbers/SimilarNumberLowPrice.vue';
+import CardLicenses from '../CardLicenses/CardLicenses.vue';
+import ButtonPlus from '../ButtonPlus/ButtonPlus.vue';
+import { ref } from 'vue';
+
+interface Input {
+    title: string;
+    type: 'text' | 'number' | 'textarea';
+    value: string;
+    placeholder: string;
+}
+
+// Массив input полей
+
+
+const inputTitle = ref<Input[]>([
+    { title: '', type: 'text', value: '', placeholder: 'Your name' },
+    { title: ' ', type: 'number', value: '', placeholder: '+7 (___) ___-___-___' },
+    { title: ' ', type: 'textarea', value: '', placeholder: 'Write your question or suggestion' },
+]);
 
 
 const props = defineProps({
-  totalMobileNumbers: {
-    type: Number,
-    default: 7353,
-  },
-  totalPlateNumbers: {
-    type: Number,
-    default: 7353,
-  },
+    totalMobileNumbers: {
+        type: Number,
+        default: 7353,
+    },
+    totalPlateNumbers: {
+        type: Number,
+        default: 7353,
+    },
 });
+
+
+
+
 </script>
 
 <style>
-/* Ваши стили здесь */
+.hidden {
+    display: none;
+}
+
 
 @media (max-width: 324px) {
     .text-1 {
@@ -188,6 +371,65 @@ const props = defineProps({
         font-weight: 700;
         margin-bottom: 30px;
     }
+
+    .form-title{
+        margin-bottom: 50px;
+    }
+}
+
+
+@media (max-width: 1120px) {
+    .order-list {
+        width: 395px;
+        font-size: 20px
+    }
+
+    .mini-text {
+        width: 500px;
+        font-size: 14px;
+        margin-top: 50px;
+        margin-bottom: 50px
+    }
+
+    .mini-title {
+        width: 700px;
+        font-size: 35px;
+        font-weight: 700;
+        line-height: 40px;
+
+
+    }
+
+
+    @media (max-width: 850px) {
+        .order-list {
+            width: 250px;
+            font-size: 15px;
+            margin-top: -10px;
+        }
+
+        .mini-text {
+            width: 250px;
+            font-size: 15px;
+
+        }
+
+        .mini-title {
+            width: 300px;
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 30px;
+
+        }
+
+        .text-container {
+            padding-right: 30px;
+        }
+
+        .text-show {}
+    }
+
+
 }
 
 #emirate {
@@ -207,5 +449,9 @@ const props = defineProps({
 .button-black:hover {
     border-color: #BFBFBF;
     color: #BFBFBF;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
 }
 </style>
