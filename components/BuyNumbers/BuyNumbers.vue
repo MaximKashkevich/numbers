@@ -301,7 +301,7 @@ const inputTitle = ref<Input[]>([
 const props = defineProps({
     totalMobileNumbers: {
         type: Number,
-        default: 7353,
+        default: 3028,
     },
     totalPlateNumbers: {
         type: Number,

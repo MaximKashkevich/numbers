@@ -1,11 +1,11 @@
 <template>
-  <div class="flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[2px] border-[#B3B3B3]">
+  <div class="flex-1 min-w-[300px] max-w-[426px] h-auto p-4 rounded-[20px] bg-white border-[2px] border-[#B3B3B3] flex flex-col justify-between">
     <!-- Статичное изображение -->
-    <img class="mt-[40px] ml-[15px]" src="../public/assets/numbers.svg" alt="Numbers">
+    <img class="mx-auto mt-[20px]" src="../public/assets/numbers.svg" alt="Numbers">
 
-    <div class="flex items-center mt-[40px] gap-[235px] pl-[20px]">
-      <h1 class="w-[99px] h-[24px] text-[20px] font-medium leading-[24px]">{{ price }}</h1>
-      
+    <div class="flex items-center justify-between mt-[20px]">
+      <h1 class="text-[20px] font-medium leading-[24px]">{{ price }}</h1>
+
       <!-- Динамическое переключение компонентов -->
       <component
         :is="localLiked ? 'HeartRed' : 'ButtonLike'"
@@ -14,21 +14,21 @@
       />
     </div>
 
-    <div class="mt-[30px] pl-[20px]">
+    <div class="mt-[20px]">
       <div class="flex gap-[10px]">
-        <p class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
+        <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
           Emirate:
         </p>
-        <p class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
+        <p class="text-[16px] font-normal leading-[19.2px]">
           {{ emirate }}
         </p>
       </div>
 
-      <div class="flex gap-[25px] pt-[5px]">
+      <div class="flex justify-between pt-[5px]">
         <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
           {{ postedAt }}
         </p>
-        <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
+        <p class="text-[16px] font-normal leading-[19.2px]">
           {{ views }} Views
         </p>
       </div>
