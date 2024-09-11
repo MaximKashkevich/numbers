@@ -56,27 +56,27 @@
                 <div>
                     <label for="emirate"
                         class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Operator:</label>
-                    <select id="emirate" name="emirate"
-                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
-                        <option value="city">Etosalat</option>
-                        <option value="city">Virgin mobile</option>
-                        <option value="city">Du</option>
+                    <select id="emirate" name="emirate "
+                        class="js-choices mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
+                        <option class="option" value="city">Etosalat</option>
+                        <option class="option" value="city">Virgin mobile</option>
+                        <option class="option" value="city">Du</option>
 
                     </select>
                 </div>
                 <div>
                     <label for="code"
                         class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Prefix:</label>
-                    <select id="code" name="code"
+                    <select id="emirate" name="code"
                         class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                         <option>050</option>
-                    
+
                     </select>
                 </div>
                 <div>
                     <label for="sort" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Sort
                         by:</label>
-                    <select id="sort" name="sort"
+                    <select id="emirate" name="sort"
                         class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                         <option>Latest</option>
                     </select>
@@ -86,7 +86,7 @@
                 </ButtonBlue>
             </div>
         </div>
-   
+
         <div>
             <h3
                 class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px]">
@@ -118,11 +118,11 @@
 </template>
 
 <script setup lang="ts">
-import ButtonBlue from '../Button-blue/ButtonBlue.vue';
-import SimilarNumber from '../SimilarNumbers/SimilarNumber.vue';
-import SimilarNumberLowPrice from '../SimilarNumbers/SimilarNumberLowPrice.vue';
-import Card from '../Card.vue';
+import { onMounted } from 'vue';
 
+
+import ButtonBlue from '../Button-blue/ButtonBlue.vue';
+import Card from '../Card.vue';
 import { ref } from 'vue';
 
 interface Input {
@@ -133,14 +133,13 @@ interface Input {
 }
 
 // Массив input полей
-
-
 const inputTitle = ref<Input[]>([
     { title: '', type: 'text', value: '', placeholder: 'Your name' },
     { title: ' ', type: 'number', value: '', placeholder: '+7 (___) ___-___-___' },
     { title: ' ', type: 'textarea', value: '', placeholder: 'Write your question or suggestion' },
 ]);
 
+;
 
 const props = defineProps({
     totalMobileNumbers: {
@@ -152,15 +151,18 @@ const props = defineProps({
         default: 7353,
     },
 });
-
-
-
-
 </script>
+
+
 
 <style>
 .hidden {
     display: none;
+}
+
+.option {
+
+
 }
 
 
@@ -216,7 +218,7 @@ const props = defineProps({
         margin-bottom: 30px;
     }
 
-    .form-title{
+    .form-title {
         margin-bottom: 50px;
     }
 }

@@ -4,8 +4,8 @@
        
      
    <img :src="imageSrc" class="mt-[40px] px-[20px]" alt="">
-      <div class="flex items-center mt-[40px] gap-[235px] pl-[20px]">
-        <div class="w-[110px]">
+      <div class="flex items-center justify-between mt-[30px] mr-[30px]">
+        <div class="w-[110px] ml-[20px]">
                <h1 class=" w-[110px] h-[24px] text-[20px] font-medium leading-[24px]">{{ price }}</h1> 
         </div>
     

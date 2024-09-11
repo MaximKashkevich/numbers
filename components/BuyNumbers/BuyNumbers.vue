@@ -69,7 +69,7 @@
                 <div>
                     <label for="code"
                         class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Code:</label>
-                    <select id="code" name="code"
+                    <select id="emirate" name="code"
                         class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                         <option>AA</option>
                         <option>None</option>
@@ -78,7 +78,7 @@
                 <div>
                     <label for="sort" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Sort
                         by:</label>
-                    <select id="sort" name="sort"
+                    <select id="emirate" name="sort"
                         class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                         <option>Latest</option>
                     </select>
@@ -160,13 +160,18 @@
                                 class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
                                 How do I login?
                             </p>
-                            <span
-                                class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
-                                You can easily update your account information. Just go to your Dashboard page and click
-                                on the Settings link. From here you can do whatever you like with your information.
-                            </span>
+                            <!-- Анимация для первого элемента -->
+                            <transition name="fade-slide">
+                                <span v-show="showMore"
+                                    class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
+                                    You can easily update your account information. Just go to your Dashboard page and
+                                    click on the Settings
+                                    link. From here you can do whatever you like with your information.
+                                </span>
+                            </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active" />
+                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
+                            @click="seeMore" />
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -178,13 +183,18 @@
                                 class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
                                 Can I create more than one account?
                             </p>
-                            <span
-                                class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
-                                You can easily update your account information. Just go to your Dashboard page and click
-                                on the Settings link. From here you can do whatever you like with your information.
-                            </span>
+                            <!-- Анимация для второго элемента -->
+                            <transition name="fade-slide">
+                                <span v-show="showMore1"
+                                    class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
+                                    You can easily update your account information. Just go to your Dashboard page and
+                                    click on the Settings
+                                    link. From here you can do whatever you like with your information.
+                                </span>
+                            </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active" />
+                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
+                            @click="seeMore1" />
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -196,13 +206,18 @@
                                 class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
                                 How do I change my account information?
                             </p>
-                            <span
-                                class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
-                                You can easily update your account information. Just go to your Dashboard page and click
-                                on the Settings link. From here you can do whatever you like with your information.
-                            </span>
+                            <!-- Анимация для третьего элемента -->
+                            <transition name="fade-slide">
+                                <span v-show="showMore2"
+                                    class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
+                                    You can easily update your account information. Just go to your Dashboard page and
+                                    click on the Settings
+                                    link. From here you can do whatever you like with your information.
+                                </span>
+                            </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active" />
+                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
+                            @click="seeMore2" />
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -214,13 +229,18 @@
                                 class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
                                 How can I create or delete a listing?
                             </p>
-                            <span
-                                class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
-                                You can easily update your account information. Just go to your Dashboard page and click
-                                on the Settings link. From here you can do whatever you like with your information.
-                            </span>
+                            <!-- Анимация для четвертого элемента -->
+                            <transition name="fade-slide">
+                                <span v-show="showMore3"
+                                    class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
+                                    You can easily update your account information. Just go to your Dashboard page and
+                                    click on the Settings
+                                    link. From here you can do whatever you like with your information.
+                                </span>
+                            </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active" />
+                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
+                            @click="seeMore3" />
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -231,41 +251,44 @@
 
 
         <div class="flex flex-wrap gap-[20px] justify-center md:justify-between">
-    <!-- Форма ввода -->
-    <form @submit.prevent="" class="flex flex-col gap-4 mb-6 w-full md:w-[650px]">
-        <fieldset>
-            <div class="mt-[50px] md:mt-[150px]">
-                <h3 class="text-3xl md:text-5xl font-normal leading-[40px] md:leading-[60px] text-left w-full md:w-[650px] h-[80px] md:h-[120px] form-title">
-                    Do you still have questions or have suggestions?
-                </h3>
-                <p class="text-sm md:text-base font-normal leading-[18px] md:leading-[19.2px] text-left w-full md:w-[650px] h-[38px] md:h-[19px] mt-[10px] md:mt-[20px] mb-[30px] md:mb-[70px]">
-                    Leave your contacts and question or suggestion and we will contact you to discuss.
-                </p>
+            <!-- Форма ввода -->
+            <form @submit.prevent="" class="flex flex-col gap-4 mb-6 w-full md:w-[650px]">
+                <fieldset>
+                    <div class="mt-[50px] md:mt-[150px]">
+                        <h3
+                            class="text-3xl md:text-5xl font-normal leading-[40px] md:leading-[60px] text-left w-full md:w-[650px] h-[80px] md:h-[120px] form-title">
+                            Do you still have questions or have suggestions?
+                        </h3>
+                        <p
+                            class="text-sm md:text-base font-normal leading-[18px] md:leading-[19.2px] text-left w-full md:w-[650px] h-[38px] md:h-[19px] mt-[10px] md:mt-[20px] mb-[30px] md:mb-[70px]">
+                            Leave your contacts and question or suggestion and we will contact you to discuss.
+                        </p>
+                    </div>
+                    <legend class="sr-only">Contact Form</legend>
+
+                    <!-- Список полей ввода -->
+                    <ul class="flex flex-col gap-4">
+                        <li v-for="(field, index) in inputTitle" :key="index" class="flex flex-col">
+                            <label :for="'field' + index" class="text-sm font-medium text-gray-700">{{ field.title
+                                }}</label>
+                            <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :id="'field' + index"
+                                :type="field.type !== 'textarea' ? field.type : undefined"
+                                :placeholder="field.placeholder" v-model="field.value"
+                                class="w-full h-[50px] max-h-[150px] gap-[10px] rounded-[100px] border-[1px] pl-[20px]" />
+                        </li>
+                    </ul>
+
+                    <ButtonBlue class="w-[220px] mt-[30px] md:mt-[50px] self-start" @click="">
+                        Send
+                    </ButtonBlue>
+                </fieldset>
+            </form>
+
+            <!-- Изображение -->
+            <div class="mt-[50px] md:mt-[150px] w-full md:w-auto">
+                <img src="../../public/assets/city.png" alt="City Image" class="rounded-lg w-full md:w-auto" />
             </div>
-            <legend class="sr-only">Contact Form</legend>
-
-            <!-- Список полей ввода -->
-            <ul class="flex flex-col gap-4">
-                <li v-for="(field, index) in inputTitle" :key="index" class="flex flex-col">
-                    <label :for="'field' + index" class="text-sm font-medium text-gray-700">{{ field.title }}</label>
-                    <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :id="'field' + index"
-                        :type="field.type !== 'textarea' ? field.type : undefined"
-                        :placeholder="field.placeholder" v-model="field.value"
-                        class="w-full h-[50px] max-h-[150px] gap-[10px] rounded-[100px] border-[1px] pl-[20px]" />
-                </li>
-            </ul>
-
-            <ButtonBlue class="w-[220px] mt-[30px] md:mt-[50px] self-start" @click="">
-                Send
-            </ButtonBlue>
-        </fieldset>
-    </form>
-
-    <!-- Изображение -->
-    <div class="mt-[50px] md:mt-[150px] w-full md:w-auto">
-        <img src="../../public/assets/city.png" alt="City Image" class="rounded-lg w-full md:w-auto" />
-    </div>
-</div>
+        </div>
     </div>
 
 
@@ -276,11 +299,12 @@
 import ButtonBlue from '../Button-blue/ButtonBlue.vue';
 import CardPlate from '../CardPlate/CardPlate.vue';
 import SimilarNumber from '../SimilarNumbers/SimilarNumber.vue';
-import SimilarNumberLowPrice from '../SimilarNumbers/SimilarNumberLowPrice.vue';
+import SimilarNumberLowPrice from '../LowSimilarNumbers/SimilarNumberLowPrice.vue';
 import CardLicenses from '../CardLicenses/CardLicenses.vue';
 import ButtonPlus from '../ButtonPlus/ButtonPlus.vue';
 import { ref } from 'vue';
 
+// Определение интерфейса для Input
 interface Input {
     title: string;
     type: 'text' | 'number' | 'textarea';
@@ -289,15 +313,13 @@ interface Input {
 }
 
 // Массив input полей
-
-
 const inputTitle = ref<Input[]>([
     { title: '', type: 'text', value: '', placeholder: 'Your name' },
     { title: ' ', type: 'number', value: '', placeholder: '+7 (___) ___-___-___' },
     { title: ' ', type: 'textarea', value: '', placeholder: 'Write your question or suggestion' },
 ]);
 
-
+// Пропсы
 const props = defineProps({
     totalMobileNumbers: {
         type: Number,
@@ -309,12 +331,74 @@ const props = defineProps({
     },
 });
 
+// Состояние
+const showMore = ref(false);
+const showDots = ref(true);
+const isChecked = ref(false);
 
+// Методы
+const seeMore = () => {
+    showMore.value = !showMore.value;
+    showDots.value = !showDots.value;
+};
+const showMore1 = ref(false);
+const showDots1 = ref(true);
+const isChecked1 = ref(false);
 
+// Методы
+const seeMore1 = () => {
+    showMore1.value = !showMore1.value;
+    showDots1.value = !showDots1.value;
+};
+const showMore2 = ref(false);
+const showDots2 = ref(true);
+const isChecked2 = ref(false);
 
+// Методы
+const seeMore2 = () => {
+    showMore2.value = !showMore2.value;
+    showDots2.value = !showDots2.value;
+};
+const showMore3 = ref(false);
+const showDots3 = ref(true);
+const isChecked3 = ref(false);
+
+// Методы
+const seeMore3 = () => {
+    showMore3.value = !showMore3.value;
+    showDots3.value = !showDots3.value;
+};
 </script>
 
+
+
+
+
 <style>
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+    transition: all 0.3s ease;
+}
+
+/* Начальное состояние элемента при входе */
+.fade-slide-enter-from {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* Состояние при выходе */
+.fade-slide-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* Видимый элемент */
+.fade-slide-enter-to,
+.fade-slide-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .hidden {
     display: none;
 }
@@ -372,7 +456,7 @@ const props = defineProps({
         margin-bottom: 30px;
     }
 
-    .form-title{
+    .form-title {
         margin-bottom: 50px;
     }
 }

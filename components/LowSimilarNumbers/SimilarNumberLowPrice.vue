@@ -1,10 +1,10 @@
 <template>
-    <div class="flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[2px] border-[#BFBFBF]">
+    <div class="flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[2px] border-[#BFBFBF] ">
         <img class="mt-[40px] px-[20px]" :src="imageSrc" alt="">
 
-        <div class="flex items-center mt-[40px] gap-[235px] pl-[20px]">
+        <div class="flex items-center justify-between mt-[30px] mr-[30px]">
             <div class="w-[110px] flex gap-[25px]">
-                <h1 class="min-w-[110px] h-[24px] text-[#EA0038] text-[20px] font-medium leading-[24px]">
+                <h1 class="min-w-[110px] h-[24px] text-[#EA0038] text-[20px] font-medium leading-[24px] ml-[20px]">
                     {{ currentPrice }} AED
                 </h1>
                 <h1 class="min-w-[110px] h-[24px] text-[#BFBFBF] text-[15px] font-medium leading-[24px] custom-strike">

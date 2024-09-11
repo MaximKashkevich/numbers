@@ -3,7 +3,7 @@
     <!-- Статичное изображение -->
     <img class="mx-auto mt-[20px]" src="../public/assets/numbers.svg" alt="Numbers">
 
-    <div class="flex items-center justify-between mt-[20px]">
+    <div class="flex items-center justify-between mt-[30px]">
       <h1 class="text-[20px] font-medium leading-[24px]">{{ price }}</h1>
 
       <!-- Динамическое переключение компонентов -->
@@ -19,16 +19,16 @@
         <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
           Emirate:
         </p>
-        <p class="text-[16px] font-normal leading-[19.2px]">
+        <p class="text-[16px] text-[#BFBFBF] font-normal leading-[19.2px]">
           {{ emirate }}
         </p>
       </div>
 
-      <div class="flex justify-between pt-[5px]">
+      <div class="flex pt-[5px] gap-[10px]">
         <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
           {{ postedAt }}
         </p>
-        <p class="text-[16px] font-normal leading-[19.2px]">
+        <p class="text-[16px]  text-[#BFBFBF] font-normal leading-[19.2px]">
           {{ views }} Views
         </p>
       </div>

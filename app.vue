@@ -6,7 +6,7 @@
         <Verification v-if="verification.signIn" />
 
         <Header />
-        <BuyNumbers2/>
+        <CatalogNumbers/>
         <Footer />
        
     </div>
@@ -23,6 +23,7 @@ import Verification from "./components/Verification.vue";
 import PlateNumbers from "./components/PlateNumbers.vue";
 import BuyNumbers from "./components/BuyNumbers/BuyNumbers.vue"
 import BuyNumbers2 from "./components/BuyNumbers2/BuyNumbers2.vue";
+import CatalogNumbers from "./components/CatalogNumbers/CatalogNumbers.vue"
 
 
 import { useSignUpStore } from '@/stores/signUp';
