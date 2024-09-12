@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import Header from './Header';
-import Login from './Login';
-import Footer from './Footer';
+import Header from './Header.vue'
+import Login from '../pages/login.vue'
+import Footer from './Footer.vue';
 </script>

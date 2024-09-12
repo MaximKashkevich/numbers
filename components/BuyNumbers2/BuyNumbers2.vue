@@ -160,10 +160,7 @@ const props = defineProps({
     display: none;
 }
 
-.option {
-
-
-}
+.option {}
 
 
 @media (max-width: 324px) {

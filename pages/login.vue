@@ -1,4 +1,5 @@
 <template>
+    <NuxtPage />
     <div class="flex justify-between items-start pl-[60px] pr-[60px] pt-[100px]">
         <div class="w-[650px] h-[650px]">
             <h1 class="font-roboto text-[50px] font-medium uppercase tracking-wide leading-none w-[400px]">
@@ -62,10 +63,11 @@
                                 Remember me
                             </label>
                         </div>
-
-                        <ButtonBlue class="w-[300px] py-[14px]">
-                            <NuxtLink>Sign in</NuxtLink>
-                        </ButtonBlue>
+                        <NuxtLink to="/buynumbers">
+                            <ButtonBlue class="w-[300px] py-[14px]">
+                                Sign in
+                            </ButtonBlue>
+                        </NuxtLink>
                     </form>
 
 
@@ -76,8 +78,8 @@
 </template>
 
 <script setup lang="ts">
-import ButtonLogin from './Button-login/ButtonLogin.vue';
-import ButtonBlue from './Button-blue/ButtonBlue.vue';
+import ButtonLogin from "../components/Button-login/ButtonLogin.vue"
+import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
 
 import { useSignUpStore } from '@/stores/signUp';
 

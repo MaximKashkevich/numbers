@@ -4,30 +4,25 @@
         <Registration v-if="signUp.signUp && !verification.signIn" />
 
         <Verification v-if="verification.signIn" />
+        <NuxtPage />
 
-        <Header />
-        <PlateNUmberCard/>
-        <Footer />
-       
+        <Entrance />
+
     </div>
 </template>
 
 <script setup lang="ts">
 
-
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Login from "./components/Login.vue";
+import Entrance from "./components/Entrance.vue";
 import Registration from "./components/Registration/Registration.vue";
 import Verification from "./components/Verification.vue";
-import PlateNumbers from "./components/PlateNumbers.vue";
-import BuyNumbers from "./components/BuyNumbers/BuyNumbers.vue"
-import BuyNumbers2 from "./components/BuyNumbers2/BuyNumbers2.vue";
-import CatalogNumbers from "./components/CatalogNumbers/CatalogNumbers.vue";
-import License from "./components/Licence/License.vue";
-import Viewed from "./components/viewed/Viewed.vue";
-import Documentation from "./components/Documentation/Documentation.vue";
-import PlateNUmberCard from "./components/PlateNumberCard/PlateNUmberCard.vue";
+//import PlateNumbers from "./components/PlateNumbers.vue";
+//import BuyNumbers2 from "./components/BuyNumbers2/BuyNumbers2.vue";
+//import CatalogNumbers from "./components/CatalogNumbers/CatalogNumbers.vue";
+//import License from "./components/Licence/License.vue";
+//import Viewed from "./components/viewed/Viewed.vue";
+//import Documentation from "./components/Documentation/Documentation.vue";
+//import PlateNUmberCard from "./components/PlateNumberCard/PlateNUmberCard.vue";
 
 import { useSignUpStore } from '@/stores/signUp';
 import { useSignInStore } from '@/stores/verification';
