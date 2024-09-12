@@ -3,18 +3,28 @@
         <header class="min-w-[200px] min-h-[20px] justify-between flex items-center flex-wrap">
             <img src="/public/assets/logo.png" class="header-img" alt="Logo">
             <ul class="justify-between flex items-center gap-[50px]  py-[30px] px-[10px] flex-wrap header-list ">
-                <li><a href="./PlateNumbers.vue"
-                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">Plate
-                        Numbers</a>
+                <li>
+                    <NuxtLink
+                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
+                        Plate
+                        Numbers</NuxtLink>
                 </li>
-                <li><a href="#"
-                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal  hover:text-blue-400 transition ">Mobile
-                        Numbers</a></li>
-                <li><a href="#"
-                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">Promoted
-                        Numbers</a></li>
-                <li><a href="#"
-                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">Gallery</a>
+                <li>
+                    <NuxtLink
+                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal  hover:text-blue-400 transition ">
+                        Mobile
+                        Numbers</NuxtLink>
+                </li>
+                <li>
+                    <NuxtLink
+                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
+                        Promoted
+                        Numbers</NuxtLink>
+                </li>
+                <li>
+                    <NuxtLink
+                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
+                        Gallery</NuxtLink>
                 </li>
             </ul>
 
