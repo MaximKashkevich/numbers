@@ -1,5 +1,17 @@
 <template>
     <div class="px-[60px]">
+
+        <nav class="mb-[30px] mt-[30px] navigation">
+            <ul class="flex gap-[5px] ">
+                <li>
+                    <a href="" class="text-[#005DCA] transition cursor-default"> Home /</a>
+                </li>
+                <li>
+                    <a href="" class="hover:text-[#005DCA] transition cursor-default"> Plate numbers </a>
+                </li>
+
+            </ul>
+        </nav>
         <!-- Входные данные и фильтры -->
         <div class="mt-[77px]">
             <h3
@@ -67,30 +79,28 @@
                                 <div class="flex flex-wrap gap-4">
                                     <div class="flex flex-col">
                                         <label
-                                            class="font-roboto text-lg font-normal leading-[19.2px] text-[#B3B3B3] mb-2">
-                                            Price:
-                                        </label>
+                                            class="font-roboto text-lg font-normal leading-[19.2px] text-[#B3B3B3] mb-2">Price:</label>
                                         <div class="flex gap-4 flex-wrap">
-                                            <input type="text" id="from" name="from" placeholder="From"
+                                            <input type="text" v-model="priceFrom" placeholder="From"
                                                 class="w-full sm:w-[220px] h-[50px] rounded-full border border-[#BFBFBF] bg-[#FAFAFA] text-lg text-[#C2C2C2] font-normal leading-[19.2px] pl-4" />
-                                            <input type="text" id="to" name="to" placeholder="Up to"
+                                            <input type="text" v-model="priceTo" placeholder="Up to"
                                                 class="w-full sm:w-[220px] h-[50px] rounded-full border border-[#BFBFBF] bg-[#FAFAFA] text-lg text-[#C2C2C2] font-normal leading-[19.2px] pl-4" />
                                         </div>
                                     </div>
 
                                     <!-- Number of digits -->
                                     <div>
-                                        <label class="font-roboto text-lg font-normal leading-[19.2px] text-[#B3B3B3]">
-                                            Number of digits:
-                                        </label>
+                                        <label
+                                            class="font-roboto text-lg font-normal leading-[19.2px] text-[#B3B3B3]">Number
+                                            of digits:</label>
                                         <div class="flex gap-2 button-container pt-1 mb-2 ml-5 flex-wrap">
-                                            <MiniButton>1</MiniButton>
-                                            <MiniButton>2</MiniButton>
-                                            <MiniButton>3</MiniButton>
-                                            <MiniButton>4</MiniButton>
-                                            <MiniButton>5</MiniButton>
+                                            <MiniButton @click="setNumberOfDigits(1)">1</MiniButton>
+                                            <MiniButton @click="setNumberOfDigits(2)">2</MiniButton>
+                                            <MiniButton @click="setNumberOfDigits(3)">3</MiniButton>
+                                            <MiniButton @click="setNumberOfDigits(4)">4</MiniButton>
+                                            <MiniButton @click="setNumberOfDigits(5)">5</MiniButton>
                                         </div>
-                                        <button
+                                        <button @click="clearNumberOfDigits"
                                             class="w-full sm:w-[461px] h-[50px] px-5 py-2.5 rounded-full border border-[#BFBFBF] text-lg ml-5 button--1">
                                             Any number of digits
                                         </button>
@@ -99,10 +109,9 @@
                                     <!-- Add posted -->
                                     <div class="flex flex-col ml-5 choice">
                                         <label for="sort"
-                                            class="font-roboto text-lg font-normal leading-[19.2px] text-[#B3B3B3] mb-2">
-                                            Add posted:
-                                        </label>
-                                        <select id="emirate" name="sort"
+                                            class="font-roboto text-lg font-normal leading-[19.2px] text-[#B3B3B3] mb-2">Add
+                                            posted:</label>
+                                        <select id="emirate" v-model="postedDate"
                                             class="w-full sm:w-[310px] h-[50px] rounded-full border border-[#BFBFBF] bg-[#FAFAFA] text-lg font-normal leading-[19.2px] pl-4 ml-5">
                                             <option>Today</option>
                                             <option>Tomorrow</option>
@@ -115,24 +124,24 @@
                             <!-- Checkboxes и кнопка -->
                             <div class="w-full px-2 flex justify-between mt-12 flex-wrap">
                                 <div class="flex items-center gap-2">
-                                    <input type="checkbox" id="myCheckbox" name="myCheckbox" class="custom-checkbox"
-                                        v-model="isChecked" />
-                                    <label for="myCheckbox"
+                                    <input type="checkbox" v-model="isExactMatch" class="custom-checkbox" />
+                                    <label
                                         class="w-full h-[16px] text-lg font-medium leading-[19.2px] text-left text-checkbox">
                                         Search by exact digits match
                                     </label>
                                 </div>
-                                <button
+                                <button @click="clearFilters"
                                     class="w-full sm:w-[308px] h-[50px] rounded-full border border-[#000000] mt-4 sm:mt-0">
                                     Clear all filters
                                 </button>
                             </div>
 
+                            <!-- Exact match search -->
                             <transition name="fade-slide">
-                                <div class="flex flex-col mt-5 checkbox-container" v-if="isChecked">
-                                    <label for=""
+                                <div v-if="isExactMatch" class="flex flex-col mt-5 checkbox-container">
+                                    <label
                                         class="font-roboto text-lg font-normal leading-[19.2px] text-[#B3B3B3] mb-2">Match:</label>
-                                    <input type="search"
+                                    <input type="search" v-model="exactMatchValue"
                                         class="w-full sm:w-[510px] h-[50px] rounded-full border border-[#BFBFBF] pl-4 text-lg text-[#BFBFBF] bg-[#FAFAFA]" />
                                 </div>
                             </transition>
@@ -151,7 +160,7 @@
         Similar numbers:
     </h3>
     <div
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px] px-[50px]">
+        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[20px] mt-[20px] px-[50px]">
         <CardPlate />
         <CardPlate />
         <CardPlate />
@@ -182,7 +191,7 @@
         Similar numbers:
     </h3>
     <div
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px] px-[50px]">
+        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[20px] mt-[20px] px-[50px]">
         <SimilarNumber />
         <SimilarNumberLowPrice />
         <SimilarNumber />
@@ -240,29 +249,45 @@ export default {
         CardPlate,
         SimilarNumber,
         SimilarNumberLowPrice,
-        Pagination,  // Добавляем компонент пагинации
+        Pagination,
     },
-    methods: {
-        onPageChange(page) {
-            // Логика изменения страницы
-            console.log(`Page changed to: ${page}`);
-        }
-    },
-
     data() {
-
         return {
+            isExactMatch: false,
+            exactMatchValue: '',
             showMore: false,
-
             showDots: true,
             isChecked: false,
+            priceFrom: '',
+            priceTo: '',
+            digits: [1, 2, 3, 4, 5], // Возможные числа для выбора
+            selectedDigits: [], // Выбранные числа
+            postedDate: 'Today', // Значение по умолчанию для даты
+            matchDigits: '', // Значение поиска по цифрам
         };
     },
     methods: {
         seeMore() {
-            // Меняем состояние видимости контента и точек
             this.showMore = !this.showMore;
             this.showDots = !this.showDots;
+        },
+        selectDigit(digit) {
+            if (this.selectedDigits.includes(digit)) {
+                this.selectedDigits = this.selectedDigits.filter(d => d !== digit);
+            } else {
+                this.selectedDigits.push(digit);
+            }
+        },
+        selectAnyDigits() {
+            this.selectedDigits = [];
+        },
+        clearFilters() {
+            this.priceFrom = '';
+            this.priceTo = '';
+            this.selectedDigits = [];
+            this.postedDate = 'Today';
+            this.isChecked = false;
+            this.matchDigits = '';
         }
     }
 };
@@ -275,18 +300,21 @@ export default {
 </script>
 
 <style>
-.fade-slide-enter-active, .fade-slide-leave-active {
-  transition: opacity 0.5s ease, transform 0.5s ease;
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.fade-slide-enter-from, .fade-slide-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
 }
 
-.fade-slide-enter-to, .fade-slide-leave-from {
-  opacity: 1;
-  transform: translateY(0);
+.fade-slide-enter-to,
+.fade-slide-leave-from {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 ::placeholder {

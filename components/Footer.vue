@@ -8,30 +8,30 @@
                 <img src="../public/assets/footerLogo.png" alt="footerLogo">
                 <ul class="list">
                     <li><a href="#"
-                            class="leading-[19.2px] text-black font-normal hover:text-blue-400 transition cursor-default">Plate
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Plate
                             Numbers</a></li>
                     <li class="my-[30px]"> <a href="#"
-                            class="leading-[19.2px] text-black font-normal hover:text-blue-400 transition cursor-default">Mobile
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Mobile
                             Numbers</a></li>
                     <li class="my-[30px]"><a href="#"
-                            class="leading-[19.2px] text-black font-normal hover:text-blue-400 transition cursor-default">Promoted
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Promoted
                             Numbers</a></li>
                     <li><a href="#"
-                            class="leading-[19.2px] text-black font-normal hover:text-blue-400 transition cursor-default">Gallery</a>
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Gallery</a>
                     </li>
                 </ul>
                 <ul class="list">
                     <li><a href="#"
-                            class="leading-[19.2px] text-black font-normal hover:text-blue-400 transition cursor-default">Plate
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Plate
                             About Us</a></li>
                     <li class="my-[30px]"><a href="#"
-                            class="leading-[19.2px] text-black font-normal hover:text-blue-400 transition cursor-default">Mobile
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Mobile
                             FAQ</a></li>
                     <li class="my-[30px]"><a href="#"
-                            class="leading-[19.2px] text-black font-normal hover:text-blue-400 transition cursor-default">Promoted
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Promoted
                             Terms of Use</a></li>
                     <li><a href="#"
-                            class="leading-[19.2px] text-black font-normal hover:text-blue-400 transition cursor-default">Support</a>
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Support</a>
                     </li>
                 </ul>
             </div>

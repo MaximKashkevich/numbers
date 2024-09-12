@@ -93,7 +93,7 @@
                 Similar numbers:
             </h3>
             <div
-                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px]">
+                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[20px] mt-[20px]">
                 <Card />
                 <Card />
                 <Card />
