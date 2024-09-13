@@ -21,6 +21,7 @@
                 </h2>
             </div>
         </div>
+        
         <div class="w-[650px] mr-[50px] ">
             <h2 class="font-roboto text-[35px] font-medium leading-[42px] pt-[20px] textThird">
                 Login with social networks
