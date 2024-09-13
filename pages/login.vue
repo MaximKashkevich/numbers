@@ -65,8 +65,8 @@
                                 Remember me
                             </label>
                         </div>
-                        <NuxtLink to="/buynumbers">
-                            <ButtonBlue class="buttonSign w-[300px] py-[14px]">
+                        <NuxtLink to="/buynumbers" custom>
+                            <ButtonBlue class="w-[15rem] py-[0.7rem]">
                                 Sign in
                             </ButtonBlue>
                         </NuxtLink>
