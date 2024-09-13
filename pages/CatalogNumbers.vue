@@ -4,10 +4,10 @@
         <nav class="mb-[30px] mt-[30px] navigation">
             <ul class="flex gap-[5px] ">
                 <li>
-                    <a href="" class="text-[#005DCA] transition cursor-default"> Home /</a>
+                    <a href="/BuyNumbers" class="text-[#005DCA] transition cursor-pointer"> Home /</a>
                 </li>
                 <li>
-                    <a href="" class=" text-[#BFBFBF] hover:text-[#005DCA] transition cursor-default"> Plate numbers
+                    <a href="" class=" text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer"> Plate numbers
                     </a>
                 </li>
 

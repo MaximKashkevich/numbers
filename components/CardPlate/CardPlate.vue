@@ -1,5 +1,7 @@
 <template>
-    <div class="flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[3px] border-[#FF9C00]">
+    <NuxtLink to="/PlateNUmberCard">
+
+      <div class="flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[3px] border-[#FF9C00]">
       <!-- Статичное изображение -->
        
      
@@ -38,6 +40,8 @@
         </div>
       </div>
     </div>
+    </NuxtLink>
+    
   </template>
   
   <script>

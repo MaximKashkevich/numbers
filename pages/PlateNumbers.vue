@@ -3,15 +3,15 @@
   <nav class="mb-[30px] mt-[30px] navigation">
     <ul class="flex gap-[5px] px-[70px]">
       <li>
-        <a :href="navigationLinks[0].href" class="text-[#005DCA] transition cursor-default">{{ navigationLinks[0].text
+        <a href="/BuyNumbers" class="text-[#005DCA] transition cursor-pointer ">{{ navigationLinks[0].text
           }} /</a>
       </li>
       <li>
-        <a :href="navigationLinks[1].href" class="text-[#005DCA] transition cursor-default">{{ navigationLinks[1].text
+        <a :href="navigationLinks[1].href" class="text-[#005DCA] transition cursor-pointer">{{ navigationLinks[1].text
           }} /</a>
       </li>
       <li>
-        <a :href="navigationLinks[2].href" class="text-[#BFBFBF] hover:text-[#005DCA] transition cursor-default">{{
+        <a :href="navigationLinks[2].href" class="text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer">{{
           navigationLinks[2].text }}</a>
       </li>
     </ul>

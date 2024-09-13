@@ -3,7 +3,7 @@
      <nav class="mb-6 mt-6">
          <ul class="flex gap-2">
              <li>
-                 <a href="#" class="text-[#005DCA] cursor-pointer transition ">Home /</a>
+                 <a href="/BuyNumbers" class="text-[#005DCA] cursor-pointer transition ">Home /</a>
              </li>
              <li>
                  <a href="#" class=" text-[#BFBFBF] hover:text-[#005DCA] cursor-pointer transition ">You used to watch</a>

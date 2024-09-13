@@ -1,5 +1,5 @@
 <template>
-    <NuxtPage />
+     <NuxtPage />
     <div class="pl-[60px] pr-[60px] mt-[150px]">
         <h1 class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2">
             PLATE AND MOBILE NUMBERS IN UAE
@@ -37,7 +37,7 @@
         </div>
         <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
 
-        <img class="w-full pt-[70px] img-bg" src="../../public/assets/bacround.png" alt="">
+        <img class="w-full pt-[70px] img-bg" src="../public/assets/bacround.png" alt="">
 
         <div class="container-input mt-[150px]">
             <h3 class="w-[1320px] h-[60px] text-[50px] font-normal leading-[60px] text-left title-input mb-[50px]">

@@ -1,5 +1,6 @@
 <template>
-  <div class="flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[2px] border-[#BFBFBF]">
+  <NuxtLink to="/PlateNUmberCard">
+     <div class="flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[2px] border-[#BFBFBF]">
     <img :src="imageSrc" class="mt-[40px] px-[20px]" alt="">
     <div class="flex items-center justify-between mt-[30px] mr-[30px]">
       <div class="w-[110px] ml-[20px]">
@@ -34,6 +35,8 @@
       </div>
     </div>
   </div>
+  </NuxtLink>
+ 
 </template>
 
 <script>

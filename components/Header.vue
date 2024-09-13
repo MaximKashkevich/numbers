@@ -1,25 +1,25 @@
 <template>
     <div class="justify-between px-[60px] pt-[20px]">
         <header class="min-w-[200px] min-h-[20px] justify-between flex items-center flex-wrap">
-            <img src="/public/assets/logo.png" class="header-img" alt="Logo">
+            <NuxtLink to="/BuyNumbers">
+                <img src="/public/assets/logo.png" class="header-img cursor-pointer" alt="Logo">
+            </NuxtLink>
+
             <ul class="justify-between flex items-center gap-[50px]  py-[30px] px-[10px] flex-wrap header-list ">
                 <li>
-                    <NuxtLink
-                        to="/CatalogNumbers"
+                    <NuxtLink to="/CatalogNumbers"
                         class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
                         Plate
                         Numbers</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink
-                  
+                    <NuxtLink to="/CatalogNumbers"
                         class=" text-link leading-[19.2px] cursor-pointer text-black font-normal  hover:text-blue-400 transition ">
-                        Mobile
+                        phone
                         Numbers</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink
-                    to="/License"
+                    <NuxtLink to="/License"
                         class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
                         Promoted
                         Numbers</NuxtLink>
@@ -49,20 +49,20 @@
                         fill="black" />
                 </svg>
 
-                <a href="">
 
-                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M0.749817 18.8565C0.749817 16.0162 3.05235 13.7136 5.89267 13.7136H19.607C22.4473 13.7136 24.7498 16.0162 24.7498 18.8565V20.9136C24.7498 22.6178 23.3683 23.9993 21.6641 23.9993H3.83553C2.13134 23.9993 0.749817 22.6178 0.749817 20.9136V18.8565ZM5.89267 15.7708C4.18848 15.7708 2.80696 17.1523 2.80696 18.8565V20.9136C2.80696 21.4817 3.26747 21.9422 3.83553 21.9422H21.6641C22.2322 21.9422 22.6927 21.4817 22.6927 20.9136V18.8565C22.6927 17.1523 21.3111 15.7708 19.607 15.7708H5.89267Z"
-                            fill="black" />
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M12.7493 2.05788C11.0451 2.05788 9.66359 3.4394 9.66359 5.14359C9.66359 6.84778 11.0451 8.2293 12.7493 8.2293C14.4535 8.2293 15.835 6.84778 15.835 5.14359C15.835 3.4394 14.4535 2.05788 12.7493 2.05788ZM7.60645 5.14359C7.60645 2.30327 9.90898 0.000732422 12.7493 0.000732422C15.5896 0.000732422 17.8922 2.30327 17.8922 5.14359C17.8922 7.98391 15.5896 10.2864 12.7493 10.2864C9.90898 10.2864 7.60645 7.98391 7.60645 5.14359Z"
-                            fill="black" />
-                    </svg>
-
-                </a>
             </a>
+            <a href="">
 
+                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M0.749817 18.8565C0.749817 16.0162 3.05235 13.7136 5.89267 13.7136H19.607C22.4473 13.7136 24.7498 16.0162 24.7498 18.8565V20.9136C24.7498 22.6178 23.3683 23.9993 21.6641 23.9993H3.83553C2.13134 23.9993 0.749817 22.6178 0.749817 20.9136V18.8565ZM5.89267 15.7708C4.18848 15.7708 2.80696 17.1523 2.80696 18.8565V20.9136C2.80696 21.4817 3.26747 21.9422 3.83553 21.9422H21.6641C22.2322 21.9422 22.6927 21.4817 22.6927 20.9136V18.8565C22.6927 17.1523 21.3111 15.7708 19.607 15.7708H5.89267Z"
+                        fill="black" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M12.7493 2.05788C11.0451 2.05788 9.66359 3.4394 9.66359 5.14359C9.66359 6.84778 11.0451 8.2293 12.7493 8.2293C14.4535 8.2293 15.835 6.84778 15.835 5.14359C15.835 3.4394 14.4535 2.05788 12.7493 2.05788ZM7.60645 5.14359C7.60645 2.30327 9.90898 0.000732422 12.7493 0.000732422C15.5896 0.000732422 17.8922 2.30327 17.8922 5.14359C17.8922 7.98391 15.5896 10.2864 12.7493 10.2864C9.90898 10.2864 7.60645 7.98391 7.60645 5.14359Z"
+                        fill="black" />
+                </svg>
+
+            </a>
 
             <div>
                 <ButtonBlue class="py-[14px] px-[60px]  ml-[20px]  buttons">

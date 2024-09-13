@@ -1,5 +1,6 @@
 <template>
-  <div class="flex-1 min-w-[300px] max-w-[426px] h-auto p-4 rounded-[20px] bg-white border-[2px] border-[#B3B3B3] flex flex-col justify-between">
+  <NuxtLink to="/PlateNumbers">
+    <div class="flex-1 min-w-[300px] max-w-[426px] h-auto p-4 rounded-[20px] bg-white border-[2px] border-[#B3B3B3] flex flex-col justify-between">
     <!-- Статичное изображение -->
     <img class="mx-auto mt-[20px]" src="../public/assets/numbers.svg" alt="Numbers">
 
@@ -34,6 +35,8 @@
       </div>
     </div>
   </div>
+  </NuxtLink>
+
 </template>
 
 <script>
@@ -88,4 +91,7 @@ export default {
     },
   },
 };
+
+
+
 </script>
