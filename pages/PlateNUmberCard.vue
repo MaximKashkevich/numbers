@@ -11,7 +11,7 @@
           navigationLinks[1].text }} /</a>
       </li>
       <li>
-        <a :href="navigationLinks[2].href" class="hover:text-[#005DCA] transition cursor-default">{{
+        <a :href="navigationLinks[2].href" class=" text-[#BFBFBF] hover:text-[#005DCA] transition cursor-default">{{
           navigationLinks[2].text }}</a>
       </li>
     </ul>
@@ -42,7 +42,7 @@
 
         <div class="flex flex-col items-center justify-center h-full">
           <div class="flex items-center justify-center" id="top">
-            <img class="w-full h-auto max-w-[450px] object-contain" src="../../public/assets/plate2.png"
+            <img class="w-full h-auto max-w-[450px] object-contain" src="../public/assets/plate2.png"
               alt="Dubai Plate">
           </div>
           <div id="bottom" class="flex justify-center gap-2 mt-[125px]">
@@ -59,7 +59,7 @@
       <!-- Правая часть -->
       <div class="flex-1 max-w-[350px] right-panel">
         <div class="flex items-center space-x-2">
-          <img src="../../public/assets/avatar.svg" alt="" class="w-10 h-10 rounded-full">
+          <img src="../public/assets/avatar.svg" alt="" class="w-10 h-10 rounded-full">
           <div>
             <h2 class="text-[35px] font-medium leading-[42px]">{{ rightPanelName }}</h2>
             <p class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px]">{{ rightPanelStatus }}</p>
@@ -67,10 +67,10 @@
           <div class="relative group">
             <!-- Изображение, при наведении на которое будет появляться всплывающее окно -->
             <img class=" cursor-pointer pl-[110px] pb-[35px]"
-              src="../../public/assets/iconamoon_attention-circle-light.svg" alt="">
+              src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
             <!-- Всплывающее окно -->
             <div
-              class="absolute bg-[#000000] text-white w-[326px] h-[135px] top-[13px] left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
+              class="absolute bg-[#000000] text-white w-[326px] h-[135px] top-[12px] left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
               id="tooltip">
               <p class="font-roboto text-[16px] font-normal leading-[20px] text-white">
                 Scam warning: <br>Never wire money or financial info to a seller on the Internet. For your security, all
@@ -177,14 +177,14 @@
 </template>
 
 <script>
-import ButtonShare from '../ButtonShare.vue';
-import ButtonLike from '../ButtonLike.vue';
-import ButtonBlue from '../Button-blue/ButtonBlue.vue';
-import RightArrow from '../RightArrow.vue';
-import LeftArrow from '../LeftArrow.vue';
-import SimilarNumbers from '../SimilarNumbers/SimilarNumber.vue'
-import SimilarNumbersLow from '../LowSimilarNumbers/SimilarNumberLowPrice.vue'
-import CradPlate from '../CardPlate/CardPlate.vue'
+import ButtonShare from '../components/ButtonShare.vue';
+import ButtonLike from '../components/ButtonLike.vue';
+import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
+import RightArrow from '../components/RightArrow.vue';
+import LeftArrow from '../components/LeftArrow.vue';
+import SimilarNumbers from '../components/SimilarNumbers/SimilarNumber.vue'
+import SimilarNumbersLow from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue'
+import CradPlate from '../components/Card.vue'
 import { ref, onMounted } from 'vue';
 
 // Import Swiper Vue.js components
@@ -370,7 +370,7 @@ body {
   }
 }
 
-@media (max-width: 589px) {
+@media (max-width: 665px) {
 
 
   .title-2 {

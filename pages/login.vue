@@ -43,7 +43,7 @@
                             <label for="username" class="text-[14px] font-medium leading-[16.8px]">Login, e–mail or
                                 username:</label>
                             <input
-                                class="bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom mb-[10px]"
+                                class="bg-[#FAFAFA] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom mb-[10px]"
                                 placeholder="username@gmail.com or 050 123 45 67 or JohnSnow_123" type="text"
                                 id="username">
                         </div>
@@ -52,14 +52,14 @@
                             <label for="password"
                                 class="text-[14px] font-medium leading-[16.8px] h-[20px]">Password:</label>
                             <input
-                                class="bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom"
+                                class="] w-[600px] h-[52px] border-[1px] pl-[30px] bg-[#FAFAFA] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom"
                                 placeholder="xxxxxxx" type="password" id="password">
                         </div>
 
                         <div class="flex items-center">
                             <input id="remember-me" type="checkbox"
-                                class="custom-checkbox h-4 w-4 border border-gray-300 rounded focus:ring-0" />
-                            <label for="remember-me" class="ml-2 block text-sm text-[#B3B3B3]">
+                                class="custom-checkbox h-[25px] mt-[20px] mb-[33px] w-[25px] border border-gray-300 rounded focus:ring-0" />
+                            <label for="remember-me" class="ml-2 mb-[10px] block text-sm text-[#B3B3B3]">
                                 Remember me
                             </label>
                         </div>

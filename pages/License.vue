@@ -7,7 +7,7 @@
                     <a href="" class="text-[#005DCA] cursor-pointer transition "> Home /</a>
                 </li>
                 <li>
-                    <a href="" class="hover:text-[#005DCA] cursor-pointer transition "> License price</a>
+                    <a href="" class="text-[#BFBFBF] hover:text-[#005DCA] cursor-pointer transition "> License price</a>
                 </li>
             </ul>
         </nav>
@@ -33,5 +33,5 @@
 </template>
 
 <script>
-import CardLicenses from '../CardLicenses/CardLicenses.vue';
+import CardLicenses from '../components/CardLicenses/CardLicenses.vue';
 </script>

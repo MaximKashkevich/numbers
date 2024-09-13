@@ -7,7 +7,8 @@
                     <a href="" class="text-[#005DCA] transition cursor-default"> Home /</a>
                 </li>
                 <li>
-                    <a href="" class="hover:text-[#005DCA] transition cursor-default"> Plate numbers </a>
+                    <a href="" class=" text-[#BFBFBF] hover:text-[#005DCA] transition cursor-default"> Plate numbers
+                    </a>
                 </li>
 
             </ul>
@@ -24,9 +25,15 @@
                         for="type">Type:</label>
                     <div class="mt-[10px] flex gap-[10px]">
                         <button
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center">Plate</button>
+                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center"
+                            @click="showPlate">
+                            Plate
+                        </button>
                         <button
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center">Mobile</button>
+                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center"
+                            @click="showMobile">
+                            Mobile
+                        </button>
                     </div>
                 </div>
                 <div>
@@ -60,7 +67,7 @@
 
                 <button @click="seeMore"
                     class="w-[52px] h-[52px] border-[#BFBFBF] font-bold flex items-center justify-center rounded-full border-[1.5px] mt-[30px]">
-                    <img src="../../public/assets/setings.svg" alt="">
+                    <img src="../public/assets/setings.svg" alt="">
                 </button>
 
                 <ButtonBlue class="w-[310px] h-[52px] flex justify-center items-center font-bold mt-[30px]">
@@ -160,7 +167,7 @@
         Similar numbers:
     </h3>
     <div
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[20px] mt-[20px] px-[50px]">
+        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px] px-[50px]">
         <CardPlate />
         <CardPlate />
         <CardPlate />
@@ -190,8 +197,8 @@
         class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px] px-[50px]">
         Similar numbers:
     </h3>
-    <div
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[20px] mt-[20px] px-[50px]">
+    <div v-if="isPlateSelected"
+        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px] px-[50px]">
         <SimilarNumber />
         <SimilarNumberLowPrice />
         <SimilarNumber />
@@ -229,6 +236,26 @@
         <SimilarNumberLowPrice />
         <SimilarNumberLowPrice />
     </div>
+    <div v-if="!isPlateSelected"
+        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px] px-[50px]">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+
+    </div>
+
+
 
     <!-- Пагинация -->
     <Pagination class="mt-[70px] px-[50px]" :total-pages="10" :current-page="1" @update:page="onPageChange" />
@@ -237,11 +264,12 @@
 </template>
 
 <script>
-import CardPlate from '../CardPlate/CardPlate.vue';
-import SimilarNumber from '../SimilarNumbers/SimilarNumber.vue';
-import SimilarNumberLowPrice from '../LowSimilarNumbers/SimilarNumberLowPrice.vue';
-import Pagination from '../Pagination/Pagination.vue';
-import MiniButton from '../MiniButton/MiniButton.vue';
+import CardPlate from '../components/Card.vue';
+import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
+import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue';
+import Pagination from '../components/Pagination/Pagination.vue';
+import MiniButton from '../components/MiniButton/MiniButton.vue';
+import Card from '../components/Card.vue';
 
 
 export default {
@@ -250,6 +278,7 @@ export default {
         SimilarNumber,
         SimilarNumberLowPrice,
         Pagination,
+        Card,
     },
     data() {
         return {
@@ -264,9 +293,17 @@ export default {
             selectedDigits: [], // Выбранные числа
             postedDate: 'Today', // Значение по умолчанию для даты
             matchDigits: '', // Значение поиска по цифрам
+            isPlateSelected: true,
         };
     },
     methods: {
+
+        showPlate() {
+            this.isPlateSelected = true; // Устанавливаем состояние для отображения контейнера с Plate
+        },
+        showMobile() {
+            this.isPlateSelected = false; // Устанавливаем состояние для отображения контейнера с Mobile
+        },
         seeMore() {
             this.showMore = !this.showMore;
             this.showDots = !this.showDots;

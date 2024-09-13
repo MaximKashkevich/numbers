@@ -6,7 +6,7 @@
                  <a href="#" class="text-[#005DCA] cursor-pointer transition ">Home /</a>
              </li>
              <li>
-                 <a href="#" class=" hover:text-[#005DCA] cursor-pointer transition ">License price</a>
+                 <a href="#" class=" text-[#BFBFBF] hover:text-[#005DCA] cursor-pointer transition ">You used to watch</a>
              </li>
          </ul>
      </nav>
@@ -31,22 +31,23 @@
          <CardPlate/>
          <SimilarNumber/>
          <SimilarNumberLowPrice/>
-         <CardPlate/>
+         <Card/>
          <SimilarNumber/>
          <SimilarNumberLowPrice/>
-         <CardPlate/>
+         <Card/>
          <SimilarNumber/>
          <SimilarNumberLowPrice/>
-         <CardPlate/>
+         <Card/>
          <SimilarNumber/>
          <SimilarNumberLowPrice/>
-         <CardPlate/>
+         <Card/>
          <SimilarNumberLowPrice/>
          <CardPlate/>
          <SimilarNumberLowPrice/>
          <CardPlate/>
          <SimilarNumberLowPrice/>
-         <CardPlate/>
+         <Card/>
+      
          
      </div>
      <Pagination class="mt-[70px] " :total-pages="10" :current-page="1" @update:page="onPageChange" />
@@ -54,16 +55,18 @@
  </template>
  
  <script>
- import CardPlate from '../CardPlate/CardPlate.vue';
- import SimilarNumber from '../SimilarNumbers/SimilarNumber.vue';
- import SimilarNumberLowPrice from '../LowSimilarNumbers/SimilarNumberLowPrice.vue';
- import Pagination from '../Pagination/Pagination.vue';
+ import CardPlate from '../components/CardPlate/CardPlate.vue';
+ import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
+ import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue';
+ import Pagination from '../components/Pagination/Pagination.vue';
+ import Card from '../components/Card.vue'
  
  export default {
    components: {
      CardPlate,
      SimilarNumber,
-     SimilarNumberLowPrice
+     SimilarNumberLowPrice,
+     Card,
    }
  }
  </script>

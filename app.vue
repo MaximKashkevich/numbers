@@ -4,7 +4,6 @@
         <Registration v-if="signUp.signUp && !verification.signIn" />
 
         <Verification v-if="verification.signIn" />
-        <NuxtPage />
 
         <Entrance />
 

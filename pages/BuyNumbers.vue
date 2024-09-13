@@ -48,10 +48,12 @@
                     <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
                         for="type">Type:</label>
                     <div class="mt-[10px] flex gap-[10px]">
-                        <button
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center">Plate</button>
-                        <button
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center">Mobile</button>
+                        <NuxtLink
+                        to="/BuyNumbers"
+                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center  items-center text-center">Plate</NuxtLink>
+                        <NuxtLink
+                          to="/BuyNumbers2"
+                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center">Mobile</NuxtLink>
                     </div>
                 </div>
                 <div>
@@ -94,7 +96,7 @@
                 Featured:
             </h3>
             <div
-                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[20px] mt-[20px]">
+                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px]">
                 <CardPlate />
                 <CardPlate />
                 <CardPlate />
@@ -119,7 +121,7 @@
                 Similar numbers:
             </h3>
             <div
-                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5  gap-[20px] mt-[20px]">
+                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-[20px] mt-[20px]">
                 <SimilarNumber />
                 <SimilarNumber />
                 <SimilarNumber />
@@ -286,7 +288,7 @@
                             <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :id="'field' + index"
                                 :type="field.type !== 'textarea' ? field.type : undefined"
                                 :placeholder="field.placeholder" v-model="field.value"
-                                class="w-full h-[50px] max-h-[150px] gap-[10px] rounded-[100px] border-[1px] pl-[20px]" />
+                                class="w-full h-[50px] min-h-[50px] max-h-[150px] gap-[10px] rounded-[100px] border-[1px] pl-[20px]" />
                         </li>
                     </ul>
 
@@ -298,7 +300,7 @@
 
             <!-- Изображение -->
             <div class="mt-[50px] md:mt-[150px] w-full md:w-auto">
-                <img src="../../public/assets/city.png" alt="City Image" class="rounded-lg w-full md:w-auto" />
+                <img src="../public/assets/city.png" alt="City Image" class="rounded-lg w-full md:w-auto" />
             </div>
         </div>
     </div>

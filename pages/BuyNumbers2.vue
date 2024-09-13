@@ -47,10 +47,12 @@
                     <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
                         for="type">Type:</label>
                     <div class="mt-[10px] flex gap-[10px]">
-                        <button
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center">Plate</button>
-                        <button
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center">Mobile</button>
+                        <NuxtLink
+                        to="/BuyNumbers"
+                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center  items-center text-center">Plate</NuxtLink>
+                        <NuxtLink
+                          to="/BuyNumbers2"
+                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center">Mobile</NuxtLink>
                     </div>
                 </div>
                 <div>
@@ -93,7 +95,7 @@
                 Similar numbers:
             </h3>
             <div
-                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[20px] mt-[20px]">
+                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px]">
                 <Card />
                 <Card />
                 <Card />
@@ -121,8 +123,8 @@
 import { onMounted } from 'vue';
 
 
-import ButtonBlue from '../Button-blue/ButtonBlue.vue';
-import Card from '../Card.vue';
+import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
+import Card from '../components/Card.vue';
 import { ref } from 'vue';
 
 interface Input {

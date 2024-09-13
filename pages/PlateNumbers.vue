@@ -11,7 +11,7 @@
           }} /</a>
       </li>
       <li>
-        <a :href="navigationLinks[2].href" class="hover:text-[#005DCA] transition cursor-default">{{
+        <a :href="navigationLinks[2].href" class="text-[#BFBFBF] hover:text-[#005DCA] transition cursor-default">{{
           navigationLinks[2].text }}</a>
       </li>
     </ul>
@@ -70,7 +70,7 @@
       <img class=" cursor-pointer pl-[110px] pb-[35px]" src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
       <!-- Всплывающее окно -->
       <div
-        class="absolute bg-[#000000] text-white w-[326px] h-[135px] top-[21px] left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
+        class="absolute bg-[#000000] text-white w-[326px] h-[135px] top-[12px] left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
         id="tooltip"
       >
         <p class="font-roboto text-[16px] font-normal leading-[20px] text-white">
@@ -140,12 +140,12 @@
 </template>
 
 <script>
-import ButtonShare from './ButtonShare.vue';
-import ButtonLike from './ButtonLike.vue';
-import ButtonBlue from './Button-blue/ButtonBlue.vue';
-import RightArrow from './RightArrow.vue';
-import LeftArrow from './LeftArrow.vue';
-import Card from './Card.vue';
+import ButtonShare from '../components/ButtonShare.vue';
+import ButtonLike from '../components/ButtonLike.vue';
+import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
+import RightArrow from '../components/RightArrow.vue';
+import LeftArrow from '../components/LeftArrow.vue';
+import Card from '../components/Card.vue';
 import { ref, onMounted } from 'vue';
 
 // Import Swiper Vue.js components
