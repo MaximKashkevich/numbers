@@ -1,7 +1,7 @@
 <template>
-     
+
     <div class="mt-[150px] mx-20">
-         <div class="  w-full h-[1px] bg-[#BFBFBF]  "></div>
+        <div class="  w-full h-[1px] bg-[#BFBFBF]  "></div>
         <footer class="pb-10 mt-[70px] ">
             <div class="flex items-center justify-between flex-wrap">
 
@@ -11,7 +11,7 @@
                             class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Plate
                             Numbers</a></li>
                     <li class="my-[30px]"> <a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Mobile
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Phone
                             Numbers</a></li>
                     <li class="my-[30px]"><a href="#"
                             class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Promoted
@@ -56,7 +56,7 @@
                         </svg>
 
                     </a>
-                    <a href="#">
+                    <NuxtLink>
                         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_2052_1295)">
                                 <path
@@ -75,7 +75,7 @@
                             </defs>
                         </svg>
 
-                    </a>
+                    </NuxtLink>
                 </div>
             </div>
         </footer>
@@ -91,7 +91,7 @@ import ButtonBlue from './Button-blue/ButtonBlue.vue';
 
 <style>
 @media (max-width: 450px) {
-    .list{
+    .list {
         padding-top: 60px;
     }
 

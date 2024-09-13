@@ -13,9 +13,9 @@
                         Numbers</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/CatalogNumbers"
+                    <NuxtLink  to="/CatalogNumbers"
                         class=" text-link leading-[19.2px] cursor-pointer text-black font-normal  hover:text-blue-400 transition ">
-                        phone
+                        Phone
                         Numbers</NuxtLink>
                 </li>
                 <li>

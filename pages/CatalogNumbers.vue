@@ -1,4 +1,5 @@
 <template>
+    <NuxtPage />
     <div class="px-[60px]">
 
         <nav class="mb-[30px] mt-[30px] navigation">

@@ -48,12 +48,12 @@
                     <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
                         for="type">Type:</label>
                     <div class="mt-[10px] flex gap-[10px]">
-                        <NuxtLink
-                        to="/BuyNumbers"
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center  items-center text-center">Plate</NuxtLink>
-                        <NuxtLink
-                          to="/BuyNumbers2"
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center">Mobile</NuxtLink>
+                        <NuxtLink to="/BuyNumbers"
+                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center  items-center text-center">
+                            Plate</NuxtLink>
+                        <NuxtLink to="/BuyNumbers2"
+                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center">
+                            Mobile</NuxtLink>
                     </div>
                 </div>
                 <div>
