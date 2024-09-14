@@ -8,7 +8,7 @@
         <span class="text-gray-300">/ My Dashboard</span>
     </nav>
     <main class="justify-between flex items-center gen">
-        <SideBar />
+        <SideBar class="ml-[60px]" />
         <section class="p-[70px]">
             <h1 class="leading-[50px] text-[50px] font-medium textDash">My Dashboard</h1>
             <h2 class="leading-[42px] text-[50px] font-medium my-6 textDash">My featured numbers:</h2>
