@@ -1,4 +1,5 @@
 <template>
+
     <section class="w-[400px] h-[476px] bg-white rounded-[20px] gap-10 hover:shadow-2xl transition block1 flex-wrap">
         <article class="justify-between flex items-center px-6 py-4 accGeneral">
             <NuxtLink class="cursor-pointer">
@@ -75,6 +76,7 @@
             </ul>
         </div>
     </section>
+
 </template>
 
 <style scoped>
@@ -153,6 +155,15 @@
 @media (min-width: 3000px) {
     .block1 {
         max-width: 800px;
+    }
+}
+
+
+@media(max-width:1050px) {
+    .block1 {
+        justify-content: center;
+        display: flex;
+        align-items: center;
     }
 }
 </style>
