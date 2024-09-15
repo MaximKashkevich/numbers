@@ -8,6 +8,7 @@
         <!-- <Entrance /> -->
         <!-- <GeneralEmpty /> -->
         <GeneralPrimaryPages />
+        <GeneralViewAds />
     </div>
 </template>
 
@@ -18,6 +19,7 @@ import Registration from "./components/Registration/Registration.vue";
 import Verification from "./components/Verification.vue";
 import GeneralEmpty from "./components/general/GeneralEmpty.vue";
 import GeneralPrimaryPages from "./components/general/GeneralPrimaryPages.vue";
+import GeneralViewAds from "./components/general/GeneralViewAds.vue";
 //import PlateNumbers from "./components/PlateNumbers.vue";
 //import BuyNumbers2 from "./components/BuyNumbers2/BuyNumbers2.vue";
 //import CatalogNumbers from "./components/CatalogNumbers/CatalogNumbers.vue";
