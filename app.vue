@@ -5,9 +5,9 @@
 
         <Verification v-if="verification.signIn" /> -->
         <!-- <NuxtPage /> -->
-        <!-- <Entrance /> -->
+        <Entrance />
         <!-- <GeneralEmpty /> -->
-        <GeneralPrimaryPages />
+        <!-- <GeneralPrimaryPages /> -->
     </div>
 </template>
 

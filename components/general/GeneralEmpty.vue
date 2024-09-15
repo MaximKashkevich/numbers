@@ -5,7 +5,7 @@
         <NuxtLink class="text-blue-500 cursor-pointer">
             Home
         </NuxtLink>
-        <span class="text-gray-300">/ My Dashboard</span>
+        <span class="text-[#BFBFBF]">/ My Dashboard</span>
     </nav>
     <main class="justify-between flex items-center gen">
         <SideBar />
