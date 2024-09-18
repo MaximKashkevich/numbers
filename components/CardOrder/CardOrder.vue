@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-[250px] container--4 w-full h-auto lg:h-[328px] rounded-[20px] border-[1px] border-[#BFBFBF] bg-[#fff] px-[20px] pt-[40px] pb-[40px] mx-auto sm:max-w-[100%]">
+    class="max-w-[250px] container--4 w-full h-auto lg:h-[328px] rounded-[20px] border-[1px] border-[#BFBFBF] bg-[#fff] px-[20px] pt-[40px] pb-[40px] mx-auto sm:max-w-[100%] cursor-pointer">
 
     <h1
       class="title title w-[386px] h-[42px] text-[35px] font-medium leading-[42px] text-left">

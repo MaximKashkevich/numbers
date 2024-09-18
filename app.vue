@@ -7,12 +7,12 @@
         <!-- <NuxtPage /> -->
         <Entrance />
         <!-- <GeneralEmpty /> -->
-<<<<<<< HEAD
+ 
         <!-- <GeneralPrimaryPages /> -->
-=======
-        <GeneralPrimaryPages />
-        <GeneralViewAds />
->>>>>>> 795f636386dc7d5fb45211f763916870865fde11
+
+        <!-- <GeneralPrimaryPages />
+        <GeneralViewAds /> -->
+
     </div>
 </template>
 
@@ -31,6 +31,7 @@ import GeneralViewAds from "./components/general/GeneralViewAds.vue";
 //import Viewed from "./components/viewed/Viewed.vue";
 //import Documentation from "./components/Documentation/Documentation.vue";
 //import PlateNUmberCard from "./components/PlateNumberCard/PlateNUmberCard.vue";
+
 
 import { useSignUpStore } from '@/stores/signUp';
 import { useSignInStore } from '@/stores/verification';

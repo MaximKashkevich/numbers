@@ -24,18 +24,20 @@
 
         <!-- Карточки Plate numbers -->
         <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 mt-[30px] container-order">
-          <div>
+     
+          <div @click="openModal">
             <CardOrder />
           </div>
-          <div>
+          <div @click="openModal">
             <CardOrder />
           </div>
-          <div>
+          <div @click="openModal">
             <CardOrder />
           </div>
-          <div>
+          <div @click="openModal">
             <CardOrder />
           </div>
+      
 
 
           <div
@@ -62,7 +64,7 @@
 
         <!-- Карточки Mobile numbers -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-[30px] container-card">
-          <div class="max-w-[426px] w-full">
+          <div class="max-w-[426px] w-full" >
             <MoreCard />
           </div>
           <div class="max-w-[426px] w-full">
@@ -89,6 +91,7 @@
             </button>
           </div>
         </div>
+        <ModalWindow v-if="isModalVisible"  />
       </div>
     </div>
   </div>
@@ -98,12 +101,28 @@
 import MoreCard from '../components/MoreCard/MoreCard.vue';
 import CardOrder from '../components/CardOrder/CardOrder.vue';
 import SideBar from '../components/general/SideBar.vue';
+import ModalWindow from '../components/ModalWindow.vue';
 
 export default {
   components: {
     SideBar,
     MoreCard,
-    CardOrder
+    CardOrder,
+    ModalWindow,
+  },
+
+  data() {
+    return {
+      isModalVisible: false, 
+    };
+  },
+  methods: {
+    openModal() {
+      this.isModalVisible = true; 
+    },
+    closeModal() {
+      this.isModalVisible = false; 
+    },
   },
 };
 </script>
