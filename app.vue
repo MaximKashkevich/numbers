@@ -1,19 +1,20 @@
 <template>
-    <div>
-        <!-- Hide Registration when Verification is rendered -->
-        <!-- <Registration v-if="signUp.signUp && !verification.signIn" />
+        <div>
+                <!-- Hide Registration when Verification is rendered -->
+                <!-- <Registration v-if="signUp.signUp && !verification.signIn" />
 
-        <Verification v-if="verification.signIn" /> -->
-        <!-- <NuxtPage /> -->
-        <Entrance />
-        <!-- <GeneralEmpty /> -->
-<<<<<<< HEAD
-        <!-- <GeneralPrimaryPages /> -->
-=======
-        <GeneralPrimaryPages />
-        <GeneralViewAds />
->>>>>>> 795f636386dc7d5fb45211f763916870865fde11
-    </div>
+                <Verification v-if="verification.signIn" /> -->
+                <!-- <NuxtPage /> -->
+                <!-- <Entrance /> -->
+                <!-- <GeneralEmpty /> -->
+                <!-- <GeneralPrimaryPages /> -->
+                <!-- <GeneralPrimaryPages />
+                <GeneralViewAds /> -->
+                <!-- <Login /> -->
+
+                <!-- <GeneralBlockTariff /> -->
+                <GeneralAddAdvertiseAuto />
+        </div>
 </template>
 
 <script setup lang="ts">
@@ -24,6 +25,8 @@ import Verification from "./components/Verification.vue";
 import GeneralEmpty from "./components/general/GeneralEmpty.vue";
 import GeneralPrimaryPages from "./components/general/GeneralPrimaryPages.vue";
 import GeneralViewAds from "./components/general/GeneralViewAds.vue";
+import GeneralBlockTariff from "./components/general/GeneralBlockTariff.vue";
+import GeneralAddAdvertiseAuto from "./components/general/GeneralAddAdvertiseAuto.vue";
 //import PlateNumbers from "./components/PlateNumbers.vue";
 //import BuyNumbers2 from "./components/BuyNumbers2/BuyNumbers2.vue";
 //import CatalogNumbers from "./components/CatalogNumbers/CatalogNumbers.vue";
@@ -34,6 +37,7 @@ import GeneralViewAds from "./components/general/GeneralViewAds.vue";
 
 import { useSignUpStore } from '@/stores/signUp';
 import { useSignInStore } from '@/stores/verification';
+import Login from "./pages/Login.vue";
 
 const signUp = useSignUpStore();
 const verification = useSignInStore();

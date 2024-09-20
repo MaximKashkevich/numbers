@@ -1,17 +1,8 @@
 <template>
     <section class="w-[400px] h-[476px] bg-white rounded-[20px] ml-[60px] gap-10 hover:shadow-2xl transition block1">
         <article class="justify-between flex items-center px-6 py-4 accGeneral">
-            <NuxtLink class="cursor-pointer">
-                <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <circle cx="35" cy="35" r="35" fill="url(#pattern0_2229_4775)" />
-                    <defs>
-                        <pattern id="pattern0_2229_4775" patternContentUnits="objectBoundingBox" width="1" height="1">
-                            <use xlink:href="#image0_2229_4775"
-                                transform="translate(-0.471429 -0.471429) scale(0.0032381)" />
-                        </pattern>
-                    </defs>
-                </svg>
+            <NuxtLink class="cursor-pointer mr-2">
+                <img src="/public/assets/account.svg" alt="account">
             </NuxtLink>
             <div>
                 <span class="text-black leading-6 text-xl accText">Suroor</span>
