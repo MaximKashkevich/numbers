@@ -7,11 +7,12 @@
       <span class="text-[#BFBFBF]"> My Dashboard</span>
     </nav>
 
-    <div class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
+    <div
+      class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
       <div class="w-full md:w-[300px] lg:w-[500px]">
-         <SideBar class="sidebar"/> 
+        <SideBar class="sidebar" />
       </div>
-   
+
 
       <div class="flex-1">
         <h1 class="text-[30px] md:text-[50px] font-medium leading-[35px] md:leading-[50px] text-left uppercase text-1">
@@ -24,18 +25,11 @@
 
         <!-- Карточки Plate numbers -->
         <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 mt-[30px] container-order">
-          <div>
+
+          <div v-for="(item, index) in cardOrders" :key="index" @click="openModal">
             <CardOrder />
           </div>
-          <div>
-            <CardOrder />
-          </div>
-          <div>
-            <CardOrder />
-          </div>
-          <div>
-            <CardOrder />
-          </div>
+
 
 
           <div
@@ -89,6 +83,7 @@
             </button>
           </div>
         </div>
+        <ModalWindow v-if="isModalVisible" />
       </div>
     </div>
   </div>
@@ -98,12 +93,28 @@
 import MoreCard from '../components/MoreCard/MoreCard.vue';
 import CardOrder from '../components/CardOrder/CardOrder.vue';
 import SideBar from '../components/general/SideBar.vue';
+import ModalWindow from '../components/ModalWindow.vue';
 
 export default {
   components: {
     SideBar,
     MoreCard,
-    CardOrder
+    CardOrder,
+    ModalWindow,
+  },
+
+  data() {
+    return {
+      isModalVisible: false,
+    };
+  },
+  methods: {
+    openModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
   },
 };
 </script>
@@ -175,29 +186,33 @@ button svg {
   .grid {
     grid-template-columns: 1fr !important;
   }
-  .big-container{
+
+  .big-container {
     flex-wrap: wrap;
   }
 }
+
 @media (max-width: 407px) {
- .container-order{
-  margin-left: -60px;
- }
- .container-card{
-  margin-left: -60px;
- }
- .text-1{
-  margin-left: 20px;
-  width: 300px;
-  font-size: 25px;
- }
- .text-2{
-  margin-left: 60px;
-}
-.white-container{
-  width: full;
-}
-}
+  .container-order {
+    margin-left: -60px;
+  }
 
+  .container-card {
+    margin-left: -60px;
+  }
 
+  .text-1 {
+    margin-left: 20px;
+    width: 300px;
+    font-size: 25px;
+  }
+
+  .text-2 {
+    margin-left: 60px;
+  }
+
+  .white-container {
+    width: full;
+  }
+}
 </style>

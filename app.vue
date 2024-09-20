@@ -15,6 +15,19 @@
                 <!-- <GeneralBlockTariff /> -->
                 <GeneralAddAdvertiseAuto />
         </div>
+
+        <Verification v-if="verification.signIn" />
+        <!-- <NuxtPage /> -->
+        <Entrance />
+        <!-- <GeneralEmpty /> -->
+
+        <!-- <GeneralPrimaryPages /> -->
+
+        <!-- <GeneralPrimaryPages />
+        <GeneralViewAds /> -->
+
+
+        <!-- <GeneralAddAdvertiseAuto /> -->
 </template>
 
 <script setup lang="ts">
@@ -34,6 +47,7 @@ import GeneralAddAdvertiseAuto from "./components/general/GeneralAddAdvertiseAut
 //import Viewed from "./components/viewed/Viewed.vue";
 //import Documentation from "./components/Documentation/Documentation.vue";
 //import PlateNUmberCard from "./components/PlateNumberCard/PlateNUmberCard.vue";
+
 
 import { useSignUpStore } from '@/stores/signUp';
 import { useSignInStore } from '@/stores/verification';
