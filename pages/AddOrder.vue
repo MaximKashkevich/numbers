@@ -157,8 +157,8 @@ export default {
     },
     getButtonClass(buttonType) {
       return {
-        'bg-[#000000] text-[#FFFFFF]': this.activeButton === buttonType,
-        'bg-[##FAFAFA] text-[#000000]': this.activeButton !== buttonType,
+        'border-[#000000] text-[#000000]': this.activeButton === buttonType,
+        'border-[#BFBFBF] text-[#BFBFBF]': this.activeButton !== buttonType,
       };
     },
   },
