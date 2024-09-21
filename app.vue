@@ -27,7 +27,7 @@
         <GeneralViewAds /> -->
 
 
-        <!-- <GeneralAddAdvertiseAuto /> -->
+
 </template>
 
 <script setup lang="ts">
