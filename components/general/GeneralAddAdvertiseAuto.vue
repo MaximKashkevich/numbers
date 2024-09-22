@@ -177,6 +177,7 @@
             </section>
         </section>
     </main>
+
     <Footer />
 
 
@@ -189,7 +190,6 @@ import ButtonBlue from '../Button-blue/ButtonBlue.vue';
 import Footer from '../Footer.vue'
 
 import { ref } from 'vue';
-
 
 const bluerCard = ref<Boolean>(false)
 const bluerValue = ref<Boolean>(false)
@@ -218,9 +218,12 @@ const bluerPriceFalse = () => {
 <style scoped>
 @media(max-width:400px) {
 
-
     .block1 {
         margin-top: 20px;
+    }
+
+    .btn2 {
+        width: 100px;
     }
 }
 
@@ -299,6 +302,11 @@ const bluerPriceFalse = () => {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .btn2 {
+        width: 100px;
+    }
+
 }
 
 
@@ -371,6 +379,10 @@ const bluerPriceFalse = () => {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .btn2 {
+        width: 200px;
     }
 
 }
@@ -446,6 +458,9 @@ const bluerPriceFalse = () => {
 
     .btn2 {
         width: 650px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
     }
 }
 
