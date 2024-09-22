@@ -8,3 +8,12 @@ body {
   font-family: "Roboto", sans-serif;
   background: #FAFAFA;
 }
+
+a{
+  cursor: pointer;
+}
+
+input{
+  cursor: pointer;
+}
+

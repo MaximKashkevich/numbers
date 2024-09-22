@@ -3,10 +3,10 @@
      <nav class="mb-6 mt-6">
          <ul class="flex gap-2">
              <li>
-                 <a href="/BuyNumbers" class="text-[#005DCA] cursor-pointer transition ">Home /</a>
+                 <NuxtLink href="/BuyNumbers" class="text-[#005DCA] cursor-pointer transition ">Home /</NuxtLink>
              </li>
              <li>
-                 <a href="#" class=" text-[#BFBFBF] hover:text-[#005DCA] cursor-pointer transition ">You used to watch</a>
+                 <NuxtLink href="#" class=" text-[#BFBFBF] hover:text-[#005DCA] cursor-pointer transition ">You used to watch</NuxtLink>
              </li>
          </ul>
      </nav>

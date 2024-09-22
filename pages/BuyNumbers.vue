@@ -224,7 +224,8 @@
                             <transition name="fade-slide">
                                 <span v-show="showMore2"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
-                                    You can easily update your account information. Just go to your Dashboard page and
+                                    You can easily update your account information. Just go to your <NuxtLink class="cursor-pointer underline">Dashboard</NuxtLink>
+                                    page and
                                     click on the Settings
                                     link. From here you can do whatever you like with your information.
                                 </span>

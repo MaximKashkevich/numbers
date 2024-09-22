@@ -5,11 +5,11 @@
         <nav class="mb-[30px] mt-[30px] navigation">
             <ul class="flex gap-[5px] ">
                 <li>
-                    <a href="/BuyNumbers" class="text-[#005DCA] transition cursor-pointer"> Home /</a>
+                    <NuxtLink href="/BuyNumbers" class="text-[#005DCA] transition cursor-pointer"> Home /</NuxtLink>
                 </li>
                 <li>
-                    <a href="" class=" text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer"> Plate numbers
-                    </a>
+                    <NuxtLink href="" class=" text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer"> Plate numbers
+                    </NuxtLink>
                 </li>
 
             </ul>
