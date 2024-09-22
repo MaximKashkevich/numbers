@@ -13,10 +13,10 @@
                 <!-- <Login /> -->
 
                 <!-- <GeneralBlockTariff /> -->
-                <GeneralAddAdvertiseAuto />
+                <!-- <GeneralAddAdvertiseAuto /> -->
         </div>
-
-        <Verification v-if="verification.signIn" />
+<!-- 
+        <Verification v-if="verification.signIn" /> -->
         <!-- <NuxtPage /> -->
         <Entrance />
         <!-- <GeneralEmpty /> -->

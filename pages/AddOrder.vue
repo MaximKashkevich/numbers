@@ -149,6 +149,7 @@ export default {
       isCheckboxChecked: false,
       isCheckboxChecked2: false,
       isCheckboxChecked3: false,
+      
     };
   },
   methods: {

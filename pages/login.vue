@@ -73,8 +73,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useForm, useField } from 'vee-validate';
-import * as yup from 'yup';
+import { useForm, useField } from 'vue-validate';
+
 
 import ButtonLogin from "../components/Button-login/ButtonLogin.vue"
 import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
