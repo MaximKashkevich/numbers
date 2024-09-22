@@ -83,10 +83,10 @@ import { useSignUpStore } from '@/stores/signUp';
 const signUp = useSignUpStore();
 
 const { handleSubmit, errors, resetForm } = useForm({
-    validationSchema: yup.object({
-        username: yup.string().email('Enter a valid email or phone number').required('Username is required'),
-        password: yup.string().required('Password is required')
-    }),
+    // validationSchema: yup.object({
+    //     username: yup.string().email('Enter a valid email or phone number').required('Username is required'),
+    //     password: yup.string().required('Password is required')
+    // }),
 });
 
 const username = useField('');
