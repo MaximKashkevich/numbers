@@ -78,7 +78,7 @@ import { useForm, useField } from 'vue-validate';
 
 import ButtonLogin from "../components/Button-login/ButtonLogin.vue"
 import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
-import { useSignUpStore } from '@/stores/signUp';
+import { useSignUpStore } from '../stores/signUp';
 
 const signUp = useSignUpStore();
 
