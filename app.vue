@@ -42,6 +42,8 @@ import GeneralBlockTariff from "./components/general/GeneralBlockTariff.vue";
 import GeneralAddAdvertiseAuto from "./components/general/GeneralAddAdvertiseAuto.vue";
 import ModalColectionWindow from "./components/ModalColectionWindow.vue";
 import ModalWindowChoose from "./components/ModalWindowChoose.vue";
+import MyColections from "./pages/MyColections.vue";
+import ModalAddColection from "./components/ModalAddColection.vue";
 //import PlateNumbers from "./components/PlateNumbers.vue";
 //import BuyNumbers2 from "./components/BuyNumbers2/BuyNumbers2.vue";
 //import CatalogNumbers from "./components/CatalogNumbers/CatalogNumbers.vue";

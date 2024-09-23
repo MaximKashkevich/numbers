@@ -10,7 +10,7 @@
     <div
       class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
       <div class="w-full md:w-[300px] lg:w-[500px]">
-        <SideBar class="sidebar" />
+        <SideBar class="sidebar " />
       </div>
 
       <div class="flex-1">
@@ -19,7 +19,7 @@
         </h1>
         <div>
           <div>
-            <div class="flex flex-col md:flex-row gap-[20px] mt-[50px] mb-[70px]">
+            <div class="flex flex-col flex-wrap md:flex-row gap-[20px] mt-[50px] mb-[70px]">
               <button @click="setActive('plate')" :class="getButtonClass('plate')"
                 class="w-full max-w-[426px] h-[52px] px-[50px] py-[14px] gap-[20px] rounded-[100px]  font-roboto text-[20px] font-bold leading-[24px] uppercase flex justify-center items-center transition-all duration-300 border-[2px] border-[#000000]">
                 plate number
@@ -49,7 +49,7 @@
                       <input type="checkbox" id="custom-checkbox-1" v-model="isCheckboxChecked"
                         class="w-[20px] h-[20px] rounded-[3px] border-[1px] border-[#BFBFBF] checkbox">
                       <label for="custom-checkbox-1" class="relative flex items-center gap-[10px]">
-                        Enable selection
+                        Any emirate
                       </label>
                     </div>
                   </div>
@@ -65,7 +65,7 @@
                       <input type="checkbox" id="custom-checkbox-2" v-model="isCheckboxChecked2"
                         class="w-[20px] h-[20px] rounded-[3px] border-[1px] border-[#BFBFBF] checkbox">
                       <label for="custom-checkbox-2" class="relative flex items-center gap-[10px]">
-                        Enable selection
+                        Any code
                       </label>
                     </div>
                   </div>
@@ -79,16 +79,25 @@
                       <option>Latest</option>
                     </select>
                   </div>
-                  <div class="w-full">
+                  <div class=" ">
                     <label for="price"
                       class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#000000]">Price:</label>
-                    <input type="text" :class="selectClasses3"
-                      class="w-full sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-4 text-lg text-[#BFBFBF] bg-[#FAFAFA]">
+                    <div class="pon flex flex-wrap gap-[10px]">
+                      <input type="text" :class="selectClasses3"
+                        class="input "
+                        placeholder="From">
+
+                      <input type="text" :class="selectClasses3"
+                        class=" input"
+                        placeholder="To">
+                    </div>
+
+
                     <div class="mt-[15px] flex gap-[10px]">
                       <input type="checkbox" id="custom-checkbox-3" v-model="isCheckboxChecked3"
                         class="w-[20px] h-[20px] rounded-[3px] border-[1px] border-[#BFBFBF] checkbox border-[#000000]">
                       <label for="custom-checkbox-3" class="relative flex items-center gap-[10px]">
-                        Enable selection
+                        Hide price
                       </label>
                     </div>
                   </div>
@@ -119,7 +128,7 @@
                   <input type="number"
                     class="w-full md:w-[872px] h-[50px] rounded-[50px] pl-[30px] border-[1px] border-[#BFBFBF] bg-[#FAFAFA] text-[16px] font-normal leading-[19.2px] text-left">
                 </div>
-                <ButtonBlue class="flex justify-center items-center w-full md:w-[263px] h-[52px] mt-[70px]">
+                <ButtonBlue class="flex justify-center items-center w-full md:w-[225px] h-[52px] mt-[70px]">
                   Place an order
                 </ButtonBlue>
               </fieldset>
@@ -149,7 +158,7 @@ export default {
       isCheckboxChecked: false,
       isCheckboxChecked2: false,
       isCheckboxChecked3: false,
-      
+
     };
   },
   methods: {
@@ -209,5 +218,8 @@ export default {
 
 .checkbox:not(:checked)::before {
   content: none;
+}
+.input{
+  width: 210px;
 }
 </style>

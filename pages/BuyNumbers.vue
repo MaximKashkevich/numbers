@@ -169,7 +169,7 @@
                     class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
                     <div class="">
                         <h1 class="">
-                            1/3
+                            2/3
                         </h1>
 
                         <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
@@ -187,7 +187,7 @@
                     class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
                     <div class="">
                         <h1 class="">
-                            1/3
+                            3/3
                         </h1>
 
                         <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">

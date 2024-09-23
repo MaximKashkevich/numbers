@@ -85,6 +85,9 @@
     margin-left: auto;
     margin-right: auto;
     padding: 16px;
+    position: sticky;
+    top: 20px;
+    /* Устанавливаем на сколько блок будет "залипать" от верха */
 }
 
 .accText {
