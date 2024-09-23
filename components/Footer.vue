@@ -9,9 +9,12 @@
                  </NuxtLink>
               
                 <ul class="list">
-                    <li><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Plate
-                            Numbers</a></li>
+                    <li>
+                        <NuxtLink
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
+                            Plate
+                            Numbers</NuxtLink>
+                    </li>
                     <li class="my-[30px]"> <a href="#"
                             class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Phone
                             Numbers</a></li>
