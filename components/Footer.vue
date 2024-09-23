@@ -4,8 +4,10 @@
         <div class="  w-full h-[1px] bg-[#BFBFBF]  "></div>
         <footer class="pb-10 mt-[70px] ">
             <div class="flex items-center justify-between flex-wrap">
-
-                <img src="../public/assets/footerLogo.png" alt="footerLogo">
+                 <NuxtLink to="/BuyNumbers">
+                      <img src="../public/assets/New-big-logo.webp" class="img3"alt="footerLogo">
+                 </NuxtLink>
+              
                 <ul class="list">
                     <li><a href="#"
                             class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Plate
@@ -90,6 +92,11 @@ import ButtonBlue from './Button-blue/ButtonBlue.vue';
 </script>
 
 <style>
+
+.img3{
+    width: 400px;
+    height: 110px;
+}
 @media (max-width: 450px) {
     .list {
         padding-top: 60px;

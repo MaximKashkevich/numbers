@@ -1,5 +1,5 @@
 <template>
-     <NuxtPage />
+    <NuxtPage />
     <div class="pl-[60px] pr-[60px] mt-[150px]">
         <h1 class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2">
             PLATE AND MOBILE NUMBERS IN UAE
@@ -138,19 +138,75 @@
                 View 7508 more plate numbers
             </ButtonBlue>
         </div>
-        <div
-            class="w-full min-w-[330px] bg-[#FFFFFF] h-[500px] rounded-[20px] px-[50px] py-[80px] mt-[150px] text-container">
-            <h3 class="w-[1000px] text-[50px] font-normal leading-[60px] text-left mini-title">
-                You can create an ad to buy a number, and registered users who are selling rooms will be able to contact
-                you with their offer.
+        <div class="mt-[150px]">
+            <h3 class="w-[1000px] h-[180px] text-[50px] font-normal leading-[60px] text-left mini-title">
+                Save time on your search: create an ad to buy a number and we will send you suitable ads to your
+                WhatsApp.
             </h3>
             <p class="w-[1000px] text-[16px] font-normal leading-[19.2px] text-left mt-[20px] mini-text">
                 View ads for purchase is available only for registered users
             </p>
-            <ButtonBlue class="w-[384px] mt-[70px] order-list ">
-                View purchase orders list
+            <div
+                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px] mt-[50px] grid-2 mb-[70px]">
+                <div
+                    class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
+                    <div class="">
+                        <h1 class="">
+                            1/3
+                        </h1>
+
+                        <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
+                            Application
+                        </p>
+                        <p class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]">
+                            You leave a request to buy a room and specify all the criteria that are important to you.
+                        </p>
+
+                    </div>
+
+                </div>
+                <div
+                    class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
+                    <div class="">
+                        <h1 class="">
+                            1/3
+                        </h1>
+
+                        <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
+                            Search
+                        </p>
+                        <p class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]">
+                            During the week, our manager will match your application with suitable numbers and send them
+                            to you on WhatsApp
+                        </p>
+
+                    </div>
+
+                </div>
+                <div
+                    class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
+                    <div class="">
+                        <h1 class="">
+                            1/3
+                        </h1>
+
+                        <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
+                            Buying
+                        </p>
+                        <p class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]">
+                            If the number fits you, you pay for it, we buy it, register it in the traffic police and
+                            give it to you.
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+            <ButtonBlue class="w-[329px] h-[52px]  flex justify-center items-center  order-list ">
+                Submit a purchase order
             </ButtonBlue>
         </div>
+
         <h3 class="w-[198px] h-[60px]  text-[50px] font-light leading-[60px] text-left mt-[150px]">
             Licenses
         </h3>
@@ -179,13 +235,14 @@
                                 <span v-show="showMore"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                                     You can easily update your account information. Just go to your Dashboard page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    click on the Settings link. From here you can do whatever you like with your
+                                    information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -202,13 +259,14 @@
                                 <span v-show="showMore1"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                                     You can easily update your account information. Just go to your Dashboard page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    click on the Settings link. From here you can do whatever you like with your
+                                    information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore1" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore1" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -224,15 +282,16 @@
                             <transition name="fade-slide">
                                 <span v-show="showMore2"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
-                                    You can easily update your account information. Just go to your <NuxtLink class="cursor-pointer underline">Dashboard</NuxtLink>
-                                    page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    You can easily update your account information. Just go to your <NuxtLink
+                                        class="cursor-pointer underline">Dashboard</NuxtLink>
+                                    page and click on the Settings link. From here you can do whatever you like with
+                                    your information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore2" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore2" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -249,17 +308,19 @@
                                 <span v-show="showMore3"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                                     You can easily update your account information. Just go to your Dashboard page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    click on the Settings link. From here you can do whatever you like with your
+                                    information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore3" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore3" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
             </ul>
+
 
 
         </div>
@@ -545,10 +606,7 @@ const seeMore3 = () => {
     color: #BFBFBF;
 }
 
-.button-black:hover {
-    border-color: #BFBFBF;
-    color: #BFBFBF;
-}
+
 
 .grid-2 {
     grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
