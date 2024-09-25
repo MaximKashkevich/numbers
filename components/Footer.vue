@@ -4,44 +4,47 @@
         <div class="  w-full h-[1px] bg-[#BFBFBF]  "></div>
         <footer class="pb-10 mt-[70px] ">
             <div class="flex items-center justify-between flex-wrap">
-                 <NuxtLink to="/BuyNumbers">
-                      <img src="../public/assets/New-big-logo.webp" class="img3"alt="footerLogo">
-                 </NuxtLink>
-              
+                <NuxtLink to="/BuyNumbers">
+                    <img src="../public/assets/New-big-logo.webp" class="img3" alt="footerLogo">
+                </NuxtLink>
+
                 <ul class="list">
                     <li>
-                        <NuxtLink
+                        <NuxtLink to="/CatalogNumbers"
                             class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
                             Plate
                             Numbers</NuxtLink>
                     </li>
-                    <li class="my-[30px]"> <a href="#"
+                    <li class="my-[30px]"> <a href="/CatalogNumbers"
                             class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Phone
                             Numbers</a></li>
-                    <li class="my-[30px]"><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Promoted
-                            Numbers</a></li>
+                    <li class="my-[30px]"><a href="/License"
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">License
+                            prices</a></li>
                     <li><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Gallery</a>
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Subscriptions
+                            for dealers</a>
                     </li>
+                    <li class="my-[30px]"><a href="#"  
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Discounts</a>
+                    </li>
+
                 </ul>
                 <ul class="list">
                     <li><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Plate
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
                             About Us</a></li>
                     <li class="my-[30px]"><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Mobile
-                            FAQ</a></li>
-                    <li class="my-[30px]"><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Promoted
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
                             Terms of Use</a></li>
-                    <li><a href="#"
+
+                    <li class="mb-[140px] item-class"><a href="#"
                             class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Support</a>
                     </li>
                 </ul>
             </div>
             <div class="flex items-center justify-between mt-[150px] flex-wrap">
-                <div class="">
+                <div class="text-[#BFBFBF]">
                     <span>© Numbers.ae. All rights reserved 2024</span>
                     <span><br />Privacy Policy</span>
                 </div>
@@ -95,11 +98,11 @@ import ButtonBlue from './Button-blue/ButtonBlue.vue';
 </script>
 
 <style>
-
-.img3{
+.img3 {
     width: 400px;
     height: 110px;
 }
+
 @media (max-width: 450px) {
     .list {
         padding-top: 60px;
@@ -115,6 +118,12 @@ import ButtonBlue from './Button-blue/ButtonBlue.vue';
         gap: 130px;
     }
 
+
+}
+@media (max-width: 833px) {
+ .item-class{
+    margin-bottom: 1px;
+ }
 
 }
 </style>

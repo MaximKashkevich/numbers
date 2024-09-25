@@ -151,9 +151,9 @@
                 <div
                     class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
                     <div class="">
-                        <h1 class="">
+                        <p class="">
                             1/3
-                        </h1>
+                        </p>
 
                         <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
                             Application
@@ -168,9 +168,9 @@
                 <div
                     class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
                     <div class="">
-                        <h1 class="">
+                        <p class="">
                             2/3
-                        </h1>
+                        </p>
 
                         <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
                             Search
@@ -186,9 +186,9 @@
                 <div
                     class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
                     <div class="">
-                        <h1 class="">
+                        <p class="">
                             3/3
-                        </h1>
+                        </p>
 
                         <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
                             Buying

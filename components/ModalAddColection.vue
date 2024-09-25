@@ -2,8 +2,8 @@
     <div v-if="isVisible" class="modal-overlay flex justify-center">
         <div class="modal custom-scrollbar" @click.stop>
             <div class="flex justify-end mt-[-20px] mb-[-20px]  img-container">
-                <button @click="closeModal" aria-label="Close modal">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button @click="closeModal" aria-label="Close modal" class="img-2">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="img-2">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M1.5667 0.268722C1.20841 -0.0895738 0.627502 -0.0895739 0.269208 0.268722C-0.0890854 0.627017 -0.0890848 1.20793 0.269209 1.56622L8.70342 10.0005L0.269829 18.4341C-0.0884647 18.7924 -0.0884647 19.3733 0.269829 19.7316C0.628122 20.0899 1.20903 20.0899 1.56733 19.7316L10.0009 11.298L18.4341 19.7313C18.7924 20.0896 19.3734 20.0896 19.7316 19.7313C20.0899 19.373 20.0899 18.7921 19.7316 18.4338L11.2984 10.0005L19.7323 1.56658C20.0906 1.20828 20.0906 0.62737 19.7323 0.269075C19.374 -0.0892205 18.7931 -0.08922 18.4348 0.269075L10.0009 8.70297L1.5667 0.268722Z"
                             fill="#BFBFBF" />
@@ -19,8 +19,8 @@
                 </ButtonBlue>
 
             </div>
-            <div class="flex flex-wrap mt-[35px]">
-                <div class="mr-[20px]  flex-wrap">
+            <div class="flex wrap-container mt-[35px]">
+                <div class="mr-[20px]  flex-wrap wrap-container">
                     <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
                         for="type">Type:</label>
                     <div class="mt-[10px] flex gap-[10px]">
@@ -40,7 +40,7 @@
                         <label for="emirate"
                             class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate:</label>
                         <select id="emirate" name="emirate"
-                            class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[180px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
+                            class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[160px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                             <option value="city">Dubai</option>
                             <option value="city">Abu Dhabi</option>
                             <option value="city">Ajman</option>
@@ -53,7 +53,7 @@
                         <label for="code"
                             class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Number:</label>
                         <select id="emirate" name="code"
-                            class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[180px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
+                            class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[160px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                             <option>12345</option>
                             <option>None</option>
                         </select>
@@ -63,7 +63,7 @@
                             class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Sort
                             by:</label>
                         <select id="emirate" name="sort"
-                            class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[180px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
+                            class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[160px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                             <option>Latest</option>
                         </select>
                     </div>
@@ -145,6 +145,10 @@ function getButtonClass(buttonType) {
     width: 100px;
     height: 100px;
 }
+.img-2{
+    width: 20px;
+    height: 20px;
+}
 
 .modal-overlay {
     position: fixed;
@@ -159,6 +163,9 @@ function getButtonClass(buttonType) {
     padding-left: 60px;
 }
 
+
+
+
 .modal {
     width: 1000px;
     max-width: 1000px;
@@ -170,7 +177,7 @@ function getButtonClass(buttonType) {
     opacity: 1;
     height: 700px;
     padding-left: 30px;
-    padding-right: 30px;
+    padding-right: 10px;
 }
 
 .cards-container {
@@ -235,5 +242,10 @@ button svg {
   .cntrn{
     flex-wrap: wrap;
   }
+}
+@media(max-width: 999px){
+.wrap-container{
+    flex-wrap: wrap;
+}
 }
 </style>

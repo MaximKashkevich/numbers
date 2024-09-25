@@ -21,13 +21,17 @@
                 <li>
                     <NuxtLink to="/License"
                         class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
-                        Promoted
-                        Numbers</NuxtLink>
+                        Subscriptions for dealers</NuxtLink>
                 </li>
                 <li>
                     <NuxtLink
                         class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
-                        Gallery</NuxtLink>
+                        Discounts</NuxtLink>
+                </li>
+                <li>
+                    <NuxtLink to="/License"
+                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
+                        Number concierge</NuxtLink>
                 </li>
             </ul>
 
@@ -51,7 +55,7 @@
 
 
             </a>
-            <a href="">
+            <a href="/GeneralEmpty" >
 
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"

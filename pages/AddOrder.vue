@@ -4,7 +4,10 @@
       <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
         Home /
       </NuxtLink>
-      <span class="text-[#BFBFBF]"> My Dashboard</span>
+      <NuxtLink to="/GeneralEmpty" class="text-blue-500 cursor-pointer">
+        My Dashboard /
+      </NuxtLink>
+      <span class="text-[#BFBFBF]"> Add listing</span>
     </nav>
 
     <div

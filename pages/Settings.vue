@@ -4,8 +4,8 @@
             <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
                 Home /
             </NuxtLink>
-            <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
-                My Dashboard
+            <NuxtLink to="/GeneralEmpty" class="text-blue-500 cursor-pointer">
+                My Dashboard /
             </NuxtLink>
             <span class="text-[#BFBFBF]"> Settings</span>
         </nav>

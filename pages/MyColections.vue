@@ -4,7 +4,10 @@
             <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
                 Home /
             </NuxtLink>
-            <span class="text-[#BFBFBF]"> My Dashboard</span>
+            <NuxtLink  to="/GeneralEmpty" class="text-blue-500 cursor-pointer">
+                My Dashboard /
+            </NuxtLink>
+            <span class="text-[#BFBFBF]"> My collections</span>
         </nav>
 
         <div class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
