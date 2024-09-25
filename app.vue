@@ -1,9 +1,9 @@
 <template>
         <div>
                 <!-- Hide Registration when Verification is rendered -->
-                <!-- <Registration v-if="signUp.signUp && !verification.signIn" />
+                <!-- <Registration v-if="signUp.signUp && !verification.signIn" /> -->
 
-                <Verification v-if="verification.signIn" /> -->
+                <!-- <Verification v-if="verification.signIn" /> -->
                 <!-- <NuxtPage /> -->
                 <!-- <Entrance /> -->
                 <!-- <GeneralEmpty /> -->
@@ -15,7 +15,7 @@
                 <!-- <GeneralBlockTariff /> -->
                 <!-- <GeneralAddAdvertiseAuto /> -->
         </div>
-<!-- 
+        <!-- 
         <Verification v-if="verification.signIn" /> -->
         <!-- <NuxtPage /> -->
         <Entrance />
@@ -26,8 +26,7 @@
         <!-- <GeneralPrimaryPages />
         <GeneralViewAds /> -->
 
-
-
+        <!-- <SignUp /> -->
 </template>
 
 <script setup lang="ts">
@@ -35,11 +34,12 @@
 import Entrance from "./components/Entrance.vue";
 import Registration from "./components/Registration/Registration.vue";
 import Verification from "./components/Verification.vue";
-import GeneralEmpty from "./components/general/GeneralEmpty.vue";
+import GeneralEmpty from "./pages/GeneralEmpty.vue";
 import GeneralPrimaryPages from "./components/general/GeneralPrimaryPages.vue";
 import GeneralViewAds from "./components/general/GeneralViewAds.vue";
-import GeneralBlockTariff from "./components/general/GeneralBlockTariff.vue";
-import GeneralAddAdvertiseAuto from "./components/general/GeneralAddAdvertiseAuto.vue";
+import GeneralBlockTariff from "./pages/GeneralBlockTariff.vue";
+import GeneralAddAdvertiseAuto from "./pages/GeneralAddAdvertiseAuto.vue";
+import SignUp from "./pages/SignUp.vue";
 //import PlateNumbers from "./components/PlateNumbers.vue";
 //import BuyNumbers2 from "./components/BuyNumbers2/BuyNumbers2.vue";
 //import CatalogNumbers from "./components/CatalogNumbers/CatalogNumbers.vue";

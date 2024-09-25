@@ -4,37 +4,57 @@
         <div class="  w-full h-[1px] bg-[#BFBFBF]  "></div>
         <footer class="pb-10 mt-[70px] ">
             <div class="flex items-center justify-between flex-wrap">
-
-                <img src="../public/assets/footerLogo.png" alt="footerLogo">
+                <NuxtLink to="/">
+                    <img src="../public/assets/footerLogo.png" alt="footerLogo">
+                </NuxtLink>
                 <ul class="list">
                     <li>
-                        <NuxtLink
+                        <NuxtLink to="/PlateNumbers"
                             class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
                             Plate
                             Numbers</NuxtLink>
                     </li>
-                    <li class="my-[30px]"> <a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Phone
-                            Numbers</a></li>
-                    <li class="my-[30px]"><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Promoted
-                            Numbers</a></li>
-                    <li><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Gallery</a>
+                    <li class="my-[30px]">
+                        <NuxtLink to="/CatalogNumbers"
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
+                            Phone
+                            Numbers</NuxtLink>
+                    </li>
+                    <li class="my-[30px]">
+                        <NuxtLink to="/License"
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
+                            Promoted
+                            Numbers</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink href="#"
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
+                            Gallery</NuxtLink>
                     </li>
                 </ul>
                 <ul class="list">
-                    <li><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Plate
-                            About Us</a></li>
-                    <li class="my-[30px]"><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Mobile
-                            FAQ</a></li>
-                    <li class="my-[30px]"><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Promoted
-                            Terms of Use</a></li>
-                    <li><a href="#"
-                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">Support</a>
+                    <li>
+                        <NuxtLink href="#"
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
+                            Plate
+                            About Us</NuxtLink>
+                    </li>
+                    <li class="my-[30px]">
+                        <NuxtLink href="#"
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
+                            Mobile
+                            FAQ</NuxtLink>
+                    </li>
+                    <li class="my-[30px]">
+                        <NuxtLink href="#"
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
+                            Promoted
+                            Terms of Use</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink href="#"
+                            class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition cursor-default">
+                            Support</NuxtLink>
                     </li>
                 </ul>
             </div>

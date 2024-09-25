@@ -1,6 +1,5 @@
 <template>
-
-    <Header />
+    <NuxtPage />
     <nav class="my-5  ml-[60px] ">
         <NuxtLink class="text-blue-500 cursor-pointer">
             Home
@@ -49,15 +48,11 @@
             </section>
         </main>
     </div>
-    <Footer />
-
 </template>
 
 <script setup>
-import Header from '../Header.vue'
-import ButtonBlue from '../Button-blue/ButtonBlue.vue';
-import Footer from '../Footer.vue'
-import SideBar from './SideBar.vue';
+import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
+import SideBar from '../components/general/SideBar.vue';
 
 
 </script>

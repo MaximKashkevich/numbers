@@ -1,6 +1,6 @@
 <template>
 
-    <Header />
+    <NuxtPage />
     <div class="pl-[60px] mt-6">
 
         <NuxtLink>
@@ -164,7 +164,7 @@
                     </nav>
                 </nav>
             </section>
-            <section class="mt-4">
+            <section class="mt-4 flex flex-wrap">
                 <p>Description:</p>
                 <input type="text" placeholder="Write something important that the buyer needs to know"
                     class="inp w-[800px] h-[200px] rounded-[10px] py-[14px] px-[20px] border-[2px] border-gray-300 placeholder-gray-400  text-gray-300 focus:border-gray-300" />
@@ -177,27 +177,27 @@
             </section>
         </section>
     </main>
-
-    <Footer />
-
-
 </template>
 
 <script setup lang="ts">
-import Header from '../Header.vue'
-import SideBar from './SideBar.vue';
-import ButtonBlue from '../Button-blue/ButtonBlue.vue';
-import Footer from '../Footer.vue'
+import Header from '../components/Header.vue'
+import SideBar from '../components/general/SideBar.vue';
+import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
+import Footer from '../components/Footer.vue'
 
 import { ref } from 'vue';
 
 const bluerCard = ref<Boolean>(false)
 const bluerValue = ref<Boolean>(false)
 const bluerPrice = ref<Boolean>(false)
-const price = ref<Number>(0)
+const price = ref<Number | String>(0)
 
 const onChangePrice = (event) => {
-    price.value = parseInt(event.target.value)
+    if (isNaN(parseInt(event.target.value))) {
+        price.value = 'Некорректно веденная цена'
+    } else {
+        price.value = parseInt(event.target.value)
+    }
 }
 
 const bluerCardFalse = () => {
