@@ -1,12 +1,11 @@
 <template>
-  <NuxtLink to="/PlateNumbers">
-    <div
-      class="flex-1 w-full p-4 rounded-[20px] bg-white border-[1px] border-[#B3B3B3] flex flex-col justify-between 
+  <NuxtLink>
+    <div class="flex-1 w-full p-4 rounded-[20px] bg-white border-[1px] border-[#B3B3B3] flex flex-col justify-between 
                   min-w-[300px] max-w-[426px] md:min-w-[280px] lg:max-w-[380px] xl:max-w-[426px] 
                   sm:w-auto w-full">
       <!-- Статичное изображение -->
-      <img class="mx-auto mt-4 w-full h-auto max-h-[200px] object-contain" 
-           src="../../public/assets/numbers.svg" alt="Numbers">
+      <img class="mx-auto mt-4 w-full h-auto max-h-[200px] object-contain" src="../../public/assets/numbers.svg"
+        alt="Numbers">
 
       <div class="flex items-center justify-between mt-6">
         <h1 class="text-[18px] md:text-[20px] font-medium leading-[24px]">{{ price }}</h1>
@@ -14,11 +13,7 @@
         <!-- Динамическое переключение компонентов и текст рядом с сердечком -->
         <div class="flex items-center gap-[5px]">
           <p class="text-[14px] md:text-[16px] text-[#BFBFBF] mr-[3px]">{{ likeds }}</p>
-          <component
-            :is="localLiked ? 'HeartRed' : 'ButtonLike'"
-            class="w-[24px] h-[20px]"
-            @click="toggleLike"
-          />
+          <component :is="localLiked ? 'HeartRed' : 'ButtonLike'" class="w-[24px] h-[20px]" @click="toggleLike" />
         </div>
       </div>
 
@@ -109,9 +104,12 @@ export default {
 <style>
 @media (max-width: 420px) {
   .flex-1 {
-    max-width: 80%; /* Уменьшение ширины карточки */
-    min-width: 250px; /* Минимальная ширина */
-    margin: 0 auto; /* Центрирование */
+    max-width: 80%;
+    /* Уменьшение ширины карточки */
+    min-width: 250px;
+    /* Минимальная ширина */
+    margin: 0 auto;
+    /* Центрирование */
   }
 }
 </style>
