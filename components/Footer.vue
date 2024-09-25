@@ -4,9 +4,16 @@
         <div class="  w-full h-[1px] bg-[#BFBFBF]  "></div>
         <footer class="pb-10 mt-[70px] ">
             <div class="flex items-center justify-between flex-wrap">
+<<<<<<< HEAD
                 <NuxtLink to="/">
                     <img src="../public/assets/footerLogo.png" alt="footerLogo">
                 </NuxtLink>
+=======
+                 <NuxtLink to="/BuyNumbers">
+                      <img src="../public/assets/New-big-logo.webp" class="img3"alt="footerLogo">
+                 </NuxtLink>
+              
+>>>>>>> 1f60de504f5891cb772a3e906b71f27745970399
                 <ul class="list">
                     <li>
                         <NuxtLink to="/PlateNumbers"
@@ -113,6 +120,11 @@ import ButtonBlue from './Button-blue/ButtonBlue.vue';
 </script>
 
 <style>
+
+.img3{
+    width: 400px;
+    height: 110px;
+}
 @media (max-width: 450px) {
     .list {
         padding-top: 60px;

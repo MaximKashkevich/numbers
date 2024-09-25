@@ -2,7 +2,7 @@
     <div class="justify-between px-[60px] pt-[20px]">
         <header class="min-w-[200px] min-h-[20px] justify-between flex items-center flex-wrap">
             <NuxtLink to="/BuyNumbers">
-                <img src="/public/assets/logo.png" class="header-img cursor-pointer" alt="Logo">
+                <img src="../public/assets/New-Logo.webp" class="header-img img2 cursor-pointer" alt="Logo">
             </NuxtLink>
 
             <ul class="justify-between flex items-center gap-[50px]  py-[30px] px-[10px] flex-wrap header-list ">
@@ -87,6 +87,10 @@ import { ref } from 'vue';
 <style>
 .text-link {
     font-size: clamp(18px, 16px, 20px);
+}
+.img2{
+    width: 144px;
+    height: 40px;
 }
 
 @media (max-width: 768px) {

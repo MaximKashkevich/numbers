@@ -37,9 +37,18 @@ import Verification from "./components/Verification.vue";
 import GeneralEmpty from "./pages/GeneralEmpty.vue";
 import GeneralPrimaryPages from "./components/general/GeneralPrimaryPages.vue";
 import GeneralViewAds from "./components/general/GeneralViewAds.vue";
+<<<<<<< HEAD
 import GeneralBlockTariff from "./pages/GeneralBlockTariff.vue";
 import GeneralAddAdvertiseAuto from "./pages/GeneralAddAdvertiseAuto.vue";
 import SignUp from "./pages/SignUp.vue";
+=======
+import GeneralBlockTariff from "./components/general/GeneralBlockTariff.vue";
+import GeneralAddAdvertiseAuto from "./components/general/GeneralAddAdvertiseAuto.vue";
+import ModalColectionWindow from "./components/ModalColectionWindow.vue";
+import ModalWindowChoose from "./components/ModalWindowChoose.vue";
+import MyColections from "./pages/MyColections.vue";
+import ModalAddColection from "./components/ModalAddColection.vue";
+>>>>>>> 1f60de504f5891cb772a3e906b71f27745970399
 //import PlateNumbers from "./components/PlateNumbers.vue";
 //import BuyNumbers2 from "./components/BuyNumbers2/BuyNumbers2.vue";
 //import CatalogNumbers from "./components/CatalogNumbers/CatalogNumbers.vue";

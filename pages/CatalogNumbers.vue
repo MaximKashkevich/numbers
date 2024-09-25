@@ -8,7 +8,8 @@
                     <NuxtLink href="/BuyNumbers" class="text-[#005DCA] transition cursor-pointer"> Home /</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink href="" class=" text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer"> Plate numbers
+                    <NuxtLink href="" class=" text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer"> Plate
+                        numbers
                     </NuxtLink>
                 </li>
 
@@ -25,16 +26,19 @@
                     <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
                         for="type">Type:</label>
                     <div class="mt-[10px] flex gap-[10px]">
-                        <button
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center"
-                            @click="showPlate">
-                            Plate
-                        </button>
-                        <button
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] text-center"
-                            @click="showMobile">
-                            Mobile
-                        </button>
+                        <div class="mt-[10px] flex gap-[10px]">
+                            <button
+                                :class="['button-black w-[130px] h-[47px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] text-center', getButtonClass('Plate')]"
+                                @click="showPlate(); setActive('Plate')">
+                                Plate
+                            </button>
+                            <button
+                                :class="['button-black w-[130px] h-[47px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] text-center', getButtonClass('Mobile')]"
+                                @click="showMobile(); setActive('Mobile')">
+                                Mobile
+                            </button>
+                        </div>
+
                     </div>
                 </div>
                 <div>
@@ -295,6 +299,7 @@ export default {
             postedDate: 'Today', // Значение по умолчанию для даты
             matchDigits: '', // Значение поиска по цифрам
             isPlateSelected: true,
+            activeButton: null,
         };
     },
     methods: {
@@ -326,7 +331,16 @@ export default {
             this.postedDate = 'Today';
             this.isChecked = false;
             this.matchDigits = '';
-        }
+        },
+        setActive(buttonType) {
+            this.activeButton = buttonType; // Устанавливаем активную кнопку
+        },
+        getButtonClass(buttonType) {
+            return {
+                'border-[#000000] text-[#000000]': this.activeButton === buttonType, // Стиль для активной кнопки
+                'border-[#BFBFBF] text-[#BFBFBF]': this.activeButton !== buttonType, // Стиль для неактивной кнопки
+            };
+        },
     }
 };
 
