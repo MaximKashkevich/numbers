@@ -1,53 +1,69 @@
 <template>
 
-    <nav class="px-[20px] md:px-[60px] mt-[30px] ">
-        <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
-            Home /
-        </NuxtLink>
-        <NuxtLink to="/GeneralEmpty" class="text-blue-500 cursor-pointer">
-            My Dashboard /
-        </NuxtLink>
-        <span class="text-[#BFBFBF]"> Settings</span>
+
+
+
+    <nav class="mt-[30px]  ml-[60px] ">
+
+        <NuxtPage />
+        <nav class="my-5  ml-[60px] ">
+            <NuxtLink class="text-blue-500 cursor-pointer">
+                Home
+            </NuxtLink>
+            <span class="text-[#BFBFBF]">/ My Dashboard</span>
+        </nav>
+
+        <div
+            class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
+            <div class="w-full md:w-[300px] lg:w-[500px]">
+                <SideBar class="sidebar" />
+            </div>
+
+            <div class="flex-1 flex flex-wrap">
+                <h1 class="w-[872px] h-[50px] font-medium text-[50px] uppercase ml-[65px]">
+                    My Dashboard
+                </h1>
+                <section class="p-[70px]">
+                    <h2 class="leading-[42px] text-[35px] font-medium mb-[30px] textDash">My featured numbers:</h2>
+                    <nav
+                        class="border-[3px]  w-[885px] h-[300px] border-orange-500 bg-[#FFFFFF] rounded-[20px] p-[50px] hover:shadow-2xl hover:shadow-orange-100 transition">
+                        <p class="text-[35px] mt-[20px] font-medium">You don’t have any featured number listings yet :(
+                        </p>
+                        <ButtonBlue class="w-[382px] h-[52px] justify-center flex items-center mx-auto mt-[50px] btn1">
+                            Create and promote an ad
+                        </ButtonBlue>
+                    </nav>
+                </section>
+
+
+                <section class="p-[70px]">
+                    <h2 class="leading-[42px] text-[35px] font-medium mb-[30px] textDash">My plate numbers</h2>
+                    <nav
+                        class=" w-[872px] h-[300px] bg-[#FFFFFF] rounded-[20px] p-[50px] hover:shadow-2xl hover:shadow-orange-100 transition">
+                        <p class="text-[35px] mt-[20px] font-medium">You don’t have any plate number listings yet :(
+                        </p>
+                        <ButtonBlue class="w-[382px] h-[52px] justify-center flex items-center mx-auto mt-[50px] btn1">
+                            SELL THE PLATE NUMBER
+                        </ButtonBlue>
+                    </nav>
+                </section>
+                <section class="p-[70px]">
+                    <h2 class="leading-[42px] text-[35px] font-medium mb-[30px] textDash">My mobile numbers</h2>
+                    <nav
+                        class=" w-[872px] h-[300px] bg-[#FFFFFF] rounded-[20px] p-[50px] hover:shadow-2xl hover:shadow-orange-100 transition">
+                        <p class="text-[35px] mt-[20px] font-medium">You don’t have any mobile number listings yet :(
+                        </p>
+                        <ButtonBlue class="w-[382px] h-[52px] justify-center flex items-center mx-auto mt-[50px] btn1">
+                            SELL THE PHONE NUMBER
+                        </ButtonBlue>
+                    </nav>
+                </section>
+            </div>
+        </div>
     </nav>
-
-    <div
-        class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center  gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
-        <div class="w-full md:w-[300px] lg:w-[500px]">
-            <SideBar class="sidebar" />
-        </div>
-
-        <div class="flex-1">
-            <h1 class="w-[872px] h-[50px] font-medium text-[50px] uppercase ml-[65px]">
-                My Dashboard
-            </h1>
-            <section class="p-[70px]">
-                <h2 class="leading-[42px] text-[35px] font-medium mb-[30px] textDash">My featured numbers:</h2>
-                <nav
-                    class="border-[3px]  w-[885px] h-[300px] border-orange-500 bg-[#FFFFFF] rounded-[20px] p-[50px] hover:shadow-2xl hover:shadow-orange-100 transition">
-                    <p class="text-[35px] mt-[20px] font-medium">You don’t have any featured number listings yet :(</p>
-                    <ButtonBlue class="w-[382px] h-[52px] justify-center flex items-center mx-auto mt-[50px] btn1">
-                        Create and promote an ad
-                    </ButtonBlue>
-                </nav>
-            </section>
-
-
-            <section class="p-[70px]">
-                <h2 class="leading-[42px] text-[35px] font-medium mb-[30px] textDash">My featured numbers:</h2>
-                <nav
-                    class=" w-[872px] h-[300px] bg-[#FFFFFF] rounded-[20px] p-[50px] hover:shadow-2xl hover:shadow-orange-100 transition">
-                    <p class="text-[35px] mt-[20px] font-medium">You don’t have any featured number listings yet :(</p>
-                    <ButtonBlue class="w-[382px] h-[52px] justify-center flex items-center mx-auto mt-[50px] btn1">
-                        Create and promote an ad
-                    </ButtonBlue>
-                </nav>
-            </section>
-        </div>
-    </div>
 </template>
 
 <script setup>
-
 import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
 
 import SideBar from '../components/general/SideBar.vue';

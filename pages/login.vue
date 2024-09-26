@@ -46,7 +46,7 @@
                             <label for="password"
                                 class="text-[14px] font-medium leading-[16.8px] h-[20px]">Password:</label>
                             <input v-model="form.password" type="password" id="password"
-                                class="inputs bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom"
+                                class="inputs bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px]  placeholder-custom"
                                 placeholder="xxxxxxx" />
                             <span v-if="errors.password" class="text-red-500">{{ errors.password }}</span>
                         </div>

@@ -29,7 +29,12 @@
                 </li>
                 <li>
 
-                    <NuxtLink to="/License" class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
+
+                   
+
+
+                    <NuxtLink to="/License"
+                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
 
                         Number concierge</NuxtLink>
                 </li>
@@ -55,7 +60,11 @@
 
 
 
+
           
+
+           
+
 
             </NuxtLink>
             <NuxtLink to="/GeneralEmpty">
@@ -93,7 +102,8 @@ import { ref } from 'vue';
 .text-link {
     font-size: clamp(18px, 16px, 20px);
 }
-.img2{
+
+.img2 {
     width: 144px;
     height: 40px;
 }
