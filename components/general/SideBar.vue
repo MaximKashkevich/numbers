@@ -13,9 +13,9 @@
             <ul>
                 <li class="my-4 label">
                     <NuxtLink
-                        :class="{ activeLink: $route.path === '/add-listing' }"
-                        to="/add-listing"
-                        class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
+                        :class="{ activeLink: $route.path === '/GeneralBlockTariff' }"
+                        to="/GeneralBlockTariff"
+                        class="text-black leading-[24px] text-xl cursor-pointer font-medium  hover:font-medium transition"
                     >
                         Add listing
                     </NuxtLink>
@@ -26,7 +26,7 @@
                     <NuxtLink
                         :class="{ activeLink: $route.path === '/MyColections' }"
                         to="/MyColections"
-                        class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
+                        class="text-black leading-[24px] text-xl cursor-pointer font-medium  hover:font-medium transition"
                     >
                         My collections (0)
                     </NuxtLink>
@@ -37,29 +37,21 @@
                     <NuxtLink
                         :class="{ activeLink: $route.path === '/TableOrder' }"
                         to="/TableOrder"
-                        class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
+                        class="text-black leading-[24px] text-xl cursor-pointer font-medium  hover:font-medium transition"
                     >
                         Numbers concierge (0)
                     </NuxtLink>
                 </li>
             </ul>
             <ul>
-                <li class="my-1 label">
-                    <NuxtLink
-                        :class="{ activeLink: $route.path === '/watch-list' }"
-                        to="/watch-list"
-                        class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
-                    >
-                        My watch list
-                    </NuxtLink>
-                </li>
+                
             </ul>
             <ul>
                 <NuxtLink to="/ArchivePage">
                      <li class="my-1 label">
                     <NuxtLink
                         :class="{ activeLink: $route.path === '/ArchivePage' }"
-                        class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
+                        class="text-black leading-[24px] text-xl cursor-pointer font-medium  hover:font-medium transition"
                     >
                         Archive (12)
                     </NuxtLink>
@@ -67,22 +59,14 @@
                 </NuxtLink>
             </ul>
             <ul>
-                <li class="my-1 label">
-                    <NuxtLink
-                        :class="{ activeLink: $route.path === '/sold-numbers' }"
-                        to="/sold-numbers"
-                        class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
-                    >
-                        Sold numbers (0)
-                    </NuxtLink>
-                </li>
+               
             </ul>
             <ul>
                 <li class="my-1 label">
                     <NuxtLink
                         :class="{ activeLink: $route.path === '/my-cart' }"
                         to="/my-cart"
-                        class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
+                        class="text-black leading-[24px] text-xl cursor-pointer font-medium  hover:font-medium transition"
                     >
                         My cart (0)
                     </NuxtLink>
@@ -93,9 +77,18 @@
                     <NuxtLink
                         :class="{ activeLink: $route.path === '/Settings' }"
                         to="/Settings"
-                        class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
+                        class="text-black leading-[24px] text-xl cursor-pointer font-medium  hover:font-medium transition"
                     >
                         Settings
+                    </NuxtLink>
+                </li>
+                <li class="my-1 label">
+                    <NuxtLink
+                        :class="{ activeLink: $route.path === '/PaymentHistory' }"
+                        to="/PaymentHistory"
+                        class="text-black leading-[24px] text-xl cursor-pointer font-medium  hover:font-medium transition"
+                    >
+                    Payment history
                     </NuxtLink>
                 </li>
             </ul>
@@ -104,11 +97,12 @@
                     <NuxtLink
                         :class="{ activeLink: $route.path === '/logout' }"
                         to="/logout"
-                        class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
+                        class="text-black leading-[24px] text-xl cursor-pointer font-medium  hover:font-medium transition"
                     >
                         Log Out
                     </NuxtLink>
                 </li>
+                
             </ul>
         </div>
     </section>

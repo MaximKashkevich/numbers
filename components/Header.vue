@@ -7,7 +7,7 @@
 
             <ul class="justify-between flex items-center gap-[50px]  py-[30px] px-[10px] flex-wrap header-list ">
                 <li>
-                    <NuxtLink to="/PlateNumbers"
+                    <NuxtLink to="/CatalogNumbers"
                         class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
                         Plate
                         Numbers</NuxtLink>
@@ -28,12 +28,9 @@
                         Discounts</NuxtLink>
                 </li>
                 <li>
-<<<<<<< HEAD
-                    <NuxtLink to="/License"
-=======
-                    <NuxtLink
->>>>>>> 376b5c0c58cb063526267410b094977dc582903b
-                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
+
+                    <NuxtLink to="/License" class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
+
                         Number concierge</NuxtLink>
                 </li>
             </ul>
@@ -57,13 +54,12 @@
                 </svg>
 
 
-<<<<<<< HEAD
-            </a>
-            <a href="/GeneralEmpty" >
-=======
+
+          
+
             </NuxtLink>
             <NuxtLink to="/GeneralEmpty">
->>>>>>> 376b5c0c58cb063526267410b094977dc582903b
+
 
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"

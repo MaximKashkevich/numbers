@@ -1,10 +1,10 @@
 <template>
-    <NuxtLink to="/PlateNumbers">
+    <NuxtLink >
         <div class="flex-1 w-full p-4 rounded-[20px] bg-white border-[1px] border-[#B3B3B3] flex flex-col justify-between 
                     min-w-[300px] max-w-[426px] md:min-w-[280px] lg:max-w-[380px] xl:max-w-[426px] 
                     sm:w-auto w-full">
             <!-- Статичное изображение -->
-            <svg width="386" height="93" viewBox="0 0 386 93" class="mt-[20px]" fill="none" xmlns="http://www.w3.org/2000/svg"
+            <svg width="386" height="93" viewBox="0 0 386 93"  class="mx-auto mt-[20px]   w-full h-auto max-h-[200px] object-contain" fill="none"  xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect opacity="0.3" width="386" height="93" rx="5" fill="url(#pattern0_2107_374)" />
                 <defs>

@@ -423,10 +423,10 @@ export default {
     margin-left: 8px;
 }
 
-@media(max-width: 400px) {
+@media(max-width: 402px) {
     .radio-container {
-        width: 30px;
-        height: 30px;
+        width: 60px;
+        height: 40px;
     }
 
     .label {

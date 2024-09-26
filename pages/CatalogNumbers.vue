@@ -21,12 +21,12 @@
                 class="w-[1320px] h-[60px] text-[50px] font-medium leading-[60px] text-left title-input mb-[50px] uppercase">
                 Plate Numbers
             </h3>
-            <div class="flex gap-[20px] items-center flex-wrap">
+            <div class="flex gap-[20px] items-center  flex-wrap">
                 <div>
                     <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
                         for="type">Type:</label>
                     <div class="mt-[10px] flex gap-[10px]">
-                        <div class="mt-[10px] flex gap-[10px]">
+                        <div class="flex gap-[10px]">
                             <button
                                 :class="['button-black w-[130px] h-[47px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] text-center', getButtonClass('Plate')]"
                                 @click="showPlate(); setActive('Plate')">
@@ -41,6 +41,7 @@
 
                     </div>
                 </div>
+
                 <div>
                     <label for="emirate"
                         class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Operator:</label>
@@ -68,6 +69,8 @@
                     </select>
 
                 </div>
+
+
 
 
                 <button @click="seeMore"
@@ -263,7 +266,12 @@
 
 
     <!-- Пагинация -->
-    <Pagination class="mt-[70px] px-[50px]" :total-pages="10" :current-page="1" @update:page="onPageChange" />
+    <div>
+        <Pagination class="mt-[70px] px-[50px]" :total-pages="totalPages" :current-page="currentPage"
+            @update:page="onPageChange" />
+        <!-- <button @click="increaseTotalPages"  class="w-[100px] h-[52px] bg-[#fff] rounded-[20px] border-[1px] border-[#BFBFBF]">add page</button>
+        <button @click="decreaseTotalPages" class="w-[100px] h-[52px] bg-[#fff] rounded-[20px] border-[1px] border-[#BFBFBF]">delete page</button> -->
+    </div>
 
 
 </template>
@@ -300,9 +308,23 @@ export default {
             matchDigits: '', // Значение поиска по цифрам
             isPlateSelected: true,
             activeButton: null,
+            totalPages: 10, // Начальное количество страниц
+            currentPage: 1, // Начальная текущая страница
         };
     },
     methods: {
+        onPageChange(page) {
+            this.currentPage = page;
+            console.log('Текущая страница:', this.currentPage);
+        },
+        increaseTotalPages() {
+            this.totalPages += 1;
+        },
+        decreaseTotalPages() {
+            if (this.totalPages > 1) {
+                this.totalPages -= 1;
+            }
+        },
 
         showPlate() {
             this.isPlateSelected = true; // Устанавливаем состояние для отображения контейнера с Plate
