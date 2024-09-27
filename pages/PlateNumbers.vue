@@ -7,12 +7,14 @@
           }} /</NuxtLink>
       </li>
       <li>
-        <NuxtLink :href="navigationLinks[1].href" class="text-[#005DCA] transition cursor-pointer">{{ navigationLinks[1].text
-          }} /</NuxtLink>
+        <NuxtLink :href="navigationLinks[1].href" class="text-[#005DCA] transition cursor-pointer">{{
+          navigationLinks[1].text
+        }} /</NuxtLink>
       </li>
       <li>
-        <NuxtLink :href="navigationLinks[2].href" class="text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer">{{
-          navigationLinks[2].text }}</NuxtLink>
+        <NuxtLink :href="navigationLinks[2].href" class="text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer">
+          {{
+            navigationLinks[2].text }}</NuxtLink>
       </li>
     </ul>
   </nav>
@@ -20,7 +22,7 @@
   <!-- Контент -->
   <div class="flex justify-center pt-[30px] md:px-[30px]">
 
-    
+
     <div
       class="flex flex-wrap justify-between px-[30px] md:gap-[80px] lg:gap-[250px] min-w-[200px] max-w-[1900px] sm:justify-center">
       <!-- Левая часть -->
@@ -43,45 +45,45 @@
         </div>
         <div class="flex flex-col items-center justify-center h-full">
           <div class="relative group flex items-center justify-center" id="top">
-         
+
             <img class="max-w-[50px] min-w-[250px] cursor-pointer" src="../public/assets/image.svg" alt="">
 
-            
+
           </div>
-          <div id="bottom" class="flex justify-center gap-2 mt-[125px]">
+          <nav id="bottom" class="flex justify-center gap-2 mt-[125px]">
             <div class="pagination-circle w-[8px] h-[8px] border-[#B3B3B3] bg-black rounded-full"></div>
             <div class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"></div>
             <div class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"></div>
             <div class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"></div>
-          </div>
+          </nav>
         </div>
       </div>
 
       <!-- Правая часть -->
       <div class="flex-1 max-w-[350px] right-panel">
-  <div class="flex items-center space-x-2">
-    <img src="../public/assets/avatar.svg" alt="" class="w-10 h-10 rounded-full">
-    <div>
-      <h2 class="text-[35px] font-medium leading-[42px]">{{ rightPanelName }}</h2>
-      <p class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px]">{{ rightPanelStatus }}</p>
-    </div>
-    <div class="relative group">
-      <!-- Изображение, при наведении на которое будет появляться всплывающее окно -->
-      <img class=" cursor-pointer pl-[110px] pb-[35px]" src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
-      <!-- Всплывающее окно -->
-      <div
-        class="absolute bg-[#000000] text-white w-[326px] h-[135px] top-[8px] left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
-        id="tooltip"
-      >
-        <p class="font-roboto text-[16px] font-normal leading-[20px] text-white">
-          Scam warning: <br>Never wire money or financial info to a seller on the Internet. For your security, all
-          transactions should be done in person. Please report scams.
-        </p>
-      </div>
-    </div>
-  </div>
+        <div class="flex items-center space-x-2">
+          <img src="../public/assets/avatar.svg" alt="" class="w-10 h-10 rounded-full">
+          <div>
+            <h2 class="text-[35px] font-medium leading-[42px]">{{ rightPanelName }}</h2>
+            <p class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px]">{{ rightPanelStatus }}</p>
+          </div>
+          <div class="relative group">
+            <!-- Изображение, при наведении на которое будет появляться всплывающее окно -->
+            <img class=" cursor-pointer pl-[110px] pb-[35px]"
+              src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
+            <!-- Всплывающее окно -->
+            <div
+              class="absolute bg-[#000000] text-white w-[326px] h-[135px] top-[8px] left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
+              id="tooltip">
+              <p class="font-roboto text-[16px] font-normal leading-[20px] text-white">
+                Scam warning: <br>Never wire money or financial info to a seller on the Internet. For your security, all
+                transactions should be done in person. Please report scams.
+              </p>
+            </div>
+          </div>
+        </div>
 
-        
+
         <div class="flex gap-[25px] mt-[30px]">
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ postedAt }}</p>
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ views }} Views</p>
@@ -150,6 +152,8 @@ import { ref, onMounted } from 'vue';
 
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
+
+
 
 // Import Swiper styles
 import "swiper/css";

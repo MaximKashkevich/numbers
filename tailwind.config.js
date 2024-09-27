@@ -9,9 +9,12 @@ module.exports = {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "helvetica-neue": ["Helvetica Neue", "Arial", "sans-serif"],
+      },
+    },
   },
 
   plugins: [],
-  
 };

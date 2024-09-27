@@ -1,9 +1,9 @@
 <template>
         <div>
                 <!-- Hide Registration when Verification is rendered -->
-                <!-- <Registration v-if="signUp.signUp && !verification.signIn" /> -->
+                <Registration v-if="signUp.signUp && !verification.signIn" />
 
-                <!-- <Verification v-if="verification.signIn" /> -->
+                <Verification v-if="verification.signIn" />
                 <!-- <NuxtPage /> -->
                 <!-- <Entrance /> -->
                 <!-- <GeneralEmpty /> -->

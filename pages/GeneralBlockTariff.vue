@@ -8,7 +8,7 @@
     </div>
 
     <main>
-        <section class="flex flex-col md:flex-row justify-between items-start">
+        <section class="flex flex-col md:flex-row justify-between items-start mt-4">
             <nav class="pl-[60px] w-full md:w-auto md:order-1">
                 <SideBar />
             </nav>

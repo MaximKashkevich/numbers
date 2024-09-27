@@ -1,7 +1,7 @@
 <template>
     <div class="justify-between px-[60px] pt-[20px]">
         <header class="min-w-[200px] min-h-[20px] justify-between flex items-center flex-wrap">
-            <NuxtLink to="/BuyNumbers">
+            <NuxtLink to="/">
                 <img src="../public/assets/New-Logo.webp" class="header-img img2 cursor-pointer" alt="Logo">
             </NuxtLink>
 
