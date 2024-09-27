@@ -2,7 +2,7 @@
     <div class="justify-between px-[60px] pt-[20px]">
         <header class="min-w-[200px] min-h-[20px] justify-between flex items-center flex-wrap">
             <NuxtLink to="/BuyNumbers">
-                <img src="/public/assets/logo.png" class="header-img cursor-pointer" alt="Logo">
+                <img src="../public/assets/New-Logo.webp" class="header-img img2 cursor-pointer" alt="Logo">
             </NuxtLink>
 
             <ul class="justify-between flex items-center gap-[50px]  py-[30px] px-[10px] flex-wrap header-list ">
@@ -15,34 +15,43 @@
                 <li>
                     <NuxtLink to="/CatalogNumbers"
                         class=" text-link leading-[19.2px] cursor-pointer text-black font-normal  hover:text-blue-400 transition ">
-                        Phone
-                        Numbers</NuxtLink>
+                        Mobile Numbers</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/License"
+                    <NuxtLink to="/GeneralBlockTariff"
                         class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
-                        Promoted
-                        Numbers</NuxtLink>
+                        Subscriptions for dealers</NuxtLink>
                 </li>
                 <li>
                     <NuxtLink
                         class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
-                        Gallery</NuxtLink>
+                        Discounts</NuxtLink>
+                </li>
+                <li>
+
+
+                   
+
+
+                    <NuxtLink to="/License"
+                        class=" text-link leading-[19.2px] cursor-pointer text-black font-normal hover:text-blue-400 transition ">
+
+                        Number concierge</NuxtLink>
                 </li>
             </ul>
 
-            <a href="/Viewed">
+            <NuxtLink to="/Viewed">
                 <svg width="29" height="20" viewBox="0 0 29 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M28.3146 9.62031C28.2736 9.52773 27.281 7.32578 25.0744 5.11914C22.1342 2.17891 18.4205 0.625 14.333 0.625C10.2455 0.625 6.53182 2.17891 3.59159 5.11914C1.38495 7.32578 0.387684 9.53125 0.351356 9.62031C0.298051 9.74021 0.270508 9.86996 0.270508 10.0012C0.270508 10.1324 0.298051 10.2621 0.351356 10.382C0.392372 10.4746 1.38495 12.6754 3.59159 14.882C6.53182 17.8211 10.2455 19.375 14.333 19.375C18.4205 19.375 22.1342 17.8211 25.0744 14.882C27.281 12.6754 28.2736 10.4746 28.3146 10.382C28.3679 10.2621 28.3955 10.1324 28.3955 10.0012C28.3955 9.86996 28.3679 9.74021 28.3146 9.62031ZM14.333 17.5C10.726 17.5 7.57479 16.1887 4.9662 13.6035C3.8959 12.5391 2.98529 11.3253 2.26268 10C2.98501 8.67451 3.89565 7.46072 4.9662 6.39648C7.57479 3.81133 10.726 2.5 14.333 2.5C17.94 2.5 21.0912 3.81133 23.6998 6.39648C24.7722 7.46054 25.6848 8.67431 26.4092 10C25.5642 11.5773 21.8834 17.5 14.333 17.5ZM14.333 4.375C13.2205 4.375 12.1329 4.7049 11.2079 5.32298C10.2829 5.94107 9.56192 6.81957 9.13617 7.84741C8.71043 8.87524 8.59904 10.0062 8.81608 11.0974C9.03312 12.1885 9.56885 13.1908 10.3555 13.9775C11.1422 14.7641 12.1445 15.2999 13.2356 15.5169C14.3268 15.734 15.4578 15.6226 16.4856 15.1968C17.5134 14.7711 18.3919 14.0501 19.01 13.1251C19.6281 12.2001 19.958 11.1125 19.958 10C19.9564 8.50863 19.3633 7.07879 18.3088 6.02424C17.2542 4.96968 15.8244 4.37655 14.333 4.375ZM14.333 13.75C13.5913 13.75 12.8663 13.5301 12.2496 13.118C11.6329 12.706 11.1523 12.1203 10.8684 11.4351C10.5846 10.7498 10.5104 9.99584 10.6551 9.26841C10.7997 8.54098 11.1569 7.8728 11.6813 7.34835C12.2058 6.8239 12.874 6.46675 13.6014 6.32205C14.3288 6.17736 15.0828 6.25162 15.7681 6.53545C16.4533 6.81928 17.039 7.29993 17.451 7.91661C17.8631 8.5333 18.083 9.25832 18.083 10C18.083 10.9946 17.6879 11.9484 16.9846 12.6516C16.2814 13.3549 15.3276 13.75 14.333 13.75Z"
                         fill="black" />
                 </svg>
 
-            </a>
+            </NuxtLink>
 
 
 
-            <a href="#">
+            <NuxtLink to="#">
                 <svg width="25" height="22" viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M18.1071 0.5C15.8946 0.5 13.9575 1.47148 12.75 3.11358C11.5425 1.47148 9.60536 0.5 7.39286 0.5C5.63167 0.502027 3.94319 1.2173 2.69784 2.48889C1.45249 3.76048 0.751985 5.48455 0.75 7.28285C0.75 14.9409 11.8704 21.1396 12.3439 21.3956C12.4687 21.4641 12.6083 21.5 12.75 21.5C12.8917 21.5 13.0313 21.4641 13.1561 21.3956C13.6296 21.1396 24.75 14.9409 24.75 7.28285C24.748 5.48455 24.0475 3.76048 22.8022 2.48889C21.5568 1.2173 19.8683 0.502027 18.1071 0.5ZM12.75 19.6233C10.7936 18.4592 2.46429 13.1566 2.46429 7.28285C2.46599 5.9487 2.98579 4.66969 3.90971 3.7263C4.83363 2.78291 6.08624 2.25215 7.39286 2.25041C9.47679 2.25041 11.2264 3.38381 11.9571 5.20423C12.0217 5.36476 12.1316 5.50205 12.2728 5.59868C12.4139 5.6953 12.58 5.74689 12.75 5.74689C12.92 5.74689 13.0861 5.6953 13.2273 5.59868C13.3684 5.50205 13.4783 5.36476 13.5429 5.20423C14.2736 3.38052 16.0232 2.25041 18.1071 2.25041C19.4138 2.25215 20.6664 2.78291 21.5903 3.7263C22.5142 4.66969 23.034 5.9487 23.0357 7.28285C23.0357 13.1478 14.7043 18.4581 12.75 19.6233Z"
@@ -50,8 +59,16 @@
                 </svg>
 
 
-            </a>
-            <a href="">
+
+
+          
+
+           
+
+
+            </NuxtLink>
+            <NuxtLink to="/GeneralEmpty">
+
 
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -62,24 +79,33 @@
                         fill="black" />
                 </svg>
 
-            </a>
+            </NuxtLink>
 
             <div>
-                <ButtonBlue class="py-[14px] px-[60px]  ml-[20px]  buttons">
-                    Add Listing
-                </ButtonBlue>
+                <NuxtLink to="/signUp">
+                    <ButtonBlue class="py-[14px] px-[60px]  ml-[20px]  buttons">
+                        Add Listing
+                    </ButtonBlue>
+                </NuxtLink>
             </div>
         </header>
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import ButtonBlue from './Button-blue/ButtonBlue.vue';
+import { ref } from 'vue';
+
 </script>
 
 <style>
 .text-link {
     font-size: clamp(18px, 16px, 20px);
+}
+
+.img2 {
+    width: 144px;
+    height: 40px;
 }
 
 @media (max-width: 768px) {

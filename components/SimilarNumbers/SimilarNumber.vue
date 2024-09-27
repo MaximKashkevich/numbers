@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink to="/PlateNUmberCard">
+  <NuxtLink>
     <!-- min-w-[300px] -->
     <div class="flex-1 max-w-[426px] h-[300px] rounded-[20px] bg-white border-[2px] border-[#BFBFBF]">
       <img :src="imageSrc" class="mt-[40px] px-[20px]" alt="">

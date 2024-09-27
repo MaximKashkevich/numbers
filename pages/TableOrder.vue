@@ -4,7 +4,10 @@
       <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
         Home /
       </NuxtLink>
-      <span class="text-[#BFBFBF]"> My Dashboard</span>
+      <NuxtLink to="/GeneralEmpty" class="text-blue-500 cursor-pointer">
+        My Dashboard /
+      </NuxtLink>
+      <span class="text-[#BFBFBF]"> Add listing</span>
     </nav>
 
     <div
@@ -24,11 +27,17 @@
         </h2>
 
         <!-- Карточки Plate numbers -->
-        <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 mt-[30px] container-order">
+        <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 mt-[30px] container-order  w-full"
+          @click="openModal">
 
-          <div v-for="(item, index) in cardOrders" :key="index" @click="openModal">
-            <CardOrder />
-          </div>
+
+          <CardOrder />
+          <CardOrder />
+          <CardOrder />
+
+          <CardOrder />
+
+          <CardOrder />
 
 
 
@@ -38,14 +47,17 @@
               class="w-[346px] h-[42px] mt-[70px] mb-[50px] text-[35px] font-medium leading-[42px] text-center font-roboto">
               Add order
             </p>
-            <button class="flex justify-center mb-[60px]">
-              <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="1" width="98" height="98" rx="49" stroke="#005DCA" stroke-width="2" />
-                <path
-                  d="M67.0557 47.7764V51.6387H32.9443V47.7764H67.0557ZM51.9141 31.8828V68.1133H47.8125V31.8828H51.9141Z"
-                  fill="#005DCA" />
-              </svg>
-            </button>
+            <NuxtLink to="/AddOrder">
+              <button class="flex justify-center mb-[60px]">
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1" y="1" width="98" height="98" rx="49" stroke="#005DCA" stroke-width="2" />
+                  <path
+                    d="M67.0557 47.7764V51.6387H32.9443V47.7764H67.0557ZM51.9141 31.8828V68.1133H47.8125V31.8828H51.9141Z"
+                    fill="#005DCA" />
+                </svg>
+              </button>
+            </NuxtLink>
+
           </div>
         </div>
 
@@ -73,14 +85,17 @@
               class="w-[346px] h-[42px] mt-[70px] mb-[50px] text-[35px] font-medium leading-[42px] text-center font-roboto">
               Add order
             </p>
-            <button class="flex justify-center mb-[60px]">
-              <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="1" width="98" height="98" rx="49" stroke="#005DCA" stroke-width="2" />
-                <path
-                  d="M67.0557 47.7764V51.6387H32.9443V47.7764H67.0557ZM51.9141 31.8828V68.1133H47.8125V31.8828H51.9141Z"
-                  fill="#005DCA" />
-              </svg>
-            </button>
+            <NuxtLink to="/AddOrder">
+              <button class="flex justify-center mb-[60px]">
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1" y="1" width="98" height="98" rx="49" stroke="#005DCA" stroke-width="2" />
+                  <path
+                    d="M67.0557 47.7764V51.6387H32.9443V47.7764H67.0557ZM51.9141 31.8828V68.1133H47.8125V31.8828H51.9141Z"
+                    fill="#005DCA" />
+                </svg>
+              </button>
+            </NuxtLink>
+
           </div>
         </div>
         <ModalWindow v-if="isModalVisible" />

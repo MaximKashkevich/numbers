@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink to="/PlateNUmberCard">
+  <NuxtLink>
 
     <div
       class="hover:shadow-2xl hover:shadow-orange-200 transition flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[3px] border-[#FF9C00]">

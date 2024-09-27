@@ -4,8 +4,8 @@
             <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
                 Home /
             </NuxtLink>
-            <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
-                My Dashboard
+            <NuxtLink to="/GeneralEmpty" class="text-blue-500 cursor-pointer">
+                My Dashboard /
             </NuxtLink>
             <span class="text-[#BFBFBF]"> Settings</span>
         </nav>
@@ -22,17 +22,8 @@
                 </h1>
                 <div>
                     <div>
-                        <div class="flex flex-col md:flex-row gap-[20px] mt-[50px] mb-[70px]">
-                            <button @click="setActive('plate')" :class="getButtonClass('plate')"
-                                class="w-[330px] lg:w-[426px]  h-[52px] px-[50px] py-[14px] gap-[20px] rounded-[100px]  font-roboto text-[20px] font-bold leading-[24px] uppercase flex justify-center items-center transition-all duration-300 border-[2px] border-[#000000]">
-                                plate number
-                            </button>
-                            <button @click="setActive('phone')" :class="getButtonClass('phone')"
-                                class="w-[330px] lg:w-[426px]  h-[52px] px-[50px] py-[14px] gap-[20px] rounded-[100px] font-roboto text-[20px] font-bold leading-[24px] uppercase flex justify-center items-center transition-all duration-300 border-[2px] border-[#000000]">
-                                phone number
-                            </button>
-                        </div>
-                        <form @submit.prevent="validateForm">
+
+                        <form @submit.prevent="validateForm" class="mt-[70px]">
                             <fieldset>
                                 <div class="flex flex-col md:flex-row gap-[20px]">
                                     <div>
@@ -62,8 +53,14 @@
                                     <div>
                                         <label for="design"
                                             class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#000000]">Design:</label>
-                                        <input id="design" type="date" v-model="form.design"
-                                            class="w-[330px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-4 text-lg text-[#BFBFBF] bg-[#FAFAFA]" />
+                                        <div class="relative">
+                                            <input id="design" type="date"
+                                                class="w-[330px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-[75px] pr-[20px] text-lg text-[#000000] bg-[#FAFAFA] appearance-none" />
+                                      
+                                        </div>
+
+
+
                                     </div>
                                     <div class="w-full">
                                         <label for="emirate"
@@ -426,14 +423,20 @@ export default {
     margin-left: 8px;
 }
 
-@media(max-width: 400px) {
+@media(max-width: 402px) {
     .radio-container {
-        width: 30px;
-        height: 30px;
+        width: 60px;
+        height: 40px;
     }
 
     .label {
         font-size: 12px;
     }
+}
+
+input[type="date"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 </style>

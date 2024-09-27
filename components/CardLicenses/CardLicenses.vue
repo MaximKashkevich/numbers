@@ -27,7 +27,7 @@
             </ul>
 
             <div>
-                <ButtonBlue class="w-[280px] md:w-[390px] h-[40px] md:h-[52px] mt-[30px] md:mt-[40px] flex justify-center items-center">
+                <ButtonBlue class="max-w-[280px] w-[200px] md:w-[210px] h-[40px] md:h-[52px] mt-[30px] md:mt-[40px] flex justify-center items-center">
                     free
                 </ButtonBlue>
             </div>
