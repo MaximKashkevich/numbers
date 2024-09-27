@@ -71,7 +71,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useSignUpStore } from '@/stores/signUp';
+import { useSignUpStore } from '../stores/signUp';
 import { useRouter } from 'vue-router'; // Import useRouter
 
 const signUp = useSignUpStore();

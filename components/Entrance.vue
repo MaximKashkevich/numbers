@@ -7,6 +7,6 @@
 <script setup>
 import Header from './Header.vue'
 // import BuyNumbers from '../pages/BuyNumbers.vue';
-import Login from '../pages/Login.vue'
+import Login from '../pages/login.vue'
 import Footer from './Footer.vue';
 </script>

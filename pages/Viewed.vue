@@ -50,7 +50,17 @@
       
          
      </div>
-     <Pagination class="mt-[70px] " :total-pages="10" :current-page="1" @update:page="onPageChange" />
+     <div>
+        <div>
+            <!-- Добавляем пагинацию -->
+            <Pagination 
+                class="mt-[70px] px-[50px]" 
+                :total-pages="totalPages" 
+                :current-page="currentPage" 
+                @update:page="onPageChange" 
+            />
+        </div>
+    </div>
     </div> 
  </template>
  
@@ -67,7 +77,19 @@
      SimilarNumber,
      SimilarNumberLowPrice,
      Card,
-   }
+   },
+   data() {
+        return {
+            totalPages: 10, // Общее количество страниц
+            currentPage: 1,  // Текущая страница
+        };
+    },
+    methods: {
+        onPageChange(page) {
+            this.currentPage = page;
+            console.log('Текущая страница:', this.currentPage);
+        },
+    },
  }
  </script>
  

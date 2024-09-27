@@ -3,28 +3,63 @@
         <div class="modal " @click.stop>
             <div class="flex justify-end mt-[-30px] mr-[-30px] img-container">
                 <button @click="closeModal" aria-label="Close modal">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="img-img"  viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M1.5667 0.268722C1.20841 -0.0895738 0.627502 -0.0895739 0.269208 0.268722C-0.0890854 0.627017 -0.0890848 1.20793 0.269209 1.56622L8.70342 10.0005L0.269829 18.4341C-0.0884647 18.7924 -0.0884647 19.3733 0.269829 19.7316C0.628122 20.0899 1.20903 20.0899 1.56733 19.7316L10.0009 11.298L18.4341 19.7313C18.7924 20.0896 19.3734 20.0896 19.7316 19.7313C20.0899 19.373 20.0899 18.7921 19.7316 18.4338L11.2984 10.0005L19.7323 1.56658C20.0906 1.20828 20.0906 0.62737 19.7323 0.269075C19.374 -0.0892205 18.7931 -0.08922 18.4348 0.269075L10.0009 8.70297L1.5667 0.268722Z"
+                            d="M21.5662 20.2687C21.2079 19.9104 20.627 19.9104 20.2687 20.2687C19.9104 20.627 19.9104 21.2079 20.2687 21.5662L28.7029 30.0005L20.2693 38.4341C19.911 38.7924 19.911 39.3733 20.2693 39.7316C20.6276 40.0899 21.2085 40.0899 21.5668 39.7316L30.0004 31.298L38.4337 39.7313C38.792 40.0896 39.3729 40.0896 39.7312 39.7313C40.0894 39.373 40.0894 38.7921 39.7312 38.4338L31.2979 30.0005L39.7318 21.5666C40.0901 21.2083 40.0901 20.6274 39.7318 20.2691C39.3735 19.9108 38.7926 19.9108 38.4343 20.2691L30.0004 28.703L21.5662 20.2687Z"
                             fill="#BFBFBF" />
                     </svg>
+
                 </button>
             </div>
 
             <div>
-                <h1 class="text-[35px] font-bold leading-[24px] text-left mt-[10px] title-window ">
+                <h1 class="text-[35px] font-bold leading-[24px] text-left  title-window ">
                     Your license has already expired.
                 </h1>
                 <p class="font-normal text-[16px] mt-[10px]">
                     To start publishing ads again, pay any applicable rate
                 </p>
-                
-                <div class=" cards-container-2 flex gap-[20px] mt-[50px]  custom-scrollbar">
-                    <CardLicenses/>
-                    <CardLicenses/>
-                    <CardLicenses/>
-                </div>
-                
+
+                <div class="text-left md:text-center"> <!-- измените на text-left для мобильных -->
+                       
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 gap-6 cards-container-2">
+                        <div
+                            class="w-full h-auto py-[30px] px-[20px] border-[1px] border-[#BFBFBF] rounded-[20px] bg-[#FAFAFA] hover:shadow-2xl transition">
+                            <h2 class="font-medium text-[50px] leading-[50px]">FREE</h2>
+                       
+                            <ol class="list-disc my-[30px] pl-5">
+                                <li>Plate or phone</li>
+                                <li>1 ad for sale</li>
+                                <li>No update</li>
+                            </ol>
+                            <ButtonBlue class="w-[210px] h-[52px] flex justify-center items-center">
+                                pay</ButtonBlue>
+                        </div>
+                        <div
+                            class="w-full h-auto py-[30px] px-[20px]  border-[1px] border-[#BFBFBF] rounded-[20px] bg-[#FAFAFA] hover:shadow-2xl transition">
+                            <span class="font-medium text-[50px] leading-[50px]">$69</span>
+                            <ol class="list-disc my-[30px] pl-5">
+                                <li>Plate or phone</li>
+                                <li>Any number of ads</li>
+                                <li>Updates every 7 days</li>
+                            </ol>
+                            <ButtonBlue class="w-[210px] h-[52px] flex justify-center items-center">
+                                pay</ButtonBlue>
+                        </div>
+                        <div
+                            class="w-full h-auto py-[30px] px-[20px]  border-[1px] border-[#BFBFBF] rounded-[20px] bg-[#FAFAFA] hover:shadow-2xl transition">
+                            <span class="font-medium text-[50px] leading-[50px]">$109</span>
+                   
+                            <ol class="list-disc my-[30px] pl-5">
+                                <li>Plate or phone</li>
+                                <li>Any number of ads</li>
+                                <li>Updates every 7 days</li>
+                            </ol>
+                            <ButtonBlue class="w-[210px] h-[52px] flex justify-center items-center">
+                                pay</ButtonBlue>
+                        </div>
+                    </div>
 
             </div>
         </div>
@@ -56,12 +91,13 @@ function closeModal() {
     align-items: center;
     padding-left: 60px;
 }
-.cards-container-2{
+
+.cards-container-2 {
     width: auto;
     margin-top: 40px;
     max-height: 530px;
     height: 100%;
-    overflow-y: auto; 
+    overflow-y: auto;
     margin-bottom: 20px;
 }
 
@@ -78,6 +114,11 @@ function closeModal() {
 
     padding-left: 50px;
     padding-right: 50px;
+}
+
+.img-img{
+    width: 60px;
+    height: 50px;
 }
 
 button svg {
@@ -122,11 +163,21 @@ button svg {
 }
 
 @media (max-width: 820px) {
-    .cards-container-2{
-    flex-wrap: wrap;
+    .cards-container-2 {
+        flex-wrap: wrap;
     }
-    .title-window{
+
+    .title-window {
         font-size: 25px;
     }
 }
+@media (max-width: 620px) {
+    .cards-container-2 {
+        max-height: 300px; /* Ограничиваем высоту контейнера карточек */
+        overflow-y: auto; /* Добавляем вертикальный скролл */
+    }
+}
+
+
+
 </style>

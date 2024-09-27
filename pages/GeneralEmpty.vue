@@ -1,5 +1,8 @@
 <template>
 
+
+
+
     <nav class="mt-[30px]  ml-[60px] ">
 
         <NuxtPage />
@@ -62,6 +65,7 @@
 
 <script setup>
 import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
+
 import SideBar from '../components/general/SideBar.vue';
 
 

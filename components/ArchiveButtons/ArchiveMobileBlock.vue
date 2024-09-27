@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink to="/PlateNumbers">
+    <NuxtLink >
         <div class="flex-1 w-full p-4 rounded-[20px] bg-white border-[1px] border-[#B3B3B3] flex flex-col justify-between 
                     min-w-[300px] max-w-[426px] md:min-w-[280px] lg:max-w-[380px] xl:max-w-[426px] 
                     sm:w-auto w-full">
