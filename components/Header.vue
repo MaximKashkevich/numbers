@@ -13,7 +13,7 @@
                         Numbers</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/CatalogNumbers"
+                    <NuxtLink to="/BuyNumbers"
                         class=" text-link leading-[19.2px] cursor-pointer text-black font-normal  hover:text-blue-400 transition ">
                         Mobile Numbers</NuxtLink>
                 </li>
@@ -30,7 +30,7 @@
                 <li>
 
 
-                   
+
 
 
                     <NuxtLink to="/License"
@@ -61,9 +61,9 @@
 
 
 
-          
 
-           
+
+
 
 
             </NuxtLink>

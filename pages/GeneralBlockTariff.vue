@@ -1,31 +1,27 @@
 <template>
     <div class="pl-[60px] mt-[33px]">
         <NuxtLink>
-            <p class="leading-[16.8px] text-blue-500 cursor-pointer">Home / My Dashboard /
+            <p class="leading-[16.8px] text-blue-500 cursor-pointer">
+                <NuxtLink to="/">
+                    Home
+                </NuxtLink> /
+                <NuxtLink to="/GeneralEmpty">
+                    My Dashboard
+                </NuxtLink> /
                 <span class="leading-[16.8px] text-gray-300">Add listing</span>
             </p>
         </NuxtLink>
     </div>
 
     <main>
-<<<<<<< HEAD
         <section class="flex flex-col md:flex-row justify-between items-start mt-4">
             <nav class="pl-[60px] w-full md:w-auto md:order-1">
                 <SideBar />
             </nav>
             <nav class="flex-1 md:ml-6 md:order-2">
                 <h1 class="font-medium leading-[50px] text-[32px] md:text-[50px]">Add listing</h1>
-=======
-        <div
-            class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
-            <div class="w-full md:w-[300px] lg:w-[500px]">
-                <SideBar class="sidebar" />
-            </div>
-       <div class="flex-1">
-         <h1 class="font-medium leading-[50px] text-[32px] md:text-[50px]">Add listing</h1>
->>>>>>> d13062523df2fd716b3e71a6c277bd71370cba05
                 <div class="w-full max-w-[830px] h-auto rounded-[20px] px-[20px] py-[40px] mt-14 bg-white">
-                    <div class="text-left md:text-center"> <!-- измените на text-left для мобильных -->
+                    <div class="text-left md:text-center">
                         <h3 class="font-medium text-[28px] md:text-[35px] leading-[42px]">
                             To publish an ad you first need <br />
                             to license to the service.
@@ -72,15 +68,11 @@
                                 PAY 1 YEAR</ButtonBlue>
                         </div>
                     </div>
-       </div>
-               
-                    <!-- <CardLicenses /> -->
                 </div>
-            </div>
-       
+            </nav>
+        </section>
     </main>
 </template>
-
 
 <script setup>
 import SideBar from '../components/general/SideBar.vue';

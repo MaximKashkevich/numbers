@@ -60,7 +60,7 @@
                     <label for="emirate"
                         class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate:</label>
                     <select id="emirate" name="emirate"
-                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
+                        class="appearance-none mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                         <option value="city">Dubai</option>
                         <option value="city">Abu Dhabi</option>
                         <option value="city">Ajman</option>
@@ -174,18 +174,19 @@
                                 class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
                                 How do I login?
                             </p>
-                            <!-- Анимация для первого элемента  -->
+                            <!-- Анимация для первого элемента -->
                             <transition name="fade-slide">
                                 <span v-show="showMore"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                                     You can easily update your account information. Just go to your Dashboard page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    click on the Settings link. From here you can do whatever you like with your
+                                    information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -202,13 +203,14 @@
                                 <span v-show="showMore1"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                                     You can easily update your account information. Just go to your Dashboard page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    click on the Settings link. From here you can do whatever you like with your
+                                    information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore1" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore1" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -224,14 +226,16 @@
                             <transition name="fade-slide">
                                 <span v-show="showMore2"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
-                                    You can easily update your account information. Just go to your Dashboard page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    You can easily update your account information. Just go to your <NuxtLink
+                                        class="cursor-pointer underline">Dashboard</NuxtLink>
+                                    page and click on the Settings link. From here you can do whatever you like with
+                                    your information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore2" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore2" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -248,20 +252,23 @@
                                 <span v-show="showMore3"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                                     You can easily update your account information. Just go to your Dashboard page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    click on the Settings link. From here you can do whatever you like with your
+                                    information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore3" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore3" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
             </ul>
 
 
+
         </div>
+
 
 
         <div class="flex flex-wrap gap-[20px] justify-center md:justify-between">
@@ -311,7 +318,7 @@
 
 <script setup lang="ts">
 import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
-import CartPlate from '../components/CardPlate/CardPlate.vue'
+// import CartPlate from '../components/CardPlate/CardPlate.vue'
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue'
 import CardLicenses from '../components/CardLicenses/CardLicenses.vue'

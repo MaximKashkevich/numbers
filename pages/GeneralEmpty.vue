@@ -6,8 +6,8 @@
     <nav class="mt-[30px]  ml-[60px] ">
 
         <NuxtPage />
-        <nav class="my-5  ml-[60px] ">
-            <NuxtLink class="text-blue-500 cursor-pointer">
+        <nav class="my-5  ">
+            <NuxtLink to="/" class="text-blue-500 cursor-pointer">
                 Home
             </NuxtLink>
             <span class="text-[#BFBFBF]">/ My Dashboard</span>
