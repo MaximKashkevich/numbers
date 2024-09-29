@@ -1,5 +1,14 @@
 <template>
     <div>
+      <nav class="px-[20px] md:px-[60px] mt-[30px]">
+            <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
+                Home /
+            </NuxtLink>
+            <NuxtLink to="/GeneralEmpty" class="text-blue-500 cursor-pointer">
+              My Dashboard /
+            </NuxtLink>
+            <span class="text-[#BFBFBF]"> Payment history</span>
+        </nav>
       <div
         class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container"
       >

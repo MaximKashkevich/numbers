@@ -14,12 +14,12 @@
     </div>
 
     <main>
-        <section class="flex flex-col md:flex-row justify-between items-start mt-4">
-            <nav class="pl-[60px] w-full md:w-auto md:order-1">
+        <section class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[34px] flex-wrap big-container">
+            <nav class="w-full md:w-[300px] lg:w-[500px]">
                 <SideBar />
             </nav>
             <nav class="flex-1 md:ml-6 md:order-2">
-                <h1 class="font-medium leading-[50px] text-[32px] md:text-[50px]">Add listing</h1>
+                <h1 class="font-medium leading-[50px] text-[32px] uppercase md:text-[50px]">Add listing</h1>
                 <div class="w-full max-w-[830px] h-auto rounded-[20px] px-[20px] py-[40px] mt-14 bg-white">
                     <div class="text-left md:text-center">
                         <h3 class="font-medium text-[28px] md:text-[35px] leading-[42px]">

@@ -73,7 +73,7 @@
               src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
             <!-- Всплывающее окно -->
             <div
-              class="absolute bg-[#000000] text-white w-[326px] h-[135px] top-[8px] left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
+              class="absolute bg-[#000000] text-white w-[326px] h-[135px] black-window left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
               id="tooltip">
               <p class="font-roboto text-[16px] font-normal leading-[20px] text-white">
                 Scam warning: <br>Never wire money or financial info to a seller on the Internet. For your security, all
@@ -255,6 +255,10 @@ export default {
 </script>
 
 <style scoped>
+
+.black-window{
+  margin-top: -70px;
+}
 .active {
   background-color: #000;
 }
