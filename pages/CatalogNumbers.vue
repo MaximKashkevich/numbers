@@ -276,14 +276,19 @@
 
 </template>
 
+
+
+
+
+
 <script>
+import { ref } from 'vue';
 import CardPlate from '../components/Card.vue';
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue';
 import Pagination from '../components/Pagination/Pagination.vue';
 import MiniButton from '../components/MiniButton/MiniButton.vue';
 import Card from '../components/Card.vue';
-
 
 export default {
     components: {
@@ -293,84 +298,69 @@ export default {
         Pagination,
         Card,
     },
-    data() {
-        return {
-            isExactMatch: false,
-            exactMatchValue: '',
-            showMore: false,
-            showDots: true,
-            isChecked: false,
-            priceFrom: '',
-            priceTo: '',
-            digits: [1, 2, 3, 4, 5], // Возможные числа для выбора
-            selectedDigits: [], // Выбранные числа
-            postedDate: 'Today', // Значение по умолчанию для даты
-            matchDigits: '', // Значение поиска по цифрам
-            isPlateSelected: true,
-            activeButton: null,
-            totalPages: 10, // Начальное количество страниц
-            currentPage: 1, // Начальная текущая страница
-        };
-    },
-    methods: {
-        onPageChange(page) {
-            this.currentPage = page;
-            console.log('Текущая страница:', this.currentPage);
-        },
-        increaseTotalPages() {
-            this.totalPages += 1;
-        },
-        decreaseTotalPages() {
-            if (this.totalPages > 1) {
-                this.totalPages -= 1;
-            }
-        },
+    setup() {
+        const isExactMatch = ref(false);
+        const exactMatchValue = ref('');
+        const showMore = ref(false);
+        const isChecked = ref(false);
+        const priceFrom = ref('');
+        const priceTo = ref('');
+        const selectedDigits = ref([]);
+        const postedDate = ref('Today');
+        const isPlateSelected = ref(true);
+        const activeButton = ref(null);
+        const totalPages = ref(10);
+        const currentPage = ref(1);
 
-        showPlate() {
-            this.isPlateSelected = true; // Устанавливаем состояние для отображения контейнера с Plate
-        },
-        showMobile() {
-            this.isPlateSelected = false; // Устанавливаем состояние для отображения контейнера с Mobile
-        },
-        seeMore() {
-            this.showMore = !this.showMore;
-            this.showDots = !this.showDots;
-        },
-        selectDigit(digit) {
-            if (this.selectedDigits.includes(digit)) {
-                this.selectedDigits = this.selectedDigits.filter(d => d !== digit);
-            } else {
-                this.selectedDigits.push(digit);
-            }
-        },
-        selectAnyDigits() {
-            this.selectedDigits = [];
-        },
-        clearFilters() {
-            this.priceFrom = '';
-            this.priceTo = '';
-            this.selectedDigits = [];
-            this.postedDate = 'Today';
-            this.isChecked = false;
-            this.matchDigits = '';
-        },
-        setActive(buttonType) {
-            this.activeButton = buttonType; // Устанавливаем активную кнопку
-        },
-        getButtonClass(buttonType) {
+        const onPageChange = (page) => {
+            currentPage.value = page;
+        };
+
+        const showPlate = () => {
+            isPlateSelected.value = true;
+        };
+
+        const showMobile = () => {
+            isPlateSelected.value = false;
+        };
+
+        const seeMore = () => {
+            showMore.value = !showMore.value;
+        };
+
+        const setActive = (buttonType) => {
+            activeButton.value = buttonType;
+        };
+
+        const getButtonClass = (buttonType) => {
             return {
-                'border-[#000000] text-[#000000]': this.activeButton === buttonType, // Стиль для активной кнопки
-                'border-[#BFBFBF] text-[#BFBFBF]': this.activeButton !== buttonType, // Стиль для неактивной кнопки
+                'border-[#000000] text-[#000000]': activeButton.value === buttonType,
+                'border-[#BFBFBF] text-[#BFBFBF]': activeButton.value !== buttonType,
             };
-        },
+        };
+
+        return {
+            isExactMatch,
+            exactMatchValue,
+            showMore,
+            isChecked,
+            priceFrom,
+            priceTo,
+            selectedDigits,
+            postedDate,
+            isPlateSelected,
+            activeButton,
+            totalPages,
+            currentPage,
+            onPageChange,
+            showPlate,
+            showMobile,
+            seeMore,
+            setActive,
+            getButtonClass,
+        };
     }
 };
-
-
-
-
-
-
 </script>
 
 <style>

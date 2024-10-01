@@ -76,6 +76,7 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 import SideBar from '../components/general/SideBar.vue';
 import MiniButton from '../components/MiniButton/MiniButton.vue';
 import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
@@ -87,52 +88,57 @@ import ArchiveSimilar from '../components/ArchiveButtons/ArchiveSimilar.vue';
 import ArchiveSimilarBlock from '../components/ArchiveButtons/ArchiveSimilarBlock.vue';
 import ArchiveModaLWindow from '../components/ModalWindow/ArchiveModaLWindow.vue';
 import ArchiveModaLWindow2 from '../components/ModalWindow/ArchiveModaLWindow2.vue';
+
 export default {
-    components: {
-        SideBar,
-        MiniButton,
-        ButtonBlue,
-        ArchiveMobileBlock,
-        ArchiveMobile,
-        ArchivePlateBlock,
-        ArchivePlate,
-        ArchiveSimilarBlock,
-        ArchiveSimilar,
-        ArchiveModaLWindow2,
-        ArchiveModaLWindow,
+  components: {
+    SideBar,
+    MiniButton,
+    ButtonBlue,
+    ArchiveMobileBlock,
+    ArchiveMobile,
+    ArchivePlateBlock,
+    ArchivePlate,
+    ArchiveSimilarBlock,
+    ArchiveSimilar,
+    ArchiveModaLWindow2,
+    ArchiveModaLWindow,
+  },
+  setup() {
+    const cards = ref([
+      { component: 'ArchivePlateBlock', modal: 'modal2' },
+      { component: 'ArchivePlate', modal: 'modal1' },
+      { component: 'ArchiveSimilarBlock', modal: 'modal2' },
+      { component: 'ArchiveSimilarBlock', modal: 'modal2' },
+      { component: 'ArchiveSimilar', modal: 'modal1' },
+    ]);
 
-    },
-    data() {
-        return {
-            cards: [
-        { component: 'ArchivePlateBlock', modal: 'modal2' },
-        { component: 'ArchivePlate', modal: 'modal1' },
-        { component: 'ArchiveSimilarBlock', modal: 'modal2' },
-        { component: 'ArchiveSimilarBlock', modal: 'modal2' },
-        { component: 'ArchiveSimilar', modal: 'modal1' },
-      ],
-      showModal1: false,
-      showModal2: false,
-        };
-    },
-    methods: {
-    openModal(modal) {
+    const showModal1 = ref(false);
+    const showModal2 = ref(false);
+
+    const openModal = (modal) => {
       if (modal === 'modal1') {
-        this.showModal1 = true;
+        showModal1.value = true;
       } else if (modal === 'modal2') {
-        this.showModal2 = true;
+        showModal2.value = true;
       }
-    },
-    closeModals() {
-      this.showModal1 = false;
-      this.showModal2 = false;
-    }
-  }
-};
-import { ref } from 'vue';
+    };
 
-const collectionName = ref('');
+    const closeModals = () => {
+      showModal1.value = false;
+      showModal2.value = false;
+    };
+
+    return {
+      cards,
+      showModal1,
+      showModal2,
+      openModal,
+      closeModals,
+    };
+  },
+};
 </script>
+
 <style>
 .input--2 {
     width: 384px;

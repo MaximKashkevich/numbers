@@ -4,7 +4,7 @@
             <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
                 Home /
             </NuxtLink>
-            <NuxtLink  to="/GeneralEmpty" class="text-blue-500 cursor-pointer">
+            <NuxtLink to="/GeneralEmpty" class="text-blue-500 cursor-pointer">
                 My Dashboard /
             </NuxtLink>
             <span class="text-[#BFBFBF]"> My collections</span>
@@ -19,7 +19,7 @@
                 <h1 class="w-full md:w-[872px] text-[50px] font-medium leading-[50px] text-left uppercase">
                     My collections
                 </h1>
-                <div class="w-full white-conatiner  max-w-[870px] h-[345px] bg-[#FFFFFF] rounded-[20px] mt-[50px] flex justify-center">
+                <div class="w-full white-conatiner max-w-[870px] h-[345px] bg-[#FFFFFF] rounded-[20px] mt-[50px] flex justify-center">
                     <div class="flex flex-col items-center justify-center gap-[20px] p-6">
                         <h2 class="w-full max-w-[650px] font-medium text-[35px] text-center">
                             {{ displayText }}
@@ -39,37 +39,39 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import SideBar from '../components/general/SideBar.vue';
 import ModalAddColection from '../components/ModalAddColection.vue';
 
-export default {
-    components: {
-        SideBar,
-        ModalAddColection,
-    },
-    data() {
-        return {
-            activeButton: null,
-            isVisible: false,
-        };
-    },
-    computed: {
-        displayText() {
-            return window.innerWidth <= 574
-                ? 'Create new collections'
-                : "You don't have any collections yet. To add a collection, click on + and select the numbers you want to add.";
-        },
-    },
-    methods: {
-        openModal() {
-            this.isVisible = true; // Показываем модальное окно
-        },
-        closeModal() {
-            this.isVisible = false; // Скрываем модальное окно
-        },
-    },
+// Логика для модального окна
+const isVisible = ref(false);
+
+const openModal = () => {
+    isVisible.value = true;
 };
+
+const closeModal = () => {
+    isVisible.value = false;
+};
+
+// Логика для отображения текста в зависимости от ширины окна
+const displayText = ref('');
+
+const updateText = () => {
+    displayText.value = window.innerWidth <= 574
+        ? 'Create new collections'
+        : "You don't have any collections yet. To add a collection, click on + and select the numbers you want to add.";
+};
+
+onMounted(() => {
+    updateText();
+    window.addEventListener('resize', updateText);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('resize', updateText);
+});
 </script>
 
 <style scoped>
