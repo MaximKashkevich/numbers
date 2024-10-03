@@ -1,12 +1,9 @@
 // stores/likedCards.ts
 import { defineStore } from 'pinia';
 
-interface LikeState {
-  likedCards: [];
-}
 
 export const useLikedStore = defineStore('liked', {
-  state: (): LikeState => ({
+  state: () => ({
     likedCards: [],
   }),
   actions: {
