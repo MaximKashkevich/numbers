@@ -1,4 +1,4 @@
-// stores/likedCards.js
+// stores/likedCards.ts
 import { defineStore } from 'pinia';
 
 export const useLikedStore = defineStore('liked', {

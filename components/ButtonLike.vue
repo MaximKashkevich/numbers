@@ -6,7 +6,7 @@
   
   <script setup>
   import { useRouter } from 'vue-router';
-  import { useLikedStore } from '~/stores/likedCards';
+  import { useLikedStore } from '../stores/likedCards';
   
   const isLikeButtonVisible = true;
   const router = useRouter();
