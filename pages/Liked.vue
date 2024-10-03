@@ -33,7 +33,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useLikedStore } from '../stores/likedCards'; 
 import CardPlate from '../components/CardPlate/CardPlate.vue';
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue';
