@@ -60,7 +60,7 @@
                     <label for="emirate"
                         class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate:</label>
                     <select id="emirate" name="emirate"
-                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
+                        class="appearance-none mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                         <option value="city">Dubai</option>
                         <option value="city">Abu Dhabi</option>
                         <option value="city">Ajman</option>
@@ -174,18 +174,19 @@
                                 class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
                                 How do I login?
                             </p>
-                            <!-- Анимация для первого элемента  -->
+                            <!-- Анимация для первого элемента -->
                             <transition name="fade-slide">
                                 <span v-show="showMore"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                                     You can easily update your account information. Just go to your Dashboard page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    click on the Settings link. From here you can do whatever you like with your
+                                    information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -202,13 +203,14 @@
                                 <span v-show="showMore1"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                                     You can easily update your account information. Just go to your Dashboard page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    click on the Settings link. From here you can do whatever you like with your
+                                    information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore1" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore1" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -224,14 +226,16 @@
                             <transition name="fade-slide">
                                 <span v-show="showMore2"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
-                                    You can easily update your account information. Just go to your Dashboard page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    You can easily update your account information. Just go to your <NuxtLink
+                                        class="cursor-pointer underline">Dashboard</NuxtLink>
+                                    page and click on the Settings link. From here you can do whatever you like with
+                                    your information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore2" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore2" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
@@ -243,25 +247,28 @@
                                 class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
                                 How can I create or delete a listing?
                             </p>
-                            Анимация для четвертого элемента
+                            <!-- Анимация для четвертого элемента -->
                             <transition name="fade-slide">
                                 <span v-show="showMore3"
                                     class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                                     You can easily update your account information. Just go to your Dashboard page and
-                                    click on the Settings
-                                    link. From here you can do whatever you like with your information.
+                                    click on the Settings link. From here you can do whatever you like with your
+                                    information.
                                 </span>
                             </transition>
                         </div>
-                        <ButtonPlus class="mt-4 md:mt-0 mb-[20px] self-end toggle-button button-active"
-                            @click="seeMore3" />
+                        <div class="mt-4 md:mt-0 mb-[20px] self-start flex-shrink-0">
+                            <ButtonPlus @click="seeMore3" />
+                        </div>
                     </div>
                     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
                 </li>
             </ul>
 
 
+
         </div>
+
 
 
         <div class="flex flex-wrap gap-[20px] justify-center md:justify-between">
@@ -283,12 +290,14 @@
                     <!-- Список полей ввода -->
                     <ul class="flex flex-col gap-4">
                         <li v-for="(field, index) in inputTitle" :key="index" class="flex flex-col">
-                            <label :for="'field' + index" class="text-sm font-medium text-gray-700">{{ field.title
-                                }}</label>
+                            <label :for="'field' + index" class="text-sm font-medium text-gray-700">
+                                {{ field.title }}
+                            </label>
                             <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :id="'field' + index"
                                 :type="field.type !== 'textarea' ? field.type : undefined"
                                 :placeholder="field.placeholder" v-model="field.value"
-                                class="w-full h-[50px] min-h-[50px] max-h-[150px] gap-[10px] rounded-[100px] border-[1px] pl-[20px]" />
+                                :style="{ height: field.height, borderRadius: field.borderRadius }"
+                                class="h-[50px] max-h-[150px] gap-[10px] border-opacity-80 placeholder:font-helvetica-neue border-gray-400 border-[2px] pl-[20px] placeholder:text-gray-400 placeholder:opacity-80" />
                         </li>
                     </ul>
 
@@ -309,7 +318,7 @@
 
 <script setup lang="ts">
 import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
-import CartPlate from '../components/CardPlate/CardPlate.vue'
+// import CartPlate from '../components/CardPlate/CardPlate.vue'
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue'
 import CardLicenses from '../components/CardLicenses/CardLicenses.vue'
@@ -319,16 +328,18 @@ import { ref } from 'vue';
 // Определение интерфейса для Input
 interface Input {
     title: string;
-    type: 'text' | 'number' | 'textarea';
+    type: 'text' | 'tel' | 'textarea';
     value: string;
     placeholder: string;
+    height: string;
+    borderRadius: string;
 }
 
 // Массив input полей
 const inputTitle = ref<Input[]>([
-    { title: '', type: 'text', value: '', placeholder: 'Your name' },
-    { title: ' ', type: 'number', value: '', placeholder: '+7 (___) ___-___-___' },
-    { title: ' ', type: 'textarea', value: '', placeholder: 'Write your question or suggestion' },
+    { title: '', type: 'text', value: '', placeholder: 'Your name', height: '50px', borderRadius: '100px' },
+    { title: ' ', type: 'tel', value: '', placeholder: '+7 (___) ___-___-___', height: '50px', borderRadius: '100px' },
+    { title: ' ', type: 'text', value: '', placeholder: 'Write your question or suggestion', height: '120px', borderRadius: '20px' },
 ]);
 
 // Пропсы

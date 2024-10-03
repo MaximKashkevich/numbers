@@ -66,11 +66,11 @@
           </div>
           <div class="relative group">
             <!-- Изображение, при наведении на которое будет появляться всплывающее окно -->
-            <img class=" cursor-pointer pl-[110px] pb-[35px]"
+            <img class=" cursor-pointer pl-[110px] mb-[35px]"
               src="../public/assets/iconamoon_attention-circle-light.svg" alt="">
             <!-- Всплывающее окно -->
             <div
-              class="absolute bg-[#000000] text-white w-[326px] h-[135px] top-[8px] left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
+              class=" absolute bg-[#000000] text-white w-[326px] h-[135px] black-window  left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
               id="tooltip">
               <p class="font-roboto text-[16px] font-normal leading-[20px] text-white">
                 Scam warning: <br>Never wire money or financial info to a seller on the Internet. For your security, all
@@ -103,10 +103,10 @@
         <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
         <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3 mb-[20px]">
           <!-- Обертка для рефов -->
-          <div ref="prevEl" class="w-[50px]">
+          <div ref="prevE2" class="w-[50px]">
             <LeftArrow />
           </div>
-          <div ref="nextEl" class="w-[50px]">
+          <div ref="nextE2" class="w-[50px]">
             <RightArrow />
           </div>
         </div>
@@ -114,7 +114,7 @@
     </div>
     <div class="flex justify-center items-center mt-[50px]">
       <div class="sm:w-[640px] md:w-[1000px] lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px] px-[30px]">
-        <swiper :navigation="{ nextEl: nextEl, prevEl: prevEl }" :modules="modules" class="mySwiper">
+        <swiper :navigation2="{ nextE2: nextE2, prevE2: prevE2 }" :modules="modules" class="mySwiper">
           <swiper-slide>
             <SimilarNumbers />
             <SimilarNumbersLow />
@@ -280,8 +280,16 @@ export default {
     const nextEl = ref(null);
     const prevEl = ref(null);
 
+    const nextE2 = ref(null);
+    const prevE2 = ref(null);
+
     onMounted(() => {
       if (!nextEl.value || !prevEl.value) {
+        console.error('Navigation elements not found');
+      }
+    });
+    onMounted(() => {
+      if (!nextE2.value || !prevE2.value) {
         console.error('Navigation elements not found');
       }
     });
@@ -290,12 +298,18 @@ export default {
       modules: [Navigation],
       nextEl,
       prevEl,
+      nextE2,
+      prevE2,
     };
   },
 };
 </script>
 
 <style scoped>
+
+.black-window {
+  margin-top: -70px;
+}
 .active {
   background-color: #000;
 }

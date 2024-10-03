@@ -249,63 +249,37 @@
 
 </template>
 
-<script>
+<script setup>
+import { ref, computed } from 'vue';
 import SideBar from '../components/general/SideBar.vue';
-import MiniButton from '../components/MiniButton/MiniButton.vue';
 import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
 
+// Reactive data using refs
+const activeButton = ref(null);
+const isChecked = ref(false);
 
-export default {
-    components: {
-        SideBar,
-        MiniButton,
-        ButtonBlue,
-    },
-    data() {
-        return {
-            activeButton: null,
-            isCheckboxChecked: false,
-            isCheckboxChecked2: false,
-            isCheckboxChecked3: false,
-            isChecked: false,
-        };
-    },
-    methods: {
-        setActive(buttonType) {
-            this.activeButton = buttonType;
-        },
-        getButtonClass(buttonType) {
-            return {
-                'border-[#000000] text-[#000000]': this.activeButton === buttonType,
-                'border-[#BFBFBF] text-[#BFBFBF]': this.activeButton !== buttonType,
-            };
-        },
-    },
-    computed: {
-        selectClasses() {
-            return {
-                'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]': true,
-                'border-[#BFBFBF] text-[#BFBFBF]': !this.isCheckboxChecked,
-                'cursor-not-allowed': !this.isCheckboxChecked,
-            };
-        },
-        selectClasses2() {
-            return {
-                'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]': true,
-                'border-[#BFBFBF] text-[#BFBFBF]': !this.isCheckboxChecked2,
-                'cursor-not-allowed': !this.isCheckboxChecked2,
-            };
-        },
-        selectClasses3() {
-            return {
-                'border-[#BFBFBF] text-[#BFBFBF]': !this.isCheckboxChecked3,
-                'cursor-not-allowed': !this.isCheckboxChecked3,
-                'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-full py-[15px] px-[20px]': true,
-            };
-        },
-    },
+// Methods
+const setActive = (buttonType) => {
+    activeButton.value = buttonType;
 };
+
+const getButtonClass = (buttonType) => {
+    return {
+        'border-[#000000] text-[#000000]': activeButton.value === buttonType,
+        'border-[#BFBFBF] text-[#BFBFBF]': activeButton.value !== buttonType,
+    };
+};
+
+// Computed classes
+const selectClasses = computed(() => {
+    return {
+        'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]': true,
+        'border-[#BFBFBF] text-[#BFBFBF]': !isChecked.value,
+        'cursor-not-allowed': !isChecked.value,
+    };
+});
 </script>
+
 
 <style scoped>
 .checkbox {

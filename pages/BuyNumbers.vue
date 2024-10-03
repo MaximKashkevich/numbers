@@ -345,14 +345,17 @@
                     <!-- Список полей ввода -->
                     <ul class="flex flex-col gap-4">
                         <li v-for="(field, index) in inputTitle" :key="index" class="flex flex-col">
-                            <label :for="'field' + index" class="text-sm font-medium text-gray-700">{{ field.title
-                                }}</label>
+                            <label :for="'field' + index" class="text-sm font-medium text-gray-700">
+                                {{ field.title }}
+                            </label>
                             <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :id="'field' + index"
                                 :type="field.type !== 'textarea' ? field.type : undefined"
                                 :placeholder="field.placeholder" v-model="field.value"
-                                class="w-full h-[50px] min-h-[50px] max-h-[150px] gap-[10px] rounded-[100px] border-[1px] pl-[20px]" />
+                                :style="{ height: field.height, borderRadius: field.borderRadius }"
+                                class="h-[50px] max-h-[150px] gap-[10px] border-opacity-80 placeholder:font-helvetica-neue border-gray-400 border-[2px] pl-[20px] placeholder:text-gray-400 placeholder:opacity-80" />
                         </li>
                     </ul>
+
 
                     <ButtonBlue class="w-[220px] mt-[30px] md:mt-[50px] self-start" @click="">
                         Send
@@ -383,17 +386,20 @@ import { ref } from 'vue';
 // Определение интерфейса для Input
 interface Input {
     title: string;
-    type: 'text' | 'number' | 'textarea';
+    type: 'text' | 'tel' | 'textarea';
     value: string;
     placeholder: string;
+    height: string;
+    borderRadius: string;
 }
 
 // Массив input полей
 const inputTitle = ref<Input[]>([
-    { title: '', type: 'text', value: '', placeholder: 'Your name' },
-    { title: ' ', type: 'number', value: '', placeholder: '+7 (___) ___-___-___' },
-    { title: ' ', type: 'textarea', value: '', placeholder: 'Write your question or suggestion' },
+    { title: '', type: 'text', value: '', placeholder: 'Your name', height: '50px', borderRadius: '100px' },
+    { title: ' ', type: 'tel', value: '', placeholder: '+7 (___) ___-___-___', height: '50px', borderRadius: '100px' },
+    { title: ' ', type: 'text', value: '', placeholder: 'Write your question or suggestion', height: '120px', borderRadius: '20px' },
 ]);
+
 
 // Пропсы
 const props = defineProps({
@@ -450,7 +456,7 @@ const seeMore3 = () => {
 
 
 
-<style>
+<style scoped>
 .fade-slide-enter-active,
 .fade-slide-leave-active {
     transition: all 0.3s ease;

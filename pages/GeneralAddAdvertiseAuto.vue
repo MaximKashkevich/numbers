@@ -166,10 +166,8 @@
 </template>
 
 <script setup lang="ts">
-import Header from '../components/Header.vue'
 import SideBar from '../components/general/SideBar.vue';
 import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
-import Footer from '../components/Footer.vue'
 
 import { ref } from 'vue';
 

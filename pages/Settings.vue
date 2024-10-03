@@ -190,166 +190,81 @@ import SideBar from '../components/general/SideBar.vue';
 import MiniButton from '../components/MiniButton/MiniButton.vue';
 import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
 import CardLicenses from '../components/CardLicenses/CardLicenses.vue';
-
 export default {
     components: {
         SideBar,
-        MiniButton,
         ButtonBlue,
     },
-    data() {
-        return {
+    setup() {
+        const form = ref({
+            name: '',
+            mobile: '',
+            email: '',
+            login: '',
+            emirate: '',
+        });
 
-            activeButton: null,
-            isCheckboxChecked: false,
-            isCheckboxChecked2: false,
-            isCheckboxChecked3: false,
-            selectedOption: null,
+        const errors = ref({
+            name: '',
+            mobile: '',
+            email: '',
+            login: '',
+        });
 
-            form: {
-                name: '',
-                mobile: '',
-                design: '',
-                email: '',
-                login: '',
-                emirate: '',
-            },
-            errors: {
-                name: '',
-                mobile: '',
-                email: '',
-                login: '',
-            },
-            currentPassword: '',
-            newPassword: '',
-            errors: {
-                currentPassword: '',
-                newPassword: ''
-            },
+        const selectedOption = ref(null);
+        const currentPassword = ref('');
+        const newPassword = ref('');
 
+        const validateForm = () => {
+            errors.value = { name: '', mobile: '', email: '', login: '' };
+
+            if (!form.value.name) {
+                errors.value.name = 'Full name is required';
+            } else if (form.value.name.length < 3) {
+                errors.value.name = 'Full name must be at least 3 characters long';
+            }
+
+            if (!form.value.mobile) {
+                errors.value.mobile = 'Mobile number is required';
+            } else if (form.value.mobile.length < 10) {
+                errors.value.mobile = 'Mobile number must be at least 10 digits';
+            }
+
+            if (!form.value.email) {
+                errors.value.email = 'Email is required';
+            } else if (!validateEmail(form.value.email)) {
+                errors.value.email = 'Invalid email format';
+            }
+
+            if (!form.value.login) {
+                errors.value.login = 'Login is required';
+            }
+
+            if (!Object.values(errors.value).some(error => error)) {
+                submitForm();
+            }
         };
-    },
-    methods: {
-        setActive(buttonType) {
-            this.activeButton = buttonType;
-        },
-        getButtonClass(buttonType) {
-            return {
-                'border-[#000000] text-[#000000]': this.activeButton === buttonType,
-                'border-[#BFBFBF] text-[#BFBFBF]': this.activeButton !== buttonType,
-            };
-        },
-        validateForm() {
-            this.errors = { name: '', mobile: '', email: '', login: '' }; // Clear previous errors
 
-            if (!this.form.name) {
-                this.errors.name = 'Full name is required';
-            } else if (this.form.name.length < 3) {
-                this.errors.name = 'Full name must be at least 3 characters long';
-            }
-
-            if (!this.form.mobile) {
-                this.errors.mobile = 'Mobile number is required';
-            } else if (this.form.mobile.length < 10) {
-                this.errors.mobile = 'Mobile number must be at least 10 digits';
-            }
-
-            if (!this.form.email) {
-                this.errors.email = 'Email is required';
-            } else if (!this.validateEmail(this.form.email)) {
-                this.errors.email = 'Invalid email format';
-            }
-
-            if (!this.form.login) {
-                this.errors.login = 'Login is required';
-            }
-
-            // Check if there are no errors before submitting
-            if (!Object.values(this.errors).some(error => error)) {
-                this.submitForm();
-            }
-        },
-        validateEmail(email) {
+        const validateEmail = (email) => {
             const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
-        },
-        submitForm() {
-            // Logic for form submission
+        };
+
+        const submitForm = () => {
             alert('Form submitted successfully');
-            // Here you can add your logic to save changes
-        },
-        validatePasswords() {
-            this.errors.currentPassword = '';
-            this.errors.newPassword = ''; // Clear previous errors
+        };
 
-            if (!this.form.currentPassword) {
-                this.errors.currentPassword = 'Current password is required';
-            }
-
-            if (!this.form.newPassword) {
-                this.errors.newPassword = 'New password is required';
-            } else if (this.form.newPassword.length < 8) {
-                this.errors.newPassword = 'New password must be at least 8 characters long';
-            }
-
-            // Check if there are no errors before processing
-            if (!Object.values(this.errors).some(error => error)) {
-                this.submitPasswords();
-            }
-        },
-        submitPasswords() {
-            // Logic for password submission
-            alert('Passwords submitted successfully');
-        },
-        validatePasswords() {
-            this.errors.currentPassword = '';
-            this.errors.newPassword = ''; // Сброс ошибок
-
-            if (!this.currentPassword) {
-                this.errors.currentPassword = 'Current password is required';
-            }
-
-            if (!this.newPassword) {
-                this.errors.newPassword = 'New password is required';
-            } else if (this.newPassword.length < 8) {
-                this.errors.newPassword = 'New password must be at least 8 characters long';
-            }
-
-            // Проверка, нет ли ошибок перед выполнением действия
-            if (!Object.values(this.errors).some(error => error)) {
-                this.submitPasswords();
-            }
-        },
-        submitPasswords() {
-            // Логика отправки паролей
-            alert('Passwords submitted successfully');
-        },
-
-    },
-    computed: {
-        selectClasses() {
-            return {
-                'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]': true,
-                'border-[#BFBFBF] text-[#BFBFBF]': !this.isCheckboxChecked,
-                'cursor-not-allowed': !this.isCheckboxChecked,
-            };
-        },
-        selectClasses2() {
-            return {
-                'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]': true,
-                'border-[#BFBFBF] text-[#BFBFBF]': !this.isCheckboxChecked2,
-                'cursor-not-allowed': !this.isCheckboxChecked2,
-            };
-        },
-        selectClasses3() {
-            return {
-                'border-[#BFBFBF] text-[#BFBFBF]': !this.isCheckboxChecked3,
-                'cursor-not-allowed': !this.isCheckboxChecked3,
-                'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-full py-[15px] px-[20px]': true,
-            };
-        },
+        return {
+            form,
+            errors,
+            selectedOption,
+            validateForm,
+            currentPassword,
+            newPassword,
+        };
     },
 };
+
 </script>
 
 <style scoped>
