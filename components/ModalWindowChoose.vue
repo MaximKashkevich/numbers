@@ -17,13 +17,13 @@
           
                <div class="">
                 <div
-                    class="grid grid-cols-2 gap-x-[20px] gap-y-[20px] ">
+                    class="grid lg:grid-cols-2  grid-cols-1  gap-x-[20px] gap-y-[20px] ">
                     <ChooseCard v-for="(item, index) in cards" :key="index" />
                 </div>
             </div>
 
             <div
-                class="w-full max-w-[426px] h-[200px] px-[40px] rounded-[20px] bg-[#FFFFFF] text-center flex flex-col justify-center items-center white-container mt-[20px]">
+                class="w-full max-w-[390px] h-[200px] px-[40px] rounded-[20px] bg-[#FFFFFF] text-center flex flex-col justify-center items-center white-container mt-[20px]">
                 <p class="w-[346px] h-[42px] pt-[80px] mb-[40px] text-[35px] font-medium leading-[42px] text-center ">
                     Create more
                 </p>

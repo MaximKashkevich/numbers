@@ -60,7 +60,7 @@
                     <label for="emirate"
                         class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate:</label>
                     <select id="emirate" name="emirate"
-                        class="appearance-none mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
+                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
                         <option value="city">Dubai</option>
                         <option value="city">Abu Dhabi</option>
                         <option value="city">Ajman</option>
@@ -138,19 +138,75 @@
                 View 7508 more plate numbers
             </ButtonBlue>
         </div>
-        <div
-            class="w-full min-w-[330px] bg-[#FFFFFF] h-[500px] rounded-[20px] px-[50px] py-[80px] mt-[150px] text-container">
-            <h3 class="w-[1000px] text-[50px] font-normal leading-[60px] text-left mini-title">
-                You can create an ad to buy a number, and registered users who are selling rooms will be able to contact
-                you with their offer.
+        <div class="mt-[150px]">
+            <h3 class="w-[1000px] h-[180px] text-[50px] font-normal leading-[60px] text-left mini-title">
+                Save time on your search: create an ad to buy a number and we will send you suitable ads to your
+                WhatsApp.
             </h3>
             <p class="w-[1000px] text-[16px] font-normal leading-[19.2px] text-left mt-[20px] mini-text">
                 View ads for purchase is available only for registered users
             </p>
-            <ButtonBlue class="w-[384px] mt-[70px] order-list ">
-                View purchase orders list
+            <div
+                class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px] mt-[50px] grid-2 mb-[70px]">
+                <div
+                    class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
+                    <div class="">
+                        <p class="">
+                            1/3
+                        </p>
+
+                        <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
+                            Application
+                        </p>
+                        <p class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]">
+                            You leave a request to buy a room and specify all the criteria that are important to you.
+                        </p>
+
+                    </div>
+
+                </div>
+                <div
+                    class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
+                    <div class="">
+                        <p class="">
+                            2/3
+                        </p>
+
+                        <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
+                            Search
+                        </p>
+                        <p class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]">
+                            During the week, our manager will match your application with suitable numbers and send them
+                            to you on WhatsApp
+                        </p>
+
+                    </div>
+
+                </div>
+                <div
+                    class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
+                    <div class="">
+                        <p class="">
+                            3/3
+                        </p>
+
+                        <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
+                            Buying
+                        </p>
+                        <p class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]">
+                            If the number fits you, you pay for it, we buy it, register it in the traffic police and
+                            give it to you.
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+            <ButtonBlue class="w-[329px] h-[52px]  flex justify-center items-center  order-list ">
+                Submit a purchase order
             </ButtonBlue>
         </div>
+
         <h3 class="w-[198px] h-[60px]  text-[50px] font-light leading-[60px] text-left mt-[150px]">
             Licenses
         </h3>
@@ -270,7 +326,6 @@
         </div>
 
 
-
         <div class="flex flex-wrap gap-[20px] justify-center md:justify-between">
             <!-- Форма ввода -->
             <form @submit.prevent="" class="flex flex-col gap-4 mb-6 w-full md:w-[650px]">
@@ -301,6 +356,7 @@
                         </li>
                     </ul>
 
+
                     <ButtonBlue class="w-[220px] mt-[30px] md:mt-[50px] self-start" @click="">
                         Send
                     </ButtonBlue>
@@ -314,11 +370,13 @@
         </div>
     </div>
 
+
+
 </template>
 
 <script setup lang="ts">
 import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
-// import CartPlate from '../components/CardPlate/CardPlate.vue'
+import CartPlate from '../components/CardPlate/CardPlate.vue'
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue'
 import CardLicenses from '../components/CardLicenses/CardLicenses.vue'
@@ -341,6 +399,7 @@ const inputTitle = ref<Input[]>([
     { title: ' ', type: 'tel', value: '', placeholder: '+7 (___) ___-___-___', height: '50px', borderRadius: '100px' },
     { title: ' ', type: 'text', value: '', placeholder: 'Write your question or suggestion', height: '120px', borderRadius: '20px' },
 ]);
+
 
 // Пропсы
 const props = defineProps({
@@ -397,7 +456,7 @@ const seeMore3 = () => {
 
 
 
-<style>
+<style scoped>
 .fade-slide-enter-active,
 .fade-slide-leave-active {
     transition: all 0.3s ease;
@@ -553,10 +612,7 @@ const seeMore3 = () => {
     color: #BFBFBF;
 }
 
-.button-black:hover {
-    border-color: #BFBFBF;
-    color: #BFBFBF;
-}
+
 
 .grid-2 {
     grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));

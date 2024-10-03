@@ -22,7 +22,7 @@
                     <img src="../public/assets/pencil.svg" alt="pencil" class="absolute right-[35px] top-2.5 w-5 h-5">
                 </div>
 
-                <ButtonBlue class="w-[510px] mt-[30px]">
+                <ButtonBlue class="max-w-[510px] text-btn w-full mt-[30px]">
                     Add 12 selected ads to the collection
                 </ButtonBlue>
 
@@ -91,6 +91,9 @@ button svg {
     h1 {
         font-size: 18px;
         line-height: 22px;
+    }
+    .text-btn{
+        font-size: 11px;
     }
 }
 
