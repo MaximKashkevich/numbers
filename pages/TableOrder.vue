@@ -29,8 +29,6 @@
         <!-- Карточки Plate numbers -->
         <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 mt-[30px] container-order  w-full"
           @click="openModal">
-
-
           <CardOrder />
           <CardOrder />
           <CardOrder />
@@ -67,7 +65,7 @@
         </h2>
 
         <!-- Карточки Mobile numbers -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-[30px] container-card">
+        <div class="grid grid-cols-1 sm:grid-cols-2  gap-6 mt-[30px] container-card">
           <div class="max-w-[426px] w-full">
             <MoreCard />
           </div>

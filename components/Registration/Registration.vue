@@ -10,8 +10,9 @@
 
             <!-- Заголовок и кнопка закрытия -->
             <div class="relative mb-8">
-                <h1 id="dialog-title" class="text-[28px] md:text-[35px] font-medium leading-[42px]">Sign in</h1>
-                <NuxtLink class="absolute top-0 right-0" to="/" aria-label="Close">
+                <h1 id="dialog-title" class="genText text-[28px] md:none md:text-[35px] font-medium leading-[42px]">Sign
+                    in</h1>
+                <NuxtLink class="absolute md:flex-row close top-0 right-0" to="/" aria-label="Close">
                     <svg @click="signUp.onClickSignUP" class="cursor-pointer" width="20" height="20" viewBox="0 0 20 20"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -22,7 +23,7 @@
             </div>
 
             <!-- Поля ввода -->
-            <form @submit.prevent="verification.onClickSignIn" class="flex flex-col gap-4 mb-6">
+            <form @submit.prevent="onSubmit" class="flex  flex-col gap-4 mb-6">
                 <fieldset>
                     <legend class="sr-only">Sign In Form</legend>
 
@@ -32,12 +33,12 @@
                             <label :for="'field' + index" class="text-sm font-medium text-gray-700">{{ field.title
                                 }}</label>
                             <TextInput :id="'field' + index" :type="field.type" :placeholder="field.placeholder"
-                                class="w-full" />
+                                v-model="field.value" class="w-full" />
+                            <p v-if="errors[index]" class="text-red-500 text-sm">{{ errors[index] }}</p>
                         </li>
                     </ul>
 
-                    <!-- Чекбокс и кнопка на одной линии -->
-                    <div class="flex items-center justify-between mt-[45px] flex-col md:flex-row">
+                    <div class=" check-box flex items-center justify-between mt-[45px] flex-col btnInput md:flex-row">
                         <div class="flex items-center mb-4 md:mb-0">
                             <input id="remember-me" type="checkbox"
                                 class="custom-checkbox h-4 w-4 border border-gray-300 rounded focus:ring-0" />
@@ -46,10 +47,9 @@
                                 <span><br />with terms and conditions</span>
                             </label>
                         </div>
-                        <button @click="useSignInStore.onClickSignIn"
-                            class="border-2 font-medium w-full md:w-[300px] py-[14px] border-blue-500 rounded-[100px] text-[20px] font-bold text-blue-500 hover:bg-blue-500 hover:text-white transition">
+                        <ButtonBlue class="flex-wrap btn w-full max-w-[200px] py-[14px] md:ml-auto">
                             Sign In
-                        </button>
+                        </ButtonBlue>
                     </div>
                 </fieldset>
             </form>
@@ -57,15 +57,16 @@
     </div>
 </template>
 
-
 <script setup lang="ts">
 import TextInput from './Input.vue';
+import ButtonBlue from '../Button-blue/ButtonBlue.vue';
 import { ref } from 'vue';
 import { useSignUpStore } from '@/stores/signUp';
-import { useSignInStore } from '@/stores/verification'
+import { useSignInStore } from '@/stores/verification';
 
 const signUp = useSignUpStore();
 const verification = useSignInStore();
+const errors = ref<string[]>([]);
 
 interface Input {
     title: string;
@@ -84,6 +85,133 @@ const inputTitle = ref<Input[]>([
     { title: 'Password again:', type: 'password', value: '', placeholder: 'xxxxxxx' },
 ]);
 
+const validateEmail = (email: string) => {
+    const emailPattern = /^\S+@\S+\.\S+$/; // Паттерн для проверки email
+    return emailPattern.test(email);
+};
+
+const validatePhoneNumber = (phone: string) => {
+    const phonePattern = /^\d{3}\s\d{3}\s\d{2}\s\d{2}$/; // Паттерн для проверки номера телефона
+    return phonePattern.test(phone);
+};
+const validate = () => {
+    // Сброс ошибок
+    errors.value = [];
+
+<<<<<<< HEAD
+    inputTitle.value.forEach((field, index) => {
+        const trimmedValue = field.value.trim(); // Удаление пробелов
+        console.log(`Validating field: ${field.title}, value: "${trimmedValue}"`); // Отладочное сообщение
+
+        // Если поле пустое, добавляем ошибку
+        if (!trimmedValue) {
+            errors.value[index] = `${field.title} is required.`; // Поле обязательно для заполнения
+            return; // Прекращаем дальнейшую проверку для этого поля
+=======
+    // Паттерны для проверки
+    const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/; // Паттерн для проверки email
+    const phonePattern = /^\\d{3} \\d{3} \\d{2} \\d{2}$/; // Паттерн для проверки номера телефона
+
+    const validateEmail = (email) => emailPattern.test(email);
+    const validatePhoneNumber = (phone) => phonePattern.test(phone);
+
+    inputTitle.value.forEach((field, index) => {
+        // Проверка на пустое значение
+        if (!field.value) {
+            errors.value[index] = `${field.title} is required.`; // Поле обязательно для заполнения
+            return; // Выход из цикла, если поле обязательно
+>>>>>>> 8ec54c005c1656afa66a97826ba5dc5a3c20b1dc
+        }
+
+        switch (field.type) {
+            case 'email':
+<<<<<<< HEAD
+                if (!validateEmail(trimmedValue)) {
+                    errors.value[index] = 'Invalid email address.'; // Неверный формат email
+                }
+                break;
+            case 'tel':
+                if (!validatePhoneNumber(trimmedValue)) {
+                    errors.value[index] = 'Invalid mobile number format (expected: 050 123 45 67).'; // Неверный формат номера телефона
+                }
+                break;
+            case 'password':
+                if (trimmedValue.length < 6) {
+                    errors.value[index] = 'Password must be at least 6 characters long.'; // Минимальная длина пароля
+                }
+                break;
+            case 'password again':
+                const passwordField = inputTitle.value.find(f => f.type === 'password');
+                if (passwordField && trimmedValue !== passwordField.value) {
+                    errors.value[index] = 'Passwords do not match.'; // Пароли не совпадают
+                }
+                break;
+=======
+                if (!validateEmail(field.value)) {
+                    errors.value[index] = 'Invalid email address.'; // Неверный формат email
+                }
+                break;
+
+            case 'tel':
+                if (!validatePhoneNumber(field.value)) {
+                    errors.value[index] = 'Invalid phone number format. Use XXX XXX XX XX.'; // Неверный формат номера телефона
+                }
+                break;
+
+            case 'password':
+                if (field.value.length < 6) {
+                    errors.value[index] = 'Password must be at least 6 characters long.'; // Минимальная длина пароля
+                }
+                break;
+
+            case 'password again':
+                const passwordField = inputTitle.value.find(f => f.type === 'password');
+                if (passwordField && field.value !== passwordField.value) {
+                    errors.value[index] = 'Passwords do not match.'; // Пароли не совпадают
+                }
+                break;
+
+            default:
+                errors.value[index] = null; // Нет ошибок для других типов
+>>>>>>> 8ec54c005c1656afa66a97826ba5dc5a3c20b1dc
+        }
+    });
+
+    // Проверка логина на соответствие с мобильным номером
+    const loginField = inputTitle.value.find(f => f.type === 'text');
+    const mobileField = inputTitle.value.find(f => f.type === 'tel');
+
+    if (loginField && mobileField && mobileField.value.startsWith(loginField.value.slice(0, 3))) {
+        errors.value[inputTitle.value.indexOf(loginField)] = 'Login should not start with the same digits as mobile number.'; // Логин не должен начинаться с тех же цифр
+    }
+};
+<<<<<<< HEAD
+const onSubmit = () => {
+    validate(); // Вызов валидации
+    if (errors.value.length === 0) {
+        // Отправка данных, если нет ошибок
+        console.log("Form submitted successfully!");
+        // Здесь ваш код для отправки данных
+    } else {
+        // Обработка ошибок
+        console.log("Form has errors:", errors.value);
+=======
+
+// Метод для обработки отправки формы
+const onSubmit = () => {
+    validate(); // Выполняем проверку
+
+    // Если ошибок нет, продолжаем
+    if (errors.value.length === 0) {
+        // Выполнить вход
+        console.log('Form is valid, proceed with sign in.');
+        // Ваша логика входа здесь
+    } else {
+        console.log('Form has errors:', errors.value); // Логируем ошибки
+>>>>>>> 8ec54c005c1656afa66a97826ba5dc5a3c20b1dc
+    }
+};
+
 </script>
 
 <style scoped>
@@ -93,5 +221,25 @@ const inputTitle = ref<Input[]>([
     border: 1px solid #d1d5db;
     border-radius: 8px;
     box-sizing: border-box;
+}
+
+@media(max-width:625px) {
+    .close {
+        top: 0;
+        right: 0;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 375px) {
+    h1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 453px) {
+    .check-box {
+        margin-right: 200px;
+    }
 }
 </style>

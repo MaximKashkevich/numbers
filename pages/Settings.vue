@@ -33,7 +33,7 @@
                                         </label>
                                         <input id="fullName" type="text" v-model="form.name" @input="errors.name = ''"
                                             :class="{ 'border-red-500': errors.name }"
-                                            class="w-[330px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-4 text-lg text-[#000000] bg-[#FAFAFA]" />
+                                            class="w-[300px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-4 text-lg text-[#000000] bg-[#FAFAFA]" />
                                         <span v-if="errors.name" class="text-red-500">{{ errors.name }}</span>
                                     </div>
 
@@ -44,7 +44,7 @@
                                         </label>
                                         <input id="mobile" type="number" v-model="form.mobile"
                                             @input="errors.mobile = ''" :class="{ 'border-red-500': errors.mobile }"
-                                            class="w-[330px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-4 text-lg text-[#000000] bg-[#FAFAFA]" />
+                                            class="w-[300px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-4 text-lg text-[#000000] bg-[#FAFAFA]" />
                                         <span v-if="errors.mobile" class="text-red-500">{{ errors.mobile }}</span>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                             class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#000000]">Design:</label>
                                         <div class="relative">
                                             <input id="design" type="date"
-                                                class="w-[330px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-[75px] pr-[20px] text-lg text-[#000000] bg-[#FAFAFA] appearance-none" />
+                                                class="w-[300px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-[75px] pr-[20px] text-lg text-[#000000] bg-[#FAFAFA] appearance-none" />
                                       
                                         </div>
 
@@ -68,7 +68,7 @@
                                             Emirate:
                                         </label>
                                         <select id="emirate" v-model="form.emirate"
-                                            class="border-[#BFBFBF] w-[330px] max-w-[426px] lg:w-[430px] mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]">
+                                            class="border-[#BFBFBF] w-[300px] max-w-[426px] lg:w-[430px] mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]">
                                             <option value="Dubai">Dubai</option>
                                             <option value="Abu Dhabi">Abu Dhabi</option>
                                             <option value="Ajman">Ajman</option>
@@ -338,7 +338,7 @@ export default {
     margin-left: 8px;
 }
 
-@media(max-width: 402px) {
+@media(max-width: 460px) {
     .radio-container {
         width: 60px;
         height: 40px;

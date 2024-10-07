@@ -83,7 +83,7 @@
                 </div>
 
 
-                <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 mt-[100px] container-order  w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 mt-[215px] container-order w-full container justify-center items-center">
                     <Card2 />
                     <Card2 />
                     <Card2 />
@@ -187,5 +187,10 @@ input::-ms-input-placeholder {
 
         margin-top: -110px;
     }
+}
+@media(max-width: 400px) {
+.container{
+    width: 360px;
+}
 }
 </style>
