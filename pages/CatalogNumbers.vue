@@ -205,45 +205,45 @@
         class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px] px-[50px]">
         Similar numbers:
     </h3>
-    <div v-if="isPlateSelected"
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px] px-[50px]">
-        <SimilarNumber />
-        <SimilarNumberLowPrice />
-        <SimilarNumber />
-        <SimilarNumberLowPrice />
-        <SimilarNumber />
-        <SimilarNumber />
-        <SimilarNumber />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumber />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumber />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumber />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumber />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumber />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
-        <SimilarNumberLowPrice />
+    <div v-if="isPlateSelected" class="flex w-full flex-wrap items-center gap-[20px] mt-[20px] px-[50px]">
+        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <SimilarNumber />
+            <SimilarNumberLowPrice />
+            <SimilarNumber />
+            <SimilarNumberLowPrice />
+        </div>
+        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <SimilarNumber />
+            <SimilarNumber />
+            <SimilarNumber />
+            <SimilarNumberLowPrice />
+        </div>
+        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <SimilarNumberLowPrice />
+            <SimilarNumberLowPrice />
+            <SimilarNumberLowPrice />
+            <SimilarNumber />
+        </div>
+        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <SimilarNumberLowPrice />
+            <SimilarNumberLowPrice />
+            <SimilarNumberLowPrice />
+            <SimilarNumberLowPrice />
+        </div>
+        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <SimilarNumber />
+            <SimilarNumberLowPrice />
+            <SimilarNumberLowPrice />
+            <SimilarNumberLowPrice />
+        </div>
+        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <SimilarNumberLowPrice />
+            <SimilarNumberLowPrice />
+            <SimilarNumber />
+            <SimilarNumberLowPrice />
+        </div>
     </div>
+
     <div v-if="!isPlateSelected"
         class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px] px-[50px]">
         <Card />
