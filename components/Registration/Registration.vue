@@ -88,68 +88,74 @@ const inputTitle = ref<Input[]>([
 ]);
 
 const validate = () => {
-    errors.value = []; // Сброс ошибок
+    // Сброс ошибок
+    errors.value = [];
 
-    const validateEmail = (email) => {
-        const emailPattern = /^\\S+@\\S+\\.\\S+$/; // Паттерн для проверки email
-        return emailPattern.test(email);
-    };
+    // Паттерны для проверки
+    const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/; // Паттерн для проверки email
+    const phonePattern = /^\\d{3} \\d{3} \\d{2} \\d{2}$/; // Паттерн для проверки номера телефона
 
-    const validatePhoneNumber = (phone) => {
-        const phonePattern = /^\\d{3}\\s\\d{3}\\s\\d{2}\\s\\d{2}$/; // Паттерн для проверки номера телефона
-        return phonePattern.test(phone);
-    };
+    const validateEmail = (email) => emailPattern.test(email);
+    const validatePhoneNumber = (phone) => phonePattern.test(phone);
 
     inputTitle.value.forEach((field, index) => {
+        // Проверка на пустое значение
         if (!field.value) {
             errors.value[index] = `${field.title} is required.`; // Поле обязательно для заполнения
-        } else {
-            switch (field.type) {
-                case 'email':
-                    if (!validateEmail(field.value)) {
-                        errors.value[index] = 'Invalid email address.'; // Неверный формат email
-                    }
-                    break;
-                case 'tel':
-                    if (!validatePhoneNumber(field.value)) {
-                        errors.value[index] = 'Invalid mobile number format.'; // Неверный формат номера телефона
-                    }
-                    break;
-                case 'password':
-                    if (field.value.length < 6) {
-                        errors.value[index] = 'Password must be at least 6 characters long.'; // Минимальная длина пароля
-                    }
-                    break;
-                case 'password again':
-                    const passwordField = inputTitle.value.find(f => f.type === 'password');
-                    if (passwordField && field.value !== passwordField.value) {
-                        errors.value[index] = 'Passwords do not match.'; // Пароли не совпадают
-                    }
-                    break;
-                default:
-                    errors.value[index] = ''; // Нет ошибок
-            }
+            return; // Выход из цикла, если поле обязательно
+        }
+
+        switch (field.type) {
+            case 'email':
+                if (!validateEmail(field.value)) {
+                    errors.value[index] = 'Invalid email address.'; // Неверный формат email
+                }
+                break;
+
+            case 'tel':
+                if (!validatePhoneNumber(field.value)) {
+                    errors.value[index] = 'Invalid phone number format. Use XXX XXX XX XX.'; // Неверный формат номера телефона
+                }
+                break;
+
+            case 'password':
+                if (field.value.length < 6) {
+                    errors.value[index] = 'Password must be at least 6 characters long.'; // Минимальная длина пароля
+                }
+                break;
+
+            case 'password again':
+                const passwordField = inputTitle.value.find(f => f.type === 'password');
+                if (passwordField && field.value !== passwordField.value) {
+                    errors.value[index] = 'Passwords do not match.'; // Пароли не совпадают
+                }
+                break;
+
+            default:
+                errors.value[index] = null; // Нет ошибок для других типов
         }
     });
 
-    // Проверка логина на соответствие с мобильным номером (дополнительная логика)
+    // Проверка логина на соответствие с мобильным номером
     const loginField = inputTitle.value.find(f => f.type === 'text');
     const mobileField = inputTitle.value.find(f => f.type === 'tel');
 
     if (loginField && mobileField && mobileField.value.startsWith(loginField.value.slice(0, 3))) {
         errors.value[inputTitle.value.indexOf(loginField)] = 'Login should not start with the same digits as mobile number.'; // Логин не должен начинаться с тех же цифр
     }
-}
+};
+
 // Метод для обработки отправки формы
 const onSubmit = () => {
-    validate();
-    // Если ошибок нет, можно продолжить процесс входа
+    validate(); // Выполняем проверку
+
+    // Если ошибок нет, продолжаем
     if (errors.value.length === 0) {
         // Выполнить вход
         console.log('Form is valid, proceed with sign in.');
-        // your sign in logic here
+        // Ваша логика входа здесь
     } else {
-        console.log('Form has errors:', errors.value);
+        console.log('Form has errors:', errors.value); // Логируем ошибки
     }
 };
 
