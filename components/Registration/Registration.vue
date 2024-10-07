@@ -3,7 +3,7 @@
     <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-10" aria-hidden="true"></div>
 
     <!-- Контейнер карточки -->
-    <div class="fixed inset-0 flex  items-center justify-center z-20 py-[10px]" role="dialog"
+    <div class="fixed inset-0 flex items-center justify-center z-20 py-[10px]" role="dialog"
         aria-labelledby="dialog-title">
         <div
             class="w-full max-w-[750px] h-full bg-white shadow-lg p-6 rounded-[20px] flex flex-col overflow-y-auto mx-4">
@@ -23,7 +23,7 @@
             </div>
 
             <!-- Поля ввода -->
-            <form @submit.prevent="onSubmit" class="flex flex-col gap-4 mb-6">
+            <form @submit.prevent="onSubmit" class="flex  flex-col gap-4 mb-6">
                 <fieldset>
                     <legend class="sr-only">Sign In Form</legend>
 
@@ -38,7 +38,7 @@
                         </li>
                     </ul>
 
-                    <div class="flex items-center justify-between mt-[45px] flex-col btnInput md:flex-row">
+                    <div class=" check-box flex items-center justify-between mt-[45px] flex-col btnInput md:flex-row">
                         <div class="flex items-center mb-4 md:mb-0">
                             <input id="remember-me" type="checkbox"
                                 class="custom-checkbox h-4 w-4 border border-gray-300 rounded focus:ring-0" />
@@ -47,7 +47,7 @@
                                 <span><br />with terms and conditions</span>
                             </label>
                         </div>
-                        <ButtonBlue @click="onSubmit" class="flex-wrap btn w-full md:w-[200px] py-[14px] md:ml-auto">
+                        <ButtonBlue class="flex-wrap btn w-full max-w-[200px] py-[14px] md:ml-auto">
                             Sign In
                         </ButtonBlue>
                     </div>
@@ -55,20 +55,18 @@
             </form>
         </div>
     </div>
-
 </template>
-
 
 <script setup lang="ts">
 import TextInput from './Input.vue';
 import ButtonBlue from '../Button-blue/ButtonBlue.vue';
 import { ref } from 'vue';
 import { useSignUpStore } from '@/stores/signUp';
-import { useSignInStore } from '@/stores/verification'
+import { useSignInStore } from '@/stores/verification';
 
 const signUp = useSignUpStore();
 const verification = useSignInStore();
-const errors = ref<string[]>([])
+const errors = ref<string[]>([]);
 
 interface Input {
     title: string;
@@ -87,69 +85,70 @@ const inputTitle = ref<Input[]>([
     { title: 'Password again:', type: 'password', value: '', placeholder: 'xxxxxxx' },
 ]);
 
+const validateEmail = (email: string) => {
+    const emailPattern = /^\S+@\S+\.\S+$/; // Паттерн для проверки email
+    return emailPattern.test(email);
+};
+
+const validatePhoneNumber = (phone: string) => {
+    const phonePattern = /^\d{3}\s\d{3}\s\d{2}\s\d{2}$/; // Паттерн для проверки номера телефона
+    return phonePattern.test(phone);
+};
 const validate = () => {
     errors.value = []; // Сброс ошибок
 
-    const validateEmail = (email) => {
-        const emailPattern = /^\\S+@\\S+\\.\\S+$/; // Паттерн для проверки email
-        return emailPattern.test(email);
-    };
-
-    const validatePhoneNumber = (phone) => {
-        const phonePattern = /^\\d{3}\\s\\d{3}\\s\\d{2}\\s\\d{2}$/; // Паттерн для проверки номера телефона
-        return phonePattern.test(phone);
-    };
-
     inputTitle.value.forEach((field, index) => {
-        if (!field.value) {
+        const trimmedValue = field.value.trim(); // Удаление пробелов
+        console.log(`Validating field: ${field.title}, value: "${trimmedValue}"`); // Отладочное сообщение
+
+        // Если поле пустое, добавляем ошибку
+        if (!trimmedValue) {
             errors.value[index] = `${field.title} is required.`; // Поле обязательно для заполнения
-        } else {
-            switch (field.type) {
-                case 'email':
-                    if (!validateEmail(field.value)) {
-                        errors.value[index] = 'Invalid email address.'; // Неверный формат email
-                    }
-                    break;
-                case 'tel':
-                    if (!validatePhoneNumber(field.value)) {
-                        errors.value[index] = 'Invalid mobile number format.'; // Неверный формат номера телефона
-                    }
-                    break;
-                case 'password':
-                    if (field.value.length < 6) {
-                        errors.value[index] = 'Password must be at least 6 characters long.'; // Минимальная длина пароля
-                    }
-                    break;
-                case 'password again':
-                    const passwordField = inputTitle.value.find(f => f.type === 'password');
-                    if (passwordField && field.value !== passwordField.value) {
-                        errors.value[index] = 'Passwords do not match.'; // Пароли не совпадают
-                    }
-                    break;
-                default:
-                    errors.value[index] = ''; // Нет ошибок
-            }
+            return; // Прекращаем дальнейшую проверку для этого поля
+        }
+
+        switch (field.type) {
+            case 'email':
+                if (!validateEmail(trimmedValue)) {
+                    errors.value[index] = 'Invalid email address.'; // Неверный формат email
+                }
+                break;
+            case 'tel':
+                if (!validatePhoneNumber(trimmedValue)) {
+                    errors.value[index] = 'Invalid mobile number format (expected: 050 123 45 67).'; // Неверный формат номера телефона
+                }
+                break;
+            case 'password':
+                if (trimmedValue.length < 6) {
+                    errors.value[index] = 'Password must be at least 6 characters long.'; // Минимальная длина пароля
+                }
+                break;
+            case 'password again':
+                const passwordField = inputTitle.value.find(f => f.type === 'password');
+                if (passwordField && trimmedValue !== passwordField.value) {
+                    errors.value[index] = 'Passwords do not match.'; // Пароли не совпадают
+                }
+                break;
         }
     });
 
-    // Проверка логина на соответствие с мобильным номером (дополнительная логика)
+    // Проверка логина на соответствие с мобильным номером
     const loginField = inputTitle.value.find(f => f.type === 'text');
     const mobileField = inputTitle.value.find(f => f.type === 'tel');
 
     if (loginField && mobileField && mobileField.value.startsWith(loginField.value.slice(0, 3))) {
         errors.value[inputTitle.value.indexOf(loginField)] = 'Login should not start with the same digits as mobile number.'; // Логин не должен начинаться с тех же цифр
     }
-}
-// Метод для обработки отправки формы
+};
 const onSubmit = () => {
-    validate();
-    // Если ошибок нет, можно продолжить процесс входа
+    validate(); // Вызов валидации
     if (errors.value.length === 0) {
-        // Выполнить вход
-        console.log('Form is valid, proceed with sign in.');
-        // your sign in logic here
+        // Отправка данных, если нет ошибок
+        console.log("Form submitted successfully!");
+        // Здесь ваш код для отправки данных
     } else {
-        console.log('Form has errors:', errors.value);
+        // Обработка ошибок
+        console.log("Form has errors:", errors.value);
     }
 };
 
@@ -167,21 +166,20 @@ const onSubmit = () => {
 @media(max-width:625px) {
     .close {
         top: 0;
-        left: 0;
+        right: 0;
+        margin-right: 10px;
     }
+}
 
-    .genText {
-        margin-top: 30px
+@media (max-width: 375px) {
+    h1 {
+        font-size: 28px;
     }
+}
 
-    .btn {
-        width: 200px;
-        display: inline-block;
-
-    }
-
-    .btnInput {
-        margin-right: 400px;
+@media (max-width: 453px) {
+    .check-box {
+        margin-right: 200px;
     }
 }
 </style>

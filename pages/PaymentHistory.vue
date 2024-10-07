@@ -26,57 +26,57 @@
         <div>
           <!-- Table header -->
           <ul
-            class="w-full max-w-[872px] h-[52px] rounded-[10px] border border-[#BFBFBF] bg-[#FFFFFF] flex justify-between items-center mt-[30px] text-[16px] md:text-[14px] flex-wrap"
+            class="w-full max-w-[872px] h-[52px] rounded-[10px] border border-[#BFBFBF] bg-[#FFFFFF] flex justify-between items-center mt-[30px] text-[16px] md:text-[14px] "
           >
             <li class="w-[100px] md:w-[80px]">
-              <p class="font-roboto font-medium ml-[15px] text-[16px]">Number</p>
+              <p class="font-roboto font-medium ml-[15px] text-[16px] text--1">Number</p>
             </li>
             <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
 
             <li class="w-[330px] md:w-[200px]">
-              <p class="font-roboto font-medium ml-[15px] text-[16px]">Name of payment</p>
+              <p class="font-roboto font-medium ml-[15px] text-[16px]  text--1">Name of payment</p>
             </li>
             <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
 
             <li class="w-[140px] md:w-[100px]">
-              <p class="font-roboto font-medium w-[100px] text-[16px]">Amount, AED</p>
+              <p class="font-roboto font-medium w-[100px] text-[16px]  text--1">Amount, AED</p>
             </li>
             <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
 
             <li class="w-[100px] md:w-[80px]">
-              <p class="font-roboto font-medium ml-[15px] text-[16px]">Date</p>
+              <p class="font-roboto font-medium ml-[15px] text-[16px]  text--1">Date</p>
             </li>
             <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
 
             <li class="w-[140px]">
-              <p class="font-roboto font-medium ml-[15px] text-[16px]">Status</p>
+              <p class="font-roboto font-medium ml-[15px] text-[16px]  text--1">Status</p>
             </li>
           </ul>
 
           <!-- Table content -->
-          <ul class="w-full max-w-[872px] h-auto rounded-[10px] border border-[#BFBFBF] bg-[#FAFAFA] mt-[30px] flex-wrap">
-            <li class="w-full">
-              <ul class="w-full flex justify-between flex-wrap text-[16px]">
-                <li class="w-[100px] md:w-[80px]">
-                  <p class="font-roboto mt-[15px] ml-[15px]">11113</p>
+          <ul class="w-full max-w-[872px] h-auto rounded-[10px] border border-[#BFBFBF] bg-[#FAFAFA] mt-[30px] ">
+            <li class="w-full ">
+              <ul class="w-full flex justify-between text-[16px] flex-wrap ">
+                <li class="w-[100px] container-1 md:w-[80px]">
+                  <p class="font-roboto mt-[15px] ml-[15px] text--2">11113</p>
                 </li>
-                <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
-                <li class="w-[330px] md:w-[200px]">
-                  <p class="font-roboto mt-[15px] ml-[15px]">6 months tariff</p>
+                <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-auto"></div>
+                <li class="w-[330px container-1 ] md:w-[200px]">
+                  <p class="font-roboto mt-[15px] ml-[15px] text--2">6 months tariff</p>
                 </li>
-                <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
-                <li class="w-[140px] md:w-[100px]">
-                  <p class="font-roboto mt-[15px] ml-[15px]">5000</p>
+                <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-auto"></div>
+                <li class="w-[140px] container-1  md:w-[100px]">
+                  <p class="font-roboto mt-[15px] ml-[15px] text--2">5000</p>
                 </li>
-                <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
-                <li class="w-[100px] md:w-[80px]">
-                  <p class="font-roboto mt-[15px] ml-[15px]">24.12.24</p>
+                <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-auto"></div>
+                <li class="w-[100px] container-1  md:w-[80px]">
+                  <p class="font-roboto mt-[15px] ml-[15px] text--2">24.12.24</p>
                 </li>
-                <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
-                <li class="w-[140px]">
-                  <p class="font-roboto mt-[15px] text-[#EA0038]">Payment error</p>
+                <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-auto "></div>
+                <li class="w-[140px] container-1 ">
+                  <p class="font-roboto mt-[15px] text-[#EA0038] text--2 pb-[10px]">Payment error</p>
                 </li>
-                <div class="w-full max-w-[872px] border-b border-[#BFBFBF]"></div>
+                <div class="w-full   max-w-[872px] border-b border-[#BFBFBF]"></div>
               </ul>
             </li>
             <!-- Other table rows go here -->
@@ -155,25 +155,24 @@ select {
   font-weight: 500;
 }
 
-@media (max-width: 1200px) {
-  .big-container {
-    width: 80%;
-  }
-}
-
-@media (max-width: 992px) {
-  .big-container {
-    width: 90%;
-  }
-}
-
-@media (max-width: 768px) {
-  .big-container {
-    width: 100%;
-  }
-}
 
 @media (max-width: 600px) {
+  .text--1{
+    font-size: 10px;
+    font-weight: 800;
+    margin-left: 0;
+    padding:  3px;
+  }
+  .text--2{
+    font-size: 10px;
+    font-weight: 800;
+    margin-left: -10px;
+    padding:  13px;
+  }
+  .container-1 {
+    width: 100px;
+   
+  }
   h1 {
     font-size: 30px;
   }

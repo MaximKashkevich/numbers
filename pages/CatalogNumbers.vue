@@ -339,6 +339,16 @@ export default {
             };
         };
 
+        // Метод для очистки всех фильтров
+        const clearFilters = () => {
+            priceFrom.value = '';
+            priceTo.value = '';
+            selectedDigits.value = [];
+            postedDate.value = 'Today';
+            isExactMatch.value = false;
+            exactMatchValue.value = '';
+        };
+
         return {
             isExactMatch,
             exactMatchValue,
@@ -358,8 +368,10 @@ export default {
             seeMore,
             setActive,
             getButtonClass,
+            clearFilters, // Добавляем clearFilters в return
         };
     }
+
 };
 </script>
 
