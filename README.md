@@ -71,5 +71,5 @@ yarn preview
 # bun
 bun run preview
 ```
-deploy
+deploy-2
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
