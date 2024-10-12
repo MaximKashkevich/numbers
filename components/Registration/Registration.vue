@@ -62,8 +62,10 @@ import TextInput from './Input.vue';
 import ButtonBlue from '../Button-blue/ButtonBlue.vue';
 import { ref } from 'vue';
 import { useSignUpStore } from '@/stores/signUp';
+import { useSignInStore } from '@/stores/verification';
 
 const signUp = useSignUpStore();
+const verification = useSignInStore();
 const errors = ref<string[]>([]);
 
 interface Input {
@@ -96,6 +98,7 @@ const validate = () => {
     // Сброс ошибок
     errors.value = [];
 
+
     inputTitle.value.forEach((field, index) => {
         const trimmedValue = field.value.trim(); // Удаление пробелов
         console.log(`Validating field: ${field.title}, value: "${trimmedValue}"`); // Отладочное сообщение
@@ -104,10 +107,12 @@ const validate = () => {
         if (!trimmedValue) {
             errors.value[index] = `${field.title} is required.`; // Поле обязательно для заполнения
             return; // Прекращаем дальнейшую проверку для этого поля
+
         }
 
         switch (field.type) {
             case 'email':
+
                 if (!validateEmail(field.value)) {
                     errors.value[index] = 'Invalid email address.'; // Неверный формат email
                 }
@@ -133,7 +138,8 @@ const validate = () => {
                 break;
 
             default:
-                errors.value[index] = null; // Нет ошибок для других типов
+                errors.value[index] = ''; // Нет ошибок для других типов
+
         }
     });
 
@@ -146,6 +152,7 @@ const validate = () => {
     }
 };
 
+
 // Метод для обработки отправки формы
 const onSubmit = () => {
     validate(); // Выполняем проверку
@@ -157,6 +164,7 @@ const onSubmit = () => {
         // Ваша логика входа здесь
     } else {
         console.log('Form has errors:', errors.value); // Логируем ошибки
+
     }
 };
 

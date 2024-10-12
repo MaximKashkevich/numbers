@@ -243,6 +243,7 @@
             <SimilarNumberLowPrice />
         </div>
     </div>
+    
 
     <div v-if="!isPlateSelected"
         class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px] px-[50px]">
