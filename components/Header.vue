@@ -82,7 +82,7 @@
             </NuxtLink>
 
             <div>
-                <NuxtLink to="/signUp">
+                <NuxtLink to="/GeneralBlockTariff">
                     <ButtonBlue class="py-[14px] px-[60px]  ml-[20px]  buttons">
                         Add Listing
                     </ButtonBlue>
