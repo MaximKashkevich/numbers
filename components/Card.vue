@@ -1,14 +1,11 @@
 <template>
   <NuxtLink to="/PlateNumbers">
-    <div class="flex-1 min-w-[300px] max-w-[426px] h-auto p-4 rounded-[20px] bg-white border-[2px] border-[#B3B3B3] flex flex-col justify-between">
+    <div
+      class="flex-1 min-w-[300px] max-w-[426px] h-auto p-4 rounded-[20px] bg-white border-[2px] border-[#B3B3B3] flex flex-col justify-between">
       <img class="mx-auto mt-[20px]" src="../public/assets/numbers.svg" alt="Numbers">
       <div class="flex items-center justify-between mt-[30px]">
         <h1 class="text-[20px] font-medium leading-[24px]">{{ price }}</h1>
-        <component
-          :is="localLiked ? 'HeartRed' : 'ButtonLike'"
-          class="w-[24px] h-[20px]"
-          @click="toggleLike"
-        />
+        <component :is="localLiked ? 'HeartRed' : 'ButtonLike'" class="w-[24px] h-[20px]" @click.stop="toggleLike" />
       </div>
       <div class="mt-[20px]">
         <div class="flex gap-[10px]">
@@ -25,8 +22,10 @@
 </template>
 
 <script>
+import { ref, onMounted, watch } from 'vue';
 import ButtonLike from './ButtonLike.vue';
 import HeartRed from './HeartRed.vue';
+import axios from 'axios';
 
 export default {
   components: {
@@ -59,21 +58,50 @@ export default {
       default: false,
     },
   },
-  data() {
-    return {
-      localLiked: this.liked,
+  setup(props, { emit }) {
+    const localLiked = ref(props.liked);
+
+    watch(
+      () => props.liked,
+      (newVal) => {
+        localLiked.value = newVal;
+      }
+    );
+
+    const toggleLike = () => {
+      localLiked.value = !localLiked.value;
+      emit('update:liked', localLiked.value);
     };
-  },
-  watch: {
-    liked(newVal) {
-      this.localLiked = newVal;
-    },
-  },
-  methods: {
-    toggleLike() {
-      this.localLiked = !this.localLiked;
-      this.$emit('update:liked', this.localLiked);
-    },
+    const fetchSneakers = async () => {
+      try {
+        const { data } = await axios.get('https://dev.numbers.ae/api/catalog/phone/71031', {
+          headers: {
+            'Authorization': `Bearer ${yourActualToken}`, // вставь реальный токен
+          },
+        });
+
+        console.log(data); // работа с данными
+      } catch (error) {
+        if (error.response) {
+          console.error("Response error:", error.response.status, error.response.data);
+        } else {
+          console.error("Network or other error:", error.message);
+        }
+      }
+    };
+
+    ;
+
+
+
+    onMounted(() => {
+      fetchSneakers();
+    });
+
+    return {
+      localLiked,
+      toggleLike,
+    };
   },
 };
 </script>
