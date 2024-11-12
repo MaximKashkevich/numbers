@@ -60,7 +60,7 @@
 <script setup lang="ts">
 import TextInput from './Input.vue';
 import ButtonBlue from '../Button-blue/ButtonBlue.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useSignUpStore } from '@/stores/signUp';
 import { useSignInStore } from '@/stores/verification';
 import axios from 'axios';
@@ -153,36 +153,32 @@ const validate = () => {
     }
 };
 
-
 const onSubmit = async () => {
- 
-
+    validate(); // Валидируем данные
     if (errors.value.length === 0) {
+        // Обновляем apiRegisterData с текущими значениями
+        apiRegisterData.login = inputTitle.value[1].value;
+        apiRegisterData.email = inputTitle.value[0].value;
+        apiRegisterData.password = inputTitle.value[4].value;
+        apiRegisterData.fullName = inputTitle.value[2].value;
+        apiRegisterData.mobileNumber = inputTitle.value[3].value;
+
+        // Пытаемся выполнить запрос
         try {
-           
-            const response = await axios.post('https://api.dev.numbers.ae/v1/auth/signup', {
-                email: inputTitle.value[0].value,
-                login: inputTitle.value[1].value,
-                fullName: inputTitle.value[2].value,
-                phone: inputTitle.value[3].value,
-                password: inputTitle.value[4].value,
-                confirmPassword: inputTitle.value[5].value,
-            });
-
-            const token = response.data.token;
-
-           
-            localStorage.setItem('authToken', token);
-
-            console.log('Регистрация успешна. Токен:', token);
-
+            await axios.post('https://api.dev.numbers.ae/auth/signup', apiRegisterData);
+            console.log('Регистрация успешна.');
         } catch (error) {
             console.error('Ошибка при регистрации:', error);
         }
     } else {
-        console.log('Форма содержит ошибки:', errors.value); 
+        console.log('Заполните все поля корректно.');
     }
 };
+
+onMounted(() => {
+    apiRegister()
+})
+
 
 
 </script>
