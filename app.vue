@@ -29,6 +29,8 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios'
+import { ref, onMounted } from "vue";
 
 import Entrance from "./components/Entrance.vue";
 import Registration from "./components/Registration/Registration.vue";
@@ -59,10 +61,6 @@ import GeneralBlockTariff from "./pages/GeneralBlockTariff.vue";
 import GeneralAddAdvertiseAuto from "./pages/GeneralAddAdvertiseAuto.vue";
 import SignUp from "./pages/SignUp.vue";
 
-//import PlateNumbers from "./components/PlateNumbers.vue";
-
-
-
 import { useSignUpStore } from '@/stores/signUp';
 import { useSignInStore } from '@/stores/verification';
 import Login from "./pages/Login.vue";
@@ -70,4 +68,20 @@ import Login from "./pages/Login.vue";
 const signUp = useSignUpStore();
 const verification = useSignInStore();
 
+interface IPlate {
+        id: number
+        photo: string
+        emirate: string
+        price: number
+        isFeatured: boolean
+        type: string
+}
+
+
+const plateNumbers = ref<IPlate[]>([]);
+
+
+// onMounted(() => {
+//         fetchPlate();
+// });
 </script>
