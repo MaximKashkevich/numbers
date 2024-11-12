@@ -63,6 +63,7 @@ import ButtonBlue from '../Button-blue/ButtonBlue.vue';
 import { ref } from 'vue';
 import { useSignUpStore } from '@/stores/signUp';
 import { useSignInStore } from '@/stores/verification';
+import axios from 'axios';
 
 const signUp = useSignUpStore();
 const verification = useSignInStore();
@@ -153,20 +154,36 @@ const validate = () => {
 };
 
 
-// Метод для обработки отправки формы
-const onSubmit = () => {
-    validate(); // Выполняем проверку
+const onSubmit = async () => {
+ 
 
-    // Если ошибок нет, продолжаем
     if (errors.value.length === 0) {
-        // Выполнить вход
-        console.log('Form is valid, proceed with sign in.');
-        // Ваша логика входа здесь
-    } else {
-        console.log('Form has errors:', errors.value); // Логируем ошибки
+        try {
+           
+            const response = await axios.post('https://api.dev.numbers.ae/v1/auth/signup', {
+                email: inputTitle.value[0].value,
+                login: inputTitle.value[1].value,
+                fullName: inputTitle.value[2].value,
+                phone: inputTitle.value[3].value,
+                password: inputTitle.value[4].value,
+                confirmPassword: inputTitle.value[5].value,
+            });
 
+            const token = response.data.token;
+
+           
+            localStorage.setItem('authToken', token);
+
+            console.log('Регистрация успешна. Токен:', token);
+
+        } catch (error) {
+            console.error('Ошибка при регистрации:', error);
+        }
+    } else {
+        console.log('Форма содержит ошибки:', errors.value); 
     }
 };
+
 
 </script>
 

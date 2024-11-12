@@ -1,25 +1,56 @@
 <template>
         <div>
-                <!-- Hide Registration when Verification is rendered -->
-                <Registration v-if="signUp.signUp && !verification.signIn" />
-
-                <Verification v-if="verification.signIn" />
-                <!-- <NuxtPage /> -->
-                <!-- <Entrance /> -->
-                <!-- <GeneralEmpty /> -->
-                <!-- <GeneralPrimaryPages /> -->
-                <!-- <GeneralPrimaryPages />
-                <GeneralViewAds /> -->
-                <!-- <Login /> -->
-                <!-- <GeneralBlockTariff /> -->
-                <!-- <GeneralAddAdvertiseAuto /> -->
+          <!-- Hide Registration when Verification is rendered -->
+          <Registration v-if="signUp.signUp && !verification.signIn" />
+          <Verification v-if="verification.signIn" />
+          <Entrance />
+          <!-- Здесь можно добавить другие компоненты -->
+          <!-- <GeneralEmpty /> -->
+          <!-- <GeneralPrimaryPages /> -->
+          <!-- <GeneralViewAds /> -->
+          <!-- <Login /> -->
+          <!-- <GeneralBlockTariff /> -->
+          <!-- <GeneralAddAdvertiseAuto /> -->
         </div>
-        <!-- 
-        <Verification v-if="verification.signIn" /> -->
-        <!-- <NuxtPage /> -->
-        <Entrance />
-        <!-- <GeneralEmpty /> -->
+      </template>
+      
+      <script setup lang="ts">
+      import { onMounted } from 'vue';
+      import axios from 'axios';
+      
+      import Entrance from "./components/Entrance.vue";
+      import Registration from "./components/Registration/Registration.vue";
+      import Verification from "./components/Verification.vue";
+      
+      // Другие импорты...
+      import { useSignUpStore } from '@/stores/signUp';
+      import { useSignInStore } from '@/stores/verification';
+      
+      // Определение пропсов
+   
+      
+      const signUp = useSignUpStore();
+      const verification = useSignInStore();
+      
+    
+      const fetchSneakers = async () => {
+        try {
+          const id = '123'
+          const { data } = await axios.get(`https://api.dev.numbers.ae/v1/catalog/phone/123`);
+          
+          console.log(data);
+        } catch (error) {
+          console.error('Fetch error:', error);
+        }
+      };
 
+<<<<<<< HEAD
+      onMounted(() => {
+        fetchSneakers();
+      });
+      </script>
+      
+=======
         <!-- <GeneralPrimaryPages /> -->
 
         <!-- <GeneralPrimaryPages />
@@ -68,6 +99,7 @@ import Login from "./pages/Login.vue";
 const signUp = useSignUpStore();
 const verification = useSignInStore();
 
+<<<<<<< HEAD
 interface IPlate {
         id: number
         photo: string
@@ -85,3 +117,7 @@ const plateNumbers = ref<IPlate[]>([]);
 //         fetchPlate();
 // });
 </script>
+=======
+</script>
+>>>>>>> cda641cfa71d4bc20fbd607a2cce5190b7700562
+>>>>>>> cf6dd380d2f5ea62a29b7df2e693b773e557ceb0
