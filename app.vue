@@ -14,8 +14,13 @@
   </div>
 </template>
 <script setup lang="ts">
+<<<<<<< HEAD
 import { onMounted } from 'vue';
 import axios from 'axios';
+=======
+import axios from 'axios'
+import { ref, onMounted } from "vue";
+>>>>>>> 641d0a664fe4b7eb16b025b732824d52cfbf41c8
 
 import Entrance from "./components/Entrance.vue";
 import Registration from "./components/Registration/Registration.vue";
@@ -36,7 +41,10 @@ import ArchiveSimilarBlock from "./components/ArchiveButtons/ArchiveSimilarBlock
 import GeneralBlockTariff from "./pages/GeneralBlockTariff.vue";
 import GeneralAddAdvertiseAuto from "./pages/GeneralAddAdvertiseAuto.vue";
 import SignUp from "./pages/SignUp.vue";
+<<<<<<< HEAD
 import Login from "./pages/Login.vue";
+=======
+>>>>>>> 641d0a664fe4b7eb16b025b732824d52cfbf41c8
 
 import { useSignUpStore } from '@/stores/signUp';
 import { useSignInStore } from '@/stores/verification';
@@ -44,6 +52,7 @@ import { useSignInStore } from '@/stores/verification';
 const signUp = useSignUpStore();
 const verification = useSignInStore();
 
+<<<<<<< HEAD
 async function fetchPhoneData(id) {
     const url = `https://api.dev.numbers.ae/v1/catalog/phone/12345`; 
 
@@ -66,3 +75,27 @@ async function fetchPhoneData(id) {
 
 
 </script>
+=======
+<<<<<<< HEAD
+interface IPlate {
+        id: number
+        photo: string
+        emirate: string
+        price: number
+        isFeatured: boolean
+        type: string
+}
+
+
+const plateNumbers = ref<IPlate[]>([]);
+
+
+// onMounted(() => {
+//         fetchPlate();
+// });
+</script>
+=======
+</script>
+>>>>>>> cda641cfa71d4bc20fbd607a2cce5190b7700562
+>>>>>>> cf6dd380d2f5ea62a29b7df2e693b773e557ceb0
+>>>>>>> 641d0a664fe4b7eb16b025b732824d52cfbf41c8
