@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "axios": "^1.7.7",
     "consola": "^3.2.3",
+    "http-proxy-middleware": "^3.0.3",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.2",
     "swiper": "^10.3.1",
@@ -19,7 +21,9 @@
     "vite-plugin-vue-inspector": "^5.2.0",
     "vue": "latest",
     "vue-validate": "^1.0.1",
-    "yup": "^1.4.0"
+    "xml2js": "^0.6.2",
+    "yup": "^1.4.0",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@nuxt/typescript": "^2.8.1",

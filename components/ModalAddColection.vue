@@ -167,30 +167,37 @@ function getButtonClass(buttonType) {
 
 
 .modal {
-    width: 1000px;
-    max-width: 1000px;
+    width: 100%;
+    max-width: 1000px; 
     background: #FAFAFA;
     position: relative;
     padding: 50px 20px;
     gap: 50px;
     border-radius: 20px;
     opacity: 1;
-    height: 700px;
-    padding-left: 30px;
-    padding-right: 10px;
+    max-height: 90vh; 
+    overflow: hidden; 
 }
 
 .cards-container {
     margin-top: 40px;
-    max-height: 500px;
-    /* Максимальная высота контейнера с карточками */
-    height: 100%;
-    /* Чтобы занять всю доступную высоту */
-    overflow-y: auto;
-    /* Включаем вертикальный скролл */
+    max-height: 400px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
     margin-bottom: 20px;
-
+    padding-right: 10px; 
 }
+
+@media(max-width: 650px){
+  .modal {
+    height: auto;
+    max-height: 800px;
+  }
+  .cards-container {
+    max-height: 300px; 
+  }
+}
+
 
 /* Стили для кастомного скролла */
 .custom-scrollbar::-webkit-scrollbar {

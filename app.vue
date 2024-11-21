@@ -29,6 +29,8 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios'
+import { ref, onMounted } from "vue";
 
 import Entrance from "./components/Entrance.vue";
 import Registration from "./components/Registration/Registration.vue";
@@ -59,20 +61,37 @@ import GeneralBlockTariff from "./pages/GeneralBlockTariff.vue";
 import GeneralAddAdvertiseAuto from "./pages/GeneralAddAdvertiseAuto.vue";
 import SignUp from "./pages/SignUp.vue";
 
-//import PlateNumbers from "./components/PlateNumbers.vue";
-//import BuyNumbers2 from "./components/BuyNumbers2/BuyNumbers2.vue";
-//import CatalogNumbers from "./components/CatalogNumbers/CatalogNumbers.vue";
-//import License from "./components/Licence/License.vue";
-//import Viewed from "./components/viewed/Viewed.vue";
-//import Documentation from "./components/Documentation/Documentation.vue";
-//import PlateNUmberCard from "./components/PlateNumberCard/PlateNUmberCard.vue";
-
-
 import { useSignUpStore } from '@/stores/signUp';
 import { useSignInStore } from '@/stores/verification';
-import Login from "./pages/Login.vue";
 
 const signUp = useSignUpStore();
 const verification = useSignInStore();
+
+
+const plateNumbers = ref<IPlate[]>([]);
+
+interface IPlate {
+        id: number;
+        photo: string;
+        emirate: string;
+        price: number;
+        isFeatured: boolean;
+        type: string;
+}
+
+const fetchPlate = async () => {
+        try {
+                const { data } = await axios.get<IPlate[]>('https://api.dev.numbers.ae/v1/catalog/plate');
+                plateNumbers.value = data;
+                console.log(plateNumbers.value);
+        } catch (e) {
+                console.log(e)
+        }
+};
+
+onMounted(() => {
+        fetchPlate();
+});
+
 
 </script>

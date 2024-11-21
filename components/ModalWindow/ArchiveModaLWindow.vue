@@ -65,7 +65,7 @@
 
                     <div
                         class="w-[325px] h-[100px] rounded-[20px] border-[1px] border-[#BFBFBF] bg-[#FFFFFF] flex justify-center items-center mt-[-60px]">
-                        <!-- <img class="grey-img" src="../../public/assets/grayplate2.svg" alt=""> -->
+                        <img class="grey-img" src="../../public/assets/plate2.png" alt="">
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 <template>
 
-    <Login />
+    <login />
 </template>
 
 <script setup lang="ts">

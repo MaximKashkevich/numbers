@@ -174,101 +174,39 @@
         class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px] px-[50px]">
         Similar numbers:
     </h3>
-    <div
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px] px-[50px]">
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
-        <CardPlate />
+    <div v-if="plateCatalog.length > 0">
+       
+        <ul>
+            <li v-if="plateCatalog.length > page - 1">
+                <p>Plate: {{ plateCatalog[page - 1].plate }}</p>
+                <p>Price: <span v-html="plateCatalog[page - 1].price"></span></p>
+                <p>Emirate: {{ plateCatalog[page - 1].emirate }}</p>
+            </li>
+        </ul>
+    </div>
+    <div v-else>
+        <p>Данные не найдены или загружаются...</p>
     </div>
 
-    <!-- Ещё похожие номера -->
-    <h3
-        class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px] px-[50px]">
-        Similar numbers:
-    </h3>
-    <div v-if="isPlateSelected" class="flex w-full flex-wrap items-center gap-[20px] mt-[20px] px-[50px]">
-        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-        </div>
-        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <SimilarNumber />
-            <SimilarNumber />
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-        </div>
-        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <SimilarNumberLowPrice />
-            <SimilarNumberLowPrice />
-            <SimilarNumberLowPrice />
-            <SimilarNumber />
-        </div>
-        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <SimilarNumberLowPrice />
-            <SimilarNumberLowPrice />
-            <SimilarNumberLowPrice />
-            <SimilarNumberLowPrice />
-        </div>
-        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-            <SimilarNumberLowPrice />
-            <SimilarNumberLowPrice />
-        </div>
-        <div class="gap-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <SimilarNumberLowPrice />
-            <SimilarNumberLowPrice />
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-        </div>
+    <div v-if="phoneCatalog.length > 0" class="mt-[20px]">
+        <ul>
+            <li v-if="phoneCatalog.length > page - 1">
+                <p>Phone: {{ phoneCatalog[page - 1].phone }}</p>
+                <p>Price: <span v-html="phoneCatalog[page - 1].price"></span></p>
+                <p>Emirate: {{ phoneCatalog[page - 1].emirate }}</p>
+            </li>
+        </ul>
     </div>
-    
-
-    <div v-if="!isPlateSelected"
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px] px-[50px]">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-
+    <div v-else>
+        <p>Данные не найдены или загружаются...</p>
     </div>
+
 
 
 
     <!-- Пагинация -->
     <div>
-        <Pagination class="mt-[70px] px-[50px]" :total-pages="totalPages" :current-page="currentPage"
+        <Pagination class="mt-[70px] px-[50px]" :total-pages="totalPages" :current-page="page"
             @update:page="onPageChange" />
         <!-- <button @click="increaseTotalPages"  class="w-[100px] h-[52px] bg-[#fff] rounded-[20px] border-[1px] border-[#BFBFBF]">add page</button>
         <button @click="decreaseTotalPages" class="w-[100px] h-[52px] bg-[#fff] rounded-[20px] border-[1px] border-[#BFBFBF]">delete page</button> -->
@@ -283,7 +221,8 @@
 
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 import CardPlate from '../components/Card.vue';
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue';
@@ -310,12 +249,17 @@ export default {
         const postedDate = ref('Today');
         const isPlateSelected = ref(true);
         const activeButton = ref(null);
-        const totalPages = ref(10);
-        const currentPage = ref(1);
+        const totalPages = ref(0);
+        const page = ref(2);
+        const phoneCatalog = ref([]);
+        const plateCatalog = ref([]);
 
-        const onPageChange = (page) => {
-            currentPage.value = page;
+        const onPageChange = (newPage) => {
+            page.value = newPage;
+            fetchPhoneCatalog(page.value);
+            fetchPlateCatalog(page.value);
         };
+
 
         const showPlate = () => {
             isPlateSelected.value = true;
@@ -340,7 +284,7 @@ export default {
             };
         };
 
-        // Метод для очистки всех фильтров
+
         const clearFilters = () => {
             priceFrom.value = '';
             priceTo.value = '';
@@ -349,6 +293,37 @@ export default {
             isExactMatch.value = false;
             exactMatchValue.value = '';
         };
+
+
+        const fetchPhoneCatalog = async (pageNumber) => {
+            try {
+                console.log('Fetching data...');
+                const response = await axios.get(`https://api.dev.numbers.ae/v1/catalog/phone?page=${pageNumber}&order=desc`);
+                console.log('Data fetched:', response.data);
+                phoneCatalog.value = response.data.items || response.data;
+
+
+                totalPages.value = Math.ceil(phoneCatalog.value.length / 1);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        const fetchPlateCatalog = async (pageNumber) => {
+            try {
+                const response = await axios.get(`https://api.dev.numbers.ae/v1/catalog/plate?page=${pageNumber}&order=desc`);
+                plateCatalog.value = response.data.items || response.data;
+                totalPages.value = Math.ceil(response.data.length / 1); // Предположим, что на странице 10 элементов
+            } catch (error) {
+                console.error('Error fetching plate data:', error);
+            }
+        };
+
+        onMounted(() => {
+            fetchPhoneCatalog();
+            fetchPlateCatalog();
+
+        });
 
         return {
             isExactMatch,
@@ -362,20 +337,21 @@ export default {
             isPlateSelected,
             activeButton,
             totalPages,
-            currentPage,
+            page,
             onPageChange,
             showPlate,
             showMobile,
             seeMore,
             setActive,
             getButtonClass,
-            clearFilters, // Добавляем clearFilters в return
+            clearFilters,
+            phoneCatalog, // Возвращаем phoneCatalog
+            plateCatalog,
+            fetchPlateCatalog
         };
     }
-
 };
 </script>
-
 <style>
 .fade-slide-enter-active,
 .fade-slide-leave-active {
