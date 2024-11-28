@@ -18,7 +18,7 @@
         <!-- Входные данные и фильтры -->
         <div class="mt-[77px]">
             <h3
-                class="w-[1320px] h-[60px] text-[50px] font-medium leading-[60px] text-left title-input mb-[50px] uppercase">
+                class="max-w-[1320px] w-full h-[60px] text-[50px] font-medium leading-[60px] text-left title-input mb-[50px] uppercase">
                 Plate Numbers
             </h3>
             <div class="flex gap-[20px] items-center  flex-wrap">
@@ -96,9 +96,11 @@
                                         <label
                                             class="font-roboto text-lg font-normal leading-[19.2px] text-[#B3B3B3] mb-2">Price:</label>
                                         <div class="flex gap-4 flex-wrap">
-                                            <input type="text" v-model="priceFrom" placeholder="From"
+                                            <input type="text" v-model="stateinput" @click="activateInput"
+                                                placeholder="From"
                                                 class="w-full sm:w-[220px] h-[50px] rounded-full border border-[#BFBFBF] bg-[#FAFAFA] text-lg text-[#C2C2C2] font-normal leading-[19.2px] pl-4" />
-                                            <input type="text" v-model="priceTo" placeholder="Up to"
+                                            <input type="text" v-model="stateinput" @click="activateInput"
+                                                placeholder="Up to"
                                                 class="w-full sm:w-[220px] h-[50px] rounded-full border border-[#BFBFBF] bg-[#FAFAFA] text-lg text-[#C2C2C2] font-normal leading-[19.2px] pl-4" />
                                         </div>
                                     </div>
@@ -109,11 +111,11 @@
                                             class="font-roboto text-lg font-normal leading-[19.2px] text-[#B3B3B3]">Number
                                             of digits:</label>
                                         <div class="flex gap-2 button-container pt-1 mb-2 ml-5 flex-wrap">
-                                            <MiniButton @click="setNumberOfDigits(1)">1</MiniButton>
-                                            <MiniButton @click="setNumberOfDigits(2)">2</MiniButton>
-                                            <MiniButton @click="setNumberOfDigits(3)">3</MiniButton>
-                                            <MiniButton @click="setNumberOfDigits(4)">4</MiniButton>
-                                            <MiniButton @click="setNumberOfDigits(5)">5</MiniButton>
+                                            <MiniButton :disabled="!isActive" @click="shoNumbers(1)">1</MiniButton>
+                                            <MiniButton :disabled="!isActive" @click="shoNumbers(2)">2</MiniButton>
+                                            <MiniButton :disabled="!isActive" @click="shoNumbers(3)">3</MiniButton>
+                                            <MiniButton :disabled="!isActive" @click="shoNumbers(4)">4</MiniButton>
+                                            <MiniButton :disabled="!isActive" @click="shoNumbers(5)">5</MiniButton>
                                         </div>
                                         <button @click="clearNumberOfDigits"
                                             class="w-full sm:w-[461px] h-[50px] px-5 py-2.5 rounded-full border border-[#BFBFBF] text-lg ml-5 button--1">
@@ -171,34 +173,56 @@
 
     <!-- Похожие номера -->
     <h3
-        class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px] px-[50px]">
+        class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px] px-[60px]">
         Similar numbers:
     </h3>
-    <div v-if="plateCatalog.length > 0">
-       
-        <ul>
-            <li v-if="plateCatalog.length > page - 1">
-                <p>Plate: {{ plateCatalog[page - 1].plate }}</p>
-                <p>Price: <span v-html="plateCatalog[page - 1].price"></span></p>
-                <p>Emirate: {{ plateCatalog[page - 1].emirate }}</p>
-            </li>
-        </ul>
-    </div>
-    <div v-else>
-        <p>Данные не найдены или загружаются...</p>
-    </div>
+    <div class="px-[60px] flex flex-col gap-[50px]">
+        <div v-if="filteredPlates.length > 0">
+            <ul class="flex gap-[20px] flex-wrap">
+                <li class="hover:shadow-2xl py-[30px] px-[30px] hover:shadow-orange-200 transition flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[3px] border-[#FF9C00]"
+                    v-for="(plate, index) in filteredPlates" :key="index">
+                    <div>
+                        <p>Plate: {{ plate.plate }}</p>
+                        <p class="w-[180px] h-[24px] text-[20px] font-medium leading-[24px]">
+                            Price: <span v-html="plate.price"></span>
+                        </p>
+                        <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3] pt-16">
+                            Emirate: {{ plate.emirate }}
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-    <div v-if="phoneCatalog.length > 0" class="mt-[20px]">
-        <ul>
-            <li v-if="phoneCatalog.length > page - 1">
-                <p>Phone: {{ phoneCatalog[page - 1].phone }}</p>
-                <p>Price: <span v-html="phoneCatalog[page - 1].price"></span></p>
-                <p>Emirate: {{ phoneCatalog[page - 1].emirate }}</p>
-            </li>
-        </ul>
-    </div>
-    <div v-else>
-        <p>Данные не найдены или загружаются...</p>
+        <div v-else>
+           
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+           
+        </div>
+
+        <div v-if="getPhonesForPage.length > 0" class="mt-[20px]">
+            <ul class="flex gap-[20px] flex-wrap">
+                <li class="flex-1 min-w-[300px] max-w-[426px] h-auto p-4 rounded-[20px] bg-white border-[2px] border-[#B3B3B3] flex flex-col justify-between"
+                    v-for="(phone, index) in getPhonesForPage" :key="index">
+                    <p>Phone: {{ phone.phone }}</p>
+                    <p class="w-[180px] h-[24px] text-[20px] font-medium leading-[24px]">Price: <span
+                            v-html="phone.price"></span></p>
+                    <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3] pt-16">Emirate: {{ phone.emirate
+                        }}</p>
+                </li>
+            </ul>
+        </div>
+        <div v-else>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </div>
 
 
@@ -222,13 +246,15 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import CardPlate from '../components/Card.vue';
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue';
 import Pagination from '../components/Pagination/Pagination.vue';
 import MiniButton from '../components/MiniButton/MiniButton.vue';
 import Card from '../components/Card.vue';
+import { useAuthStore } from '@/stores/auth';
+
 
 export default {
     components: {
@@ -250,14 +276,56 @@ export default {
         const isPlateSelected = ref(true);
         const activeButton = ref(null);
         const totalPages = ref(0);
-        const page = ref(2);
+        const page = ref(1);
         const phoneCatalog = ref([]);
         const plateCatalog = ref([]);
+        const itemsPerPage = 3;
+        const stateinput = ref('');
+        const isActive = ref(false);
+        const authStore = useAuthStore();
+        const token = authStore.authToken;
+
+
+        const maxprice = ref('20000');
+        const pricelow = ref('10000');
+        const isActiveinput = ref(false);
+
+
+        const filteredPlates = computed(() => {
+            const from = pricelow.value ? parseFloat(pricelow.value) : 0;
+            const to = maxprice.value ? parseFloat(maxprice.value) : Infinity;
+
+            return plateCatalog.value.filter(item => {
+
+                const priceString = item.price.replace(/[^0-9.]/g, '');
+                const price = parseFloat(priceString);
+
+
+                if (isNaN(price)) {
+                    console.warn(`Цена для ${item.plate} некорректна: ${item.price}`);
+                    return false;
+                }
+
+                return price >= from && price <= to;
+            });
+        });
+
+        const activateInput = () => {
+            isActive.value = true;
+        };
+
+        const enableInput = () => {
+            isReadonly.value = false;
+        };
 
         const onPageChange = (newPage) => {
             page.value = newPage;
             fetchPhoneCatalog(page.value);
             fetchPlateCatalog(page.value);
+        };
+
+        const shoNumbers = (num) => {
+            stateinput.value += num;
         };
 
 
@@ -284,28 +352,21 @@ export default {
             };
         };
 
-
         const clearFilters = () => {
-            priceFrom.value = '';
-            priceTo.value = '';
+            stateinput.value = '';
             selectedDigits.value = [];
             postedDate.value = 'Today';
             isExactMatch.value = false;
             exactMatchValue.value = '';
         };
 
-
         const fetchPhoneCatalog = async (pageNumber) => {
             try {
-                console.log('Fetching data...');
                 const response = await axios.get(`https://api.dev.numbers.ae/v1/catalog/phone?page=${pageNumber}&order=desc`);
-                console.log('Data fetched:', response.data);
                 phoneCatalog.value = response.data.items || response.data;
-
-
-                totalPages.value = Math.ceil(phoneCatalog.value.length / 1);
+                totalPages.value = Math.ceil(phoneCatalog.value.length / itemsPerPage);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching phone data:', error);
             }
         };
 
@@ -313,17 +374,74 @@ export default {
             try {
                 const response = await axios.get(`https://api.dev.numbers.ae/v1/catalog/plate?page=${pageNumber}&order=desc`);
                 plateCatalog.value = response.data.items || response.data;
-                totalPages.value = Math.ceil(response.data.length / 1); // Предположим, что на странице 10 элементов
             } catch (error) {
                 console.error('Error fetching plate data:', error);
             }
         };
+        const getSettingForSelect = async () => {
+            try {
+                const response = await axios.get(`https://api.dev.numbers.ae/v1/account/operators/list`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+            } catch (error) {
+                console.error('проблемы брат', error);
+            }
+        };
+
+        const getSelect = async () => {
+            if (!token) {
+                console.error('Токен отсутствует. Пожалуйста, выполните вход.');
+                return;
+            }
+
+            try {
+                const response = await axios.get(
+                    `https://api.dev.numbers.ae/v1/account/operators/list`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                console.log('Ответ от API:', response.data);
+            } catch (error) {
+
+                if (axios.isAxiosError(error)) {
+                    console.error('Ошибка Axios:', error.message);
+                    console.error('Данные ошибки:', error.response?.data || 'Нет данных');
+                } else {
+                    console.error('Неизвестная ошибка:', error);
+                }
+            }
+        };
+
+
+        const getPlatesForPage = computed(() => {
+            const start = (page.value - 1) * itemsPerPage;
+            return plateCatalog.value.slice(start, start + itemsPerPage);
+        });
+
+        const getPhonesForPage = computed(() => {
+            const start = (page.value - 1) * itemsPerPage;
+            return phoneCatalog.value.slice(start, start + itemsPerPage);
+        });
 
         onMounted(() => {
-            fetchPhoneCatalog();
-            fetchPlateCatalog();
+            fetchPhoneCatalog(page.value);
+            fetchPlateCatalog(page.value, 1);
+            getSettingForSelect()
+
 
         });
+
+        console.log(getSelect());
+
+
+
 
         return {
             isExactMatch,
@@ -345,14 +463,67 @@ export default {
             setActive,
             getButtonClass,
             clearFilters,
-            phoneCatalog, // Возвращаем phoneCatalog
+            phoneCatalog,
             plateCatalog,
-            fetchPlateCatalog
+            fetchPlateCatalog,
+            getPlatesForPage,
+            getPhonesForPage,
+            stateinput,
+            shoNumbers,
+            stateinput,
+            isReadonly,
+            enableInput,
+            stateinput,
+            isActive,
+            activateInput,
+            maxprice,
+            pricelow,
+            filteredPlates,
         };
-    }
+    },
 };
 </script>
 <style>
+.dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.dots span {
+    width: 10px;
+    height: 10px;
+    background-color: #2b4dbd;
+    border-radius: 50%;
+    animation: blink 1.5s infinite ease-in-out;
+}
+
+.dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes blink {
+
+    0%,
+    80%,
+    100% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+}
+
 .fade-slide-enter-active,
 .fade-slide-leave-active {
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -444,6 +615,13 @@ export default {
     .checkbox-container {
         margin-bottom: 20px;
     }
+
+}
+
+@media(max-width: 530px) {
+   .dots{
+    margin-top: 80px;
+   }
 
 }
 </style>
