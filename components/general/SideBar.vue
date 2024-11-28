@@ -77,17 +77,26 @@
     </section>
 </template>
 
-<script>
+<script lang="ts">
 import { reactive, ref, onMounted } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 import axios from 'axios';
 
 export default {
+
+
+
     setup() {
+
+        interface userData {
+            fullName: string,
+            email: string,
+            mobileNumber: string,
+        }
         const authStore = useAuthStore();
         const token = authStore.authToken;
 
-        const userData = reactive({
+        const userData: userData = reactive({
             fullName: '',
             email: '',
             mobileNumber: '',

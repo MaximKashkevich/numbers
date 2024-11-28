@@ -69,22 +69,39 @@
   import { useRouter } from 'vue-router';
   import axios from 'axios';
   import { useAuthStore } from '@/stores/auth'
+
+  interface FormInterface {
+    username: string | number,
+    password: string | number,
+    rememberMe: boolean,
+  }
+
+  interface errors {
+    username: string,
+    password: string,
+  }
+
+  interface apiLOgs {
+    email: string,
+    password: string,
+  }
+  
   
   const router = useRouter();
   
   // Data binding for the form
-  const form = ref({
+  const form = ref<FormInterface>({
     username: '',
     password: '',
     rememberMe: false,
   });
   
-  const errors = ref({
+  const errors = ref<errors>({
     username: '',
     password: '',
   });
   
-  const apiLog = reactive({
+  const apiLog = reactive<apiLOgs>({
     email: "",
     password: ""
   });
