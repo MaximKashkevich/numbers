@@ -450,6 +450,9 @@ const seeMore3 = () => {
     showMore3.value = !showMore3.value;
     showDots3.value = !showDots3.value;
 };
+definePageMeta({
+    name: 'Home',
+});
 </script>
 
 

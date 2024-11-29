@@ -1,36 +1,29 @@
 <template>
-        <div>
-                <!-- Hide Registration when Verification is rendered -->
-                <Registration v-if="signUp.signUp && !verification.signIn" />
 
-                <Verification v-if="verification.signIn" />
-                <!-- <NuxtPage /> -->
-                <!-- <Entrance /> -->
-                <!-- <GeneralEmpty /> -->
-                <!-- <GeneralPrimaryPages /> -->
-                <!-- <GeneralPrimaryPages />
-                <GeneralViewAds /> -->
-                <!-- <Login /> -->
-                <!-- <GeneralBlockTariff /> -->
-                <!-- <GeneralAddAdvertiseAuto /> -->
-        </div>
-        <!-- 
-        <Verification v-if="verification.signIn" /> -->
-        <!-- <NuxtPage /> -->
-        <Entrance />
-        <!-- <GeneralEmpty /> -->
+  <div>
+    <!-- Hide Registration when Verification is rendered -->
+    <Registration v-if="signUp.signUp && !verification.signIn" />
+    <Verification v-if="verification.signIn" />
+    <Entrance />
+    <!-- Здесь можно добавить другие компоненты -->
+    <!-- <GeneralEmpty /> -->
+    <!-- <GeneralPrimaryPages /> -->
+    <!-- <GeneralViewAds /> -->
+    <!-- <Login /> -->
+    <!-- <GeneralBlockTariff /> -->
+    <!-- <GeneralAddAdvertiseAuto /> -->
+  </div>
 
-        <!-- <GeneralPrimaryPages /> -->
-
-        <!-- <GeneralPrimaryPages />
-        <GeneralViewAds /> -->
-
-        <!-- <SignUp /> -->
 </template>
 
 <script setup lang="ts">
+
+
+
 import axios from 'axios'
 import { ref, onMounted } from "vue";
+
+
 
 import Entrance from "./components/Entrance.vue";
 import Registration from "./components/Registration/Registration.vue";
@@ -61,11 +54,42 @@ import GeneralBlockTariff from "./pages/GeneralBlockTariff.vue";
 import GeneralAddAdvertiseAuto from "./pages/GeneralAddAdvertiseAuto.vue";
 import SignUp from "./pages/SignUp.vue";
 
+
 import { useSignUpStore } from '@/stores/signUp';
 import { useSignInStore } from '@/stores/verification';
 
 const signUp = useSignUpStore();
 const verification = useSignInStore();
+
+
+
+async function fetchPhoneData(id) {
+  const url = `https://api.dev.numbers.ae/v1/catalog/phone/12345`;
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error('Ошибка при получении данных: ' + response.statusText);
+    }
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Ошибка:', error);
+  }
+}
+
+
+interface IPlate {
+  id: number
+  photo: string
+  emirate: string
+  price: number
+  isFeatured: boolean
+  type: string
+}
+
 
 
 const plateNumbers = ref<IPlate[]>([]);
@@ -95,3 +119,4 @@ onMounted(() => {
 
 
 </script>
+
