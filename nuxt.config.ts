@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
@@ -10,12 +9,14 @@ export default defineNuxtConfig({
     },
   },
 
-  // build: {
-  //   transpile: [
-  //     // ...другие значения
-  //     "typescript",
-  //   ],
-  // },
+  build: {
+    transpile: [
+      "typescript", 
+    ],
+  },
+
+
+  buildModules: ["@pinia/nuxt"],
 
   compatibilityDate: "2024-09-03",
 });

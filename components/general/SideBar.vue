@@ -67,10 +67,10 @@
             </ul>
             <ul>
                 <li class="my-1 label">
-                    <NuxtLink :class="{ activeLink: $route.path === '/logout' }" to="/logout"
+                    <button @click="logout"
                         class="text-black leading-[24px] text-xl cursor-pointer font-medium hover:font-medium transition">
                         Log Out
-                    </NuxtLink>
+                    </button>
                 </li>
             </ul>
         </div>
@@ -93,6 +93,21 @@ export default {
             email: string,
             mobileNumber: string,
         }
+
+        const logout = () => {
+            authStore.clearToken();
+            const token = authStore.authToken;
+
+            if (!token) {
+
+                router.push('/');
+            }
+        };
+
+        const router = useRouter();
+
+
+
         const authStore = useAuthStore();
         const token = authStore.authToken;
 
@@ -139,6 +154,7 @@ export default {
         return {
             userData,
             lastLogin,
+            logout,
         };
     },
 };

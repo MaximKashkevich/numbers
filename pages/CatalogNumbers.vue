@@ -55,8 +55,9 @@
                 <div>
                     <label for="code"
                         class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Prefix:</label>
-                    <select id="emirate" name="code"
+                    <select id="code-list" name="code"
                         class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
+                        <option>050</option>
                         <option>050</option>
                     </select>
                 </div>
@@ -96,12 +97,10 @@
                                         <label
                                             class="font-roboto text-lg font-normal leading-[19.2px] text-[#B3B3B3] mb-2">Price:</label>
                                         <div class="flex gap-4 flex-wrap">
-                                            <input type="text" v-model="stateinput" @click="activateInput"
-                                                placeholder="From"
-                                                class="w-full sm:w-[220px] h-[50px] rounded-full border border-[#BFBFBF] bg-[#FAFAFA] text-lg text-[#C2C2C2] font-normal leading-[19.2px] pl-4" />
-                                            <input type="text" v-model="stateinput" @click="activateInput"
-                                                placeholder="Up to"
-                                                class="w-full sm:w-[220px] h-[50px] rounded-full border border-[#BFBFBF] bg-[#FAFAFA] text-lg text-[#C2C2C2] font-normal leading-[19.2px] pl-4" />
+                                            <input type="text" v-model="maxprice2" placeholder="From"
+                                                class="w-full max-w-[220px] h-[50px] rounded-full border border-[#BFBFBF] bg-[#FAFAFA] text-lg text-[#C2C2C2] font-normal leading-[19.2px] pl-4" />
+                                            <input type="text" v-model="pricelow2" placeholder="Up to"
+                                                class="w-full max-w-[220px] h-[50px] rounded-full border border-[#BFBFBF] bg-[#FAFAFA] text-lg text-[#C2C2C2] font-normal leading-[19.2px] pl-4" />
                                         </div>
                                     </div>
 
@@ -118,7 +117,7 @@
                                             <MiniButton :disabled="!isActive" @click="shoNumbers(5)">5</MiniButton>
                                         </div>
                                         <button @click="clearNumberOfDigits"
-                                            class="w-full sm:w-[461px] h-[50px] px-5 py-2.5 rounded-full border border-[#BFBFBF] text-lg ml-5 button--1">
+                                            class="w-full max-w-[461px] h-[50px] px-5 py-2.5 rounded-full border border-[#BFBFBF] text-lg ml-5 button--1">
                                             Any number of digits
                                         </button>
                                     </div>
@@ -177,7 +176,7 @@
         Similar numbers:
     </h3>
     <div class="px-[60px] flex flex-col gap-[50px]">
-        <div v-if="filteredPlates.length > 0">
+        <div v-if="isPlateSelected && filteredPlates.length > 0" class="mt-[40px]">
             <ul class="flex gap-[20px] flex-wrap">
                 <li class="hover:shadow-2xl py-[30px] px-[30px] hover:shadow-orange-200 transition flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[3px] border-[#FF9C00]"
                     v-for="(plate, index) in filteredPlates" :key="index">
@@ -194,20 +193,10 @@
             </ul>
         </div>
 
-        <div v-else>
-           
-            <div class="dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-           
-        </div>
-
-        <div v-if="getPhonesForPage.length > 0" class="mt-[20px]">
+        <div v-if="!isPlateSelected && filteredPlates2.length > 0" class="mt-[40px]">
             <ul class="flex gap-[20px] flex-wrap">
                 <li class="flex-1 min-w-[300px] max-w-[426px] h-auto p-4 rounded-[20px] bg-white border-[2px] border-[#B3B3B3] flex flex-col justify-between"
-                    v-for="(phone, index) in getPhonesForPage" :key="index">
+                    v-for="(phone, index) in filteredPlates2" :key="index">
                     <p>Phone: {{ phone.phone }}</p>
                     <p class="w-[180px] h-[24px] text-[20px] font-medium leading-[24px]">Price: <span
                             v-html="phone.price"></span></p>
@@ -215,13 +204,6 @@
                         }}</p>
                 </li>
             </ul>
-        </div>
-        <div v-else>
-            <div class="dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </div>
 
@@ -286,9 +268,35 @@ export default {
         const token = authStore.authToken;
 
 
-        const maxprice = ref('20000');
-        const pricelow = ref('10000');
+        const maxprice = ref('150000');
+        const pricelow = ref('2000');
         const isActiveinput = ref(false);
+
+
+        const filteredPlates2 = computed(() => {
+            const from = pricelow2.value ? parseFloat(pricelow2.value) : 0;
+            const to = maxprice2.value ? parseFloat(maxprice2.value) : Infinity;
+
+            return phoneCatalog.value.filter(item => {
+
+                const priceString = item.price.replace(/[^0-9.]/g, '');
+                const price = parseFloat(priceString);
+
+
+                if (isNaN(price)) {
+                    console.warn(`Цена для ${item.plate} некорректна: ${item.price}`);
+                    return false;
+                }
+
+                return price >= from && price <= to;
+            });
+
+        });
+
+        const maxprice2 = ref('');
+        const pricelow2 = ref('');
+
+
 
 
         const filteredPlates = computed(() => {
@@ -310,9 +318,8 @@ export default {
             });
         });
 
-        const activateInput = () => {
-            isActive.value = true;
-        };
+
+
 
         const enableInput = () => {
             isReadonly.value = false;
@@ -335,6 +342,30 @@ export default {
 
         const showMobile = () => {
             isPlateSelected.value = false;
+
+            const filteredPlates2 = computed(() => {
+                const from = pricelow2.value ? parseFloat(pricelow2.value) : 0;
+                const to = maxprice2.value ? parseFloat(maxprice2.value) : Infinity;
+
+                return phoneCatalog.value.filter(item => {
+
+                    const priceString = item.price.replace(/[^0-9.]/g, '');
+                    const price = parseFloat(priceString);
+
+
+                    if (isNaN(price)) {
+                        console.warn(`Цена для ${item.plate} некорректна: ${item.price}`);
+                        return false;
+                    }
+
+                    return price >= from && price <= to;
+                });
+
+            });
+
+            const maxprice2 = ref('4000');
+            const pricelow2 = ref('1000');
+
         };
 
         const seeMore = () => {
@@ -374,6 +405,7 @@ export default {
             try {
                 const response = await axios.get(`https://api.dev.numbers.ae/v1/catalog/plate?page=${pageNumber}&order=desc`);
                 plateCatalog.value = response.data.items || response.data;
+                totalPages.value = Math.ceil(phoneCatalog.value.length / itemsPerPage);
             } catch (error) {
                 console.error('Error fetching plate data:', error);
             }
@@ -391,33 +423,58 @@ export default {
             }
         };
 
-        const getSelect = async () => {
-            if (!token) {
-                console.error('Токен отсутствует. Пожалуйста, выполните вход.');
-                return;
-            }
-
+        const getOperatorList = async () => {
             try {
-                const response = await axios.get(
-                    `https://api.dev.numbers.ae/v1/account/operators/list`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
+                const response = await axios.get(`https://api.dev.numbers.ae/v1/account/operators/list`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                if (response.data && response.data.success) {
+                    const operators = response.data.result.items; 
+                    const selectElement = document.getElementById('emirate'); 
 
-                console.log('Ответ от API:', response.data);
-            } catch (error) {
+                 
+                    selectElement.innerHTML = '';
 
-                if (axios.isAxiosError(error)) {
-                    console.error('Ошибка Axios:', error.message);
-                    console.error('Данные ошибки:', error.response?.data || 'Нет данных');
-                } else {
-                    console.error('Неизвестная ошибка:', error);
+                  
+                    operators.forEach((operator) => {
+                        const option = document.createElement('option');
+                        option.value = operator.id; 
+                        option.textContent = operator.name; 
+                        selectElement.appendChild(option);
+                    });
                 }
+            } catch (e) {
+                console.error('Ошибка при получении операторов:', e);
             }
         };
+
+        const getNumberList = async () => {
+    try {
+        const response = await axios.get(`https://api.dev.numbers.ae/v1/account/operators/codes/list`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (response.data && response.data.success) {
+            const codes = response.data.result.items; 
+            const selectElement = document.getElementById('code-list'); 
+            selectElement.innerHTML = '';
+            codes.forEach((code) => {
+                const option = document.createElement('option');
+                option.value = code.id;
+                option.textContent = code.name || code.code; 
+                selectElement.appendChild(option);
+            });
+        }
+    } catch (e) {
+        console.error('Ошибка при получении кодов:', e);
+    }
+};
+
+
+
 
 
         const getPlatesForPage = computed(() => {
@@ -434,11 +491,11 @@ export default {
             fetchPhoneCatalog(page.value);
             fetchPlateCatalog(page.value, 1);
             getSettingForSelect()
-
-
+            getOperatorList()
+            getNumberList()
         });
 
-        console.log(getSelect());
+
 
 
 
@@ -475,10 +532,10 @@ export default {
             enableInput,
             stateinput,
             isActive,
-            activateInput,
             maxprice,
             pricelow,
             filteredPlates,
+            filteredPlates2,
         };
     },
 };
@@ -619,9 +676,9 @@ export default {
 }
 
 @media(max-width: 530px) {
-   .dots{
-    margin-top: 80px;
-   }
+    .dots {
+        margin-top: 80px;
+    }
 
 }
 </style>

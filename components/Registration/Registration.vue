@@ -69,11 +69,11 @@ export interface ApiRegTypes {
   mobileNumber: string;
 }
 const apiRegisterData: ApiRegTypes = reactive({
-  login: 'LoginUserssr',
-  email: 'quisez0912@gmail.com',
-  password: 'bebratop22881',
-  fullName: 'Jonh Doessese',
-  mobileNumber: '+09876543158',
+  login: 'Maksimus228',
+  email: 'maksimkalol1402@gmail.com',
+  password: 'bebratop2288',
+  fullName: 'Mamut Rahal',
+  mobileNumber: '+09876543141',
 });
 
 
