@@ -6,14 +6,18 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background: #FAFAFA;
+  background: #fafafa;
 }
 
-a{
+a {
   cursor: pointer;
 }
 
-input{
+input {
   cursor: pointer;
 }
 
+html,
+body {
+  overflow-x: hidden; /* Убираем горизонтальный скролл */
+}

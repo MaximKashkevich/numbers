@@ -1,34 +1,21 @@
 <template>
     <div class="pagination">
-        <button 
-            v-if="currentPage > 4" 
-            @click="changePage(1)" 
-            :class="{ 'active': currentPage === 1 }"
-            class="page-number"
-        >
+        <button v-if="currentPage > 4" @click="changePage(1)" :class="{ 'active': currentPage === 1 }"
+            class="page-number">
             1
         </button>
 
         <span v-if="currentPage > 5"> ... </span>
 
-        <button 
-            v-for="page in pagesToShow" 
-            :key="page" 
-            :class="{ 'active': page === currentPage }" 
-            class="page-number"
-            @click="changePage(page)"
-        >
+        <button v-for="page in pagesToShow" :key="page" :class="{ 'active': page === currentPage }" class="page-number"
+            @click="changePage(page)">
             {{ page }}
         </button>
 
         <span v-if="currentPage < totalPages - 4"> ... </span>
 
-        <button 
-            v-if="currentPage < totalPages - 3" 
-            @click="changePage(totalPages)" 
-            :class="{ 'active': currentPage === totalPages }"
-            class="page-number"
-        >
+        <button v-if="currentPage < totalPages - 3" @click="changePage(totalPages)"
+            :class="{ 'active': currentPage === totalPages }" class="page-number">
             {{ totalPages }}
         </button>
     </div>

@@ -14,7 +14,8 @@
     </div>
 
     <main>
-        <section class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[34px] flex-wrap big-container">
+        <section
+            class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[34px] flex-wrap big-container">
             <nav class="w-full md:w-[300px] lg:w-[500px]">
                 <SideBar />
             </nav>
@@ -40,6 +41,8 @@
                                 <li>1 ad for sale</li>
                                 <li>No update</li>
                             </ol>
+                            <!-- <ButtonBlue class="w-[250px] h-[50px] flex items-center justify-center mt-6 md:w-auto">
+                                FREE 1 MONTH</ButtonBlue> -->
                             <ButtonBlue class="w-[250px] px-2 h-[50px] flex items-center justify-center mt-6 md:w-auto">
                                 FREE 1 MONTH</ButtonBlue>
                         </div>
@@ -52,6 +55,8 @@
                                 <li>Any number of ads</li>
                                 <li>Updates every 7 days</li>
                             </ol>
+                            <!-- <ButtonBlue class="w-[250px] px-2 h-[50px] flex items-center justify-center mt-6 md:w-auto">
+                                PAY 5 MONTH</ButtonBlue> -->
                             <ButtonBlue class="w-[250px] px-2 h-[50px] flex items-center justify-center mt-6 md:w-auto">
                                 PAY 5 MONTH</ButtonBlue>
                         </div>

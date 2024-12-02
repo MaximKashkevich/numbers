@@ -1,6 +1,6 @@
 <template>
     <NuxtPage />
-    <div class="pl-[60px] pr-[60px] mt-[150px]">
+    <div class="px-[30px] mt-[150px]">
         <h1 class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2">
             PLATE AND MOBILE NUMBERS IN UAE
         </h1>
@@ -97,18 +97,7 @@
             </h3>
             <div
                 class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px]">
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
+                <CardPlateList />
             </div>
             <ButtonBlue
                 class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] font-bold text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap">
@@ -376,11 +365,11 @@
 
 <script setup lang="ts">
 import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
-import CartPlate from '../components/CardPlate/CardPlate.vue'
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue'
 import CardLicenses from '../components/CardLicenses/CardLicenses.vue'
 import ButtonPlus from '../components/ButtonPlus/ButtonPlus.vue'
+import CardPlateList from '../components/CardPlate/CardPlateList.vue';
 import { ref } from 'vue';
 
 // Определение интерфейса для Input

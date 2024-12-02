@@ -92,6 +92,7 @@
                             <div class="flex flex-col gap-6 mt-8">
                                 <!-- Price Range -->
                                 <div class="flex flex-wrap gap-4">
+                                    <!--  Стоимость от и до -->
                                     <div class="flex flex-col">
                                         <label
                                             class="font-roboto text-lg font-normal leading-[19.2px] text-[#B3B3B3] mb-2">Price:</label>
@@ -174,13 +175,12 @@
         class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px] px-[50px]">
         Similar numbers:
     </h3>
-    <div v-if="plateCatalog.length > 0">
-       
+    <div v-if="filteredPlateCatalog.length > 0">
         <ul>
-            <li v-if="plateCatalog.length > page - 1">
-                <p>Plate: {{ plateCatalog[page - 1].plate }}</p>
-                <p>Price: <span v-html="plateCatalog[page - 1].price"></span></p>
-                <p>Emirate: {{ plateCatalog[page - 1].emirate }}</p>
+            <li v-if="filteredPlateCatalog.length > page - 1">
+                <p>Plate: {{ filteredPlateCatalog[page - 1].plate }}</p>
+                <p>Price: <span v-html="filteredPlateCatalog[page - 1].price"></span></p>
+                <p>Emirate: {{ filteredPlateCatalog[page - 1].emirate }}</p>
             </li>
         </ul>
     </div>
@@ -188,15 +188,18 @@
         <p>Данные не найдены или загружаются...</p>
     </div>
 
-    <div v-if="phoneCatalog.length > 0" class="mt-[20px]">
+    <div v-if="filteredPhoneCatalog.length > 0" class="mt-[20px]">
         <ul>
-            <li v-if="phoneCatalog.length > page - 1">
-                <p>Phone: {{ phoneCatalog[page - 1].phone }}</p>
-                <p>Price: <span v-html="phoneCatalog[page - 1].price"></span></p>
-                <p>Emirate: {{ phoneCatalog[page - 1].emirate }}</p>
+            <li v-if="filteredPhoneCatalog.length > page - 1">
+                <p>Phone: {{ filteredPhoneCatalog[page - 1].phone }}</p>
+                <p>Price: <span v-html="filteredPhoneCatalog[page - 1].price"></span></p>
+                <p>Emirate: {{ filteredPhoneCatalog[page - 1].emirate }}</p>
             </li>
         </ul>
     </div>
+
+
+
     <div v-else>
         <p>Данные не найдены или загружаются...</p>
     </div>
@@ -221,7 +224,7 @@
 
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import CardPlate from '../components/Card.vue';
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
@@ -241,18 +244,31 @@ export default {
     setup() {
         const isExactMatch = ref(false);
         const exactMatchValue = ref('');
-        const showMore = ref(false);
-        const isChecked = ref(false);
-        const priceFrom = ref('');
-        const priceTo = ref('');
-        const selectedDigits = ref([]);
-        const postedDate = ref('Today');
-        const isPlateSelected = ref(true);
-        const activeButton = ref(null);
-        const totalPages = ref(0);
-        const page = ref(2);
         const phoneCatalog = ref([]);
         const plateCatalog = ref([]);
+        const filteredPhoneCatalog = computed(() => {
+            if (exactMatchValue.value.trim() === '') {
+                return phoneCatalog.value;
+            }
+            return phoneCatalog.value.filter(phone =>
+                phone.phone.includes(exactMatchValue.value) ||
+                phone.price.toString().includes(exactMatchValue.value) ||
+                phone.emirate.includes(exactMatchValue.value)
+            );
+        });
+
+        const filteredPlateCatalog = computed(() => {
+            if (exactMatchValue.value.trim() === '') {
+                return plateCatalog.value;
+            }
+            return plateCatalog.value.filter(plate =>
+                plate.plate.includes(exactMatchValue.value) ||
+                plate.price.toString().includes(exactMatchValue.value) ||
+                plate.emirate.includes(exactMatchValue.value)
+            );
+        });
+
+
 
         const onPageChange = (newPage) => {
             page.value = newPage;
@@ -297,15 +313,14 @@ export default {
 
         const fetchPhoneCatalog = async (pageNumber) => {
             try {
-                console.log('Fetching data...');
+                console.log('Fetching phone data...');
                 const response = await axios.get(`https://api.dev.numbers.ae/v1/catalog/phone?page=${pageNumber}&order=desc`);
-                console.log('Data fetched:', response.data);
+                console.log('Phone data fetched:', response.data);
                 phoneCatalog.value = response.data.items || response.data;
-
 
                 totalPages.value = Math.ceil(phoneCatalog.value.length / 1);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching phone data:', error);
             }
         };
 
@@ -313,7 +328,7 @@ export default {
             try {
                 const response = await axios.get(`https://api.dev.numbers.ae/v1/catalog/plate?page=${pageNumber}&order=desc`);
                 plateCatalog.value = response.data.items || response.data;
-                totalPages.value = Math.ceil(response.data.length / 1); // Предположим, что на странице 10 элементов
+                totalPages.value = Math.ceil(plateCatalog.value.length / 1); // Assuming 1 item per page
             } catch (error) {
                 console.error('Error fetching plate data:', error);
             }
@@ -349,7 +364,27 @@ export default {
             plateCatalog,
             fetchPlateCatalog
         };
-    }
+    },
+
+    computed: {
+        filteredPlateCatalog() {
+            if (this.isExactMatch && this.exactMatchValue) {
+                return this.plateCatalog.filter(plate =>
+                    plate.price.toString().includes(this.exactMatchValue)
+                );
+            }
+            return this.plateCatalog; // Return all if no exact match is needed
+        },
+        filteredPhoneCatalog() {
+            if (this.isExactMatch && this.exactMatchValue) {
+                return this.phoneCatalog.filter(phone =>
+                    phone.price.toString().includes(this.exactMatchValue)
+                );
+            }
+            return this.phoneCatalog; // Return all if no exact match is needed
+        }
+    },
+
 };
 </script>
 <style>
