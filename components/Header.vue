@@ -75,7 +75,7 @@
                     </NuxtLink>
                 </li>
             </ul>
-            1
+            <!-- 1 -->
             <div class="flex  items-center gap-4 ml-4">
 
                 <div class="flex ml-auto">
