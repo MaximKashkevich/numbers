@@ -176,7 +176,6 @@
         class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px] px-[60px]">
         Similar numbers:
     </h3>
-<<<<<<< HEAD
     <div v-if="filteredPlateCatalog.length > 0">
         <ul>
             <li v-if="filteredPlateCatalog.length > page - 1">
@@ -204,7 +203,8 @@
 
     <div v-else>
         <p>Данные не найдены или загружаются...</p>
-=======
+    </div>
+
     <div class="px-[60px] flex flex-col gap-[50px]">
         <div v-if="isPlateSelected && filteredPlates.length > 0" class="mt-[40px]">
             <ul class="flex gap-[20px] flex-wrap">
@@ -235,7 +235,6 @@
                 </li>
             </ul>
         </div>
->>>>>>> f4fb28ba74c4c156633f3d19c2bd4efab5f82544
     </div>
 
 
@@ -258,13 +257,8 @@
 
 
 <script>
-<<<<<<< HEAD
 import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
-=======
-import { ref, onMounted } from 'vue';
-import axios, { AxiosError } from 'axios';
->>>>>>> f4fb28ba74c4c156633f3d19c2bd4efab5f82544
 import CardPlate from '../components/Card.vue';
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue';
@@ -285,7 +279,6 @@ export default {
     setup() {
         const isExactMatch = ref(false);
         const exactMatchValue = ref('');
-<<<<<<< HEAD
         const phoneCatalog = ref([]);
         const plateCatalog = ref([]);
         const filteredPhoneCatalog = computed(() => {
@@ -310,8 +303,6 @@ export default {
             );
         });
 
-
-=======
         const showMore = ref(false);
         const isChecked = ref(false);
         const priceFrom = ref('');
@@ -322,8 +313,6 @@ export default {
         const activeButton = ref(null);
         const totalPages = ref(0);
         const page = ref(1);
-        const phoneCatalog = ref([]);
-        const plateCatalog = ref([]);
         const itemsPerPage = 3;
         const stateinput = ref('');
         const isActive = ref(false);
@@ -387,7 +376,6 @@ export default {
         const enableInput = () => {
             isReadonly.value = false;
         };
->>>>>>> f4fb28ba74c4c156633f3d19c2bd4efab5f82544
 
         const onPageChange = (newPage) => {
             page.value = newPage;
@@ -457,18 +445,10 @@ export default {
 
         const fetchPhoneCatalog = async (pageNumber) => {
             try {
-<<<<<<< HEAD
-                console.log('Fetching phone data...');
-                const response = await axios.get(`https://api.dev.numbers.ae/v1/catalog/phone?page=${pageNumber}&order=desc`);
-                console.log('Phone data fetched:', response.data);
-                phoneCatalog.value = response.data.items || response.data;
 
-                totalPages.value = Math.ceil(phoneCatalog.value.length / 1);
-=======
                 const response = await axios.get(`https://api.dev.numbers.ae/v1/catalog/phone?page=${pageNumber}&order=desc`);
                 phoneCatalog.value = response.data.items || response.data;
                 totalPages.value = Math.ceil(phoneCatalog.value.length / itemsPerPage);
->>>>>>> f4fb28ba74c4c156633f3d19c2bd4efab5f82544
             } catch (error) {
                 console.error('Error fetching phone data:', error);
             }
@@ -478,11 +458,8 @@ export default {
             try {
                 const response = await axios.get(`https://api.dev.numbers.ae/v1/catalog/plate?page=${pageNumber}&order=desc`);
                 plateCatalog.value = response.data.items || response.data;
-<<<<<<< HEAD
-                totalPages.value = Math.ceil(plateCatalog.value.length / 1); // Assuming 1 item per page
-=======
+
                 totalPages.value = Math.ceil(phoneCatalog.value.length / itemsPerPage);
->>>>>>> f4fb28ba74c4c156633f3d19c2bd4efab5f82544
             } catch (error) {
                 console.error('Error fetching plate data:', error);
             }
@@ -508,17 +485,17 @@ export default {
                     },
                 });
                 if (response.data && response.data.success) {
-                    const operators = response.data.result.items; 
-                    const selectElement = document.getElementById('emirate'); 
+                    const operators = response.data.result.items;
+                    const selectElement = document.getElementById('emirate');
 
-                 
+
                     selectElement.innerHTML = '';
 
-                  
+
                     operators.forEach((operator) => {
                         const option = document.createElement('option');
-                        option.value = operator.id; 
-                        option.textContent = operator.name; 
+                        option.value = operator.id;
+                        option.textContent = operator.name;
                         selectElement.appendChild(option);
                     });
                 }
@@ -528,27 +505,27 @@ export default {
         };
 
         const getNumberList = async () => {
-    try {
-        const response = await axios.get(`https://api.dev.numbers.ae/v1/account/operators/codes/list`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        if (response.data && response.data.success) {
-            const codes = response.data.result.items; 
-            const selectElement = document.getElementById('code-list'); 
-            selectElement.innerHTML = '';
-            codes.forEach((code) => {
-                const option = document.createElement('option');
-                option.value = code.id;
-                option.textContent = code.name || code.code; 
-                selectElement.appendChild(option);
-            });
-        }
-    } catch (e) {
-        console.error('Ошибка при получении кодов:', e);
-    }
-};
+            try {
+                const response = await axios.get(`https://api.dev.numbers.ae/v1/account/operators/codes/list`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                if (response.data && response.data.success) {
+                    const codes = response.data.result.items;
+                    const selectElement = document.getElementById('code-list');
+                    selectElement.innerHTML = '';
+                    codes.forEach((code) => {
+                        const option = document.createElement('option');
+                        option.value = code.id;
+                        option.textContent = code.name || code.code;
+                        selectElement.appendChild(option);
+                    });
+                }
+            } catch (e) {
+                console.error('Ошибка при получении кодов:', e);
+            }
+        };
 
 
 
@@ -615,29 +592,6 @@ export default {
             filteredPlates2,
         };
     },
-<<<<<<< HEAD
-
-    computed: {
-        filteredPlateCatalog() {
-            if (this.isExactMatch && this.exactMatchValue) {
-                return this.plateCatalog.filter(plate =>
-                    plate.price.toString().includes(this.exactMatchValue)
-                );
-            }
-            return this.plateCatalog; // Return all if no exact match is needed
-        },
-        filteredPhoneCatalog() {
-            if (this.isExactMatch && this.exactMatchValue) {
-                return this.phoneCatalog.filter(phone =>
-                    phone.price.toString().includes(this.exactMatchValue)
-                );
-            }
-            return this.phoneCatalog; // Return all if no exact match is needed
-        }
-    },
-
-=======
->>>>>>> f4fb28ba74c4c156633f3d19c2bd4efab5f82544
 };
 </script>
 <style>

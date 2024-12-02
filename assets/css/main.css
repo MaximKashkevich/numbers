@@ -21,3 +21,11 @@ html,
 body {
   overflow-x: hidden; /* Убираем горизонтальный скролл */
 }
+
+@media (max-width: 768px) {
+  .containres {
+    min-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

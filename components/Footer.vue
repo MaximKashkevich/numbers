@@ -1,6 +1,6 @@
 <template>
 
-    <div class="mt-[150px] mx-20">
+    <div class="mt-[150px] px-5">
         <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
         <footer class="pb-10 mt-[70px]">
             <div class="flex items-center justify-between flex-wrap">

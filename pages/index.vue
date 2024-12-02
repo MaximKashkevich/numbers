@@ -1,6 +1,6 @@
 <template>
     <NuxtPage />
-    <div class="px-[30px] mt-[150px]">
+    <div class="mt-[150px] containres min-w-[90%] px-3">
         <h1 class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2">
             PLATE AND MOBILE NUMBERS IN UAE
         </h1>
@@ -92,7 +92,7 @@
             </div>
         </div>
         <div>
-            <h3 class="text-[16px] font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px]">
+            <h3 class="text-[16px] font-normal leading-[19.2px] text-left text-[#BFBFBF] mt-[100px]">
                 Featured:
             </h3>
             <div
@@ -105,8 +105,7 @@
             </ButtonBlue>
         </div>
         <div>
-            <h3
-                class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px]">
+            <h3 class="text-[16px] w-full font-normal leading-[19.2px] text-left text-[#BFBFBF] mt-[100px]">
                 Similar numbers:
             </h3>
             <div
@@ -370,6 +369,7 @@ import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumber
 import CardLicenses from '../components/CardLicenses/CardLicenses.vue'
 import ButtonPlus from '../components/ButtonPlus/ButtonPlus.vue'
 import CardPlateList from '../components/CardPlate/CardPlateList.vue';
+import '/assets/css/main.css'
 import { ref } from 'vue';
 
 // Определение интерфейса для Input
@@ -405,7 +405,7 @@ const props = defineProps({
 // Состояние
 const showMore = ref(false);
 const showDots = ref(true);
-const isChecked = ref(false);
+// const isChecked = ref(false);
 
 // Методы
 const seeMore = () => {
@@ -423,7 +423,7 @@ const seeMore1 = () => {
 };
 const showMore2 = ref(false);
 const showDots2 = ref(true);
-const isChecked2 = ref(false);
+// const isChecked2 = ref(false);
 
 // Методы
 const seeMore2 = () => {
@@ -432,16 +432,16 @@ const seeMore2 = () => {
 };
 const showMore3 = ref(false);
 const showDots3 = ref(true);
-const isChecked3 = ref(false);
+// const isChecked3 = ref(false);
 
 // Методы
 const seeMore3 = () => {
     showMore3.value = !showMore3.value;
     showDots3.value = !showDots3.value;
 };
-definePageMeta({
-    name: 'Home',
-});
+// definePageMeta({
+//     name: 'Home',
+// });
 </script>
 
 
