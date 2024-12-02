@@ -414,7 +414,7 @@ const seeMore = () => {
 };
 const showMore1 = ref(false);
 const showDots1 = ref(true);
-const isChecked1 = ref(false);
+// const isChecked1 = ref(false);
 
 // Методы
 const seeMore1 = () => {
@@ -439,6 +439,9 @@ const seeMore3 = () => {
     showMore3.value = !showMore3.value;
     showDots3.value = !showDots3.value;
 };
+definePageMeta({
+    name: 'Home',
+});
 </script>
 
 
