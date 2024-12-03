@@ -10,7 +10,7 @@
       </NuxtLink>
 
       <nav class="hidden md:flex flex-wrap items-center gap-10 py-5">
-        <ul class="flex gap-10">
+        <ul class="flex gap-10 ml-10">
           <li>
             <NuxtLink
               to="/CatalogNumbers?numberType=plate"
@@ -233,6 +233,12 @@ const toggleMenu = () => {
   flex-grow: 1;
   gap: 8px;
 }
+
+.row__actions img:hover {
+  filter: brightness(0) saturate(100%) invert(23%) sepia(86%) saturate(2128%)
+    hue-rotate(201deg) brightness(93%) contrast(102%);
+}
+
 @media (max-width: 768px) {
   .headerClass {
     justify-content: space-between;
