@@ -13,7 +13,7 @@
         <ul class="flex gap-10">
           <li>
             <NuxtLink
-              to="/CatalogNumbers"
+              to="/CatalogNumbers?numberType=plate"
               class="text-link cursor-pointer text-black hover:text-blue-400 transition"
             >
               Plate Numbers
@@ -21,7 +21,7 @@
           </li>
           <li>
             <NuxtLink
-              to="/CatalogNumbers"
+              to="/CatalogNumbers?numberType=Mobile"
               class="text-link cursor-pointer text-black hover:text-blue-400 transition"
             >
               Mobile Numbers
@@ -69,7 +69,7 @@
       >
         <li>
           <NuxtLink
-            to="/CatalogNumbers"
+            to="/CatalogNumbers?numberType=plate"
             class="mobile-link"
             @click.prevent="handleClick"
           >
@@ -78,7 +78,7 @@
         </li>
         <li>
           <NuxtLink
-            to="/CatalogNumbers"
+            to="/CatalogNumbers?numberType=Mobile"
             class="mobile-link"
             @click.prevent="handleClick"
           >
@@ -241,6 +241,7 @@ const toggleMenu = () => {
     width: 100%;
     justify-content: space-between;
     margin-top: 10px;
+    padding-right: 7px;
   }
   .row__actions_listing {
     margin-left: 0;

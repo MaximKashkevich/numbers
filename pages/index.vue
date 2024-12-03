@@ -610,7 +610,7 @@ const seeMore3 = () => {
     display: none;
   }
   .container__main {
-    margin-top: 100px;
+    margin-top: 130px;
   }
   .container-input {
     margin-top: 150px;

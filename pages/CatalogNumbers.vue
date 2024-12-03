@@ -355,6 +355,7 @@
 
 <script>
 import { ref, onMounted, computed } from "vue";
+import { useRoute } from "vue-router";
 import axios from "axios";
 import CardPlate from "../components/Card.vue";
 import SimilarNumber from "../components/SimilarNumbers/SimilarNumber.vue";
@@ -373,6 +374,7 @@ export default {
     Card,
   },
   setup() {
+    const route = useRoute();
     const isExactMatch = ref(false);
     const exactMatchValue = ref("");
     const phoneCatalog = ref([]);
@@ -508,6 +510,19 @@ export default {
       activeButton.value = buttonType;
     };
 
+    watch(
+      () => route.query.numberType, // Следим за изменением параметра `numberType`, он может быть Mobile или plate
+      (newValue) => {
+        if (newValue === "plate") {
+          showPlate();
+          setActive("Plate");
+        } else if (newValue === "Mobile") {
+          showMobile();
+          setActive("Mobile");
+        }
+      },
+      { immediate: true } // Срабатывает сразу при монтировании
+    );
     const getButtonClass = (buttonType) => {
       return {
         "border-[#000000] text-[#000000]": activeButton.value === buttonType,
