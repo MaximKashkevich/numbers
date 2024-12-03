@@ -270,9 +270,24 @@
     <div
       class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px] mt-[50px] grid-2"
     >
-      <CardLicenses />
-      <CardLicenses />
-      <CardLicenses />
+      <CardLicenses
+        title="FREE"
+        text1="Plate or phone"
+        text2="1 ad for sale"
+        text3="No update"
+      />
+      <CardLicenses
+        title="200 AED"
+        text1="Plate or phone"
+        text2="Any number of ads"
+        text3="Updates every 7 days"
+      />
+      <CardLicenses
+        title="175 AED"
+        text1="Plate and phone"
+        text2="Any number of ads"
+        text3="Updates every 7 days"
+      />
     </div>
 
     <h3
