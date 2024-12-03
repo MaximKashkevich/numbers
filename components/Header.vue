@@ -174,14 +174,14 @@ const toggleMenu = () => {
     rgba(250, 250, 250, 1) 83%,
     rgba(0, 0, 0, 0) 100%
   );
-  padding-bottom: 60px;
+  padding-bottom: 70px;
 }
 
 .row__mobile_close {
   position: absolute;
   opacity: 0;
   transition: opacity 0s;
-  padding-bottom: 60px;
+  padding-bottom: 70px;
 }
 
 .row__mobile button {
