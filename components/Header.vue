@@ -12,7 +12,7 @@
           Mobile Numbers
         </button>
         <button @click="goToLink('/GeneralBlockTariff')">
-          Sunscriptions for dealers
+          Subscriptions for dealers
         </button>
         <button @click="goToLink('/Discounts')">Discounts</button>
         <button @click="goToLink('/License')">Number concierge</button>
