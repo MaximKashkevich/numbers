@@ -76,9 +76,9 @@
             name="emirate"
             class="js-choices mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]"
           >
-            <option class="option" value="city">Etosalat</option>
-            <option class="option" value="city">Virgin mobile</option>
-            <option class="option" value="city">Du</option>
+            <option class="option" value="city">city1</option>
+            <option class="option" value="city">city2</option>
+            <option class="option" value="city">city3</option>
           </select>
         </div>
         <div>
@@ -260,9 +260,9 @@
   >
     Similar numbers:
   </h3>
-  <div v-if="filteredPlateCatalog.length > 0">
+  <div v-if="plateCatalogLoaded">
     <ul>
-      <li v-if="filteredPlateCatalog.length > page - 1">
+      <li>
         <p>Plate: {{ filteredPlateCatalog[page - 1].plate }}</p>
         <p>
           Price: <span v-html="filteredPlateCatalog[page - 1].price"></span>
@@ -272,12 +272,12 @@
     </ul>
   </div>
   <div v-else>
-    <p>Данные не найдены или загружаются...</p>
+    <p>Data is loading...</p>
   </div>
 
-  <div v-if="filteredPhoneCatalog.length > 0" class="mt-[20px]">
+  <div v-if="phoneCatalogLoaded" class="mt-[20px]">
     <ul>
-      <li v-if="filteredPhoneCatalog.length > page - 1">
+      <li>
         <p>Phone: {{ filteredPhoneCatalog[page - 1].phone }}</p>
         <p>
           Price: <span v-html="filteredPhoneCatalog[page - 1].price"></span>
@@ -288,7 +288,7 @@
   </div>
 
   <div v-else>
-    <p>Данные не найдены или загружаются...</p>
+    <p>Data is loading...</p>
   </div>
 
   <div class="px-[60px] flex flex-col gap-[50px]">
@@ -529,7 +529,9 @@ export default {
           `https://api.dev.numbers.ae/v1/catalog/phone?page=${pageNumber}&order=desc`
         );
         phoneCatalog.value = response.data.items || response.data;
-        totalPages.value = Math.ceil(phoneCatalog.value.length / itemsPerPage);
+        totalPages.value = Math.ceil(
+          (phoneCatalog.value?.length || 0) / itemsPerPage
+        );
       } catch (error) {
         console.error("Error fetching phone data:", error);
       }
@@ -547,6 +549,13 @@ export default {
         console.error("Error fetching plate data:", error);
       }
     };
+    const phoneCatalogLoaded = computed(
+      () => phoneCatalog.value && phoneCatalog.value.length > 0
+    );
+    const plateCatalogLoaded = computed(
+      () => plateCatalog.value && plateCatalog.value.length > 0
+    );
+
     const getSettingForSelect = async () => {
       try {
         const response = await axios.get(

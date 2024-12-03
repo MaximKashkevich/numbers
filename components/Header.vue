@@ -65,7 +65,7 @@
 
       <ul
         v-show="isOpen"
-        class="md:hidden mobile-menu flex flex-col items-center justify-center gap-1 mt-2"
+        class="header__dropdown md:hidden mobile-menu flex flex-col items-center justify-center gap-1 mt-2"
       >
         <li>
           <NuxtLink
@@ -150,10 +150,10 @@ const isOpen = ref(false);
 
 const handleClick = () => {
   const token = authStore.authToken;
-
-  if (!token) {
-    router.push("/login");
-  }
+  isOpen.value = false;
+  // if (!token) {
+  //   router.push("/login");
+  // }
 };
 
 const toggleMenu = () => {
@@ -169,6 +169,27 @@ const toggleMenu = () => {
 .img2 {
   width: 144px;
   height: 40px;
+}
+
+.header__dropdown {
+  position: absolute;
+  right: 0px;
+  width: 100vw;
+  top: 55px;
+  padding-inline: 20px;
+  padding-bottom: 50px;
+  background: rgb(250, 250, 250);
+  background: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 1) 82%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 2;
+  font-size: clamp(16px, 5vw, 28px);
+}
+
+.header__dropdown li {
+  margin-left: auto;
 }
 
 .burger-menu {
@@ -212,14 +233,13 @@ const toggleMenu = () => {
   flex-grow: 1;
   gap: 8px;
 }
-@media (max-width: 500px) {
+@media (max-width: 768px) {
   .headerClass {
     justify-content: space-between;
   }
   .row__actions {
     width: 100%;
     justify-content: space-between;
-    border: 1px solid #fff;
     margin-top: 10px;
   }
   .row__actions_listing {
