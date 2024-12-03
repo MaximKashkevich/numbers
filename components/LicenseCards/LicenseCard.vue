@@ -45,7 +45,7 @@
         <ButtonBlue
           class="max-w-[280px] w-[200px] md:w-[210px] h-[40px] md:h-[52px] mt-[30px] md:mt-[40px] flex justify-center items-center"
         >
-          free
+          {{ cost }}
         </ButtonBlue>
       </div>
     </div>
@@ -53,14 +53,13 @@
 </template>
 
 <script>
-import ButtonBlue from "../Button-blue/ButtonBlue.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   props: {
     title: {
       type: String,
-      default: "title error",
+      default: "title error ",
     },
     text1: {
       type: String,
@@ -73,6 +72,10 @@ export default defineComponent({
     text3: {
       type: String,
       default: "Updates every 7 days",
+    },
+    cost: {
+      type: String,
+      default: "FREE 1 MONTH",
     },
   },
 });

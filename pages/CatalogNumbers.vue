@@ -271,7 +271,7 @@
       </li>
     </ul>
   </div>
-  <div v-else>
+  <div v-else class="pl-20">
     <p>Data is loading...</p>
   </div>
 
@@ -287,7 +287,7 @@
     </ul>
   </div>
 
-  <div v-else>
+  <div v-else class="pl-20">
     <p>Data is loading...</p>
   </div>
 

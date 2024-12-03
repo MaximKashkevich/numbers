@@ -278,14 +278,7 @@
     >
       Licenses
     </h3>
-    <div
-      class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px] mt-[50px] grid-2"
-    >
-      <CardLicenses />
-      <CardLicenses />
-      <CardLicenses />
-    </div>
-
+    <LicenseList></LicenseList>
     <h3
       class="w-[91px] h-[60px] text-[50px] font-normal leading-[60px] text-left mt-[150px]"
     >
@@ -484,7 +477,6 @@ import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
 import CartPlate from "../components/CardPlate/CardPlate.vue";
 import SimilarNumber from "../components/SimilarNumbers/SimilarNumber.vue";
 import SimilarNumberLowPrice from "../components/LowSimilarNumbers/SimilarNumberLowPrice.vue";
-import CardLicenses from "../components/CardLicenses/CardLicenses.vue";
 import ButtonPlus from "../components/ButtonPlus/ButtonPlus.vue";
 import { ref } from "vue";
 

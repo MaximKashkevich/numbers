@@ -88,7 +88,7 @@
 
 <script setup>
 import ButtonBlue from "../Button-blue/ButtonBlue.vue";
-import CardLicenses from "../CardLicenses/CardLicenses.vue";
+import LicenseCard from "../LicenseCards/LicenseCard.vue";
 import { ref } from "vue";
 
 const isVisible = ref(true);

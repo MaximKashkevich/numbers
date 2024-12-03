@@ -267,28 +267,7 @@
     >
       Licenses
     </h3>
-    <div
-      class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px] mt-[50px] grid-2"
-    >
-      <CardLicenses
-        title="FREE"
-        text1="Plate or phone"
-        text2="1 ad for sale"
-        text3="No update"
-      />
-      <CardLicenses
-        title="200 AED"
-        text1="Plate or phone"
-        text2="Any number of ads"
-        text3="Updates every 7 days"
-      />
-      <CardLicenses
-        title="175 AED"
-        text1="Plate and phone"
-        text2="Any number of ads"
-        text3="Updates every 7 days"
-      />
-    </div>
+    <LicenseList></LicenseList>
 
     <h3
       class="w-[91px] h-[60px] text-[50px] font-normal leading-[60px] text-left mt-[150px]"
@@ -487,7 +466,6 @@
 import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
 import SimilarNumber from "../components/SimilarNumbers/SimilarNumber.vue";
 import SimilarNumberLowPrice from "../components/LowSimilarNumbers/SimilarNumberLowPrice.vue";
-import CardLicenses from "../components/CardLicenses/CardLicenses.vue";
 import ButtonPlus from "../components/ButtonPlus/ButtonPlus.vue";
 import CardPlateList from "../components/CardPlate/CardPlateList.vue";
 import "/assets/css/main.css";
