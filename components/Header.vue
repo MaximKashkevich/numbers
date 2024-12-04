@@ -4,27 +4,36 @@
       <a class="logo" @click="goToLink('/')">
         <img src="../public/assets/New-Logo.webp" alt="Logo" />
       </a>
+
       <div class="menu__pc">
         <button @click="goToLink('/CatalogNumbers?numberType=plate')">
           Plate Numbers
         </button>
+
         <button @click="goToLink('/CatalogNumbers?numberType=Mobile')">
           Mobile Numbers
         </button>
+
         <button @click="goToLink('/GeneralBlockTariff')">
           Subscriptions for dealers
         </button>
+
         <button @click="goToLink('/Discounts')">Discounts</button>
+
         <button @click="goToLink('/License')">Number concierge</button>
       </div>
+
       <button
         :class="[isOpen ? 'menu__mobile close' : 'menu__mobile']"
         @click="toggleMenu"
       >
         <div class="menu__shape"></div>
+
         <div class="menu__shape"></div>
+
         <div class="menu__shape"></div>
       </button>
+
       <div class="row__actions">
         <ButtonBlue
           :requiresAdapt="true"
@@ -36,9 +45,11 @@
           <button class="button__action" @click="goToLink('/Viewed')">
             <img src="/assets/img/icons/saw.svg" alt="view" />
           </button>
+
           <button class="button__action" @click="goToLink('/Liked')">
             <img src="/assets/img/icons/fav.svg" alt="favorites" />
           </button>
+
           <button class="button__action" @click="goToLink('/GeneralEmpty')">
             <img src="/assets/img/icons/profile.svg" alt="general" />
           </button>
@@ -49,12 +60,15 @@
       <button @click="goToLink('/CatalogNumbers?numberType=plate')">
         Plate Numbers
       </button>
+
       <button @click="goToLink('/CatalogNumbers?numberType=Mobile')">
         Mobile Numbers
       </button>
+
       <button @click="goToLink('/GeneralBlockTariff')">
         Subscriptions for dealers
       </button>
+
       <button @click="goToLink('/Discounts')">Discounts</button>
       <button @click="goToLink('/License')">Number concierge</button>
     </div>
@@ -66,7 +80,7 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const goToLink = (page) => {
+const goToLink = (page: string) => {
   router.push({
     path: page,
   });

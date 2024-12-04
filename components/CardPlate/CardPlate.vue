@@ -1,36 +1,44 @@
 <template>
   <NuxtLink v-for="plate in plateNumbers" :key="plate.id">
     <div
-      class="hover:shadow-2xl hover:shadow-orange-200 transition flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[3px] border-[#FF9C00]">
-
+      class="hover:shadow-2xl hover:shadow-orange-200 transition flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[3px] border-[#FF9C00]"
+    >
       <img :src="plate.photo" class="mt-[40px] px-[20px]" alt="Image" />
       <div class="flex items-center justify-between mt-[30px] mr-[30px]">
         <div class="w-[110px] ml-[20px]">
-          <h1 class="w-[110px] h-[24px] text-[20px] font-medium leading-[24px]" v-html="plate.price"></h1>
+          <h1
+            class="w-[110px] h-[24px] text-[20px] font-medium leading-[24px]"
+            v-html="plate.price"
+          ></h1>
         </div>
       </div>
       <div class="mt-[30px] pl-[20px]">
         <div class="flex gap-[10px]">
-          <p class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate:</p>
+          <p
+            class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
+          >
+            Emirate:
+          </p>
           <p class="ext-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
-            {{
-              plate.emirate
-            }}
+            {{ plate.emirate }}
           </p>
         </div>
         <div class="flex gap-[25px] pt-[5px]">
-          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Today{{ plate.postedAt }}</p>
-          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ plate.views }} Views</p>
+          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
+            Today{{ plate.postedAt }}
+          </p>
+          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
+            {{ plate.views }} Views
+          </p>
         </div>
       </div>
     </div>
   </NuxtLink>
 </template>
 
-
 <script setup lang="ts">
-import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import axios from "axios";
+import { onMounted, ref } from "vue";
 
 const plateNumbers = ref<IPlate[]>([]);
 
@@ -45,9 +53,12 @@ interface IPlate {
 
 const fetchPlate = async () => {
   try {
-    const { data } = await axios.get<IPlate[]>('https://api.dev.numbers.ae/v1/catalog/plate');
+    const { data } = await axios.get<IPlate[]>(
+      "https://api.dev.numbers.ae/v1/catalog/plate"
+    );
     plateNumbers.value = data;
     console.log(plateNumbers.value);
+    console.log("CardPlate.vue");
   } catch (e) {
     console.log(e);
   }
@@ -56,7 +67,6 @@ const fetchPlate = async () => {
 onMounted(() => {
   fetchPlate();
 });
-
 // const localLiked = ref(false);
 
 // watch(() => liked, (newVal) => {

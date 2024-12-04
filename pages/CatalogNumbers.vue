@@ -8,8 +8,8 @@
             href="/BuyNumbers"
             class="text-[#005DCA] transition cursor-pointer"
           >
-            Home /</NuxtLink
-          >
+            Home /
+          </NuxtLink>
         </li>
         <li>
           <NuxtLink
@@ -33,8 +33,8 @@
           <label
             class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
             for="type"
-            >Type:</label
-          >
+            >Type:
+          </label>
           <div class="mt-[10px] flex gap-[10px]">
             <div class="flex gap-[10px]">
               <button
@@ -252,43 +252,7 @@
         </transition>
       </div>
     </div>
-  </div>
-
-  <!-- Похожие номера -->
-  <h3
-    class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px] px-[60px]"
-  >
-    Similar numbers:
-  </h3>
-  <div v-if="plateCatalogLoaded">
-    <ul>
-      <li>
-        <p>Plate: {{ filteredPlateCatalog[page - 1].plate }}</p>
-        <p>
-          Price: <span v-html="filteredPlateCatalog[page - 1].price"></span>
-        </p>
-        <p>Emirate: {{ filteredPlateCatalog[page - 1].emirate }}</p>
-      </li>
-    </ul>
-  </div>
-  <div v-else class="pl-20">
-    <p>Data is loading...</p>
-  </div>
-
-  <div v-if="phoneCatalogLoaded" class="mt-[20px]">
-    <ul>
-      <li>
-        <p>Phone: {{ filteredPhoneCatalog[page - 1].phone }}</p>
-        <p>
-          Price: <span v-html="filteredPhoneCatalog[page - 1].price"></span>
-        </p>
-        <p>Emirate: {{ filteredPhoneCatalog[page - 1].emirate }}</p>
-      </li>
-    </ul>
-  </div>
-
-  <div v-else class="pl-20">
-    <p>Data is loading...</p>
+    <SimilarNumbersList />
   </div>
 
   <div class="px-[60px] flex flex-col gap-[50px]">
@@ -309,7 +273,8 @@
             <p
               class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3] pt-16"
             >
-              Emirate: {{ plate.emirate }}
+              Emirate12: {{ plate.emirate }}
+              12312
             </p>
           </div>
         </li>
@@ -364,6 +329,7 @@ import Pagination from "../components/Pagination/Pagination.vue";
 import MiniButton from "../components/MiniButton/MiniButton.vue";
 import Card from "../components/Card.vue";
 import { useAuthStore } from "@/stores/auth";
+import SimilarNumbersList from "../components/SimilarNumbersList.vue";
 
 export default {
   components: {

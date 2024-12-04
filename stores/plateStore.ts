@@ -9,22 +9,29 @@ export interface IPlate {
   price: number;
   isFeatured: boolean;
   type: string;
+  postedAt: string;
+  views: string;
 }
 
 export const usePlateStore = defineStore("plateStore", () => {
   const plateNumbers = ref<IPlate[]>([]);
+  const isLoading = ref(false);
 
-  const fetchPlate = async () => {
+  const fetchPlate = async (type: string) => {
+    isLoading.value = true;
     try {
       const { data } = await axios.get<IPlate[]>(
-        "https://api.dev.numbers.ae/v1/catalog/plate"
+        `https://api.dev.numbers.ae/v1/catalog/${type}`
       );
       plateNumbers.value = data;
       console.log(plateNumbers.value);
+      console.log("успешно");
     } catch (e) {
       console.error(e);
+    } finally {
+      isLoading.value = false;
     }
   };
 
-  return { plateNumbers, fetchPlate };
+  return { plateNumbers, isLoading, fetchPlate };
 });
