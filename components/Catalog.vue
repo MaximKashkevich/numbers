@@ -33,7 +33,7 @@
           </button>
         </div>
       </div>
-      <div>
+      <div v-if="toggleOptionIsNumbers">
         <label
           for="emirate"
           class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
@@ -42,17 +42,18 @@
         <select
           id="emirate"
           name="emirate"
+          v-model="toggleQuery.emirate"
           class="button__filter mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]"
         >
-          <option value="city">Dubai</option>
-          <option value="city">Abu Dhabi</option>
-          <option value="city">Ajman</option>
-          <option value="city">Umm Al Quwain</option>
-          <option value="city">Ras Al Khaimah</option>
-          <option value="city">None</option>
+          <option value="dubai">Dubai</option>
+          <option value="abu dhabi">Abu Dhabi</option>
+          <option value="ajman">Ajman</option>
+          <option value="umm al quwain">Umm Al Quwain</option>
+          <option value="ras al khaimah">Ras Al Khaimah</option>
+          <option value="none">None</option>
         </select>
       </div>
-      <div>
+      <div v-if="toggleOptionIsNumbers">
         <label
           for="code"
           class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
@@ -61,10 +62,11 @@
         <select
           id="emirate"
           name="code"
+          v-model="toggleQuery.code"
           class="button__filter mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]"
         >
-          <option>AA</option>
-          <option>None</option>
+          <option value="aa">AA</option>
+          <option value="none">None</option>
         </select>
       </div>
       <div>
@@ -76,40 +78,61 @@
         <select
           id="emirate"
           name="sort"
+          v-model="toggleQuery.sort"
           class="button__filter mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]"
         >
-          <option>Latest</option>
+          <option value="desc">Latest</option>
+          <option value="asc">Earliest</option>
         </select>
       </div>
       <ButtonBlue
+        @click="useToggleQuery"
         class="w-[310px] h-[52px] flex justify-center items-center font-bold mt-[30px]"
       >
         Show 1234 numbers
       </ButtonBlue>
     </div>
     <CardPlateList />
+    <Pagination :total-pages="409" v-model="currentPage" />
   </div>
 </template>
 <script setup>
+import { ref, onMounted } from "vue";
 import CardPlateList from "./CardPlate/CardPlateList.vue";
+import Pagination from "./Pagination/Pagination.vue";
 import { usePlateStore } from "/stores/plateStore";
 // if toggleNumbers === plate return true
 // else if mobile return false
+let currentPage = ref(1);
 let toggleOptionIsNumbers = ref(true);
+let toggleQuery = {
+  type: "plate",
+  emirate: "dubai",
+  code: "aa",
+  sort: "desc",
+};
 
+const useToggleQuery = () => {
+  plateStore.fetchPlate({ ...toggleQuery, page: currentPage.value });
+};
+watch(currentPage, () => {
+  useToggleQuery();
+});
 const setTogglePlate = () => {
   toggleOptionIsNumbers.value = true;
-  plateStore.fetchPlate("plate");
+  toggleQuery.type = "plate";
+  useToggleQuery();
 };
 const setToggleMobile = () => {
   toggleOptionIsNumbers.value = false;
-  plateStore.fetchPlate("phone");
+  toggleQuery.type = "phone";
+  useToggleQuery();
 };
 
 const plateStore = usePlateStore();
 
 onMounted(() => {
-  plateStore.fetchPlate("plate");
+  plateStore.fetchPlate(toggleQuery);
 });
 </script>
 <style>
