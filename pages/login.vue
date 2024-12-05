@@ -9,12 +9,11 @@
         to purchase or sell Plate and Mobile Numbers in Dubai, Abu Dhabi, and
         other Emirates.
       </p>
-      <!-- <div class="flex items-end h-[390px]">
+      <div class="flex items-end h-[390px]">
         <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
-          No account?
+          No account? <span class="text-blue-500 cursor-pointer">Sign Up</span>
         </h2>
-      </div> 
-      ToDo - сделать кнопку No account?-->
+      </div>
     </div>
 
     <div class="mr-[50px]">
@@ -36,20 +35,20 @@
             Or login with username and password
           </h3>
           <form @submit.prevent="handleSubmit" class="pt-[30px]">
-            <div>
+            <div class="flex flex-col">
               <label for="username" class="text-[14px] font-medium leading-[16.8px]">Login, e–mail or username:</label>
               <input v-model="apiLog.email" type="text" id="username"
-                class="inputs bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom mb-[10px]"
+                class="inputs mt-2 bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom mb-[10px]"
                 placeholder="username@gmail.com or 050 123 45 67 or JohnSnow_123" />
               <span v-if="errors.username" class="text-red-500">{{
                 errors.username
               }}</span>
             </div>
 
-            <div>
+            <div class="flex flex-col">
               <label for="password" class="text-[14px] font-medium leading-[16.8px] h-[20px]">Password:</label>
               <input v-model="apiLog.password" type="password" id="password"
-                class="inputs bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom"
+                class="inputs mt-2 bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom"
                 placeholder="xxxxxxx" />
               <span v-if="errors.password" class="text-red-500">{{
                 errors.password
