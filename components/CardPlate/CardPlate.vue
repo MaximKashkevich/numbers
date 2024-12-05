@@ -1,61 +1,40 @@
 <template>
-  <NuxtLink v-for="plate in plateNumbers" :key="plate.id">
+  <NuxtLink>
     <div
       class="hover:shadow-2xl hover:shadow-orange-200 transition flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[3px] border-[#FF9C00]">
-
-      <img :src="plate.photo" class="mt-[40px] px-[20px]" alt="Image" />
+      <img :src="props.photo" class="mt-[40px] px-[20px]" alt="Image" />
       <div class="flex items-center justify-between mt-[30px] mr-[30px]">
         <div class="w-[110px] ml-[20px]">
-          <h1 class="w-[110px] h-[24px] text-[20px] font-medium leading-[24px]" v-html="plate.price"></h1>
+          <h1 class="w-[110px] h-[24px] text-[20px] font-medium leading-[24px]" v-html="props.price"></h1>
         </div>
       </div>
       <div class="mt-[30px] pl-[20px]">
         <div class="flex gap-[10px]">
           <p class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate:</p>
-          <p class="ext-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
-            {{
-              plate.emirate
-            }}
-          </p>
+          <p class="ext-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ props.emirate }}</p>
         </div>
         <div class="flex gap-[25px] pt-[5px]">
-          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Today{{ plate.postedAt }}</p>
-          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ plate.views }} Views</p>
+          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Today{{ props.postedAt }}</p>
+          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ props.views }} Views</p>
         </div>
       </div>
     </div>
   </NuxtLink>
 </template>
 
-
 <script setup lang="ts">
-import axios from 'axios'
-import { onMounted, ref } from 'vue'
 
-const plateNumbers = ref<IPlate[]>([]);
+import { defineProps } from 'vue';
 
-interface IPlate {
+// Define props
+const props = defineProps<{
   id: number;
   photo: string;
   emirate: string;
   price: number;
   isFeatured: boolean;
   type: string;
-}
-
-const fetchPlate = async () => {
-  try {
-    const { data } = await axios.get<IPlate[]>('https://api.dev.numbers.ae/v1/catalog/plate');
-    plateNumbers.value = data;
-    console.log(plateNumbers.value);
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-onMounted(() => {
-  fetchPlate();
-});
+}>();
 
 // const localLiked = ref(false);
 

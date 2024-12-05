@@ -1,8 +1,9 @@
 <template>
     <div class="mb-4">
         <label class="block mb-2 leading-[16.8px]">{{ title }}</label>
-        <input :type="type" :placeholder="placeholder"
-            class="border px-4 md:px-8 py-2 md:py-3 rounded-[50px] h-[38px] md:h-[52px] w-full inputs " />
+        <input :type="type" :placeholder="placeholder" :value="modelValue"
+            @input="$emit('update:modelValue', $event.target.value)"
+            class="border px-4 md:px-8 py-2 md:py-3 rounded-[50px] h-[38px] md:h-[52px] w-full inputs" />
     </div>
 </template>
 
@@ -27,10 +28,8 @@ const props = defineProps({
         default: '',
     },
 });
-
-
-
 </script>
+
 
 <style scoped>
 @media(max-width:600px) {

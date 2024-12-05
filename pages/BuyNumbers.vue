@@ -57,16 +57,14 @@
                     </div>
                 </div>
                 <div>
-                    <label for="emirate"
-                        class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate:</label>
-                    <select id="emirate" name="emirate"
-                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
-                        <option value="city">Dubai</option>
-                        <option value="city">Abu Dhabi</option>
-                        <option value="city">Ajman</option>
-                        <option value="city">Umm Al Quwain</option>
-                        <option value="city">Ras Al Khaimah</option>
-                        <option value="city">None</option>
+                    <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
+                        for="emirate">Emirate:</label>
+                    <select
+                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]"
+                        id="emirate" v-model="selectedEmirate" @change="handleEmirateChange">
+                        <option v-for="region in regions" :key="region.id" :value="region.name">
+                            {{ region.name }}
+                        </option>
                     </select>
                 </div>
                 <div>
@@ -97,18 +95,7 @@
             </h3>
             <div
                 class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px]">
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
-                <CardPlate />
+                <CardPlate v-for="item in filteredPlateNumbers" :key="item.id" v-bind="item" />
             </div>
             <ButtonBlue
                 class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] font-bold text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap">
@@ -381,7 +368,8 @@ import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue'
 import CardLicenses from '../components/CardLicenses/CardLicenses.vue'
 import ButtonPlus from '../components/ButtonPlus/ButtonPlus.vue'
-import { ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import axios from 'axios';
 
 // Определение интерфейса для Input
 interface Input {
@@ -392,6 +380,72 @@ interface Input {
     height: string;
     borderRadius: string;
 }
+
+interface IRegions {
+    id: number,
+    name: string,
+    totalCount: number,
+    totalPage: number,
+}
+
+interface IPlate {
+    id: number;
+    photo: string;
+    emirate: string;
+    price: number;
+    isFeatured: boolean;
+    type: string;
+}
+
+const plateNumbers = ref<IPlate[]>([]);
+const selectedEmirate = ref('Dubai');
+const regions = ref<IRegions[]>([]);
+
+// Fetch regions
+const fetchRegions = async () => {
+    try {
+        const { data } = await axios.get('https://api.dev.numbers.ae/v1/account/regions/list');
+        regions.value = data.result.items;
+    } catch (e) {
+        console.error('Ошибка при загрузке регионов:', e);
+    }
+};
+
+// Handle emirate change
+const handleEmirateChange = (event: Event) => {
+    const target = event.target as HTMLSelectElement;
+    selectedEmirate.value = target.value;
+    console.log(selectedEmirate.value);
+};
+
+
+
+
+const filteredPlateNumbers = computed(() => {
+    let filtered = plateNumbers.value;
+
+
+    if (selectedEmirate.value && regions.value.length > 0) {
+        filtered = filtered.filter(item => item.emirate === selectedEmirate.value);
+    }
+
+    return filtered;
+});
+
+
+const fetchPlate = async () => {
+    try {
+        const { data } = await axios.get<IPlate[]>('https://api.dev.numbers.ae/v1/catalog/plate');
+        plateNumbers.value = data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+onMounted(() => {
+    fetchRegions();
+    fetchPlate();
+});
 
 // Массив input полей
 const inputTitle = ref<Input[]>([
@@ -450,6 +504,7 @@ const seeMore3 = () => {
     showMore3.value = !showMore3.value;
     showDots3.value = !showDots3.value;
 };
+
 </script>
 
 
