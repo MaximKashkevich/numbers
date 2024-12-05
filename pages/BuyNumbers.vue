@@ -350,7 +350,7 @@
                 </fieldset>
             </form>
 
-            <!-- Изображение -->
+            <!-- images -->
             <div class="mt-[50px] md:mt-[150px] w-full md:w-auto">
                 <img src="../public/assets/city.png" alt="City Image" class="rounded-lg w-full md:w-auto" />
             </div>
@@ -490,7 +490,6 @@ const showMore2 = ref(false);
 const showDots2 = ref(true);
 const isChecked2 = ref(false);
 
-// Методы
 const seeMore2 = () => {
     showMore2.value = !showMore2.value;
     showDots2.value = !showDots2.value;
