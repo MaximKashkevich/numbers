@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
+import { ref, computed } from "vue";
 import axios from "axios";
-import { ref } from "vue";
 
 export interface IPlate {
   id: number;
@@ -9,39 +9,69 @@ export interface IPlate {
   price: number;
   isFeatured: boolean;
   type: string;
-  postedAt: string;
-  views: string;
 }
 
-interface IQuery {
-  type: string;
-  [key: string]: any;
+export interface IRegions {
+  id: number;
+  name: string;
+  totalCount: number;
+  totalPage: number;
 }
 
-export const usePlateStore = defineStore("plateStore", () => {
+export const usePlateStore = defineStore("plate", () => {
   const plateNumbers = ref<IPlate[]>([]);
-  const isLoading = ref(false);
+  const regions = ref<IRegions[]>([]);
+  const selectedEmirate = ref("Dubai");
 
-  const fetchPlate = async (query: IQuery) => {
-    isLoading.value = true;
+  // Fetch plate numbers
+  const fetchPlate = async () => {
     try {
       const { data } = await axios.get<IPlate[]>(
-        `https://api.dev.numbers.ae/v1/catalog/${query.type}?page=${query.page}&order=${query.sort}`
+        "https://api.dev.numbers.ae/v1/catalog/plate"
       );
-      const filteredPlateNumbers = data.filter(
-        (plate) => plate.emirate.toLowerCase() === query.emirate.toLowerCase()
-      );
-      if (query.type === "plate") {
-        plateNumbers.value = filteredPlateNumbers;
-      } else {
-        plateNumbers.value = data;
-      }
+      plateNumbers.value = data;
+      console.log(plateNumbers.value);
     } catch (e) {
-      console.error(e);
-    } finally {
-      isLoading.value = false;
+      console.log("Error fetching plates:", e);
     }
   };
 
-  return { plateNumbers, isLoading, fetchPlate };
+  // Fetch regions
+  const fetchRegions = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://api.dev.numbers.ae/v1/account/regions/list"
+      );
+      regions.value = data.result.items;
+    } catch (e) {
+      console.error("Error fetching regions:", e);
+    }
+  };
+
+  // Handle emirate change
+  const handleEmirateChange = (event: Event) => {
+    const target = event.target as HTMLSelectElement;
+    selectedEmirate.value = target.value;
+    console.log("Selected Emirate:", selectedEmirate.value);
+  };
+
+  // Filtered plate numbers based on selected emirate
+  const filteredPlateNumbers = computed(() => {
+    if (selectedEmirate.value) {
+      return plateNumbers.value.filter(
+        (item) => item.emirate === selectedEmirate.value
+      );
+    }
+    return plateNumbers.value;
+  });
+
+  return {
+    plateNumbers,
+    fetchPlate,
+    regions,
+    fetchRegions,
+    selectedEmirate,
+    handleEmirateChange,
+    filteredPlateNumbers,
+  };
 });

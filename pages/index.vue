@@ -1,29 +1,21 @@
 <template>
   <NuxtPage />
   <div class="mt-[150px] container__main min-w-[90%] px-3">
-    <h1
-      class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2"
-    >
+    <h1 class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2">
       PLATE AND MOBILE NUMBERS IN UAE
     </h1>
 
     <div class="mt-[100px] containres">
       <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
       <div class="flex gap-[50px] pt-[30px] pb-[30px] items-center flex-wrap">
-        <h2
-          class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase"
-        >
+        <h2 class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase">
           Total plate numbers:
         </h2>
-        <p
-          class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1"
-        >
+        <p class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1">
           {{ totalPlateNumbers }}
         </p>
 
-        <ButtonBlue
-          class="w-[140px] h-[52px] flex items-center justify-center ml-auto"
-        >
+        <ButtonBlue class="w-[140px] h-[52px] flex items-center justify-center ml-auto">
           BUY
         </ButtonBlue>
       </div>
@@ -31,140 +23,94 @@
       <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
 
       <div class="flex gap-[50px] pt-[30px] pb-[30px] items-center flex-wrap">
-        <h2
-          class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase"
-        >
+        <h2 class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase">
           Total mobile numbers:
         </h2>
-        <p
-          class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1"
-        >
+        <p class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1">
           {{ totalMobileNumbers }}
         </p>
 
-        <ButtonBlue
-          class="w-[140px] h-[52px] flex items-center justify-center ml-auto"
-        >
+        <ButtonBlue class="w-[140px] h-[52px] flex items-center justify-center ml-auto">
           BUY
         </ButtonBlue>
       </div>
     </div>
     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
 
-    <img
-      class="w-full pt-[70px] img-bg"
-      src="../public/assets/bacround.png"
-      alt=""
-    />
+    <img class="w-full pt-[70px] img-bg" src="../public/assets/bacround.png" alt="" />
     <div>
       <Catalog />
-      <h3
-        class="text-[16px] font-normal leading-[19.2px] text-left text-[#BFBFBF] mt-[100px]"
-      >
-        Featured:
-      </h3>
       <div
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px]"
-      >
-        <CardPlateList />
+        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px]">
+
       </div>
       <ButtonBlue
-        class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] font-bold text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap"
-      >
+        class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] font-bold text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap">
         View all Promoted listings
       </ButtonBlue>
     </div>
     <SimilarNumbersList></SimilarNumbersList>
     <div class="mt-[150px]">
-      <h3
-        class="w-[1000px] h-[180px] text-[50px] font-normal leading-[60px] text-left mini-title"
-      >
+      <h3 class="w-[1000px] h-[180px] text-[50px] font-normal leading-[60px] text-left mini-title">
         Save time on your search: create an ad to buy a number and we will send
         you suitable ads to your WhatsApp.
       </h3>
-      <p
-        class="w-[1000px] text-[16px] font-normal leading-[19.2px] text-left mt-[20px] mini-text"
-      >
+      <p class="w-[1000px] text-[16px] font-normal leading-[19.2px] text-left mt-[20px] mini-text">
         View ads for purchase is available only for registered users
       </p>
       <div
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px] mt-[50px] grid-2 mb-[70px]"
-      >
-        <div
-          class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]"
-        >
+        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px] mt-[50px] grid-2 mb-[70px]">
+        <div class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
           <div class="">
             <p class="">1/3</p>
 
-            <p
-              class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]"
-            >
+            <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
               Application
             </p>
-            <p
-              class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]"
-            >
+            <p class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]">
               You leave a request to buy a room and specify all the criteria
               that are important to you.
             </p>
           </div>
         </div>
-        <div
-          class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]"
-        >
+        <div class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
           <div class="">
             <p class="">2/3</p>
 
-            <p
-              class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]"
-            >
+            <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
               Search
             </p>
-            <p
-              class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]"
-            >
+            <p class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]">
               During the week, our manager will match your application with
               suitable numbers and send them to you on WhatsApp
             </p>
           </div>
         </div>
-        <div
-          class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]"
-        >
+        <div class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
           <div class="">
             <p class="">3/3</p>
 
-            <p
-              class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]"
-            >
+            <p class="w-[188px] h-[36px] font-normal text-[30px] leading-[36px] mt-[70px]">
               Buying
             </p>
-            <p
-              class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]"
-            >
+            <p class="max-w-[386.67px] w-full font-normal text-[16px] leading-[19.2px] mt-[30px]">
               If the number fits you, you pay for it, we buy it, register it in
               the traffic police and give it to you.
             </p>
           </div>
         </div>
       </div>
-      <ButtonBlue
-        class="w-[329px] h-[52px] flex justify-center items-center order-list"
-      >
+      <ButtonBlue class="w-[329px] h-[52px] flex justify-center items-center order-list">
         Submit a purchase order
       </ButtonBlue>
     </div>
 
-    <h3
-      class="w-[198px] h-[60px] text-[50px] font-light leading-[60px] text-left mt-[150px]"
-    >
+    <h3 class="w-[198px] h-[60px] text-[50px] font-light leading-[60px] text-left mt-[150px]">
       Licenses
     </h3>
     <LicenseList></LicenseList>
 
-    <h3
-      class="w-[91px] h-[60px] text-[50px] font-normal leading-[60px] text-left mt-[150px]"
-    >
+    <h3 class="w-[91px] h-[60px] text-[50px] font-normal leading-[60px] text-left mt-[150px]">
       FAQ
     </h3>
 
@@ -173,17 +119,13 @@
         <li>
           <div class="flex flex-wrap py-[25px] justify-between items-start">
             <div class="flex-1 min-w-0">
-              <p
-                class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]"
-              >
+              <p class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
                 How do I login?
               </p>
               <!-- Анимация для первого элемента -->
               <transition name="fade-slide">
-                <span
-                  v-show="showMore"
-                  class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]"
-                >
+                <span v-show="showMore"
+                  class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                   You can easily update your account information. Just go to
                   your Dashboard page and click on the Settings link. From here
                   you can do whatever you like with your information.
@@ -200,17 +142,13 @@
         <li>
           <div class="flex flex-wrap py-[25px] justify-between items-start">
             <div class="flex-1 min-w-0">
-              <p
-                class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]"
-              >
+              <p class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
                 Can I create more than one account?
               </p>
               <!-- Анимация для второго элемента -->
               <transition name="fade-slide">
-                <span
-                  v-show="showMore1"
-                  class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]"
-                >
+                <span v-show="showMore1"
+                  class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                   You can easily update your account information. Just go to
                   your Dashboard page and click on the Settings link. From here
                   you can do whatever you like with your information.
@@ -227,22 +165,16 @@
         <li>
           <div class="flex flex-wrap py-[25px] justify-between items-start">
             <div class="flex-1 min-w-0">
-              <p
-                class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]"
-              >
+              <p class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
                 How do I change my account information?
               </p>
               <!-- Анимация для третьего элемента -->
               <transition name="fade-slide">
-                <span
-                  v-show="showMore2"
-                  class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]"
-                >
+                <span v-show="showMore2"
+                  class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                   You can easily update your account information. Just go to
                   your
-                  <NuxtLink class="cursor-pointer underline"
-                    >Dashboard</NuxtLink
-                  >
+                  <NuxtLink class="cursor-pointer underline">Dashboard</NuxtLink>
                   page and click on the Settings link. From here you can do
                   whatever you like with your information.
                 </span>
@@ -258,17 +190,13 @@
         <li>
           <div class="flex flex-wrap py-[25px] justify-between items-start">
             <div class="flex-1 min-w-0">
-              <p
-                class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]"
-              >
+              <p class="w-full max-w-[800px] text-[24px] md:text-[35px] font-medium leading-[30px] md:leading-[42px]">
                 How can I create or delete a listing?
               </p>
               <!-- Анимация для четвертого элемента -->
               <transition name="fade-slide">
-                <span
-                  v-show="showMore3"
-                  class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]"
-                >
+                <span v-show="showMore3"
+                  class="block mt-2 w-full max-w-[800px] text-[14px] md:text-[16px] leading-[18px] md:leading-[19.2px]">
                   You can easily update your account information. Just go to
                   your Dashboard page and click on the Settings link. From here
                   you can do whatever you like with your information.
@@ -286,20 +214,15 @@
 
     <div class="flex flex-wrap gap-[20px] justify-center md:justify-between">
       <!-- Форма ввода -->
-      <form
-        @submit.prevent=""
-        class="flex flex-col gap-4 mb-6 w-full md:w-[650px]"
-      >
+      <form @submit.prevent="" class="flex flex-col gap-4 mb-6 w-full md:w-[650px]">
         <fieldset>
           <div class="mt-[50px] md:mt-[150px]">
             <h3
-              class="text-3xl md:text-5xl font-normal leading-[40px] md:leading-[60px] text-left w-full md:w-[650px] h-[80px] md:h-[120px] form-title"
-            >
+              class="text-3xl md:text-5xl font-normal leading-[40px] md:leading-[60px] text-left w-full md:w-[650px] h-[80px] md:h-[120px] form-title">
               Do you still have questions or have suggestions?
             </h3>
             <p
-              class="text-sm md:text-base font-normal leading-[18px] md:leading-[19.2px] text-left w-full md:w-[650px] h-[38px] md:h-[19px] mt-[10px] md:mt-[20px] mb-[30px] md:mb-[70px]"
-            >
+              class="text-sm md:text-base font-normal leading-[18px] md:leading-[19.2px] text-left w-full md:w-[650px] h-[38px] md:h-[19px] mt-[10px] md:mt-[20px] mb-[30px] md:mb-[70px]">
               Leave your contacts and question or suggestion and we will contact
               you to discuss.
             </p>
@@ -308,36 +231,21 @@
 
           <!-- Список полей ввода -->
           <ul class="flex flex-col gap-4">
-            <li
-              v-for="(field, index) in inputTitle"
-              :key="index"
-              class="flex flex-col"
-            >
-              <label
-                :for="'field' + index"
-                class="text-sm font-medium text-gray-700"
-              >
+            <li v-for="(field, index) in inputTitle" :key="index" class="flex flex-col">
+              <label :for="'field' + index" class="text-sm font-medium text-gray-700">
                 {{ field.title }}
               </label>
-              <component
-                :is="field.type === 'textarea' ? 'textarea' : 'input'"
-                :id="'field' + index"
-                :type="field.type !== 'textarea' ? field.type : undefined"
-                :placeholder="field.placeholder"
-                v-model="field.value"
-                :style="{
+              <component :is="field.type === 'textarea' ? 'textarea' : 'input'" :id="'field' + index"
+                :type="field.type !== 'textarea' ? field.type : undefined" :placeholder="field.placeholder"
+                v-model="field.value" :style="{
                   height: field.height,
                   borderRadius: field.borderRadius,
                 }"
-                class="h-[50px] max-h-[150px] gap-[10px] border-opacity-80 placeholder:font-helvetica-neue border-gray-400 border-[2px] pl-[20px] placeholder:text-gray-400 placeholder:opacity-80"
-              />
+                class="h-[50px] max-h-[150px] gap-[10px] border-opacity-80 placeholder:font-helvetica-neue border-gray-400 border-[2px] pl-[20px] placeholder:text-gray-400 placeholder:opacity-80" />
             </li>
           </ul>
 
-          <ButtonBlue
-            class="w-[220px] mt-[30px] md:mt-[50px] self-start"
-            @click=""
-          >
+          <ButtonBlue class="w-[220px] mt-[30px] md:mt-[50px] self-start" @click="">
             Send
           </ButtonBlue>
         </fieldset>
@@ -345,11 +253,7 @@
 
       <!-- Изображение -->
       <div class="mt-[50px] md:mt-[150px] w-full md:w-auto">
-        <img
-          src="../public/assets/city.png"
-          alt="City Image"
-          class="rounded-lg w-full md:w-auto"
-        />
+        <img src="../public/assets/city.png" alt="City Image" class="rounded-lg w-full md:w-auto" />
       </div>
     </div>
   </div>
@@ -495,9 +399,11 @@ const seeMore3 = () => {
   .img-bg {
     display: none;
   }
+
   .container__main {
     margin-top: 130px;
   }
+
   .container-input {
     margin-top: 150px;
   }
@@ -587,8 +493,7 @@ const seeMore3 = () => {
       padding-right: 30px;
     }
 
-    .text-show {
-    }
+    .text-show {}
   }
 }
 

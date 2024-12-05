@@ -1,6 +1,6 @@
 <template>
     <NuxtPage />
-    <div class="pl-[60px] pr-[60px] mt-[150px]">
+    <div class="px-[60px] mt-[150px]">
         <h1 class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2">
             PLATE AND MOBILE NUMBERS IN UAE
         </h1>
@@ -39,74 +39,15 @@
 
         <img class="w-full pt-[70px] img-bg" src="../public/assets/bacround.png" alt="" />
         <div class="container-input mt-[150px]">
-            <h3 class="w-[1320px] h-[60px] text-[50px] font-normal leading-[60px] text-left title-input mb-[50px]">
-                Choose your number
-            </h3>
-            <div class="flex gap-[20px] items-center flex-wrap">
-                <div>
-                    <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
-                        for="type">Type:</label>
-                    <div class="mt-[10px] flex gap-[10px]">
-                        <NuxtLink to="/BuyNumbers"
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center">
-                            Plate
-                        </NuxtLink>
-                        <NuxtLink to="/BuyNumbers2"
-                            class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center">
-                            Mobile
-                        </NuxtLink>
-                    </div>
-                </div>
-                <div>
-                    <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]" for="emirate">
-                        Emirate:
-                    </label>
-                    <select
-                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]"
-                        id="emirate" v-model="selectedEmirate" @change="handleEmirateChange">
-                        <option v-for="region in regions" :key="region.id" :value="region.name">
-                            {{ region.name }}
-                        </option>
-                    </select>
-                </div>
-                <div>
-                    <label for="code"
-                        class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Code:</label>
-                    <select id="code" name="code"
-                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
-                        <option>AA</option>
-                        <option>None</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="sort" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Sort
-                        by:</label>
-                    <select id="sort" name="sort"
-                        class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
-                        <option>Latest</option>
-                    </select>
-                </div>
-                <ButtonBlue class="w-[310px] h-[52px] flex justify-center items-center font-bold mt-[30px]">
-                    Show 1234 numbers
-                </ButtonBlue>
-            </div>
 
-            <div>
-                <h3
-                    class="text-[16px] font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px]">
-                    Featured:
-                </h3>
+            <!-- каталог -->
+            <Catalog />
 
-                <div
-                    class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px]">
-                    <CardPlate v-for="item in filteredPlateNumbers" :key="item.id" v-bind="item" />
-                </div>
 
-                <ButtonBlue
-                    class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] font-bold text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap">
-                    View all Promoted listings
-                </ButtonBlue>
-            </div>
+            <ButtonBlue
+                class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] font-bold text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap">
+                View all Promoted listings
+            </ButtonBlue>
         </div>
 
     </div>
@@ -354,9 +295,7 @@ import CartPlate from '../components/CardPlate/CardPlate.vue'
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue'
 import ButtonPlus from '../components/ButtonPlus/ButtonPlus.vue'
-import { computed, onMounted, ref } from 'vue';
-import axios from 'axios';
-
+import { ref } from 'vue';
 
 // Определение интерфейса для Input
 interface Input {
@@ -367,65 +306,9 @@ interface Input {
     height: string;
     borderRadius: string;
 }
-interface IRegions {
-    id: number;
-    name: string;
-    totalCount: number;
-    totalPage: number;
-}
 
-interface IPlate {
-    id: number;
-    photo: string;
-    emirate: string;
-    price: number;
-    isFeatured: boolean;
-    type: string;
-}
 
-const plateNumbers = ref<IPlate[]>([]);
-const selectedEmirate = ref('Dubai');
-const regions = ref<IRegions[]>([]);
 
-// Fetch regions
-const fetchRegions = async () => {
-    try {
-        const { data } = await axios.get('https://api.dev.numbers.ae/v1/account/regions/list');
-        regions.value = data.result.items;
-    } catch (e) {
-        console.error('Error fetching regions:', e);
-    }
-};
-
-// Handle emirate change
-const handleEmirateChange = (event: Event) => {
-    const target = event.target as HTMLSelectElement;
-    selectedEmirate.value = target.value;
-    console.log('Selected Emirate:', selectedEmirate.value);
-};
-
-const filteredPlateNumbers = computed(() => {
-    if (selectedEmirate.value) {
-        return plateNumbers.value.filter(item => item.emirate === selectedEmirate.value);
-    }
-    return plateNumbers.value;
-});
-
-// Fetch plate numbers
-const fetchPlate = async () => {
-    try {
-        const { data } = await axios.get<IPlate[]>('https://api.dev.numbers.ae/v1/catalog/plate');
-        plateNumbers.value = data;
-        console.log(plateNumbers.value)
-    } catch (e) {
-        console.log('Error fetching plates:', e);
-    }
-};
-
-onMounted(() => {
-    fetchRegions();
-    fetchPlate();
-});
 // Массив input полей
 const inputTitle = ref<Input[]>([
     {
