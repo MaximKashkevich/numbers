@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-
 import { defineProps } from 'vue';
 
 // Define props
@@ -35,6 +34,8 @@ const props = defineProps<{
   isFeatured: boolean;
   type: string;
 }>();
+
+
 
 // const localLiked = ref(false);
 

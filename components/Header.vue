@@ -1,162 +1,237 @@
 <template>
-    <div class="px-5 pt-5 flex justify-between items-center ">
-        <header class="min-w-[200px] flex items-center flex-wrap">
-            <NuxtLink to="/">
-                <img src="../public/assets/New-Logo.webp" class="header-img img2 cursor-pointer" alt="Logo">
-            </NuxtLink>
+  <header class="wrapper__header">
+    <div class="row__header">
+      <a class="logo" @click="goToLink('/')">
+        <img src="../public/assets/New-Logo.webp" alt="Logo" />
+      </a>
 
-            <nav class="hidden md:flex flex-wrap items-center gap-10 py-5">
-                <ul class="flex gap-10">
-                    <li>
-                        <NuxtLink to="/CatalogNumbers"
-                            class="text-link cursor-pointer text-black hover:text-blue-400 transition">
-                            Plate Numbers
-                        </NuxtLink>
-                    </li>
-                    <li>
-                        <NuxtLink to="/CatalogNumbers"
-                            class="text-link cursor-pointer text-black hover:text-blue-400 transition">
-                            Mobile Numbers
-                        </NuxtLink>
-                    </li>
-                    <li>
-                        <NuxtLink to="/GeneralBlockTariff" @click.prevent="handleClick"
-                            class="text-link cursor-pointer text-black hover:text-blue-400 transition">
-                            Subscriptions for dealers
-                        </NuxtLink>
-                    </li>
-                    <li>
-                        <NuxtLink to="/Discounts"
-                            class="text-link cursor-pointer text-black hover:text-blue-400 transition">
-                            Discounts
-                        </NuxtLink>
-                    </li>
-                    <li>
-                        <NuxtLink to="/License"
-                            class="text-link cursor-pointer text-black hover:text-blue-400 transition">
-                            Number concierge
-                        </NuxtLink>
-                    </li>
-                </ul>
-            </nav>
+      <div class="menu__pc">
+        <button @click="goToLink('/CatalogNumbers?numberType=plate')">
+          Plate Numbers
+        </button>
 
-            <div class="flex md:hidden">
-                <button @click="toggleMenu" class="burger-menu">
-                    <span :class="{ 'open': isOpen }"></span>
-                    <span :class="{ 'open': isOpen }"></span>
-                    <span :class="{ 'open': isOpen }"></span>
-                </button>
-            </div>
+        <button @click="goToLink('/CatalogNumbers?numberType=Mobile')">
+          Mobile Numbers
+        </button>
 
-            <ul v-show="isOpen" class="md:hidden mobile-menu flex flex-col items-center justify-center gap-1 mt-2">
-                <li>
-                    <NuxtLink to="/CatalogNumbers" class="mobile-link" @click.prevent="handleClick">
-                        Plate Numbers
-                    </NuxtLink>
-                </li>
-                <li>
-                    <NuxtLink to="/CatalogNumbers" class="mobile-link" @click.prevent="handleClick">
-                        Mobile Numbers
-                    </NuxtLink>
-                </li>
-                <li>
-                    <NuxtLink to="/GeneralBlockTariff" class="mobile-link" @click.prevent="handleClick">
-                        Subscriptions for dealers
-                    </NuxtLink>
-                </li>
-                <li>
-                    <NuxtLink to="/Discounts" class="mobile-link" @click.prevent="handleClick">
-                        Discounts
-                    </NuxtLink>
-                </li>
-                <li>
-                    <NuxtLink to="/License" class="mobile-link" @click.prevent="handleClick">
-                        Number concierge
-                    </NuxtLink>
-                </li>
-            </ul>
-            <!-- 1 -->
-            <div class="flex  items-center gap-4 ml-4">
+        <button @click="goToLink('/GeneralBlockTariff')">
+          Subscriptions for dealers
+        </button>
 
-                <div class="flex ml-auto">
-                    <NuxtLink to="/GeneralBlockTariff" @click.prevent="handleClick">
-                        <ButtonBlue class="py-3 px-5">Add Listing</ButtonBlue>
-                    </NuxtLink>
-                </div>
-                <NuxtLink to="/Viewed" @click.prevent="handleClick">
-                    <img src="/assets/Vector1.svg" alt="view">
-                </NuxtLink>
+        <button @click="goToLink('/Discounts')">Discounts</button>
 
-                <NuxtLink to="/Liked" @click.prevent="handleClick">
-                    <img src="/assets/Vector.svg" alt="favorites">
-                </NuxtLink>
+        <button @click="goToLink('/License')">Number concierge</button>
+      </div>
 
-                <NuxtLink to="/GeneralEmpty" @click.prevent="handleClick">
-                    <img src="/assets/Frame 33.svg" alt="general" />
-                </NuxtLink>
-            </div>
-        </header>
+      <button
+        :class="[isOpen ? 'menu__mobile close' : 'menu__mobile']"
+        @click="toggleMenu"
+      >
+        <div class="menu__shape"></div>
+
+        <div class="menu__shape"></div>
+
+        <div class="menu__shape"></div>
+      </button>
+
+      <div class="row__actions">
+        <ButtonBlue
+          :requiresAdapt="true"
+          class="py-3 px-5 mr-6"
+          @click="goToLink('/GeneralBlockTariff')"
+          >Add Listing</ButtonBlue
+        >
+        <div class="row__actions_inner">
+          <button class="button__action" @click="goToLink('/Viewed')">
+            <img src="/assets/img/icons/saw.svg" alt="view" />
+          </button>
+
+          <button class="button__action" @click="goToLink('/Liked')">
+            <img src="/assets/img/icons/fav.svg" alt="favorites" />
+          </button>
+
+          <button class="button__action" @click="goToLink('/GeneralEmpty')">
+            <img src="/assets/img/icons/profile.svg" alt="general" />
+          </button>
+        </div>
+      </div>
     </div>
+    <div :class="[isOpen ? 'row__mobile' : 'row__mobile_close']">
+      <button @click="goToLink('/CatalogNumbers?numberType=plate')">
+        Plate Numbers
+      </button>
+
+      <button @click="goToLink('/CatalogNumbers?numberType=Mobile')">
+        Mobile Numbers
+      </button>
+
+      <button @click="goToLink('/GeneralBlockTariff')">
+        Subscriptions for dealers
+      </button>
+
+      <button @click="goToLink('/Discounts')">Discounts</button>
+      <button @click="goToLink('/License')">Number concierge</button>
+    </div>
+  </header>
 </template>
 <script setup lang="ts">
-import { useAuthStore } from '@/stores/auth';
-import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-const authStore = useAuthStore();
 const router = useRouter();
+
+const goToLink = (page: string) => {
+  router.push({
+    path: page,
+  });
+};
+
 const isOpen = ref(false);
 
-const handleClick = () => {
-    const token = authStore.authToken;
-
-    if (!token) {
-        router.push('/login');
-    }
-};
-
 const toggleMenu = () => {
-    isOpen.value = !isOpen.value;
+  isOpen.value = !isOpen.value;
+  console.log(123);
 };
 </script>
-
 <style scoped>
-.text-link {
-    font-size: clamp(18px, 16px, 20px);
+.wrapper__header {
+  padding: 20px 20px;
 }
 
-.img2 {
-    width: 144px;
-    height: 40px;
+.row__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.burger-menu {
-    cursor: pointer;
+.logo {
+  width: 144px;
+  height: 40px;
 }
 
-.burger-menu span {
+.menu__pc {
+  display: flex;
+  gap: 20px;
+  font-size: 18px;
+  color: #000;
+}
+
+.menu__pc button:hover {
+  color: #005dca;
+}
+
+.menu__mobile {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 32px;
+}
+
+.menu button:hover {
+  color: #005dca;
+}
+
+.menu__shape {
+  width: 30px;
+  height: 3px;
+  background-color: #000;
+  border-radius: 6px;
+}
+
+.menu__mobile .menu__shape {
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+.menu__mobile.close :nth-child(1) {
+  transform: rotate(45deg) translateY(15px) translateX(10px);
+}
+.menu__mobile.close :nth-child(2) {
+  opacity: 0;
+}
+.menu__mobile.close :nth-child(3) {
+  transform: rotate(-45deg) translateY(-10px) translateX(5px);
+}
+.row__actions {
+  display: flex;
+  padding-right: 3px;
+  align-items: center;
+}
+
+.row__actions_inner {
+  display: flex;
+  gap: 20px;
+}
+
+.button__action {
+  cursor: pointer;
+}
+
+.button__action:hover img {
+  filter: brightness(0) saturate(100%) invert(23%) sepia(86%) saturate(2128%)
+    hue-rotate(201deg) brightness(93%) contrast(102%);
+}
+
+.row__mobile {
+  position: absolute;
+  right: 0;
+  left: 0;
+  padding-right: 20px;
+  z-index: 2;
+  transition: opacity 0.5s;
+  opacity: 1;
+  flex-direction: column;
+  align-items: end;
+  background: rgb(250, 250, 250);
+  background: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 1) 83%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  padding-bottom: 70px;
+}
+
+.row__mobile_close {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0s;
+  padding-bottom: 70px;
+}
+
+.row__mobile button {
+  font-size: 20px;
+  width: fit-content;
+  text-align: end;
+  display: block;
+}
+
+@media (max-width: 1280px) {
+  .row__header {
+    flex-wrap: wrap;
+  }
+  .row__actions {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .button__action img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .menu__pc {
+    display: none;
+  }
+  .menu__mobile {
     display: flex;
-    width: 30px;
-    height: 3px;
-    margin: 5px;
-    background-color: black;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.burger-menu span.open {
-    background-color: blue;
-}
-
-.mobile-link {
+  }
+  .row__mobile {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    /* Добавить место между иконкой и текстом */
-}
-
-.icon {
-    width: 20px;
-    /* Задайте нужный размер иконки */
-    height: 20px;
+  }
+  .menu__mobile {
+    display: flex;
+  }
 }
 </style>

@@ -9,22 +9,39 @@ export interface IPlate {
   price: number;
   isFeatured: boolean;
   type: string;
+  postedAt: string;
+  views: string;
+}
+
+interface IQuery {
+  type: string;
+  [key: string]: any;
 }
 
 export const usePlateStore = defineStore("plateStore", () => {
   const plateNumbers = ref<IPlate[]>([]);
+  const isLoading = ref(false);
 
-  const fetchPlate = async () => {
+  const fetchPlate = async (query: IQuery) => {
+    isLoading.value = true;
     try {
       const { data } = await axios.get<IPlate[]>(
-        "https://api.dev.numbers.ae/v1/catalog/plate"
+        `https://api.dev.numbers.ae/v1/catalog/${query.type}?page=${query.page}&order=${query.sort}`
       );
-      plateNumbers.value = data;
-      console.log(plateNumbers.value);
+      const filteredPlateNumbers = data.filter(
+        (plate) => plate.emirate.toLowerCase() === query.emirate.toLowerCase()
+      );
+      if (query.type === "plate") {
+        plateNumbers.value = filteredPlateNumbers;
+      } else {
+        plateNumbers.value = data;
+      }
     } catch (e) {
       console.error(e);
+    } finally {
+      isLoading.value = false;
     }
   };
 
-  return { plateNumbers, fetchPlate };
+  return { plateNumbers, isLoading, fetchPlate };
 });

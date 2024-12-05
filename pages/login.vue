@@ -1,22 +1,26 @@
 <template>
-  <div class="flex justify-between items-start pl-[60px] pr-[60px] pt-[100px] block">
-    <div class="w-[650px] h-[650px]">
+  <div class="wrapper__signUp flex justify-between items-start pl-[60px] pr-[60px] pt-[100px] block">
+    <div class="w-[650px] h-[400px]">
       <h1 class="font-roboto text-[50px] font-medium uppercase tracking-wide leading-none w-[400px] textOne">
         Welcome <span class="pr-[15px] sp">to</span> Numbers.ae
       </h1>
-      <p class="w-[500px] pt-[30px] textTwo">
-        Numbers.ae is a Web service aimed to create an easy and convenient way to purchase or sell Plate and
-        Mobile Numbers in Dubai, Abu Dhabi, and other Emirates.
+      <p class="pt-[30px]">
+        Numbers.ae is a Web service aimed to create an easy and convenient way
+        to purchase or sell Plate and Mobile Numbers in Dubai, Abu Dhabi, and
+        other Emirates.
       </p>
-      <div class="flex items-end h-[390px] textThird">
+      <!-- <div class="flex items-end h-[390px]">
         <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
-          No account? <span class="text-blue-500 cursor-pointer" @click="toggleSignUp">Sign up.</span>
+          No account?
         </h2>
-      </div>
+      </div> 
+      ToDo - сделать кнопку No account?-->
     </div>
 
-    <div class="w-[650px] mr-[50px]">
-      <h2 class="font-roboto text-[35px] font-medium leading-[42px] pt-[20px] textThird">Login with social networks</h2>
+    <div class="mr-[50px]">
+      <h2 class="font-roboto text-[35px] font-medium leading-[42px] pt-[20px]">
+        Login with social networks
+      </h2>
       <div class="button-container flex flex-col gap-[20px] pt-[40px]">
         <div class="flex gap-[20px] sm:grid sm:grid-cols-2 image">
           <ButtonLogin>
@@ -27,25 +31,29 @@
           </ButtonLogin>
         </div>
         <div class="pt-[70px]">
-          <h3
-            class="textFours w-[600px] h-[42px] font-roboto text-[35px] font-medium leading-[42px] text-left flex-wrap">
+          <h3 class="w-[600px] h-[42px] font-roboto text-[35px] font-medium leading-[42px] text-left flex-wrap">
+
             Or login with username and password
           </h3>
           <form @submit.prevent="handleSubmit" class="pt-[30px]">
             <div>
               <label for="username" class="text-[14px] font-medium leading-[16.8px]">Login, e–mail or username:</label>
               <input v-model="apiLog.email" type="text" id="username"
-                class="inputs bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom mb-[10px]"
+                class="inputs bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom mb-[10px]"
                 placeholder="username@gmail.com or 050 123 45 67 or JohnSnow_123" />
-              <span v-if="errors.username" class="text-red-500">{{ errors.username }}</span>
+              <span v-if="errors.username" class="text-red-500">{{
+                errors.username
+              }}</span>
             </div>
 
             <div>
               <label for="password" class="text-[14px] font-medium leading-[16.8px] h-[20px]">Password:</label>
               <input v-model="apiLog.password" type="password" id="password"
-                class="inputs bg-[#fff] w-[600px] h-[52px] border-[1px] pl-[30px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom"
+                class="inputs bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom"
                 placeholder="xxxxxxx" />
-              <span v-if="errors.password" class="text-red-500">{{ errors.password }}</span>
+              <span v-if="errors.password" class="text-red-500">{{
+                errors.password
+              }}</span>
             </div>
             <div class="flex items-center my-2">
               <input id="remember-me" type="checkbox" v-model="form.rememberMe"
@@ -66,81 +74,73 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import { useRouter } from 'vue-router';
-import axios from 'axios';
-import { useAuthStore } from '@/stores/auth'
-
-import { useSignUpStore } from '@/stores/signup'
-
-const signUpStore = useSignUpStore();
-
-const toggleSignUp = () => {
-  signUpStore.onClickSignUP()
-}
-
-const authStore = useAuthStore();
-
-const onClickSignUP = () => {
-  // Здесь вы можете вызвать метод setToken или любой другой метод из вашего store
-  const token = 'your-auth-token'; // Здесь должен быть ваш токен
-  authStore.setToken(token);
-  // Дополнительная логика после установки токена (например, редирект)
-};
+import { ref, reactive } from "vue";
+import { useRouter } from "vue-router";
+import axios from "axios";
+import { useAuthStore } from "@/stores/auth";
 
 interface FormInterface {
-  username: string | number,
-  password: string | number,
-  rememberMe: boolean,
+  username: string | number;
+  password: string | number;
+  rememberMe: boolean;
 }
 
 interface errors {
-  username: string,
-  password: string,
+  username: string;
+  password: string;
 }
 
 interface apiLOgs {
-  email: string,
-  password: string,
+  email: string;
+  password: string;
 }
-
-
 const router = useRouter();
 
 // Data binding for the form
 const form = ref<FormInterface>({
-  username: '',
-  password: '',
+  username: "",
+  password: "",
   rememberMe: false,
 });
 
 const errors = ref<errors>({
-  username: '',
-  password: '',
+  username: "",
+  password: "",
 });
 
 const apiLog = reactive<apiLOgs>({
   email: "",
-  password: ""
+
+  password: "",
+
 });
 
 // Form validation
 const validate = () => {
-  errors.value.username = '';
-  errors.value.password = '';
+
+  errors.value.username = "";
+  errors.value.password = "";
+
 
   const username = apiLog.email;
 
   if (!username) {
-    errors.value.username = 'Username is required.';
-  } else if (!/^[a-zA-Z0-9_]+$/.test(username) && !/^[\w.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(username) && !/^\+?\d{1,3}[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/.test(username)) {
-    errors.value.username = 'Please enter a valid email, phone number, or username.';
+    errors.value.username = "Username is required.";
+  } else if (
+    !/^[a-zA-Z0-9_]+$/.test(username) &&
+    !/^[\w.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(username) &&
+    !/^\+?\d{1,3}[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/.test(
+      username
+    )
+  ) {
+    errors.value.username =
+      "Please enter a valid email, phone number, or username.";
   }
 
   if (!apiLog.password) {
-    errors.value.password = 'Password is required.';
+    errors.value.password = "Password is required.";
   } else if (apiLog.password.length < 6) {
-    errors.value.password = 'Password must be at least 6 characters.';
+    errors.value.password = "Password must be at least 6 characters.";
   }
 };
 
@@ -167,7 +167,6 @@ const apiLogin = async () => {
     }
   } catch (error) {
     console.error('Ошибка при логине:', error);
-    console.error('Ответ сервера:', error.response ? error.response.data : error.message);
   }
 };
 
@@ -222,26 +221,76 @@ const handleSubmit = () => {
 
 @media(max-width: 430px) {
   .inputs {
+    width: clamp(200px, 90vw, 600px);
+    display: block;
+  }
+
+  .inputs::placeholder {
+    font-size: clamp(16px, 3vw, 20px);
+  }
+
+  p {
+    font-size: clamp(20px, 4.8vw, 32px);
+    max-width: 90vw;
+  }
+
+  h2 {
+    font-size: clamp(16px, 7vw, 36px);
+    text-wrap: nowrap;
+  }
+
+  h3 {
+    font-size: clamp(16px, 5vw, 36px);
+    text-wrap: nowrap;
+  }
+}
+
+@media (max-width: 760px) {
+  .wrapper__signUp {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .block {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 430px) {
+  .sp {
+    display: flex;
+    text-align: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .inputs {
     width: 250px;
     display: flex;
   }
 }
 
-@media(max-width: 430px) {
+
+@media (max-width: 430px) {
+
   .buttonSign {
     width: 250px;
     justify-content: center;
   }
 }
 
-@media(max-width: 430px) {
+
+
+@media (max-width: 760px) {
   .image {
     display: flex;
     flex-direction: column;
   }
 }
 
-@media(max-width: 1200px) {
+@media (max-width: 1200px) {
+
   .block {
     flex-wrap: wrap;
   }
