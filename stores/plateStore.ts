@@ -43,6 +43,7 @@ export const usePlateStore = defineStore("plate", () => {
         "https://api.dev.numbers.ae/v1/account/regions/list"
       );
       regions.value = data.result.items;
+      console.log(regions.value);
     } catch (e) {
       console.error("Error fetching regions:", e);
     }

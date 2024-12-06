@@ -42,6 +42,21 @@ import { useRouter } from 'vue-router';
 import axios from 'axios';
 import { useSignUpStore } from '../../stores/signUp';
 
+interface ApiRegisterData {
+  email: string;
+  login: string;
+  fullName: string;
+  mobileNumber: string;
+  password: string;
+}
+
+interface InputField {
+  title: string;
+  type: string;
+  value: keyof ApiRegisterData;
+  placeholder: string;
+}
+
 const signUpStore = useSignUpStore();
 const router = useRouter();
 
@@ -50,7 +65,7 @@ const toggleSignUp = () => {
 };
 
 const errors = ref<string[]>([]);
-const apiRegisterData = reactive({
+const apiRegisterData = reactive<ApiRegisterData>({
   email: '',
   login: '',
   fullName: '',
@@ -58,7 +73,7 @@ const apiRegisterData = reactive({
   password: '',
 });
 
-const inputTitle = ref([
+const inputTitle = ref<InputField[]>([
   { title: 'Your Email:', type: 'email', value: 'email', placeholder: 'username@gmail.com' },
   { title: 'Choose login:', type: 'text', value: 'login', placeholder: 'JohnSnow_123' },
   { title: 'Full name:', type: 'text', value: 'fullName', placeholder: 'John Snow' },
@@ -67,78 +82,93 @@ const inputTitle = ref([
 ]);
 
 const validateEmail = (email: string) => {
-  // Регулярное выражение для проверки формата email
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
-
-  // Проверяем, соответствует ли email шаблону
+  // Исправлено: убраны лишние обратные слэши
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return emailPattern.test(email);
 };
 
+// Валидация мобильного номера
 const validatePhoneNumber = (phone: string) => {
-  const phonePattern = /^\d{3} \d{3} \d{2} \d{2}$/; // Формат: XXX XXX XX XX
+  // Исправлено: убраны лишние обратные слэши
+  const phonePattern = /^\+\d{10,15}$/; // Формат: +1234567890123
   return phonePattern.test(phone);
 };
 
+// Основная функция валидации
 const validate = () => {
-  errors.value = [];
+  errors.value = []; // Сбрасываем ошибки
+
+  // Валидация электронной почты
   if (!apiRegisterData.email || !validateEmail(apiRegisterData.email)) {
-    errors.value[0] = 'Invalid email address.';
+    errors.value[0] = 'Invalid email address.'; // Ошибка электронной почты
   }
+
+  // Валидация логина
   if (!apiRegisterData.login) {
-    errors.value[1] = 'Login is required.';
+    errors.value[1] = 'Login is required.'; // Ошибка логина
   }
+
+  // Валидация полного имени
   if (!apiRegisterData.fullName) {
-    errors.value[2] = 'Full name is required.';
+    errors.value[2] = 'Full name is required.'; // Ошибка полного имени
   }
+
+  // Валидация номера мобильного телефона
   if (!apiRegisterData.mobileNumber || !validatePhoneNumber(apiRegisterData.mobileNumber)) {
-    errors.value[3] = 'Invalid phone number format. Use +XXXXXXXXXXX or XXXXXXXXXXX.';
+    errors.value[3] = 'Invalid phone number format. Use +XXXXXXXXXXX.'; // Ошибка номера телефона
   }
+
+  // Валидация пароля
   if (!apiRegisterData.password || apiRegisterData.password.length < 6) {
-    errors.value[4] = 'Password must be at least 6 characters long.';
+    errors.value[4] = 'Password must be at least 6 characters long.'; // Ошибка пароля
   }
 };
 
+// Обработка отправки формы
 const onSubmit = async () => {
-  validate();
+  validate(); // Запускаем валидацию
 
-  // Если есть ошибки, выходим без отправки данных
   if (errors.value.length > 0) {
-    return;
+    return; // Если есть ошибки, завершаем выполнение
   }
 
-  // Создаем объект FormData
-  const formData = new FormData();
-
-  // Заменяем пробелы в мобильном номере и добавляем данные в FormData
+  // Удаляем все пробелы в мобильном номере
   apiRegisterData.mobileNumber = apiRegisterData.mobileNumber.replace(/\s+/g, '').trim();
 
-  // Заполняем FormData
-  formData.append('email', apiRegisterData.email);
-  formData.append('login', apiRegisterData.login);
-  formData.append('fullName', apiRegisterData.fullName);
-  formData.append('mobileNumber', apiRegisterData.mobileNumber);
-  formData.append('password', apiRegisterData.password);
-
   try {
-    const response = await axios.post('https://api.dev.numbers.ae/v1/auth/signup', formData, {
+    const response = await axios.post('https://api.dev.numbers.ae/v1/auth/signup', {
+      email: apiRegisterData.email,
+      login: apiRegisterData.login,
+      fullName: apiRegisterData.fullName,
+      mobileNumber: apiRegisterData.mobileNumber,
+      password: apiRegisterData.password,
+    }, {
       headers: {
-        'Content-Type': 'multipart/form-data', // Указываем тип содержимого как form data
+        'Content-Type': 'application/json',
       },
     });
 
     console.log(response.data);
-    // Здесь можно обработать успешный ответ (например, перенаправление или уведомление пользователя)
+
+    if (response.data.token) {
+      localStorage.setItem('authToken', response.data.token); // Сохраняем токен
+    }
+
+    router.push('/'); // Перенаправляем на главную страницу
 
   } catch (error: any) {
-    console.error(error);
-    if (error.response && error.response.data) {
-      errors.value = [error.response.data.message || 'Registration failed.'];
+    if (error.response) {
+      console.error(error.response.data);
+
+      // Обрабатываем специфические сообщения об ошибках
+      if (error.response.data.result) {
+        errors.value.push(...error.response.data.result.mobilenumber || []);
+      }
     } else {
-      errors.value = ['Please try again later.'];
+      console.error(error);
     }
   }
 };
-
 </script>
 
 <style scoped>

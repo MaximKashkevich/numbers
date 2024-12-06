@@ -11,7 +11,7 @@
       </p>
       <div class="flex items-end h-[390px]">
         <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
-          No account? <span class="text-blue-500 cursor-pointer">Sign Up</span>
+          No account? <span @click="toggleSignUp" class="text-blue-500 cursor-pointer">Sign Up</span>
         </h2>
       </div>
     </div>
@@ -77,6 +77,13 @@ import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useAuthStore } from "@/stores/auth";
+import { useSignUpStore } from '@/stores/signUp'
+
+const SignUp = useSignUpStore()
+
+const toggleSignUp = () => {
+  SignUp.onClickSignUP()
+}
 
 interface FormInterface {
   username: string | number;
