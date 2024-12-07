@@ -37,8 +37,9 @@
         <label for="code" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Code:</label>
         <select id="emirate" name="code" v-model="toggleQuery.code"
           class="button__filter mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
-          <option value="aa">AA</option>
-          <option value="none">None</option>
+          <option v-for="code in codes" :key="code.id" :value="code.name">
+            {{ code.code }}
+          </option>
         </select>
       </div>
       <div>
@@ -63,32 +64,33 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, watch, computed } from "vue";
-import CardPlateList from "./CardPlate/CardPlateList.vue";
-import Pagination from "./Pagination/Pagination.vue";
+import { ref, onMounted, watch, computed } from "vue"
 import { usePlateStore } from "/stores/plateStore";
-import axios from "axios";
+
 // if toggleNumbers === plate return true
 // else if mobile return false
 
 
 const plateStores = usePlateStore();
 const selectedEmirate = ref(plateStores.selectedEmirate);
+const codes = ref(plateStores.codes)
 const regions = ref(plateStores.regions);
 
 onMounted(() => {
-  plateStore.fetchRegions();
+  plateStores.fetchRegions();
+  plateStores.fetchCodes();
+  plateStores.fetchPlate(toggleQuery);
 })
 
 // Обработчик изменения эмирата
 const handleEmirateChange = (event: Event) => {
   const target = event.target as HTMLSelectElement;
   selectedEmirate.value = target.value;
-  plateStore.selectedEmirate = selectedEmirate.value; // Обновляем состояние в store
+  plateStores.selectedEmirate = selectedEmirate.value; // Обновляем состояние в store
 };
 
 const filteredPlateNumbers = computed(() => {
-  return plateStore.filteredPlateNumbers;
+  return plateStores.filteredPlateNumbers;
 });
 
 
@@ -102,7 +104,7 @@ let toggleQuery = {
 };
 
 const useToggleQuery = () => {
-  plateStore.fetchPlate({ ...toggleQuery, page: currentPage.value });
+  plateStores.fetchPlate({ ...toggleQuery, page: currentPage.value });
 };
 watch(currentPage, () => {
   useToggleQuery();
@@ -118,11 +120,6 @@ const setToggleMobile = () => {
   useToggleQuery();
 };
 
-const plateStore = usePlateStore();
-
-onMounted(() => {
-  plateStore.fetchPlate(toggleQuery);
-});
 </script>
 <style>
 .button__filter {

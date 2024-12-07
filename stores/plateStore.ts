@@ -18,10 +18,18 @@ export interface IRegions {
   totalPage: number;
 }
 
+export interface ICode {
+  id: number;
+  code: string;
+  totalCount: number;
+  totalPage: number;
+}
+
 export const usePlateStore = defineStore("plate", () => {
   const plateNumbers = ref<IPlate[]>([]);
   const regions = ref<IRegions[]>([]);
-  const selectedEmirate = ref("Dubai");
+  const codes = ref<ICode[]>([]);
+  const selectedEmirate = ref("");
 
   // Fetch plate numbers
   const fetchPlate = async () => {
@@ -30,7 +38,6 @@ export const usePlateStore = defineStore("plate", () => {
         "https://api.dev.numbers.ae/v1/catalog/plate"
       );
       plateNumbers.value = data;
-      console.log(plateNumbers.value);
     } catch (e) {
       console.log("Error fetching plates:", e);
     }
@@ -43,9 +50,20 @@ export const usePlateStore = defineStore("plate", () => {
         "https://api.dev.numbers.ae/v1/account/regions/list"
       );
       regions.value = data.result.items;
-      console.log(regions.value);
     } catch (e) {
       console.error("Error fetching regions:", e);
+    }
+  };
+
+  const fetchCodes = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://api.dev.numbers.ae/v1/account/operators/codes/list"
+      );
+      codes.value = data.result.items;
+      console.log(codes.value);
+    } catch (e) {
+      console.log("Error fetching codes:", e);
     }
   };
 
@@ -74,5 +92,7 @@ export const usePlateStore = defineStore("plate", () => {
     selectedEmirate,
     handleEmirateChange,
     filteredPlateNumbers,
+    fetchCodes,
+    codes,
   };
 });
