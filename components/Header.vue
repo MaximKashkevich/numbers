@@ -10,11 +10,11 @@
           Plate Numbers
         </button>
 
-        <button @click="goToLink('/CatalogNumbers?numberType=Mobile')">
+        <button @click="goToLink('/BuyNumbers2')">
           Mobile Numbers
         </button>
 
-        <button @click="goToLink('/GeneralBlockTariff')">
+        <button @click="goToLink('/License')">
           Subscriptions for dealers
         </button>
 
@@ -23,10 +23,7 @@
         <button @click="goToLink('/License')">Number concierge</button>
       </div>
 
-      <button
-        :class="[isOpen ? 'menu__mobile close' : 'menu__mobile']"
-        @click="toggleMenu"
-      >
+      <button :class="[isOpen ? 'menu__mobile close' : 'menu__mobile']" @click="toggleMenu">
         <div class="menu__shape"></div>
 
         <div class="menu__shape"></div>
@@ -35,12 +32,8 @@
       </button>
 
       <div class="row__actions">
-        <ButtonBlue
-          :requiresAdapt="true"
-          class="py-3 px-5 mr-6"
-          @click="goToLink('/GeneralBlockTariff')"
-          >Add Listing</ButtonBlue
-        >
+        <ButtonBlue :requiresAdapt="true" class="py-3 px-5 mr-6" @click="goToLink('/GeneralBlockTariff')">Add Listing
+        </ButtonBlue>
         <div class="row__actions_inner">
           <button class="button__action" @click="goToLink('/Viewed')">
             <img src="/assets/img/icons/saw.svg" alt="view" />
@@ -50,7 +43,7 @@
             <img src="/assets/img/icons/fav.svg" alt="favorites" />
           </button>
 
-          <button class="button__action" @click="goToLink('/GeneralEmpty')">
+          <button class="button__action" @click="goToLink('/login')">
             <img src="/assets/img/icons/profile.svg" alt="general" />
           </button>
         </div>
@@ -146,12 +139,15 @@ const toggleMenu = () => {
 .menu__mobile.close :nth-child(1) {
   transform: rotate(45deg) translateY(15px) translateX(10px);
 }
+
 .menu__mobile.close :nth-child(2) {
   opacity: 0;
 }
+
 .menu__mobile.close :nth-child(3) {
   transform: rotate(-45deg) translateY(-10px) translateX(5px);
 }
+
 .row__actions {
   display: flex;
   padding-right: 3px;
@@ -168,8 +164,7 @@ const toggleMenu = () => {
 }
 
 .button__action:hover img {
-  filter: brightness(0) saturate(100%) invert(23%) sepia(86%) saturate(2128%)
-    hue-rotate(201deg) brightness(93%) contrast(102%);
+  filter: brightness(0) saturate(100%) invert(23%) sepia(86%) saturate(2128%) hue-rotate(201deg) brightness(93%) contrast(102%);
 }
 
 .row__mobile {
@@ -183,11 +178,9 @@ const toggleMenu = () => {
   flex-direction: column;
   align-items: end;
   background: rgb(250, 250, 250);
-  background: linear-gradient(
-    180deg,
-    rgba(250, 250, 250, 1) 83%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(250, 250, 250, 1) 83%,
+      rgba(0, 0, 0, 0) 100%);
   padding-bottom: 70px;
 }
 
@@ -209,11 +202,13 @@ const toggleMenu = () => {
   .row__header {
     flex-wrap: wrap;
   }
+
   .row__actions {
     margin-top: 10px;
     width: 100%;
     justify-content: space-between;
   }
+
   .button__action img {
     width: 32px;
     height: 32px;
@@ -224,12 +219,15 @@ const toggleMenu = () => {
   .menu__pc {
     display: none;
   }
+
   .menu__mobile {
     display: flex;
   }
+
   .row__mobile {
     display: flex;
   }
+
   .menu__mobile {
     display: flex;
   }

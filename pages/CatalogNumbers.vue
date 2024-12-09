@@ -4,18 +4,12 @@
     <nav class="mb-[30px] mt-[30px] navigation">
       <ul class="flex gap-[5px]">
         <li>
-          <NuxtLink
-            href="/BuyNumbers"
-            class="text-[#005DCA] transition cursor-pointer"
-          >
+          <NuxtLink to="/" class="text-[#005DCA] transition cursor-pointer">
             Home /
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink
-            href=""
-            class="text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer"
-          >
+          <NuxtLink class="text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer">
             Plate numbers
           </NuxtLink>
         </li>
@@ -31,19 +25,13 @@
       <ul class="flex gap-[20px] flex-wrap">
         <li
           class="hover:shadow-2xl py-[30px] px-[30px] hover:shadow-orange-200 transition flex-1 min-w-[300px] max-w-[426px] h-[300px] rounded-[20px] bg-white border-[3px] border-[#FF9C00]"
-          v-for="(plate, index) in filteredPlates"
-          :key="index"
-        >
+          v-for="(plate, index) in filteredPlates" :key="index">
           <div>
             <p>Plate: {{ plate.plate }}</p>
-            <p
-              class="w-[180px] h-[24px] text-[20px] font-medium leading-[24px]"
-            >
+            <p class="w-[180px] h-[24px] text-[20px] font-medium leading-[24px]">
               Price: <span v-html="plate.price"></span>
             </p>
-            <p
-              class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3] pt-16"
-            >
+            <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3] pt-16">
               Emirate12: {{ plate.emirate }}
               12312
             </p>
@@ -51,39 +39,32 @@
         </li>
       </ul>
     </div>
-
-    <div
-      v-if="!isPlateSelected && filteredPlates2.length > 0"
-      class="mt-[40px]"
-    >
+    <!-- 
+    <div v-if="!isPlateSelected && filteredPlates2.length > 0" class="mt-[40px]">
       <ul class="flex gap-[20px] flex-wrap">
         <li
           class="flex-1 min-w-[300px] max-w-[426px] h-auto p-4 rounded-[20px] bg-white border-[2px] border-[#B3B3B3] flex flex-col justify-between"
-          v-for="(phone, index) in filteredPlates2"
-          :key="index"
-        >
+          v-for="(phone, index) in filteredPlates2" :key="index">
           <p>Phone: {{ phone.phone }}</p>
           <p class="w-[180px] h-[24px] text-[20px] font-medium leading-[24px]">
             Price: <span v-html="phone.price"></span>
           </p>
-          <p
-            class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3] pt-16"
-          >
+          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3] pt-16">
             Emirate: {{ phone.emirate }}
           </p>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 
   <!-- Пагинация -->
   <div>
-    <Pagination
+    <!-- <Pagination
       class="mt-[70px] px-[50px]"
       :total-pages="totalPages"
       :current-page="page"
       @update:page="onPageChange"
-    />
+    /> -->
     <!-- <button @click="increaseTotalPages"  class="w-[100px] h-[52px] bg-[#fff] rounded-[20px] border-[1px] border-[#BFBFBF]">add page</button>
         <button @click="decreaseTotalPages" class="w-[100px] h-[52px] bg-[#fff] rounded-[20px] border-[1px] border-[#BFBFBF]">delete page</button> -->
   </div>
@@ -464,6 +445,7 @@ export default {
 }
 
 @keyframes blink {
+
   0%,
   80%,
   100% {

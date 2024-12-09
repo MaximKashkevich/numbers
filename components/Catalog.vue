@@ -4,22 +4,19 @@
       Choose your number
     </h3>
     <div class="flex gap-[20px] items-center flex-wrap">
-      <div>
-        <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]" for="type">Type:</label>
-        <div class="mt-[10px] flex gap-[10px]">
-          <button @click="setTogglePlate" :class="[
-            'button__filter w-[130px] h-[47px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center',
-            toggleOptionIsNumbers ? 'border-[#000]' : 'border-[#bfbfbf]',
-          ]">
-            Plate
-          </button>
-          <button @click="setToggleMobile" :class="[
-            'button__filter w-[130px] h-[47px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center',
-            !toggleOptionIsNumbers ? 'border-[#000]' : 'border-[#bfbfbf]',
-          ]">
-            Mobile
-          </button>
-        </div>
+      <div class="flex mt-[10px]  gap-[10px]">
+        <button @click="goToLink('/CatalogNumbers')" :class="[
+          'button__filter w-[130px] h-[47px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center',
+          toggleOptionIsNumbers ? 'border-[#000]' : 'border-[#bfbfbf]',
+        ]">
+          Plate
+        </button>
+        <button @click="goToLink('/BuyNumbers2')" :class="[
+          'button__filter w-[130px] h-[47px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center',
+          !toggleOptionIsNumbers ? 'border-[#000]' : 'border-[#bfbfbf]',
+        ]">
+          Mobile
+        </button>
       </div>
 
       <div>
@@ -44,9 +41,9 @@
           </ul>
         </div>
       </div>
-      <div v-if="toggleOptionIsNumbers">
+      <div>
         <label for="code" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Code:</label>
-        <select id="emirate" name="code" v-model="toggleQuery.code"
+        <select id="emirate" name="code"
           class="button__filter mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
           <option v-for="code in codes" :key="code.id" :value="code.code">
             {{ code.code }}
@@ -55,14 +52,13 @@
       </div>
       <div>
         <label for="sort" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Sort by:</label>
-        <select id="emirate" name="sort" v-model="toggleQuery.sort"
+        <select id="emirate" name="sort"
           class="button__filter mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
           <option value="desc">Latest</option>
           <option value="asc">Earliest</option>
         </select>
       </div>
-      <ButtonBlue @click="useToggleQuery"
-        class="w-[310px] h-[52px] flex justify-center items-center font-bold mt-[30px]">
+      <ButtonBlue class="w-[310px] h-[52px] flex justify-center items-center font-bold mt-[30px]">
         Show 1234 numbers
       </ButtonBlue>
     </div>
@@ -75,8 +71,18 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, watch, computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { usePlateStore } from "~/stores/plateStore";
+import { useRouter } from "vue-router";
+
+const toggleOptionIsNumbers = ref(true);
+
+const router = useRouter();
+
+const goToLink = (page: string) => {
+  router.push(page);
+  toggleOptionIsNumbers.value = page === '/plate'; // Обновляем состояние, чтобы отобразить правильный стиль кнопки
+};
 
 const plateStores = usePlateStore();
 const selectedEmirate = ref("Dubai");
@@ -89,6 +95,7 @@ const handleEmirateChange = (emirate: string) => {
   selectedEmirate.value = emirate;
   plateStores.selectedEmirate = emirate; // Обновляем состояние в store
   isDropdownOpen.value = false; // Закрыть дропдаун
+  // console.log(isDropdownOpen.value)
 };
 
 const toggleDropdown = () => {
@@ -104,34 +111,6 @@ onMounted(() => {
   plateStores.fetchCodes();
   plateStores.fetchPlate();
 });
-
-let currentPage = ref(1);
-let toggleOptionIsNumbers = ref(true);
-let toggleQuery = {
-  type: "plate",
-  emirate: "dubai",
-  code: "aa",
-  sort: "desc",
-};
-
-const useToggleQuery = () => {
-  plateStores.fetchPlate({ ...toggleQuery, page: currentPage.value });
-};
-watch(currentPage, () => {
-  useToggleQuery();
-});
-
-const setTogglePlate = () => {
-  toggleOptionIsNumbers.value = true;
-  toggleQuery.type = "plate";
-  useToggleQuery();
-};
-
-const setToggleMobile = () => {
-  toggleOptionIsNumbers.value = false;
-  toggleQuery.type = "phone";
-  useToggleQuery();
-};
 </script>
 
 <style>

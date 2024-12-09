@@ -59,7 +59,7 @@
         View ads for purchase is available only for registered users
       </p>
       <div
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[20px] mt-[50px] grid-2 mb-[70px]">
+        class="w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px]  mt-[50px] grid-2 mb-[70px]">
         <div class="w-[300px] lg:w-[426px] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]">
           <div class="">
             <p class="">1/3</p>

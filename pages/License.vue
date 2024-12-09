@@ -4,20 +4,12 @@
     <nav class="mb-[30px] mt-[30px] navigation">
       <ul class="flex gap-[5px]">
         <li>
-          <NuxtLink
-            href="/BuyNumbers"
-            class="text-[#005DCA] cursor-pointer transition"
-          >
-            Home /</NuxtLink
-          >
+          <NuxtLink to="/" class="text-[#d4e0ee] cursor-pointer transition">
+            Home /</NuxtLink>
         </li>
         <li>
-          <NuxtLink
-            href=""
-            class="text-[#BFBFBF] hover:text-[#005DCA] cursor-pointer transition"
-          >
-            License price</NuxtLink
-          >
+          <NuxtLink href="" class="text-[#BFBFBF] hover:text-[#005DCA] cursor-pointer transition">
+            License price</NuxtLink>
         </li>
       </ul>
     </nav>
@@ -25,13 +17,11 @@
     <!-- Заголовок и текст -->
     <div>
       <h1
-        class="w-full sm:w-[600px] lg:w-[900px] text-[30px] sm:text-[40px] lg:text-[50px] font-medium leading-tight text-left uppercase"
-      >
+        class="w-full sm:w-[600px] lg:w-[900px] text-[30px] sm:text-[40px] lg:text-[50px] font-medium leading-tight text-left uppercase">
         To publish an ad you first need to license to the service.
       </h1>
       <p
-        class="w-full sm:w-[400px] lg:w-[500px] text-[14px] sm:text-[16px] font-normal leading-[19px] text-left pt-[20px] sm:pt-[30px]"
-      >
+        class="w-full sm:w-[400px] lg:w-[500px] text-[14px] sm:text-[16px] font-normal leading-[19px] text-left pt-[20px] sm:pt-[30px]">
         Once you pay the rate you want, you can add listings right away.
       </p>
     </div>

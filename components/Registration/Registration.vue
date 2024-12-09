@@ -154,7 +154,9 @@ const onSubmit = async () => {
       localStorage.setItem('authToken', response.data.token); // Сохраняем токен
     }
 
-    router.push('/'); // Перенаправляем на главную страницу
+    router.push('/GeneralEmpty'); // Перенаправляем на главную страницу
+    signUpStore.signUp = !signUpStore.signUp
+
 
   } catch (error: any) {
     if (error.response) {
