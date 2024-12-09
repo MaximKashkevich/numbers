@@ -9,6 +9,7 @@ export interface IPlate {
   price: number;
   isFeatured: boolean;
   type: string;
+  postedAt: string;
 }
 
 export interface IRegions {
@@ -29,13 +30,14 @@ export const usePlateStore = defineStore("plate", () => {
   const plateNumbers = ref<IPlate[]>([]);
   const regions = ref<IRegions[]>([]);
   const codes = ref<ICode[]>([]);
-  const selectedEmirate = ref("");
+  const selectedEmirate = ref("Dubai"); // Инициализация с "Dubai"
 
   // Fetch plate numbers
-  const fetchPlate = async () => {
+  const fetchPlate = async (query?: any) => {
     try {
       const { data } = await axios.get<IPlate[]>(
-        "https://api.dev.numbers.ae/v1/catalog/plate"
+        "https://api.dev.numbers.ae/v1/catalog/plate",
+        { params: query } // Используйте query как параметры, если они есть
       );
       plateNumbers.value = data;
     } catch (e) {

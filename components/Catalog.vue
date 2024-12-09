@@ -1,6 +1,6 @@
 <template>
   <div class="container-input mt-[150px]">
-    <h3 class="w-[1320px] h-[60px] leading-[60px] text-left title-input mb-[50px]">
+    <h3 class="2text-xl leading-[60px] text-left title-input mb-[50px]">
       Choose your number
     </h3>
     <div class="flex gap-[20px] items-center flex-wrap">
@@ -21,23 +21,34 @@
           </button>
         </div>
       </div>
+
       <div>
         <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]" for="emirate">
           Emirate:
         </label>
-        <select
-          class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]"
-          id="emirate" v-model="selectedEmirate" @change="handleEmirateChange">
-          <option v-for="region in regions" :key="region.id" :value="region.name">
-            {{ region.name }}
-          </option>
-        </select>
+        <div @click="toggleDropdown" class="relative">
+          <button
+            class="mt-[10px] text-[16px] leading-[19.2px] text-left  w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px] flex items-center justify-between">
+            {{ selectedEmirate || 'Dubai' }}
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-200"
+              :class="{ 'rotate-180': isDropdownOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <ul v-if="isDropdownOpen"
+            class="absolute mt-[5px] w-full bg-white border border-[#BFBFBF] rounded-md shadow-lg max-h-60 overflow-hidden">
+            <li v-for="region in regions" :key="region.id" @click="handleEmirateChange(region.name)"
+              class="py-2 px-4 hover:bg-gray-200 cursor-pointer font-medium ">
+              {{ region.name }}
+            </li>
+          </ul>
+        </div>
       </div>
       <div v-if="toggleOptionIsNumbers">
         <label for="code" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Code:</label>
         <select id="emirate" name="code" v-model="toggleQuery.code"
           class="button__filter mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
-          <option v-for="code in codes" :key="code.id" :value="code.name">
+          <option v-for="code in codes" :key="code.id" :value="code.code">
             {{ code.code }}
           </option>
         </select>
@@ -64,35 +75,35 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, watch, computed } from "vue"
-import { usePlateStore } from "/stores/plateStore";
-
-// if toggleNumbers === plate return true
-// else if mobile return false
-
+import { ref, onMounted, watch, computed } from "vue";
+import { usePlateStore } from "~/stores/plateStore";
 
 const plateStores = usePlateStore();
-const selectedEmirate = ref(plateStores.selectedEmirate);
-const codes = ref(plateStores.codes)
+const selectedEmirate = ref("Dubai");
+const isDropdownOpen = ref(false);
+const codes = ref(plateStores.codes);
 const regions = ref(plateStores.regions);
 
-onMounted(() => {
-  plateStores.fetchRegions();
-  plateStores.fetchCodes();
-  plateStores.fetchPlate(toggleQuery);
-})
-
 // Обработчик изменения эмирата
-const handleEmirateChange = (event: Event) => {
-  const target = event.target as HTMLSelectElement;
-  selectedEmirate.value = target.value;
-  plateStores.selectedEmirate = selectedEmirate.value; // Обновляем состояние в store
+const handleEmirateChange = (emirate: string) => {
+  selectedEmirate.value = emirate;
+  plateStores.selectedEmirate = emirate; // Обновляем состояние в store
+  isDropdownOpen.value = false; // Закрыть дропдаун
+};
+
+const toggleDropdown = () => {
+  isDropdownOpen.value = !isDropdownOpen.value;
 };
 
 const filteredPlateNumbers = computed(() => {
   return plateStores.filteredPlateNumbers;
 });
 
+onMounted(() => {
+  plateStores.fetchRegions();
+  plateStores.fetchCodes();
+  plateStores.fetchPlate();
+});
 
 let currentPage = ref(1);
 let toggleOptionIsNumbers = ref(true);
@@ -109,18 +120,20 @@ const useToggleQuery = () => {
 watch(currentPage, () => {
   useToggleQuery();
 });
+
 const setTogglePlate = () => {
   toggleOptionIsNumbers.value = true;
   toggleQuery.type = "plate";
   useToggleQuery();
 };
+
 const setToggleMobile = () => {
   toggleOptionIsNumbers.value = false;
   toggleQuery.type = "phone";
   useToggleQuery();
 };
-
 </script>
+
 <style>
 .button__filter {
   transition: border 0.3s;

@@ -40,16 +40,16 @@
     <img class="w-full pt-[70px] img-bg" src="../public/assets/bacround.png" alt="" />
     <div>
       <Catalog />
-      <div
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px]">
-
-      </div>
       <ButtonBlue
-        class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] font-bold text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap">
+        class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap">
         View all Promoted listings
       </ButtonBlue>
     </div>
-    <SimilarNumbersList></SimilarNumbersList>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
+      <SimilarNumber v-for="item in similarNumbers" :key="item.id" :id="item.id" :imageSrc="item.photo"
+        :price="item.price" :emirate="item.emirate" :postedAt="item.postedAt" :views="item.views" />
+    </div>
     <div class="mt-[150px]">
       <h3 class="w-[1000px] h-[180px] text-[50px] font-normal leading-[60px] text-left mini-title">
         Save time on your search: create an ad to buy a number and we will send
@@ -261,12 +261,21 @@
 
 <script setup lang="ts">
 import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
-import SimilarNumber from "../components/SimilarNumbers/SimilarNumber.vue";
+import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue'
 import SimilarNumberLowPrice from "../components/LowSimilarNumbers/SimilarNumberLowPrice.vue";
 import ButtonPlus from "../components/ButtonPlus/ButtonPlus.vue";
-import CardPlateList from "../components/CardPlate/CardPlateList.vue";
+
 import "/assets/css/main.css";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+
+import { useSimilarNumbersStore } from "~/stores/similarNumbers";
+
+const similarNumbersStore = useSimilarNumbersStore();
+const similarNumbers = ref(similarNumbersStore.similarNumbers)
+
+onMounted(async () => {
+  await similarNumbersStore.fetchSimilar();
+});
 
 // Определение интерфейса для Input
 interface Input {

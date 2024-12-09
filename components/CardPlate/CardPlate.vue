@@ -5,7 +5,10 @@
       <img :src="props.photo" class="mt-[40px] px-[20px]" alt="Image" />
       <div class="flex items-center justify-between mt-[30px] mr-[30px]">
         <div class="w-[110px] ml-[20px]">
-          <h1 class="w-[110px] h-[24px] text-[20px] font-medium leading-[24px]" v-html="props.price"></h1>
+          <h1 class="flex items-center text-[19px] font-bold leading-[24px]" v-html="props.price"></h1>
+        </div>
+        <div>
+          <img width="24px" src="/assets/like.svg" alt="favorite">
         </div>
       </div>
       <div class="mt-[30px] pl-[20px]">
@@ -14,7 +17,7 @@
           <p class="ext-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ props.emirate }}</p>
         </div>
         <div class="flex gap-[25px] pt-[5px]">
-          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Today{{ props.postedAt }}</p>
+          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Posted Today {{ props.postedAt }}</p>
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ props.views }} Views</p>
         </div>
       </div>
@@ -32,7 +35,9 @@ const props = defineProps<{
   emirate: string;
   price: number;
   isFeatured: boolean;
+  views: string
   type: string;
+  postedAt: string;
 }>();
 
 
