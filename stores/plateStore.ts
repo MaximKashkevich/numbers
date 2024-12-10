@@ -31,6 +31,7 @@ export const usePlateStore = defineStore("plate", () => {
   const regions = ref<IRegions[]>([]);
   const codes = ref<ICode[]>([]);
   const selectedEmirate = ref("Dubai"); // Инициализация с "Dubai"
+  const selectedCode = ref("050");
 
   // Fetch plate numbers
   const fetchPlate = async (query?: any) => {
@@ -96,5 +97,6 @@ export const usePlateStore = defineStore("plate", () => {
     filteredPlateNumbers,
     fetchCodes,
     codes,
+    selectedCode,
   };
 });
