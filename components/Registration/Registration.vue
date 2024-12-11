@@ -151,7 +151,8 @@ const onSubmit = async () => {
     console.log(response.data);
 
     if (response.data.token) {
-      localStorage.setItem('authToken', response.data.token); // Сохраняем токен
+      localStorage.setItem('authToken', response.data.token);
+      // Сохраняем токен
     }
 
     router.push('/GeneralEmpty'); // Перенаправляем на главную страницу

@@ -43,7 +43,7 @@
             <img src="/assets/img/icons/fav.svg" alt="favorites" />
           </button>
 
-          <button class="button__action" @click="goToLink('/login')">
+          <button class="button__action" @click="handleClick">
             <img src="/assets/img/icons/profile.svg" alt="general" />
           </button>
         </div>
@@ -73,11 +73,23 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
+
 const goToLink = (page: string) => {
   router.push({
     path: page,
   });
 };
+
+const handleClick = () => {
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    router.push('/GeneralEmpty');
+  } else {
+    router.push('/login');
+  }
+};
+
+
 
 const isOpen = ref(false);
 

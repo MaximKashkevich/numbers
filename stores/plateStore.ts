@@ -38,7 +38,7 @@ export const usePlateStore = defineStore("plate", () => {
     try {
       const { data } = await axios.get<IPlate[]>(
         "https://api.dev.numbers.ae/v1/catalog/plate",
-        { params: query } // Используйте query как параметры, если они есть
+        { params: query }
       );
       plateNumbers.value = data;
     } catch (e) {
@@ -58,13 +58,13 @@ export const usePlateStore = defineStore("plate", () => {
     }
   };
 
+  // Fetch codes
   const fetchCodes = async () => {
     try {
       const { data } = await axios.get(
         "https://api.dev.numbers.ae/v1/account/operators/codes/list"
       );
       codes.value = data.result.items;
-      console.log(codes.value);
     } catch (e) {
       console.log("Error fetching codes:", e);
     }
@@ -74,7 +74,6 @@ export const usePlateStore = defineStore("plate", () => {
   const handleEmirateChange = (event: Event) => {
     const target = event.target as HTMLSelectElement;
     selectedEmirate.value = target.value;
-    console.log("Selected Emirate:", selectedEmirate.value);
   };
 
   // Filtered plate numbers based on selected emirate
@@ -87,6 +86,13 @@ export const usePlateStore = defineStore("plate", () => {
     return plateNumbers.value;
   });
 
+  // Деструктуризация id из plateNumbers
+  const plateIds = computed(() => plateNumbers.value.map(({ id }) => id));
+
+  const handleClick = (id: number) => {
+    console.log("Clicked ID:", id);
+  };
+
   return {
     plateNumbers,
     fetchPlate,
@@ -98,5 +104,7 @@ export const usePlateStore = defineStore("plate", () => {
     fetchCodes,
     codes,
     selectedCode,
+    handleClick,
+    plateIds, // Возвращаем массив id
   };
 });

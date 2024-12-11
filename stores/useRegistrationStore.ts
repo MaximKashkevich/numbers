@@ -1,9 +1,8 @@
 import { defineStore } from "pinia";
 import { ref, reactive } from "vue";
 import axios from "axios";
-import { useRouter } from "vue-router";
 
-interface ApiRegisterData {
+export interface ApiRegisterData {
   email: string;
   login: string;
   fullName: string;
@@ -11,9 +10,7 @@ interface ApiRegisterData {
   password: string;
 }
 
-export const useSignUpStores2 = defineStore("signUp", () => {
-  const router = useRouter();
-  const errors = ref<string[]>([]);
+export const useRegistation = defineStore("signUp", () => {
   const apiRegisterData = reactive<ApiRegisterData>({
     email: "",
     login: "",
@@ -22,18 +19,22 @@ export const useSignUpStores2 = defineStore("signUp", () => {
     password: "",
   });
 
+  const token = ref<string>("");
+
+  const errors = ref<string[]>([]);
+
   const validateEmail = (email: string) => {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
   };
 
   const validatePhoneNumber = (phone: string) => {
-    const phonePattern = /^\\+\\d{10,15}$/; // Format: +1234567890123
+    const phonePattern = /^\+\d{10,15}$/;
     return phonePattern.test(phone);
   };
 
   const validate = () => {
-    errors.value = [];
+    errors.value = []; // Сброс ошибок
 
     if (!apiRegisterData.email || !validateEmail(apiRegisterData.email)) {
       errors.value[0] = "Invalid email address.";
@@ -63,7 +64,7 @@ export const useSignUpStores2 = defineStore("signUp", () => {
     }
 
     apiRegisterData.mobileNumber = apiRegisterData.mobileNumber
-      .replace(/\\s+/g, "")
+      .replace(/\s+/g, "")
       .trim();
 
     try {
@@ -84,15 +85,19 @@ export const useSignUpStores2 = defineStore("signUp", () => {
       );
 
       if (response.data.token) {
-        localStorage.setItem("authToken", response.data.token);
+        token.value = response.data.token;
+        localStorage.setItem("authToken", token.value);
       }
 
-      router.push("/");
+      return response.data;
     } catch (error: any) {
       if (error.response) {
+        console.error(error.response.data);
         if (error.response.data.result) {
           errors.value.push(...(error.response.data.result.mobilenumber || []));
         }
+      } else {
+        console.error(error);
       }
     }
   };
@@ -100,6 +105,7 @@ export const useSignUpStores2 = defineStore("signUp", () => {
   return {
     apiRegisterData,
     errors,
+    token,
     onSubmit,
   };
 });

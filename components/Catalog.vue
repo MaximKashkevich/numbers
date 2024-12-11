@@ -80,7 +80,8 @@
       Featured:
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-      <CardPlate to="/PlateNUmberCard" v-for="item in filteredPlateNumbers" :key="item.id" v-bind="item" />
+      <CardPlate v-for="item in filteredPlateNumbers" @click="handleClickId" :key="item.id" :to="`/PlateNUmberCard`"
+        v-bind="item" />
     </div>
   </div>
 </template>
@@ -105,8 +106,19 @@ const isEmirateDropdownOpen = ref(false);
 const isCodeDropdownOpen = ref(false);
 const codes = ref(plateStores.codes);
 const regions = ref(plateStores.regions);
+const selectedPlateIdIndex = ref(0); // Индекс выбранного ID
 
+const handleClickId = () => {
+  const ids = plateStores.plateIds; // Получаем массив ID
 
+  if (ids.length > 0) {
+    // Проверяем, есть ли элементы в массиве
+    const uniqueId = ids[0]; // Берем первый ID (или используйте другой способ выбора уникального ID)
+    plateStores.handleClick(uniqueId); // Передаем уникальный ID в функцию handleClick
+  } else {
+    console.error("Массив ID пуст");
+  }
+};
 
 // Обработчик изменения эмирата
 const handleEmirateChange = (emirate: string) => {

@@ -262,9 +262,7 @@
 <script setup lang="ts">
 import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue'
-import SimilarNumberLowPrice from "../components/LowSimilarNumbers/SimilarNumberLowPrice.vue";
-import ButtonPlus from "../components/ButtonPlus/ButtonPlus.vue";
-import PlateNUmberCard from "./PlateNUmberCard.vue";
+import ButtonPlus from "../components/ButtonPlus/ButtonPlus.vue"
 
 import "/assets/css/main.css";
 import { ref, onMounted } from "vue";

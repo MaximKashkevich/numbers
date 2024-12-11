@@ -1,7 +1,5 @@
 <template>
-  <section
-    class="w-[400px] h-[476px] bg-white rounded-[20px] ml-[60px] gap-10 hover:shadow-2xl transition block1"
-  >
+  <section class="w-[400px] h-[476px] bg-white rounded-[20px] ml-[60px] gap-10 hover:shadow-2xl transition block1">
     <article class="justify-between flex items-center px-6 py-4 accGeneral">
       <NuxtLink class="cursor-pointer mr-2">
         <img src="/public/assets/account.svg" alt="account" />
@@ -19,83 +17,60 @@
     <div class="px-8 py-6">
       <ul>
         <li class="my-4 label">
-          <NuxtLink
-            :class="{ activeLink: $route.path === '/GeneralBlockTariff' }"
-            to="/GeneralBlockTariff"
-            class="text-black leading-[24px] text-xl cursor-pointer font-medium uppercase hover:font-medium transition"
-          >
+          <NuxtLink :class="{ activeLink: $route.path === '/GeneralBlockTariff' }" to="/GeneralBlockTariff"
+            class="text-black leading-[24px] text-xl cursor-pointer font-medium uppercase hover:font-medium transition">
             Add listing
           </NuxtLink>
         </li>
       </ul>
       <ul>
         <li class="my-1 label">
-          <NuxtLink
-            :class="{ activeLink: $route.path === '/MyColections' }"
-            to="/MyColections"
-            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
-          >
+          <NuxtLink :class="{ activeLink: $route.path === '/MyColections' }" to="/MyColections"
+            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition">
             My collections (0)
           </NuxtLink>
         </li>
       </ul>
       <ul>
         <li class="my-1 label">
-          <NuxtLink
-            :class="{ activeLink: $route.path === '/TableOrder' }"
-            to="/TableOrder"
-            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
-          >
+          <NuxtLink :class="{ activeLink: $route.path === '/TableOrder' }" to="/TableOrder"
+            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition">
             Numbers concierge (0)
           </NuxtLink>
         </li>
       </ul>
       <ul>
         <li class="my-1 label">
-          <NuxtLink
-            :class="{ activeLink: $route.path === '/ArchivePage' }"
-            to="/ArchivePage"
-            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
-          >
+          <NuxtLink :class="{ activeLink: $route.path === '/ArchivePage' }" to="/ArchivePage"
+            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition">
             Archive (12)
           </NuxtLink>
         </li>
       </ul>
       <ul>
         <li class="my-1 label">
-          <NuxtLink
-            :class="{ activeLink: $route.path === '/' }"
-            to="/"
-            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
-          >
+          <NuxtLink :class="{ activeLink: $route.path === '/' }" to="/"
+            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition">
             My cart (0)
           </NuxtLink>
         </li>
         <li class="my-1 label">
-          <NuxtLink
-            :class="{ activeLink: $route.path === '/Settings' }"
-            to="/Settings"
-            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
-          >
+          <NuxtLink :class="{ activeLink: $route.path === '/Settings' }" to="/Settings"
+            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition">
             Settings
           </NuxtLink>
         </li>
         <li class="my-1 label">
-          <NuxtLink
-            :class="{ activeLink: $route.path === '/PaymentHistory' }"
-            to="/PaymentHistory"
-            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
-          >
+          <NuxtLink :class="{ activeLink: $route.path === '/PaymentHistory' }" to="/PaymentHistory"
+            class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition">
             Payment history
           </NuxtLink>
         </li>
       </ul>
       <ul>
         <li class="my-1 label">
-          <button
-            @click="logout"
-            class="text-black leading-[24px] text-xl cursor-pointer font-medium hover:font-medium transition"
-          >
+          <button @click="logout"
+            class="text-black leading-[24px] text-xl cursor-pointer font-medium hover:font-medium transition">
             Log Out
           </button>
         </li>
@@ -106,7 +81,8 @@
 
 <script lang="ts">
 import { reactive, ref, onMounted } from "vue";
-import { useAuthStore } from "/stores/auth.ts";
+import { useRouter } from 'vue-router';
+import { useAuthStore } from "~/stores/auth";
 import axios from "axios";
 
 export default {

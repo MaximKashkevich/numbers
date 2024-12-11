@@ -72,7 +72,7 @@ const verification = useSignInStore();
 
 
 
-async function fetchPhoneData(id) {
+async function fetchPhoneData() {
         const url = `https://api.dev.numbers.ae/v1/catalog/phone/12345`;
 
         try {
