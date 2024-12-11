@@ -80,8 +80,7 @@
       Featured:
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-      <CardPlate v-for="item in filteredPlateNumbers" @click="handleClick(item.id)" :key="item.id"
-        :to="`/PlateNUmberCard`" v-bind="item" />
+      <CardPlate v-for="item in filteredPlateNumbers" @click="handleClick(item.id)" :key="item.id" v-bind="item" />
     </div>
   </div>
 </template>

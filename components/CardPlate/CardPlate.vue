@@ -8,13 +8,16 @@
           <h1 class="flex items-center text-[19px] font-bold leading-[24px]" v-html="props.price"></h1>
         </div>
         <div>
-          <img width="24px" src="/assets/like.svg" alt="favorite">
+          <div @click.stop="() => toggleLike(props)">
+            <img width="24px" :src="favorites.likes[props.id] ? '/assets/likeTrue.png' : '/assets/like.svg'"
+              alt="favorite">
+          </div>
         </div>
       </div>
       <div class="mt-[30px] pl-[20px]">
         <div class="flex gap-[10px]">
           <p class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate:</p>
-          <p class="ext-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ props.emirate }}</p>
+          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ props.emirate }}</p>
         </div>
         <div class="flex gap-[25px] pt-[5px]">
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Posted Today {{ props.postedAt }}</p>
@@ -27,32 +30,38 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
+import { useFavoritesStore } from '~/stores/favoritesStore';
+import type { IFavorites } from '~/stores/favoritesStore';
 
-// Define props
+const favorites = useFavoritesStore();
+
 const props = defineProps<{
   id: number;
   photo: string;
   emirate: string;
   price: number;
   isFeatured: boolean;
-  views: string
+  views: string;
   type: string;
   postedAt: string;
 }>();
 
-
-
-// const localLiked = ref(false);
-
-// watch(() => liked, (newVal) => {
-//   localLiked.value = newVal;
-// });
-
-// const toggleLike = () => {
-//   localLiked.value = !localLiked.value;
-//   emit('update:liked', localLiked.value);
-// };
+const toggleLike = (itemProps: typeof props) => {
+  const favoriteItem: IFavorites = {
+    id: itemProps.id,
+    photo: itemProps.photo,
+    emirate: itemProps.emirate,
+    price: itemProps.price,
+    isFeatured: itemProps.isFeatured,
+    views: itemProps.views,
+    type: itemProps.type,
+    postedAt: itemProps.postedAt,
+  }; // Создаем объект типа IFavorites
+  favorites.toggleLike(favoriteItem); // Передаем объект
+};
 </script>
+
+
 
 <style>
 @media (max-width: 500px) {
