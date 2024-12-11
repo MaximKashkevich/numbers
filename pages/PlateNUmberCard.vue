@@ -26,10 +26,10 @@
       <div class="flex-1 min-w-[250px] max-w-[350px] mb-[70px] title">
         <h1 class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px]  title-2">Dubai plate number for sale: AA
           14611 </h1>
-        <p class="text-[14px] font-normal leading-[14.4px] opacity-30">ID: {{ plateDetails.plateIds }}</p>
+        <p class="text-[14px] font-normal leading-[14.4px] opacity-30">ID: {{ plateStore.plateDetails.id }}</p>
         <div class="flex items-center">
           <p class="font-medium my-4 text-2xl mr-2">Цена: </p>
-          <h2 class="font-medium my-4 text-2xl" v-html="plateDetails.price"></h2>
+          <h2 class="font-medium my-4 text-2xl" v-html="plateStore.plateDetails.price"></h2>
         </div>
         <p class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px] mb-[10px]">Description:</p>
         <p class="text-[16px] font-normal leading-[20px] mb-[80px]">ETISALAT VIP Prepaid Fancy Mobile number For Sale.
@@ -49,7 +49,8 @@
 
         <div class="flex flex-col items-center justify-center h-full">
           <div class="flex items-center justify-center" id="top">
-            <img class="w-full h-auto max-w-[450px] object-contain" :src="plateDetails.photo" alt="Dubai Plate">
+            <img class="w-full h-auto max-w-[450px] object-contain" :src="plateStore.plateDetails.photo"
+              alt="Dubai Plate">
           </div>
           <div id="bottom" class="flex justify-center gap-2 mt-[125px]">
             <div class="pagination-circle w-[8px] h-[8px] border-[#B3B3B3] bg-black rounded-full"></div>
@@ -87,10 +88,13 @@
         </div>
 
         <div class="flex gap-[25px] mt-[30px]">
-          <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate: {{ plateDetails.emirate }}</p>
-          <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">Posted {{ plateDetails.datePosted
-            }}</p>
-          <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ plateDetails.views }} Views</p>
+          <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate: {{
+            plateStore.plateDetails.emirate }}</p>
+          <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">Posted {{
+            plateStore.plateDetails.datePosted
+          }}</p>
+          <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ plateStore.plateDetails.views }} Views
+          </p>
         </div>
         <div class="w-[212] mt-[30px]">
           <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center ">Call 058 210 03 10
@@ -208,25 +212,9 @@ import 'swiper/css/navigation';
 
 
 const plateStore = usePlateStore();
-const plateIds = computed(() => plateStore.plateIds); // Получаем массив ID
-const plateDetails = ref([]); // Измените на массив для хранения деталей
 
-// Функция для получения деталей номера по ID
-const fetchPlateDetails = async (id) => {
-  try {
-    const { data } = await axios.get(`https://api.dev.numbers.ae/v1/catalog/plate/${id}`);
-    plateDetails.value = data; // Сохраняем уникальный объект в plateDetails
-    console.log("Детали номера:", plateDetails.value);
-  } catch (error) {
-    console.error("Ошибка при получении данных:", error);
-  }
-};
-
-// Вызываем fetchPlateDetails для каждого ID при монтировании
 onMounted(() => {
-  if (plateIds.value.length > 0) {
-    plateIds.value.forEach(id => fetchPlateDetails(id)); // Получаем детали для каждого ID
-  }
+  plateStore.fetchPlate(); // Загружаем номерные знаки
 });
 </script>
 

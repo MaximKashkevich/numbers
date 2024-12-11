@@ -80,8 +80,8 @@
       Featured:
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-      <CardPlate v-for="item in filteredPlateNumbers" @click="handleClickId" :key="item.id" :to="`/PlateNUmberCard`"
-        v-bind="item" />
+      <CardPlate v-for="item in filteredPlateNumbers" @click="handleClick(item.id)" :key="item.id"
+        :to="`/PlateNUmberCard`" v-bind="item" />
     </div>
   </div>
 </template>
@@ -108,18 +108,9 @@ const codes = ref(plateStores.codes);
 const regions = ref(plateStores.regions);
 const selectedPlateIdIndex = ref(0); // Индекс выбранного ID
 
-const handleClickId = () => {
-  const ids = plateStores.plateIds; // Получаем массив ID
-
-  if (ids.length > 0) {
-    // Проверяем, есть ли элементы в массиве
-    const uniqueId = ids[0]; // Берем первый ID (или используйте другой способ выбора уникального ID)
-    plateStores.handleClick(uniqueId); // Передаем уникальный ID в функцию handleClick
-  } else {
-    console.error("Массив ID пуст");
-  }
+const handleClick = (id: number) => {
+  plateStores.handleClick(id); // Вызываем обработчик клика для получения деталей
 };
-
 // Обработчик изменения эмирата
 const handleEmirateChange = (emirate: string) => {
   selectedEmirate.value = emirate;

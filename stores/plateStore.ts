@@ -26,12 +26,23 @@ export interface ICode {
   totalPage: number;
 }
 
+export interface IDetails {
+  id: number;
+  photo: string;
+  emirate: string;
+  price: number;
+  isFeatured: boolean;
+  type: string;
+  postedAt: string;
+}
+
 export const usePlateStore = defineStore("plate", () => {
   const plateNumbers = ref<IPlate[]>([]);
   const regions = ref<IRegions[]>([]);
   const codes = ref<ICode[]>([]);
   const selectedEmirate = ref("Dubai"); // Инициализация с "Dubai"
   const selectedCode = ref("050");
+  const plateDetails = ref<IDetails | null>(null);
 
   // Fetch plate numbers
   const fetchPlate = async (query?: any) => {
@@ -70,6 +81,19 @@ export const usePlateStore = defineStore("plate", () => {
     }
   };
 
+  // Fetch plate details by ID
+  const fetchPlateDetails = async (id: number) => {
+    try {
+      const { data } = await axios.get<IDetails>(
+        `https://api.dev.numbers.ae/v1/catalog/plate/${id}`
+      );
+      plateDetails.value = data; // Сохраняем детали выбранной карточки
+      console.log("Детали номера:", plateDetails.value);
+    } catch (error) {
+      console.error("Ошибка при получении данных:", error);
+    }
+  };
+
   // Handle emirate change
   const handleEmirateChange = (event: Event) => {
     const target = event.target as HTMLSelectElement;
@@ -86,11 +110,12 @@ export const usePlateStore = defineStore("plate", () => {
     return plateNumbers.value;
   });
 
-  // Деструктуризация id из plateNumbers
-  const plateIds = computed(() => plateNumbers.value.map(({ id }) => id));
+  const selectedPlateId = ref<null | number>(0); // Состояние для хранения выбранного ID
 
-  const handleClick = (id: number) => {
-    console.log("Clicked ID:", id);
+  // Обработчик клика для получения ID и деталей карточки
+  const handleClick = async (id: number) => {
+    selectedPlateId.value = id; // Сохраняем выбранный ID
+    await fetchPlateDetails(id); // Получаем детали для выбранного ID
   };
 
   return {
@@ -105,6 +130,8 @@ export const usePlateStore = defineStore("plate", () => {
     codes,
     selectedCode,
     handleClick,
-    plateIds, // Возвращаем массив id
+    selectedPlateId,
+    plateDetails,
+    fetchPlateDetails,
   };
 });
