@@ -230,6 +230,7 @@
           <legend class="sr-only">Contact Form</legend>
 
           <!-- Список полей ввода -->
+          <!-- Список полей ввода -->
           <ul class="flex flex-col gap-4">
             <li v-for="(field, index) in inputTitle" :key="index" class="flex flex-col">
               <label :for="'field' + index" class="text-sm font-medium text-gray-700">
@@ -240,10 +241,14 @@
                 v-model="field.value" :style="{
                   height: field.height,
                   borderRadius: field.borderRadius,
+                  overflow: field.type === 'textarea' ? 'hidden' : 'auto', // Убираем скролл для textarea
+                  backgroundColor: 'transparent', // Делаем фон прозрачным
+                  resize: 'none', // Запрещаем изменение размера textarea
                 }"
                 class="h-[50px] max-h-[150px] gap-[10px] border-opacity-80 placeholder:font-helvetica-neue border-gray-400 border-[2px] pl-[20px] placeholder:text-gray-400 placeholder:opacity-80" />
             </li>
           </ul>
+
 
           <ButtonBlue class="w-[220px] mt-[30px] md:mt-[50px] self-start" @click="">
             Send
@@ -306,7 +311,7 @@ const inputTitle = ref<Input[]>([
   },
   {
     title: " ",
-    type: "text",
+    type: "textarea",
     value: "",
     placeholder: "Write your question or suggestion",
     height: "120px",

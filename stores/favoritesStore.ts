@@ -22,20 +22,19 @@ export const useFavoritesStore = defineStore("favorites", () => {
     userId.value = id;
   };
 
+  const handleAxiosError = (error: any, defaultMessage: string) => {
+    if (axios.isAxiosError(error)) {
+      console.error(defaultMessage, error.response?.data || error.message);
+    } else {
+      console.error(defaultMessage, "Unexpected error:", error);
+    }
+  };
+
   const addFavorite = async (favorite: IFavorites) => {
+    if (!userId.value || !favorite.id)
+      return console.error("User ID or Favorite ID is missing");
+
     try {
-      console.log("Отправляемые данные:", favorite);
-
-      if (userId.value === null) {
-        console.error("User ID is required but not provided.");
-        return;
-      }
-
-      if (!favorite.id) {
-        console.error("Favorite ID is missing");
-        return;
-      }
-
       const response = await axios.post(
         `https://api.dev.numbers.ae/v1/watchlist/plate/add?id=${favorite.id}&user_id=${userId.value}`,
         {}
@@ -50,58 +49,20 @@ export const useFavoritesStore = defineStore("favorites", () => {
           response.data.result.message || "Неизвестная ошибка"
         );
       }
-
-      console.log(favorites.value);
     } catch (e) {
       handleAxiosError(e, "Failed to add favorite");
     }
   };
 
-  const removeFavorite = async (favorite: IFavorites) => {
-    try {
-      if (userId.value === null) {
-        console.error("User ID is required but not provided.");
-        return;
-      }
-
-      const response = await axios.post(
-        `https://api.dev.numbers.ae/v1/watchlist/plate/remove?id=${favorite.id}&user_id=${userId.value}`,
-        {}
-      );
-
-      if (response.status === 200 && response.data.success) {
-        favorites.value = favorites.value.filter(
-          (fav) => fav.id !== favorite.id
-        );
-        delete likes.value[favorite.id];
-      } else {
-        console.error(
-          "Ошибка при удалении из избранного:",
-          response.data.result.message || "Неизвестная ошибка"
-        );
-      }
-    } catch (e) {
-      handleAxiosError(e, "Failed to remove favorite");
-    }
-  };
-
   const toggleLike = async (favorite: IFavorites) => {
-    if (!userId.value) {
-      console.error("User ID is required but not provided.");
-      return;
-    }
-    if (likes.value[favorite.id]) {
-      await removeFavorite(favorite);
-    } else {
-      await addFavorite(favorite);
-    }
-  };
+    if (!userId.value)
+      return console.error("User ID is required but not provided.");
 
-  const handleAxiosError = (error: any, defaultMessage: string) => {
-    if (axios.isAxiosError(error)) {
-      console.error(defaultMessage, error.response?.data || error.message);
+    // Проверка на наличие лайка; если его нет, добавляем в избранное
+    if (!likes.value[favorite.id]) {
+      await addFavorite(favorite);
     } else {
-      console.error(defaultMessage, "Unexpected error:", error);
+      console.log("Этот элемент уже в избранном.");
     }
   };
 

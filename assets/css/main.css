@@ -19,7 +19,11 @@ input {
 
 html,
 body {
-  overflow-x: hidden; /* Убираем горизонтальный скролл */
+  overflow-x: hidden;
+}
+
+input::placeholder {
+  font-size: 100%;
 }
 
 @media (max-width: 768px) {

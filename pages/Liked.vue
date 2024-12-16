@@ -16,7 +16,9 @@
             You used to watch
         </h1>
 
-        <LikedPlateCard v-for="item in favorites.favorites" :key="item.id" />
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+            <LikedPlateCard v-for="item in favorites.favorites" :key="item.id" />
+        </div>
 
         <div>
             <Pagination class="mt-[70px] px-[50px]" :total-pages="totalPages" :current-page="currentPage"

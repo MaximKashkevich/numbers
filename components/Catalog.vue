@@ -80,7 +80,8 @@
       Featured:
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-      <CardPlate v-for="item in filteredPlateNumbers" @click="handleClick(item.id)" :key="item.id" v-bind="item" />
+      <CardPlate to="/PlateNUmberCard" v-for="item in filteredPlateNumbers" @click="handleClick(item.id)" :key="item.id"
+        v-bind="item" />
     </div>
   </div>
 </template>
@@ -105,7 +106,6 @@ const isEmirateDropdownOpen = ref(false);
 const isCodeDropdownOpen = ref(false);
 const codes = ref(plateStores.codes);
 const regions = ref(plateStores.regions);
-const selectedPlateIdIndex = ref(0); // Индекс выбранного ID
 
 const handleClick = (id: number) => {
   plateStores.handleClick(id); // Вызываем обработчик клика для получения деталей

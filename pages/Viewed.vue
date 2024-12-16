@@ -1,12 +1,13 @@
 <template>
-    <div class="px-4 sm:px-8 lg:px-[60px]">
+    <div class="px-8 sm:px-8 ">
         <nav class="mb-6 mt-6">
             <ul class="flex gap-2">
                 <li>
                     <NuxtLink href="/BuyNumbers" class="text-[#005DCA] cursor-pointer transition">Home /</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink href="#" class="text-[#BFBFBF] hover:text-[#005DCA] cursor-pointer transition">You used to watch</NuxtLink>
+                    <NuxtLink href="#" class="text-[#BFBFBF] hover:text-[#005DCA] cursor-pointer transition">You used to
+                        watch</NuxtLink>
                 </li>
             </ul>
         </nav>
@@ -16,7 +17,7 @@
         </h1>
 
         <div class="flex flex-wrap gap-4 mt-4 sm:gap-6 lg:gap-8 mt-[70px]">
-            <CardPlate />
+            <!-- <CardPlate />
             <SimilarNumber />
             <SimilarNumberLowPrice />
             <CardPlate />
@@ -46,19 +47,16 @@
             <SimilarNumberLowPrice />
             <CardPlate />
             <SimilarNumberLowPrice />
-            <Card />
+            <Card /> -->
+            <ViewedPlates />
         </div>
 
         <div>
             <!-- Добавляем пагинацию -->
-            <Pagination 
-                class="mt-[70px] px-[50px]" 
-                :total-pages="totalPages" 
-                :current-page="currentPage" 
-                @update:page="onPageChange" 
-            />
+            <Pagination class="mt-[70px] px-[50px]" :total-pages="totalPages" :current-page="currentPage"
+                @update:page="onPageChange" />
         </div>
-    </div> 
+    </div>
 </template>
 
 <script>
@@ -68,6 +66,7 @@ import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue';
 import Pagination from '../components/Pagination/Pagination.vue';
 import Card from '../components/Card.vue';
+import ViewedPlates from '~/components/ViewedPlates.vue';
 
 export default {
     components: {

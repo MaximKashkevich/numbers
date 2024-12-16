@@ -43,6 +43,7 @@ export const usePlateStore = defineStore("plate", () => {
   const selectedEmirate = ref("Dubai");
   const selectedCode = ref("050");
   const plateDetails = ref<IDetails | null>(null);
+  const viewedPlates = ref<IPlate[]>([]);
 
   // Fetch plate numbers
   const fetchPlate = async (query?: any) => {
@@ -89,9 +90,25 @@ export const usePlateStore = defineStore("plate", () => {
       );
       plateDetails.value = data;
       console.log("Детали номера:", plateDetails.value);
+
+      // Добавляем просмотренную карточку в localStorage
+      addToViewedPlates(data);
     } catch (error) {
       console.error("Ошибка при получении данных:", error);
     }
+  };
+
+  // Функция для добавления карточки в просмотренные
+  const addToViewedPlates = (plate: IDetails) => {
+    let storedPlates = JSON.parse(localStorage.getItem("viewedPlates") || "[]");
+
+    // Проверяем, если карточка уже добавлена
+    if (!storedPlates.some((item: IDetails) => item.id === plate.id)) {
+      storedPlates.push(plate);
+      localStorage.setItem("viewedPlates", JSON.stringify(storedPlates));
+    }
+
+    viewedPlates.value = storedPlates; // Обновляем состояние
   };
 
   // Handle emirate change
@@ -116,6 +133,13 @@ export const usePlateStore = defineStore("plate", () => {
     await fetchPlateDetails(id);
   };
 
+  // Получаем просмотренные карточки из localStorage
+  const loadViewedPlates = () => {
+    viewedPlates.value = JSON.parse(
+      localStorage.getItem("viewedPlates") || "[]"
+    );
+  };
+
   return {
     plateNumbers,
     fetchPlate,
@@ -131,5 +155,7 @@ export const usePlateStore = defineStore("plate", () => {
     selectedPlateId,
     plateDetails,
     fetchPlateDetails,
+    viewedPlates,
+    loadViewedPlates,
   };
 });
