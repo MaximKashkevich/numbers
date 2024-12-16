@@ -98,6 +98,15 @@ export const usePlateStore = defineStore("plate", () => {
     }
   };
 
+  const loadViewedPlates = () => {
+    const storedPlates = JSON.parse(
+      localStorage.getItem("viewedPlates") || "[]"
+    );
+    viewedPlates.value = storedPlates;
+  };
+
+  // Остальные функции (fetchPlate, fetchRegions, fetchCodes и т.д.)
+
   // Функция для добавления карточки в просмотренные
   const addToViewedPlates = (plate: IDetails) => {
     let storedPlates = JSON.parse(localStorage.getItem("viewedPlates") || "[]");
@@ -131,13 +140,6 @@ export const usePlateStore = defineStore("plate", () => {
   const handleClick = async (id: number) => {
     selectedPlateId.value = id;
     await fetchPlateDetails(id);
-  };
-
-  // Получаем просмотренные карточки из localStorage
-  const loadViewedPlates = () => {
-    viewedPlates.value = JSON.parse(
-      localStorage.getItem("viewedPlates") || "[]"
-    );
   };
 
   return {

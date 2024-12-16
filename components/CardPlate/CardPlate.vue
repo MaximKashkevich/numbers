@@ -37,7 +37,7 @@ import type { IFavorites } from '~/stores/favoritesStore';
 const favorites = useFavoritesStore();
 
 const props = defineProps<IFavorites>(); // Получаем пропсы типа IFavorites
-console.log(props.id)
+
 
 const toggleLike = (favorite: IFavorites) => {
   favorites.toggleLike(favorite);

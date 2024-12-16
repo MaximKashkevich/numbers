@@ -16,3 +16,7 @@ onMounted(() => {
     plateStore.loadViewedPlates(); // Загружаем просмотренные номера при монтировании компонента
 });
 </script>
+
+<style scoped>
+/* Ваши стили */
+</style>
