@@ -1,6 +1,6 @@
 <template>
   <NuxtPage />
-  <div class="mt-[150px] container__main min-w-[90%] px-3">
+  <div class="mt-[150px] container__main min-w-[90%] px-8">
     <h1 class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2">
       PLATE AND MOBILE NUMBERS IN UAE
     </h1>

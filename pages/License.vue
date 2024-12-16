@@ -1,5 +1,5 @@
 <template>
-  <div class="px-4 sm:px-6 lg:px-[60px]">
+  <div class="px-8 sm:px-6 ">
     <!-- Навигация -->
     <nav class="mb-[30px] mt-[30px] navigation">
       <ul class="flex gap-[5px]">

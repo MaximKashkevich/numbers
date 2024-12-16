@@ -8,13 +8,14 @@
           <h1 class="flex items-center text-[19px] font-bold leading-[24px]" v-html="props.price"></h1>
         </div>
         <div>
-          <div @click.stop="() => toggleLike(props)">
+          <div @click.stop="toggleLike(props)">
             <img width="24px" :src="favorites.likes[props.id] ? '/assets/likeTrue.png' : '/assets/like.svg'"
               alt="favorite">
           </div>
         </div>
       </div>
       <div class="mt-[30px] pl-[20px]">
+
         <div class="flex gap-[10px]">
           <p class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate:</p>
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ props.emirate }}</p>
@@ -35,33 +36,13 @@ import type { IFavorites } from '~/stores/favoritesStore';
 
 const favorites = useFavoritesStore();
 
-const props = defineProps<{
-  id: number;
-  photo: string;
-  emirate: string;
-  price: number;
-  isFeatured: boolean;
-  views: string;
-  type: string;
-  postedAt: string;
-}>();
+const props = defineProps<IFavorites>(); // Получаем пропсы типа IFavorites
+console.log(props.id)
 
-const toggleLike = (itemProps: typeof props) => {
-  const favoriteItem: IFavorites = {
-    id: itemProps.id,
-    photo: itemProps.photo,
-    emirate: itemProps.emirate,
-    price: itemProps.price,
-    isFeatured: itemProps.isFeatured,
-    views: itemProps.views,
-    type: itemProps.type,
-    postedAt: itemProps.postedAt,
-  }; // Создаем объект типа IFavorites
-  favorites.toggleLike(favoriteItem); // Передаем объект
+const toggleLike = (favorite: IFavorites) => {
+  favorites.toggleLike(favorite);
 };
 </script>
-
-
 
 <style>
 @media (max-width: 500px) {

@@ -36,6 +36,4 @@ import { useFavoritesStore } from '~/stores/favoritesStore';
 
 const favorites = useFavoritesStore()
 
-
-
 </script>

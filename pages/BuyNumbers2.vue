@@ -1,30 +1,22 @@
 <template>
   <NuxtPage />
 
-  <div class="pl-[60px] pr-[60px] mt-[150px]">
-    <h1
-      class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2"
-    >
+  <div class="px-8 mt-[150px]">
+    <h1 class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2">
       PLATE AND MOBILE NUMBERS IN UAE
     </h1>
 
     <div class="mt-[100px] containres">
       <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
       <div class="flex gap-[50px] pt-[30px] pb-[30px] items-center flex-wrap">
-        <h2
-          class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase"
-        >
+        <h2 class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase">
           Total plate numbers:
         </h2>
-        <p
-          class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1"
-        >
+        <p class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1">
           {{ totalPlateNumbers }}
         </p>
 
-        <ButtonBlue
-          class="w-[140px] h-[52px] flex items-center justify-center ml-auto"
-        >
+        <ButtonBlue class="w-[140px] h-[52px] flex items-center justify-center ml-auto">
           BUY
         </ButtonBlue>
       </div>
@@ -32,121 +24,74 @@
       <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
 
       <div class="flex gap-[50px] pt-[30px] pb-[30px] items-center flex-wrap">
-        <h2
-          class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase"
-        >
+        <h2 class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase">
           Total mobile numbers:
         </h2>
-        <p
-          class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1"
-        >
+        <p class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1">
           {{ totalMobileNumbers }}
         </p>
 
-        <ButtonBlue
-          class="w-[140px] h-[52px] flex items-center justify-center ml-auto"
-        >
+        <ButtonBlue class="w-[140px] h-[52px] flex items-center justify-center ml-auto">
           BUY
         </ButtonBlue>
       </div>
     </div>
     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
 
-    <img
-      class="w-full pt-[70px] img-bg"
-      src="../public/assets/bacround.png"
-      alt=""
-    />
+    <img class="w-full pt-[70px] img-bg" src="../public/assets/bacround.png" alt="" />
 
     <div class="container-input mt-[150px]">
-      <h3
-        class="w-[1320px] h-[60px] text-[50px] font-normal leading-[60px] text-left title-input mb-[50px]"
-      >
+      <h3 class="w-[1320px] h-[60px] text-[50px] font-normal leading-[60px] text-left title-input mb-[50px]">
         Choose your number
       </h3>
       <div class="flex gap-[20px] items-center flex-wrap">
         <div>
-          <label
-            class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
-            for="type"
-            >Type:</label
-          >
+          <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]" for="type">Type:</label>
           <div class="mt-[10px] flex gap-[10px]">
-            <NuxtLink
-              to="/BuyNumbers"
-              class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center"
-            >
-              Plate</NuxtLink
-            >
-            <NuxtLink
-              to="/BuyNumbers2"
-              class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center"
-            >
-              Mobile</NuxtLink
-            >
+            <NuxtLink to="/BuyNumbers"
+              class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center">
+              Plate</NuxtLink>
+            <NuxtLink to="/BuyNumbers2"
+              class="button-black w-[130px] h-[47px] rounded-[100px] border border-[#000000] font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center">
+              Mobile</NuxtLink>
           </div>
         </div>
         <div>
-          <label
-            for="emirate"
-            class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
-            >Operator:</label
-          >
-          <select
-            id="emirate"
-            name="emirate "
-            class="js-choices mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]"
-          >
+          <label for="emirate"
+            class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Operator:</label>
+          <select id="emirate" name="emirate "
+            class="js-choices mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
             <option class="option" value="city">city1</option>
             <option class="option" value="city">city2</option>
             <option class="option" value="city">city3</option>
           </select>
         </div>
         <div>
-          <label
-            for="code"
-            class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
-            >Prefix:</label
-          >
-          <select
-            id="emirate"
-            name="code"
-            class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]"
-          >
+          <label for="code" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Prefix:</label>
+          <select id="emirate" name="code"
+            class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
             <option>050</option>
           </select>
         </div>
         <div>
-          <label
-            for="sort"
-            class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
-            >Sort by:</label
-          >
-          <select
-            id="emirate"
-            name="sort"
-            class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]"
-          >
+          <label for="sort" class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">Sort by:</label>
+          <select id="emirate" name="sort"
+            class="mt-[10px] text-[16px] font-normal leading-[19.2px] text-left block w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px]">
             <option>Latest</option>
           </select>
         </div>
-        <ButtonBlue
-          class="w-[310px] h-[52px] flex justify-center items-center font-bold mt-[30px]"
-        >
+        <ButtonBlue class="w-[310px] h-[52px] flex justify-center items-center font-bold mt-[30px]">
           Show 1234 numbers
         </ButtonBlue>
       </div>
     </div>
 
     <div>
-      <h3
-        class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px]"
-      >
+      <h3 class="text-[16px] w-full font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px]">
         Similar numbers:
       </h3>
       <div
-        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px]"
-      >
+        class="flex w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[20px]">
         <Card />
         <Card />
         <Card />
@@ -213,8 +158,7 @@ const props = defineProps({
   display: none;
 }
 
-.option {
-}
+.option {}
 
 @media (max-width: 324px) {
   .text-1 {
@@ -316,8 +260,7 @@ const props = defineProps({
       padding-right: 30px;
     }
 
-    .text-show {
-    }
+    .text-show {}
   }
 }
 

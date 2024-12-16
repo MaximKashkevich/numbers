@@ -26,7 +26,7 @@
       <div class="flex-1 min-w-[250px] max-w-[350px] mb-[70px] title">
         <h1 class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px]  title-2">Dubai plate number for sale: AA
           14611 </h1>
-        <p class="text-[14px] font-normal leading-[14.4px] opacity-30">ID: {{ plateStore.plateDetails.id }}</p>
+        <p class="text-[14px] font-normal leading-[14.4px] opacity-30">ID: </p>
         <div class="flex items-center">
           <p class="font-medium my-4 text-2xl mr-2">Цена: </p>
           <h2 class="font-medium my-4 text-2xl" v-html="plateStore.plateDetails.price"></h2>

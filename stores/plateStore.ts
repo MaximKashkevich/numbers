@@ -40,7 +40,7 @@ export const usePlateStore = defineStore("plate", () => {
   const plateNumbers = ref<IPlate[]>([]);
   const regions = ref<IRegions[]>([]);
   const codes = ref<ICode[]>([]);
-  const selectedEmirate = ref("Dubai"); // Инициализация с "Dubai"
+  const selectedEmirate = ref("Dubai");
   const selectedCode = ref("050");
   const plateDetails = ref<IDetails | null>(null);
 
@@ -87,7 +87,7 @@ export const usePlateStore = defineStore("plate", () => {
       const { data } = await axios.get<IDetails>(
         `https://api.dev.numbers.ae/v1/catalog/plate/${id}`
       );
-      plateDetails.value = data; // Сохраняем детали выбранной карточки
+      plateDetails.value = data;
       console.log("Детали номера:", plateDetails.value);
     } catch (error) {
       console.error("Ошибка при получении данных:", error);
@@ -100,7 +100,6 @@ export const usePlateStore = defineStore("plate", () => {
     selectedEmirate.value = target.value;
   };
 
-  // Filtered plate numbers based on selected emirate
   const filteredPlateNumbers = computed(() => {
     if (selectedEmirate.value) {
       return plateNumbers.value.filter(
@@ -110,12 +109,11 @@ export const usePlateStore = defineStore("plate", () => {
     return plateNumbers.value;
   });
 
-  const selectedPlateId = ref<null | number>(0); // Состояние для хранения выбранного ID
+  const selectedPlateId = ref<null | number>(0);
 
-  // Обработчик клика для получения ID и деталей карточки
   const handleClick = async (id: number) => {
-    selectedPlateId.value = id; // Сохраняем выбранный ID
-    await fetchPlateDetails(id); // Получаем детали для выбранного ID
+    selectedPlateId.value = id;
+    await fetchPlateDetails(id);
   };
 
   return {

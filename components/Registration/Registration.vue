@@ -16,6 +16,7 @@
         </NuxtLink>
       </div>
 
+
       <form @submit.prevent="onSubmit" class="flex flex-col gap-4 mb-6">
         <fieldset>
           <legend class="sr-only">Sign Up Form</legend>
@@ -23,13 +24,24 @@
             <TextInput v-for="(field, index) in inputTitle" :key="index" :id="'field' + index" :type="field.type"
               :placeholder="field.placeholder" :title="field.title" v-model="apiRegisterData[field.value]"
               class="w-full" />
-            <p v-if="errors" class="text-red-500 text-sm">{{ errors }}</p>
           </ul>
+
+          <!-- Блок для вывода ошибок -->
+          <div class="mt-4">
+            <p v-if="errors.length > 0" class="text-red-500 text-sm font-medium">
+              Please fix the following errors:
+            </p>
+            <ul class="list-disc list-inside text-red-500 text-sm">
+              <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+            </ul>
+          </div>
+
           <ButtonBlue class="flex-wrap btn w-full max-w-[200px] py-[14px] mt-4">
             Sign Up
           </ButtonBlue>
         </fieldset>
       </form>
+
     </div>
   </div>
 </template>
