@@ -5,15 +5,14 @@
         <img src="/public/assets/account.svg" alt="account" />
       </NuxtLink>
       <div>
-        <span class="text-black leading-6 text-xl accText">{{
-          userData.fullName || "Guest"
-        }}</span>
+        <span class="text-black leading-6 text-xl accText">{{ user ? user.login : "Guest" }}</span>
         <p class="leading-6 text-gray-400 accText">
-          Last login: {{ lastLogin }} <br />
+          Last login: {{ user ? user.lastLogin : "N/A" }}<br />
           Change avatar
         </p>
       </div>
     </article>
+
     <div class="px-8 py-6">
       <ul>
         <li class="my-4 label">
@@ -27,7 +26,7 @@
         <li class="my-1 label">
           <NuxtLink :class="{ activeLink: $route.path === '/MyColections' }" to="/MyColections"
             class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition">
-            My collections (0)
+            My collections (0)
           </NuxtLink>
         </li>
       </ul>
@@ -35,7 +34,7 @@
         <li class="my-1 label">
           <NuxtLink :class="{ activeLink: $route.path === '/TableOrder' }" to="/TableOrder"
             class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition">
-            Numbers concierge (0)
+            Numbers concierge (0)
           </NuxtLink>
         </li>
       </ul>
@@ -51,7 +50,7 @@
         <li class="my-1 label">
           <NuxtLink :class="{ activeLink: $route.path === '/' }" to="/"
             class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition">
-            My cart (0)
+            My cart (0)
           </NuxtLink>
         </li>
         <li class="my-1 label">
@@ -75,90 +74,66 @@
           </button>
         </li>
       </ul>
+
+      <!-- Обработка состояния загрузки и ошибок -->
+      <div v-if="loading">Loading...</div>
+      <div v-if="error" class="text-red-500">{{ error }}</div>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { reactive, ref, onMounted } from "vue";
-import { useRouter } from 'vue-router';
-import { useAuthStore } from "~/stores/auth";
+import { ref, onMounted } from "vue";
 import axios from "axios";
 
-export default {
-  setup() {
-    interface userData {
-      fullName: string;
-      email: string;
-      mobileNumber: string;
+interface UserInfo {
+  id: number;
+  email: string;
+  login: string;
+  fullName: string;
+  mobileNumber: string;
+}
+
+const user = ref<UserInfo | null>(null);
+const loading = ref<boolean>(true);
+const error = ref<string | null>(null);
+
+const fetchUserData = async () => {
+  loading.value = true;
+  error.value = null;
+
+  try {
+    const token = localStorage.getItem('authToken');
+    const response = await axios.get('https://api.dev.numbers.ae/v1/user/info', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.data.success) {
+      user.value = response.data.result;
+    } else {
+      error.value = 'Failed to fetch user data.';
     }
-
-    const logout = () => {
-      authStore.clearToken();
-      const token = authStore.authToken;
-
-      if (!token) {
-        router.push("/");
-      }
-    };
-
-    const router = useRouter();
-    const authStore = useAuthStore();
-    console.log(authStore.authToken);
-    const token = authStore.authToken;
-
-    const userData: userData = reactive({
-      fullName: "",
-      email: "",
-      mobileNumber: "",
-    });
-    const lastLogin = ref("Not available");
-
-    const getUserData = async () => {
-      if (!token) {
-        console.error("Токен отсутствует. Пожалуйста, выполните вход.");
-        return;
-      }
-
-      try {
-        const response = await axios.get(
-          "https://api.dev.numbers.ae/v1/user/info",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (!token) {
-          console.log("Токен отсуствует ");
-        }
-        const { fullName, email, mobileNumber } = response.data;
-        userData.fullName = fullName;
-        userData.email = email;
-        userData.mobileNumber = mobileNumber;
-
-        lastLogin.value = new Date().toLocaleString();
-      } catch (error) {
-        console.error(
-          "Ошибка при запросе данных:",
-          error.response?.data || error.message
-        );
-      }
-    };
-
-    onMounted(() => {
-      getUserData();
-    });
-
-    return {
-      userData,
-      lastLogin,
-      logout,
-    };
-  },
+  } catch (err: any) {
+    if (err.response) {
+      console.error('Error response:', err.response.data);
+      error.value = 'An error occurred while fetching user data.';
+    } else {
+      console.error('Error:', err);
+      error.value = 'An unexpected error occurred.';
+    }
+  } finally {
+    loading.value = false;
+  }
 };
+
+onMounted(() => {
+  fetchUserData();
+});
 </script>
+
 
 <style scoped>
 .block1 {

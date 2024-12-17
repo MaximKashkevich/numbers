@@ -31,9 +31,20 @@
             <p v-if="errors.length > 0" class="text-red-500 text-sm font-medium">
               Please fix the following errors:
             </p>
-            <ul class="list-disc list-inside text-red-500 text-sm">
-              <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
-            </ul>
+            <div v-if="errors.length > 0">
+              <ul class="list-disc list-inside text-red-500 text-sm">
+                <li v-for="(error, index) in errors" :key="index" class="flex items-start">
+                  <template v-if="errors.length > 0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-1 text-red-600" fill="none"
+                      viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4m0 4h.01M12 4a8 8 0 100 16 8 8 0 000-16z" />
+                    </svg>
+                    {{ error }}
+                  </template>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <ButtonBlue class="flex-wrap btn w-full max-w-[200px] py-[14px] mt-4">
@@ -41,6 +52,7 @@
           </ButtonBlue>
         </fieldset>
       </form>
+
 
     </div>
   </div>
@@ -53,6 +65,7 @@ import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 import { useSignUpStore } from '../../stores/signUp';
+import { useAuthRegistrationStore } from '~/stores/authReg';
 
 interface ApiRegisterData {
   email: string;
@@ -94,58 +107,54 @@ const inputTitle = ref<InputField[]>([
 ]);
 
 const validateEmail = (email: string) => {
-  // Исправлено: убраны лишние обратные слэши
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return emailPattern.test(email);
 };
 
-// Валидация мобильного номера
 const validatePhoneNumber = (phone: string) => {
-  // Исправлено: убраны лишние обратные слэши
-  const phonePattern = /^\+\d{10,15}$/; // Формат: +1234567890123
+  const phonePattern = /^\+\d{10,15}$/;
   return phonePattern.test(phone);
 };
 
-// Основная функция валидации
 const validate = () => {
-  errors.value = []; // Сбрасываем ошибки
+  errors.value = [];
 
-  // Валидация электронной почты
+
   if (!apiRegisterData.email || !validateEmail(apiRegisterData.email)) {
-    errors.value[0] = 'Invalid email address.'; // Ошибка электронной почты
+    errors.value[0] = 'Invalid email address.';
   }
 
-  // Валидация логина
+
   if (!apiRegisterData.login) {
-    errors.value[1] = 'Login is required.'; // Ошибка логина
+    errors.value[1] = 'Login is required.';
   }
 
-  // Валидация полного имени
+
   if (!apiRegisterData.fullName) {
-    errors.value[2] = 'Full name is required.'; // Ошибка полного имени
+    errors.value[2] = 'Full name is required.';
   }
 
-  // Валидация номера мобильного телефона
+
   if (!apiRegisterData.mobileNumber || !validatePhoneNumber(apiRegisterData.mobileNumber)) {
-    errors.value[3] = 'Invalid phone number format. Use +XXXXXXXXXXX.'; // Ошибка номера телефона
+    errors.value[3] = 'Invalid phone number format. Use +XXXXXXXXXXX.';
   }
 
-  // Валидация пароля
   if (!apiRegisterData.password || apiRegisterData.password.length < 6) {
-    errors.value[4] = 'Password must be at least 6 characters long.'; // Ошибка пароля
+    errors.value[4] = 'Password must be at least 6 characters long.';
   }
 };
 
-// Обработка отправки формы
+
 const onSubmit = async () => {
-  validate(); // Запускаем валидацию
+  validate();
 
   if (errors.value.length > 0) {
-    return; // Если есть ошибки, завершаем выполнение
+    return;
   }
 
-  // Удаляем все пробелы в мобильном номере
-  apiRegisterData.mobileNumber = apiRegisterData.mobileNumber.replace(/\s+/g, '').trim();
+  apiRegisterData.mobileNumber = apiRegisterData.mobileNumber.replace(/s+/g, '').trim();
+
+  const authStore = useAuthRegistrationStore(); // Инициализация store
 
   try {
     const response = await axios.post('https://api.dev.numbers.ae/v1/auth/signup', {
@@ -160,30 +169,32 @@ const onSubmit = async () => {
       },
     });
 
-    console.log(response.data);
-
-    if (response.data.token) {
-      localStorage.setItem('authToken', response.data.token);
-      // Сохраняем токен
+    console.log(response.config.data);
+    if (response.data && response.data.result?.token) {
+      authStore.setToken(response.data.result?.token);
+      console.log('Token saved to localStorage:', response.data.result?.token);
+    } else {
+      console.error('Token not found in response:', response.data);
     }
 
-    router.push('/GeneralEmpty'); // Перенаправляем на главную страницу
-    signUpStore.signUp = !signUpStore.signUp
+    authStore.setUserData(apiRegisterData); // Установка данных пользователя через store
 
+    router.push('/GeneralEmpty');
+    signUpStore.signUp = !signUpStore.signUp;
 
   } catch (error: any) {
     if (error.response) {
-      console.error(error.response.data);
-
-      // Обрабатываем специфические сообщения об ошибках
+      console.error('Error response:', error.response.data);
       if (error.response.data.result) {
-        errors.value.push(...error.response.data.result.mobilenumber || []);
+        const mobileNumberErrors = error.response.data.result.mobilenumber || [];
+        errors.value.push(...mobileNumberErrors);
       }
     } else {
-      console.error(error);
+      console.error('Error:', error);
     }
   }
 };
+
 </script>
 
 <style scoped>

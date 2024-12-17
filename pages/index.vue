@@ -1,6 +1,8 @@
 <template>
   <NuxtPage />
-  <div class="mt-[150px] container__main min-w-[90%] px-8">
+  <div class="mt-[100px] container__main min-w-[90%] px-8 md:px-10 lg:px-12 xl:px-16">
+
+
     <h1 class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2">
       PLATE AND MOBILE NUMBERS IN UAE
     </h1>
@@ -229,7 +231,6 @@
           </div>
           <legend class="sr-only">Contact Form</legend>
 
-          <!-- Список полей ввода -->
           <!-- Список полей ввода -->
           <ul class="flex flex-col gap-4">
             <li v-for="(field, index) in inputTitle" :key="index" class="flex flex-col">

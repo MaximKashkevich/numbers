@@ -1,6 +1,6 @@
 <template>
   <NuxtPage />
-  <div class="px-8">
+  <div class="px-8 md:px-10 lg:px-12 xl:px-16">
     <nav class="mb-[30px] mt-[30px] navigation">
       <ul class="flex gap-[5px]">
         <li>
@@ -20,7 +20,7 @@
     <SimilarNumbersList />
   </div>
 
-  <div class="px-[60px] flex flex-col gap-[50px]">
+  <!-- <div class="px-[60px] flex flex-col gap-[50px]">
     <div v-if="isPlateSelected && filteredPlates.length > 0" class="mt-[40px]">
       <ul class="flex gap-[20px] flex-wrap">
         <li
@@ -38,8 +38,8 @@
           </div>
         </li>
       </ul>
-    </div>
-    <!-- 
+    </div> -->
+  <!-- 
     <div v-if="!isPlateSelected && filteredPlates2.length > 0" class="mt-[40px]">
       <ul class="flex gap-[20px] flex-wrap">
         <li
@@ -55,7 +55,7 @@
         </li>
       </ul>
     </div> -->
-  </div>
+  <!-- </div> -->
 
   <!-- Пагинация -->
   <div>
