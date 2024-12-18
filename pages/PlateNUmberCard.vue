@@ -1,18 +1,19 @@
 <template>
+  <NuxtPage />
   <!-- Навигация -->
   <nav class="mb-[30px] mt-[30px] navigation">
     <ul class="flex gap-[5px] pl-[60px]">
       <li>
-        <NuxtLink href="/BuyNumbers" class="text-[#005DCA] transition cursor-pointer">{{
-          navigationLinks[0].text }} /</NuxtLink>
+        <NuxtLink to="/" class="text-[#005DCA] transition cursor-pointer">
+          Home /</NuxtLink>
       </li>
       <li>
-        <NuxtLink :href="navigationLinks[1].href" class="text-[#005DCA] transition cursor-pointer">{{
-          navigationLinks[1].text }} /</NuxtLink>
+        <NuxtLink to="/CatalogNumbers" class="text-[#005DCA] transition cursor-pointer">
+          Plate numbers /</NuxtLink>
       </li>
       <li>
-        <NuxtLink :href="navigationLinks[2].href" class=" text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer">{{
-          navigationLinks[2].text }}</NuxtLink>
+        <NuxtLink class=" text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer">
+          Dubai plate number for sale: AA 14611</NuxtLink>
       </li>
     </ul>
   </nav>
@@ -23,13 +24,19 @@
       class="flex flex-wrap justify-between px-[30px] md:gap-[80px] lg:gap-[250px] min-w-[200px] max-w-[1900px] sm:justify-center">
       <!-- Левая часть -->
       <div class="flex-1 min-w-[250px] max-w-[350px] mb-[70px] title">
-        <h1 class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px]  title-2">{{ leftTitle }}</h1>
-        <p class="text-[12px] font-normal leading-[14.4px] opacity-30">ID: {{ id }}</p>
-        <h2 class="font-medium text-[35px] mt-[50px] mb-[70px]">{{ price }}</h2>
+        <h1 class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px]  title-2">Dubai plate number for sale: AA
+          14611 </h1>
+        <p class="text-[14px] font-normal leading-[14.4px] opacity-30">ID: </p>
+        <div class="flex items-center">
+          <p class="font-medium my-4 text-2xl mr-2">Цена: </p>
+          <h2 class="font-medium my-4 text-2xl" v-html="plateStore.plateDetails.price"></h2>
+        </div>
         <p class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px] mb-[10px]">Description:</p>
-        <p class="text-[16px] font-normal leading-[20px] mb-[80px]">{{ description }}</p>
-        <a :href="fullCollectionLink" class="text-[#005DCA] text-[20px] font-bold leading-[24px] uppercase">{{
-          fullCollectionText }}</a>
+        <p class="text-[16px] font-normal leading-[20px] mb-[80px]">ETISALAT VIP Prepaid Fancy Mobile number For Sale.
+          Call or WhatsApp 055-4400750.</p>
+        <a :href="fullCollectionLink" class="text-[#005DCA] text-[20px] font-bold leading-[24px] uppercase">See full
+          collection
+        </a>
       </div>
 
       <!-- Центральная часть -->
@@ -42,7 +49,7 @@
 
         <div class="flex flex-col items-center justify-center h-full">
           <div class="flex items-center justify-center" id="top">
-            <img class="w-full h-auto max-w-[450px] object-contain" src="../public/assets/plate2.png"
+            <img class="w-full h-auto max-w-[450px] object-contain" :src="plateStore.plateDetails.photo"
               alt="Dubai Plate">
           </div>
           <div id="bottom" class="flex justify-center gap-2 mt-[125px]">
@@ -61,8 +68,8 @@
         <div class="flex items-center space-x-2">
           <img src="../public/assets/avatar.svg" alt="" class="w-10 h-10 rounded-full">
           <div>
-            <h2 class="text-[35px] font-medium leading-[42px]">{{ rightPanelName }}</h2>
-            <p class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px]">{{ rightPanelStatus }}</p>
+            <h2 class="text-[35px] font-medium leading-[42px]">Suroor</h2>
+            <p class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px]">Online</p>
           </div>
           <div class="relative group">
             <!-- Изображение, при наведении на которое будет появляться всплывающее окно -->
@@ -79,14 +86,20 @@
             </div>
           </div>
         </div>
+
         <div class="flex gap-[25px] mt-[30px]">
-          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ postedAt }}</p>
-          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ views }} Views</p>
+          <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">Emirate: {{
+            plateStore.plateDetails.emirate }}</p>
+          <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">Posted {{
+            plateStore.plateDetails.datePosted
+          }}</p>
+          <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ plateStore.plateDetails.views }} Views
+          </p>
         </div>
         <div class="w-[212] mt-[30px]">
-          <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center ">{{ callButtonText }}
+          <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center ">Call 058 210 03 10
           </ButtonBlue>
-          <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center mt-[212px]">{{ buyButtonText }}
+          <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center mt-[212px]">Buy as NFT
           </ButtonBlue>
         </div>
       </div>
@@ -99,7 +112,7 @@
       <div class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center">
         <h3
           class="max-w-[376px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px]">
-          {{ sliderTitle }}</h3>
+          Similar numbers:</h3>
         <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
         <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3 mb-[20px]">
           <!-- Обертка для рефов -->
@@ -114,7 +127,7 @@
     </div>
     <div class="flex justify-center items-center mt-[50px]">
       <div class="sm:w-[640px] md:w-[1000px] lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px] px-[30px]">
-        <swiper :navigation2="{ nextE2: nextE2, prevE2: prevE2 }" :modules="modules" class="mySwiper">
+        <!-- <swiper :navigation2="{ nextE2: nextE2, prevE2: prevE2 }" :modules="modules" class="mySwiper">
           <swiper-slide>
             <SimilarNumbers />
             <SimilarNumbersLow />
@@ -130,7 +143,10 @@
             <SimilarNumbersLow />
             <SimilarNumbers />
           </swiper-slide>
-        </swiper>
+        </swiper> -->
+        <SimilarNumbers />
+        <SimilarNumbers />
+        <SimilarNumbers />
       </div>
     </div>
   </div>
@@ -139,7 +155,7 @@
       <div class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center">
         <h3
           class="max-w-[417px] min-w-[100px] h-[60px] text-[50px] font-normal leading-[60px] text-left order-2 lg:order-1 mb-[30px] ml-[40px]">
-          {{ sliderTitle2 }}</h3>
+          Featured numbers:</h3>
         <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
         <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3 mb-[20px]">
           <!-- Обертка для рефов -->
@@ -154,7 +170,7 @@
     </div>
     <div class="flex justify-center items-center mt-[50px]">
       <div class="sm:w-[640px] md:w-[1000px] lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px] px-[30px]">
-        <swiper :navigation="{ nextEl: nextEl, prevEl: prevEl }" :modules="modules" class="mySwiper">
+        <swiper class="mySwiper">
           <swiper-slide>
             <CradPlate />
             <CradPlate />
@@ -176,17 +192,17 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import axios from 'axios';
 import ButtonShare from '../components/ButtonShare.vue';
 import ButtonLike from '../components/ButtonLike.vue';
 import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
 import RightArrow from '../components/RightArrow.vue';
 import LeftArrow from '../components/LeftArrow.vue';
 import SimilarNumbers from '../components/SimilarNumbers/SimilarNumber.vue'
-import SimilarNumbersLow from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue'
 import CradPlate from '../components/Card.vue'
 import { ref, onMounted } from 'vue';
-
+import { usePlateStore } from '~/stores/plateStore';
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
@@ -194,122 +210,19 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import "swiper/css";
 import 'swiper/css/navigation';
 
-// Import required modules
-import { Navigation } from 'swiper/modules';
 
-export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-    SimilarNumbersLow,
-    LeftArrow,
-    RightArrow,
-    CradPlate,
-    SimilarNumbers,
-    ButtonShare,
-    ButtonLike,
-    ButtonBlue,
-  },
-  props: {
-    navigationLinks: {
-      type: Array,
-      default: () => [
-        { href: '#', text: 'Home' },
-        { href: '#', text: 'Plate numbers' },
-        { href: '#', text: 'Dubai plate number for sale: AA 14611' },
-      ],
-    },
-    leftTitle: {
-      type: String,
-      default: 'Dubai plate number for sale: AA 14611  ',
-    },
-    id: {
-      type: String,
-      default: '65131',
-    },
-    price: {
-      type: String,
-      default: '20 000 AED',
-    },
-    description: {
-      type: String,
-      default: 'ETISALAT VIP Prepaid Fancy Mobile number For Sale. Call or WhatsApp 055-4400750.',
-    },
-    fullCollectionLink: {
-      type: String,
-      default: '#',
-    },
-    fullCollectionText: {
-      type: String,
-      default: 'See full collection',
-    },
-    rightPanelName: {
-      type: String,
-      default: 'Suroor',
-    },
-    rightPanelStatus: {
-      type: String,
-      default: 'Online',
-    },
-    postedAt: {
-      type: String,
-      default: 'Posted Today',
-    },
-    views: {
-      type: Number,
-      default: 12,
-    },
-    callButtonText: {
-      type: String,
-      default: 'Call 058 210 03 10',
-    },
-    buyButtonText: {
-      type: String,
-      default: 'Buy as NFT',
-    },
-    sliderTitle: {
-      type: String,
-      default: 'Similar numbers:',
-    },
-    sliderTitle2: {
-      type: String,
-      default: 'Featured numbers:',
-    },
-  },
-  setup() {
-    const nextEl = ref(null);
-    const prevEl = ref(null);
+const plateStore = usePlateStore();
 
-    const nextE2 = ref(null);
-    const prevE2 = ref(null);
-
-    onMounted(() => {
-      if (!nextEl.value || !prevEl.value) {
-        console.error('Navigation elements not found');
-      }
-    });
-    onMounted(() => {
-      if (!nextE2.value || !prevE2.value) {
-        console.error('Navigation elements not found');
-      }
-    });
-
-    return {
-      modules: [Navigation],
-      nextEl,
-      prevEl,
-      nextE2,
-      prevE2,
-    };
-  },
-};
+onMounted(() => {
+  plateStore.fetchPlate(); // Загружаем номерные знаки
+});
 </script>
 
 <style scoped>
-
 .black-window {
   margin-top: -70px;
 }
+
 .active {
   background-color: #000;
 }

@@ -1,33 +1,41 @@
 <template>
+        <div class="overflow-x-hidden">
+                <!-- Hide Registration when Verification is rendered -->
+                <Registration v-if="signUp.signUp && !verification.signIn" />
 
-  <div>
-    <!-- Hide Registration when Verification is rendered -->
-    <Registration v-if="signUp.signUp && !verification.signIn" />
-    <Verification v-if="verification.signIn" />
-    <Entrance />
-    <!-- Здесь можно добавить другие компоненты -->
-    <!-- <GeneralEmpty /> -->
-    <!-- <GeneralPrimaryPages /> -->
-    <!-- <GeneralViewAds /> -->
-    <!-- <Login /> -->
-    <!-- <GeneralBlockTariff /> -->
-    <!-- <GeneralAddAdvertiseAuto /> -->
-  </div>
+                <Verification v-if="verification.signIn" />
+                <!-- <NuxtPage /> -->
+                <!-- <Entrance /> -->
+                <!-- <GeneralEmpty /> -->
+                <!-- <GeneralPrimaryPages /> -->
+                <!-- <GeneralPrimaryPages />
+                <GeneralViewAds /> -->
+                <!-- <Login /> -->
+                <!-- <GeneralBlockTariff /> -->
+                <!-- <GeneralAddAdvertiseAuto /> -->
+        </div>
+        <!-- 
+        <Verification v-if="verification.signIn" /> -->
+        <!-- <NuxtPage /> -->
+        <Entrance />
+        <!-- <GeneralEmpty /> -->
 
+        <!-- <GeneralPrimaryPages /> -->
+
+        <!-- <GeneralPrimaryPages />
+        <GeneralViewAds /> -->
+
+        <!-- <SignUp /> -->
 </template>
 
 <script setup lang="ts">
-
-
-
 import axios from 'axios'
 import { ref, onMounted } from "vue";
-
-
 
 import Entrance from "./components/Entrance.vue";
 import Registration from "./components/Registration/Registration.vue";
 import Verification from "./components/Verification.vue";
+
 import GeneralEmpty from "./pages/GeneralEmpty.vue";
 import GeneralPrimaryPages from "./components/general/GeneralPrimaryPages.vue";
 import GeneralViewAds from "./components/general/GeneralViewAds.vue";
@@ -63,60 +71,21 @@ const verification = useSignInStore();
 
 
 
-async function fetchPhoneData(id) {
-  const url = `https://api.dev.numbers.ae/v1/catalog/phone/12345`;
 
-  try {
-    const response = await fetch(url);
+async function fetchPhoneData() {
+        const url = `https://api.dev.numbers.ae/v1/catalog/phone/12345`;
 
-    if (!response.ok) {
-      throw new Error('Ошибка при получении данных: ' + response.statusText);
-    }
-
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error('Ошибка:', error);
-  }
-}
-
-
-interface IPlate {
-  id: number
-  photo: string
-  emirate: string
-  price: number
-  isFeatured: boolean
-  type: string
-}
-
-
-
-const plateNumbers = ref<IPlate[]>([]);
-
-interface IPlate {
-        id: number;
-        photo: string;
-        emirate: string;
-        price: number;
-        isFeatured: boolean;
-        type: string;
-}
-
-const fetchPlate = async () => {
         try {
-                const { data } = await axios.get<IPlate[]>('https://api.dev.numbers.ae/v1/catalog/plate');
-                plateNumbers.value = data;
-                console.log(plateNumbers.value);
-        } catch (e) {
-                console.log(e)
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                        throw new Error('Ошибка при получении данных: ' + response.statusText);
+                }
+
+                const data = await response.json();
+                console.log(data);
+        } catch (error) {
+                console.error('Ошибка:', error);
         }
-};
-
-onMounted(() => {
-        fetchPlate();
-});
-
-
+}
 </script>
-

@@ -6,14 +6,30 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background: #FAFAFA;
+  background: #fafafa;
 }
 
-a{
+a {
   cursor: pointer;
 }
 
-input{
+input {
   cursor: pointer;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
+input::placeholder {
+  font-size: 100% !important;
+}
+
+@media (max-width: 768px) {
+  .containres {
+    min-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
