@@ -117,6 +117,7 @@ import axios from "axios";
 interface UserInfo {
   id: number;
   email: string;
+  lastLogin: string;
   login: string;
   fullName: string;
   mobileNumber: string;
@@ -164,6 +165,12 @@ export default defineComponent({
       }
     };
 
+    const logout = () => {
+      localStorage.removeItem("authToken");
+      user.value = null;
+      window.location.href = "/";
+    };
+
     onMounted(() => {
       fetchUserData();
     });
@@ -173,6 +180,7 @@ export default defineComponent({
       loading,
       error,
       fetchUserData,
+      logout,
     };
   },
 });
