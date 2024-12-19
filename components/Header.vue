@@ -84,11 +84,11 @@ const goToLink = (page: string) => {
 
 const handleClick = () => {
   if (authStore.authToken) {
-    // User is authenticated, redirect to GeneralEmpty
-    router.push({ name: 'GeneralEmpty' }); // Ensure this route is defined in your router
+
+    router.push({ name: 'GeneralEmpty' });
   } else {
-    // User is not authenticated, redirect to login
-    router.push({ name: 'login' }); // Ensure this route is defined in your router
+
+    router.push({ name: 'login' });
   }
 };
 
