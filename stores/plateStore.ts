@@ -90,34 +90,9 @@ export const usePlateStore = defineStore("plate", () => {
       );
       plateDetails.value = data;
       console.log("Детали номера:", plateDetails.value);
-
-      // Добавляем просмотренную карточку в localStorage
-      addToViewedPlates(data);
     } catch (error) {
       console.error("Ошибка при получении данных:", error);
     }
-  };
-
-  const loadViewedPlates = () => {
-    const storedPlates = JSON.parse(
-      localStorage.getItem("viewedPlates") || "[]"
-    );
-    viewedPlates.value = storedPlates;
-  };
-
-  // Остальные функции (fetchPlate, fetchRegions, fetchCodes и т.д.)
-
-  // Функция для добавления карточки в просмотренные
-  const addToViewedPlates = (plate: IDetails) => {
-    let storedPlates = JSON.parse(localStorage.getItem("viewedPlates") || "[]");
-
-    // Проверяем, если карточка уже добавлена
-    if (!storedPlates.some((item: IDetails) => item.id === plate.id)) {
-      storedPlates.push(plate);
-      localStorage.setItem("viewedPlates", JSON.stringify(storedPlates));
-    }
-
-    viewedPlates.value = storedPlates; // Обновляем состояние
   };
 
   // Handle emirate change
@@ -139,9 +114,21 @@ export const usePlateStore = defineStore("plate", () => {
 
   const handleClick = async (id: number) => {
     selectedPlateId.value = id;
+
+    // Получаем текущие просмотренные айди из localStorage
+    const viewedPlatesString = localStorage.getItem("viewedPlates");
+    let viewedPlatesArray = viewedPlatesString
+      ? JSON.parse(viewedPlatesString)
+      : [];
+
+    // Проверяем, если айди уже не существует в массиве
+    if (!viewedPlatesArray.includes(id)) {
+      viewedPlatesArray.push(id); // Добавляем новый айди
+      localStorage.setItem("viewedPlates", JSON.stringify(viewedPlatesArray)); // Сохраняем обратно в localStorage
+    }
+
     await fetchPlateDetails(id);
   };
-
   return {
     plateNumbers,
     fetchPlate,
@@ -158,6 +145,5 @@ export const usePlateStore = defineStore("plate", () => {
     plateDetails,
     fetchPlateDetails,
     viewedPlates,
-    loadViewedPlates,
   };
 });

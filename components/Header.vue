@@ -70,8 +70,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useAuthStore } from "~/stores/auth";
 
 const router = useRouter();
+const authStore = useAuthStore();
 
 
 const goToLink = (page: string) => {
@@ -81,14 +83,14 @@ const goToLink = (page: string) => {
 };
 
 const handleClick = () => {
-  const token = localStorage.getItem('authToken');
-  if (token) {
-    router.push('/GeneralEmpty');
+  if (authStore.authToken) {
+    // User is authenticated, redirect to GeneralEmpty
+    router.push({ name: 'GeneralEmpty' }); // Ensure this route is defined in your router
   } else {
-    router.push('/login');
+    // User is not authenticated, redirect to login
+    router.push({ name: 'login' }); // Ensure this route is defined in your router
   }
 };
-
 
 
 const isOpen = ref(false);
