@@ -113,6 +113,7 @@
 import { ref, onMounted, defineComponent } from "vue";
 import axios from "axios";
 import { useAuthStore } from "~/stores/auth";
+import { useFavoritesStore } from "~/stores/favoritesStore";
 
 // тут интерфейс
 interface UserInfo {
@@ -134,6 +135,7 @@ export default defineComponent({
 
     const fetchUserData = async () => {
       const authStore = useAuthStore();
+      const favoritesStore = useFavoritesStore();
       loading.value = true;
       error.value = null;
 
@@ -151,6 +153,7 @@ export default defineComponent({
 
         if (response.data.success) {
           user.value = response.data.result;
+          favoritesStore.setUserId(response.data.result.id)
         } else {
           error.value = "Failed to fetch user data.";
         }

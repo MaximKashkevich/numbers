@@ -196,10 +196,6 @@ button svg {
 }
 
 @media (max-width: 1200px) {
-  .grid {
-    grid-template-columns: 1fr !important;
-  }
-
   .big-container {
     flex-wrap: wrap;
   }

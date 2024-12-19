@@ -1,7 +1,8 @@
 <template>
-  <div class="wrapper__signUp flex justify-between items-start pl-[60px] pr-[60px] pt-[100px] block">
-    <div class="w-[650px] h-[400px]">
-      <h1 class="font-roboto text-[50px] font-medium uppercase tracking-wide leading-none w-[400px] textOne">
+  <div class="wrapper__signUp flex justify-between gap-[20px] pl-[60px] pr-[60px] pt-[100px] block">
+    <div class="w-[650px] max-w-[100%] flex flex-col justify-between min-h-[100%]">
+      <div>
+        <h1 class="font-roboto text-[50px] font-medium uppercase tracking-wide leading-none w-[400px] textOne">
         Welcome <span class="pr-[15px] sp">to</span> Numbers.ae
       </h1>
       <p class="pt-[30px]">
@@ -9,7 +10,9 @@
         to purchase or sell Plate and Mobile Numbers in Dubai, Abu Dhabi, and
         other Emirates.
       </p>
-      <div class="flex items-end h-[390px]">
+      </div>
+      
+      <div class="flex items-end pt-[30px] xl:pt-0">
         <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
           No account? <span @click="toggleSignUp" class="text-blue-500 cursor-pointer">Sign Up</span>
         </h2>
@@ -30,7 +33,7 @@
           </ButtonLogin>
         </div>
         <div class="pt-[70px]">
-          <h3 class="w-[600px] h-[42px] font-roboto text-[35px] font-medium leading-[42px] text-left flex-wrap">
+          <h3 class="font-roboto text-[35px] font-medium leading-[42px] text-left flex-wrap">
 
             Or login with username and password
           </h3>
@@ -162,10 +165,7 @@ const apiLogin = async () => {
     });
 
     const token = response.data?.result?.token;
-    console.log(response);
-    console.log(response.data);
-    console.log(response.data?.result);
-    
+   
     if (token) {
 
       

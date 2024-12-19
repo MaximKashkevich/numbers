@@ -6,7 +6,7 @@
     <div class="w-full max-w-[750px] h-full bg-white shadow-lg p-6 rounded-[20px] flex flex-col overflow-y-auto mx-4">
       <div class="relative mb-8">
         <h1 id="dialog-title" class="genText text-[28px] md:none md:text-[35px] font-medium leading-[42px]">Sign Up</h1>
-        <NuxtLink class="absolute md:flex-row close top-0 right-0" to="/" aria-label="Close">
+        <NuxtLink class="absolute md:flex-row close top-0 right-0" aria-label="Close">
           <svg @click="toggleSignUp" class="cursor-pointer" width="20" height="20" viewBox="0 0 20 20" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd"

@@ -1,5 +1,5 @@
 <template>
-    <div class="px-8 sm:px-8 ">
+    <div class="px-4 sm:px-8 lg:px-[60px]">
         <nav class="mb-6 mt-6">
             <ul class="flex gap-2">
                 <li>
@@ -16,38 +16,7 @@
             You used to watch
         </h1>
 
-        <div class="flex flex-wrap gap-4 mt-4 sm:gap-6 lg:gap-8 mt-[70px]">
-            <!-- <CardPlate />
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-            <CardPlate />
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-            <CardPlate />
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-            <CardPlate />
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-            <CardPlate />
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-            <Card />
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-            <Card />
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-            <Card />
-            <SimilarNumber />
-            <SimilarNumberLowPrice />
-            <Card />
-            <SimilarNumberLowPrice />
-            <CardPlate />
-            <SimilarNumberLowPrice />
-            <CardPlate />
-            <SimilarNumberLowPrice />
-            <Card /> -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
             <ViewedPlates />
         </div>
 
