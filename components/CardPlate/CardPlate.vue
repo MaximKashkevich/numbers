@@ -8,7 +8,7 @@
           <h1 class="flex items-center text-[19px] font-bold leading-[24px]" v-html="props.price"></h1>
         </div>
         <div>
-          <div @click.stop.prevent="toggleLike(props)">
+          <div @click.prevent="toggleLike(props)">
             <img width="24px" :src="favorites.likes[props.id] ? '/assets/likeTrue.png' : '/assets/like.svg'"
               alt="favorite">
           </div>
@@ -38,6 +38,7 @@ const favorites = useFavoritesStore();
 const props = defineProps<IFavorites>(); // Получаем пропсы типа IFavorites
 
 const toggleLike = (favorite: IFavorites) => {
+  
   favorites.toggleLike(favorite);
 };
 </script>

@@ -84,7 +84,7 @@ const goToLink = (page: string) => {
 
 const handleClick = () => {
   if (authStore.authToken) {
-
+    //переход на лк
     router.push({ name: 'GeneralEmpty' });
   } else {
 
