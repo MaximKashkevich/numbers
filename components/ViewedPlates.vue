@@ -31,13 +31,14 @@
 <script setup>
 import { defineProps } from 'vue';
 
+
 const props = defineProps({
-    photo: String,
-    price: String,
-    id: Number,
-    emirate: String,
-    postedAt: String,
-    views: Number
-})
+    photo: { type: String, required: true },
+    price: { type: Number, required: true },
+    id: { type: Number, required: true },
+    emirate: { type: String, required: true },
+    postedAt: { type: String, required: true },
+    views: { type: Number, required: true },
+});
 
 </script>

@@ -34,6 +34,7 @@ export interface IDetails {
   isFeatured: boolean;
   type: string;
   postedAt: string;
+  views: string;
 }
 
 export const usePlateStore = defineStore("plate", () => {
@@ -42,7 +43,7 @@ export const usePlateStore = defineStore("plate", () => {
   const codes = ref<ICode[]>([]);
   const selectedEmirate = ref("Dubai");
   const selectedCode = ref("050");
-  const plateDetails = ref<IDetails | null>(null);
+  const plateDetails = ref<IDetails[]>([]);
   const viewedPlates = ref<IPlate[]>([]);
 
   // Fetch plate numbers
@@ -85,7 +86,7 @@ export const usePlateStore = defineStore("plate", () => {
   // Fetch plate details by ID
   const fetchPlateDetails = async (id: number) => {
     try {
-      const { data } = await axios.get<IDetails>(
+      const { data } = await axios.get<IDetails[]>(
         `https://api.dev.numbers.ae/v1/catalog/plate/${id}`
       );
       plateDetails.value = data;
@@ -114,17 +115,16 @@ export const usePlateStore = defineStore("plate", () => {
 
   const handleClick = async (id: number) => {
     selectedPlateId.value = id;
+    console.log(selectedPlateId.value);
 
-    // Получаем текущие просмотренные айди из localStorage
-    const viewedPlatesString = localStorage.getItem("viewedPlates");
+    const viewedPlatesString = localStorage.getItem("ViewedPlates");
     let viewedPlatesArray = viewedPlatesString
       ? JSON.parse(viewedPlatesString)
       : [];
 
-    // Проверяем, если айди уже не существует в массиве
     if (!viewedPlatesArray.includes(id)) {
-      viewedPlatesArray.push(id); // Добавляем новый айди
-      localStorage.setItem("viewedPlates", JSON.stringify(viewedPlatesArray)); // Сохраняем обратно в localStorage
+      viewedPlatesArray.push(id);
+      localStorage.setItem("ViewedPlates", JSON.stringify(viewedPlatesArray));
     }
 
     await fetchPlateDetails(id);

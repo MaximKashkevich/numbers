@@ -18,7 +18,6 @@
             You used to watch
         </h1>
 
-<<<<<<< HEAD
         <div class="flex flex-wrap gap-4 mt-4 sm:gap-6 lg:gap-8 mt-[70px]">
             <!-- <CardPlate />
             <SimilarNumber />
@@ -52,15 +51,10 @@
             <SimilarNumberLowPrice />
             <Card /> -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-                <ViewedPlate v-for="plate in viewedPlates" :key="plate.id" :id="plate.id" :photo="plate.photo"
+                <ViewedPlate v-for="plate in plateDetails" :key="plate.id" :id="plate.id" :photo="plate.photo"
                     :emirate="plate.emirate" :price="plate.price" :postedAt="plate.postedAt" :views="plate.views" />
             </div>
 
-
-=======
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-            <ViewedPlates />
->>>>>>> 7c1be07e85b94ae932e4849534c25b59543e89b8
         </div>
 
         <div>
@@ -72,7 +66,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import CardPlate from '~/components/CardPlate/CardPlate.vue';
 import SimilarNumber from '../components/SimilarNumbers/SimilarNumber.vue';
 import SimilarNumberLowPrice from '../components/LowSimilarNumbers/SimilarNumberLowPrice.vue';
@@ -81,34 +75,10 @@ import Card from '../components/Card.vue';
 import ViewedPlates from '~/components/ViewedPlates.vue';
 import type { IDetails } from '~/stores/plateStore';
 import axios from 'axios';
+import { usePlateStore } from '~/stores/plateStore';
 
-interface ViewedPlates {
-    id: number;
-    photo: string;
-    emirate: string;
-    price: number;
-    isFeatured: boolean;
-    type: string;
-    postedAt: string;
-    views: number
-}
-
-const viewedPlates = ref<ViewedPlates[]>([]);
-
-onMounted(() => {
-    const viewedPlateDataString = localStorage.getItem('viewedPlates');
-    if (viewedPlateDataString) {
-        try {
-            const parsedData = JSON.parse(viewedPlateDataString);
-            if (Array.isArray(parsedData)) {
-                viewedPlates.value = parsedData;
-            }
-            console.log(viewedPlates.value)
-        } catch (e) {
-            console.error('Failed to parse viewedPlates from localStorage', e);
-        }
-    }
-});
+const plateStore = usePlateStore();
+const plateDetails = computed(() => plateStore.plateDetails);
 
 // export default {
 //     components: {
