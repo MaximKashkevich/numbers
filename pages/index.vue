@@ -3,7 +3,7 @@
   <div class="mt-[100px] container__main min-w-[90%] px-8 md:px-10 lg:px-12 xl:px-16">
 
 
-    <h1 class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2">
+    <h1 class="max-w-[1320px] text-[100px] font-medium leading-[100px] text-left title-2">
       PLATE AND MOBILE NUMBERS IN UAE
     </h1>
 
@@ -17,7 +17,7 @@
           {{ totalPlateNumbers }}
         </p>
 
-        <ButtonBlue class="w-[140px] h-[52px] flex items-center justify-center ml-auto">
+        <ButtonBlue class="flex items-center justify-center ml-auto">
           BUY
         </ButtonBlue>
       </div>
@@ -32,7 +32,7 @@
           {{ totalMobileNumbers }}
         </p>
 
-        <ButtonBlue class="w-[140px] h-[52px] flex items-center justify-center ml-auto">
+        <ButtonBlue class="flex items-center justify-center ml-auto">
           BUY
         </ButtonBlue>
       </div>
@@ -48,10 +48,10 @@
       </ButtonBlue>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
+    <!-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
       <SimilarNumber v-for="item in similarNumbers" :key="item.id" :id="item.id" :imageSrc="item.photo"
         :price="item.price" :emirate="item.emirate" :postedAt="item.postedAt" :views="item.views" />
-    </div>
+    </div> -->
     <div class="mt-[150px]">
       <h3 class="w-[1000px] h-[180px] text-[50px] font-normal leading-[60px] text-left mini-title">
         Save time on your search: create an ad to buy a number and we will send
@@ -214,17 +214,17 @@
       </ul>
     </div>
 
-    <div class="flex flex-wrap gap-[20px] justify-center md:justify-between">
+    <div class="grid mt-[50px] md:mt-[150px] grid-cols-1 lg:grid-cols-2 flex-wrap gap-[20px] justify-center md:justify-between">
       <!-- Форма ввода -->
-      <form @submit.prevent="" class="flex flex-col gap-4 mb-6 w-full md:w-[650px]">
+      <form @submit.prevent="" class="flex flex-col gap-4 mb-6 w-full">
         <fieldset>
-          <div class="mt-[50px] md:mt-[150px]">
+          <div class="">
             <h3
-              class="text-3xl md:text-5xl font-normal leading-[40px] md:leading-[60px] text-left w-full md:w-[650px] h-[80px] md:h-[120px] form-title">
+              class="text-3xl md:text-5xl font-normal leading-[40px] md:leading-[60px] text-left w-full form-title">
               Do you still have questions or have suggestions?
             </h3>
             <p
-              class="text-sm md:text-base font-normal leading-[18px] md:leading-[19.2px] text-left w-full md:w-[650px] h-[38px] md:h-[19px] mt-[10px] md:mt-[20px] mb-[30px] md:mb-[70px]">
+              class="text-sm md:text-base font-normal leading-[18px] md:leading-[19.2px] text-left w-full mt-[10px] md:mt-[20px] mb-[30px] md:mb-[70px]">
               Leave your contacts and question or suggestion and we will contact
               you to discuss.
             </p>
@@ -259,8 +259,8 @@
       </form>
 
       <!-- Изображение -->
-      <div class="mt-[50px] md:mt-[150px] w-full md:w-auto">
-        <img src="../public/assets/city.png" alt="City Image" class="rounded-lg w-full md:w-auto" />
+      <div class="w-full h-full">
+        <img src="../public/assets/city.png" alt="City Image" class="rounded-lg w-full h-full" />
       </div>
     </div>
   </div>

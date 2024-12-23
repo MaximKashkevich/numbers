@@ -33,8 +33,8 @@
             </p>
             <div v-if="errors.length > 0">
               <ul class="list-disc list-inside text-red-500 text-sm">
-                <li v-for="(error, index) in errors" :key="index" class="flex items-start">
-                  <template v-if="errors.length > 0">
+                <li v-for="(error, index) in errors" :key="index" :v-if="error !== ''" class="flex items-start">
+                  <template v-if="error !== ''">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-1 text-red-600" fill="none"
                       viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -107,7 +107,7 @@ const inputTitle = ref<InputField[]>([
 ]);
 
 const validateEmail = (email: string) => {
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;  
   return emailPattern.test(email);
 };
 
@@ -121,26 +121,26 @@ const validate = () => {
 
 
   if (!apiRegisterData.email || !validateEmail(apiRegisterData.email)) {
-    errors.value[0] = 'Invalid email address.';
+    errors.value.push('Invalid email address.');
   }
 
 
   if (!apiRegisterData.login) {
-    errors.value[1] = 'Login is required.';
+    errors.value.push( 'Login is required.');
   }
 
 
   if (!apiRegisterData.fullName) {
-    errors.value[2] = 'Full name is required.';
+    errors.value.push('Full name is required.');
   }
 
 
   if (!apiRegisterData.mobileNumber || !validatePhoneNumber(apiRegisterData.mobileNumber)) {
-    errors.value[3] = 'Invalid phone number format. Use +XXXXXXXXXXX.';
+    errors.value.push('Invalid phone number format. Use +XXXXXXXXXXX.');
   }
 
   if (!apiRegisterData.password || apiRegisterData.password.length < 6) {
-    errors.value[4] = 'Password must be at least 6 characters long.';
+    errors.value.push('Password must be at least 6 characters long.');
   }
 };
 
@@ -186,7 +186,7 @@ const onSubmit = async () => {
     if (error.response) {
       console.error('Error response:', error.response.data);
       if (error.response.data.result) {
-        const mobileNumberErrors = error.response.data.result.mobilenumber || [];
+        const mobileNumberErrors = error.response.data.result.mobilenumber ||  error.response.data.result.username || [];
         errors.value.push(...mobileNumberErrors);
       }
     } else {

@@ -10,8 +10,8 @@
             <span class="text-[#BFBFBF]"> My collections</span>
         </nav>
 
-        <div class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
-            <div class="w-full md:w-[300px] lg:w-[500px]">
+        <div class="flex flex-col lg:grid settings-profile px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
+            <div class="w-full ">
                 <SideBar class="sidebar" />
             </div>
 

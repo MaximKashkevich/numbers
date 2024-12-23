@@ -16,7 +16,7 @@
     <main>
         <section
             class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[34px] flex-wrap big-container">
-            <nav class="w-full md:w-[300px] lg:w-[500px]">
+            <nav class="w-full ">
                 <SideBar />
             </nav>
             <nav class="flex-1 md:ml-6 md:order-2">

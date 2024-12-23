@@ -21,7 +21,7 @@ export interface IRegions {
 
 export interface ICode {
   id: number;
-  code: string;
+  name: string;
   totalCount: number;
   totalPage: number;
 }
@@ -75,7 +75,7 @@ export const usePlateStore = defineStore("plate", () => {
   const fetchCodes = async () => {
     try {
       const { data } = await axios.get(
-        "https://api.dev.numbers.ae/v1/account/operators/codes/list"
+        "https://api.dev.numbers.ae/v1/account/plate/codes/list"
       );
       codes.value = data.result.items;
     } catch (e) {

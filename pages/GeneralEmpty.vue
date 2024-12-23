@@ -10,17 +10,17 @@
     </nav>
 
     <div
-        class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
-        <div class="w-full md:w-[300px] lg:w-[500px]">
+        class="flex flex-col lg:grid settings-profile px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
+        <div class="w-full ">
             <SideBar class="sidebar" />
         </div>
 
         <div class="flex-1 flex flex-wrap global-container">
-            <h1 class=" w-full sm:mr-[50px] h-[50px] mt-[-10px] global-title font-medium text-[50px] uppercase ml-[65px]">
+            <h1 class=" w-full sm:mr-[50px] h-[50px] mt-[-10px] global-title font-medium text-[50px] uppercase ">
                 My Dashboard
             </h1>
             <!-- Section My featured numbers -->
-            <section class="p-[70px] section-dashboard">
+            <section class="py-[70px] section-dashboard">
                 <h2 class="leading-[42px] text-[35px] font-medium mb-[30px] textDash">My featured numbers:</h2>
                 <nav
                     class="border-[3px] max-w-[885px] w-[300px] sm:w-[600px]  lg:w-[885px] h-[300px] border-orange-500 bg-[#FFFFFF] rounded-[20px] p-[50px] hover:shadow-2xl hover:shadow-orange-100 transition">
@@ -33,7 +33,7 @@
             </section>
 
             <!-- Section My plate numbers -->
-            <section class="p-[70px] section-dashboard">
+            <section class="py-[70px] section-dashboard">
                 <h2 class="leading-[42px] text-[35px] font-medium mb-[30px] textDash">My plate numbers</h2>
                 <nav
                     class="max-w-[885px] w-[300px] sm:w-[600px]  lg:w-[885px] h-[300px] bg-[#FFFFFF] rounded-[20px] p-[50px] hover:shadow-2xl hover:shadow-orange-100 transition">
@@ -46,7 +46,7 @@
             </section>
 
             <!-- Section My mobile numbers -->
-            <section class="p-[70px] section-dashboard">
+            <section class="py-[70px] section-dashboard">
                 <h2 class="leading-[42px] text-[35px] font-medium mb-[30px] textDash">My mobile numbers</h2>
                 <nav
                     class="max-w-[885px] w-[300px] sm:w-[600px]  lg:w-[885px] h-[300px] bg-[#FFFFFF] rounded-[20px] p-[50px] hover:shadow-2xl hover:shadow-orange-100 transition">

@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[
-      'py-[14px] min-w-[1px] uppercase border-[3px] font-bold border-[#005DCA] rounded-[100px] text-[20px] font-bold text-[#005DCA] hover:bg-[#005DCA] hover:text-white transition whitespace-nowrap',
+      'py-[14px] px-[30px] leading-[24px] uppercase border-[2px] font-bold border-[#005DCA] rounded-[100px] text-[20px] text-[#005DCA] hover:bg-[#005DCA] hover:text-white transition whitespace-nowrap',
       adaptedClass,
     ]"
   >
@@ -28,7 +28,6 @@ export default {
 </script>
 <style scoped>
 .adapted {
-  padding-inline: 12px;
   font-size: clamp(12px, 3vw, 20px);
 }
 </style>

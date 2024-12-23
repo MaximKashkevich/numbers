@@ -2,7 +2,7 @@
   <NuxtPage />
 
   <div class="px-8 md:px-10 lg:px-12 xl:px-16 mt-[100px]">
-    <h1 class="w-[1320px] h-[200px] text-[100px] font-high leading-[100px] text-left title-2">
+    <h1 class="max-w-[1320px] text-[100px] font-medium leading-[100px] text-left title-2">
       PLATE AND MOBILE NUMBERS IN UAE
     </h1>
 

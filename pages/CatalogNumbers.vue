@@ -17,7 +17,7 @@
     </nav>
     <!-- Входные данные и фильтры -->
     <Catalog />
-    <SimilarNumbersList />
+
   </div>
 
   <!-- <div class="px-[60px] flex flex-col gap-[50px]">
@@ -81,7 +81,6 @@ import Pagination from "../components/Pagination/Pagination.vue";
 import MiniButton from "../components/MiniButton/MiniButton.vue";
 import Card from "../components/Card.vue";
 import { useAuthStore } from "@/stores/auth";
-import SimilarNumbersList from "../components/SimilarNumbersList.vue";
 
 export default {
   components: {
@@ -479,7 +478,7 @@ export default {
 }
 
 .custom-checkbox {
-  width: 30px;
+  width: 25px;
   height: 25px;
   border: 1px solid #bfbfbf;
   background-color: #fafafa;

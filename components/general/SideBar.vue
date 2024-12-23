@@ -1,8 +1,8 @@
 <template>
   <section
-    class="w-[400px] h-[476px] bg-white rounded-[20px] ml-[60px] gap-10 hover:shadow-2xl transition block1"
+    class="bg-white rounded-[20px] ml-[60px] gap-10 hover:shadow-2xl transition block1"
   >
-    <article class="justify-between flex items-center px-6 py-4 accGeneral">
+    <article class="gap-[20px] flex items-center px-6 py-4 accGeneral">
       <NuxtLink class="cursor-pointer mr-2">
         <img src="/public/assets/account.svg" alt="account" />
       </NuxtLink>

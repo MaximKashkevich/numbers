@@ -4,6 +4,7 @@
   >
     <LicenseCard
       title="FREE"
+      duration="1 month"
       text1="Plate or phone"
       text2="1 ad for sale"
       text3="No update"
@@ -11,6 +12,7 @@
     />
     <LicenseCard
       title="200 AED"
+      duration="5 month"
       text1="Plate or phone"
       text2="Any number of ads"
       text3="Updates every 7 days"
@@ -18,6 +20,7 @@
     />
     <LicenseCard
       title="175 AED"
+      duration="1 year"
       text1="Plate and phone"
       text2="Any number of ads"
       text3="Updates every 7 days"

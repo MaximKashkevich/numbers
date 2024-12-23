@@ -1,26 +1,26 @@
 <template>
   <header class="wrapper__header container__main min-w-[90%] px-8 md:px-10 lg:px-12 xl:px-16">
     <div class="row__header">
-      <a class="logo" @click="goToLink('/')">
+      <NuxtLink class="logo" to="/">
         <img src="../public/assets/New-Logo.webp" alt="Logo" />
-      </a>
+      </NuxtLink>
 
       <div class="menu__pc">
-        <button @click="goToLink('/CatalogNumbers?numberType=plate')">
+        <NuxtLink to="/CatalogNumbers?numberType=plate">
           Plate Numbers
-        </button>
+        </NuxtLink>
 
-        <button @click="goToLink('/BuyNumbers2')">
+        <NuxtLink to="/BuyNumbers2">
           Mobile Numbers
-        </button>
+        </NuxtLink>
 
-        <button @click="goToLink('/License')">
+        <NuxtLink to="/License">
           Subscriptions for dealers
-        </button>
+        </NuxtLink>
 
-        <button @click="goToLink('/Discounts')">Discounts</button>
+        <NuxtLink to="/Discounts">Discounts</NuxtLink>
 
-        <button @click="goToLink('/License')">Number concierge</button>
+        <NuxtLink to="/License">Number concierge</NuxtLink>
       </div>
 
       <button :class="[isOpen ? 'menu__mobile close' : 'menu__mobile']" @click="toggleMenu">
@@ -31,39 +31,37 @@
         <div class="menu__shape"></div>
       </button>
 
-      <div class="row__actions">
-        <ButtonBlue :requiresAdapt="true" class="py-3 px-5 mr-6" @click="goToLink('/GeneralBlockTariff')">Add Listing
-        </ButtonBlue>
         <div class="row__actions_inner">
-          <button class="button__action" @click="goToLink('/Viewed')">
+          <NuxtLink class="button__action" to="/Viewed">
             <img src="/assets/img/icons/saw.svg" alt="view" />
-          </button>
+          </NuxtLink>
 
-          <button class="button__action" @click="goToLink('/Liked')">
+          <NuxtLink class="button__action" to="/Liked">
             <img src="/assets/img/icons/fav.svg" alt="favorites" />
-          </button>
+          </NuxtLink>
 
           <button class="button__action" @click="handleClick">
             <img src="/assets/img/icons/profile.svg" alt="general" />
           </button>
         </div>
-      </div>
+        <ButtonBlue :requiresAdapt="true" @click="goToLink('/GeneralBlockTariff')">Add Listing
+        </ButtonBlue>
     </div>
     <div :class="[isOpen ? 'row__mobile' : 'row__mobile_close']">
-      <button @click="goToLink('/CatalogNumbers?numberType=plate')">
+      <NuxtLink to="/CatalogNumbers?numberType=plate">
         Plate Numbers
-      </button>
+      </NuxtLink>
 
-      <button @click="goToLink('/CatalogNumbers?numberType=Mobile')">
+      <NuxtLink to="/CatalogNumbers?numberType=Mobile">
         Mobile Numbers
-      </button>
+      </NuxtLink>
 
-      <button @click="goToLink('/GeneralBlockTariff')">
+      <NuxtLink to="/GeneralBlockTariff">
         Subscriptions for dealers
-      </button>
+      </NuxtLink>
 
-      <button @click="goToLink('/Discounts')">Discounts</button>
-      <button @click="goToLink('/License')">Number concierge</button>
+      <NuxtLink to="/Discounts">Discounts</NuxtLink>
+      <NuxtLink to="/License">Number concierge</NuxtLink>
     </div>
   </header>
 </template>
@@ -97,7 +95,7 @@ const isOpen = ref(false);
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
-  console.log(123);
+
 };
 </script>
 <style scoped>
@@ -124,9 +122,16 @@ const toggleMenu = () => {
   color: #000;
 }
 
-.menu__pc button:hover {
+.menu__pc a:hover {
   color: #005dca;
+  transition: 0.2s
 }
+
+a {
+  transition: 0.2s;
+  font-size: 16px;
+}
+
 
 .menu__mobile {
   display: none;
@@ -165,7 +170,6 @@ const toggleMenu = () => {
 
 .row__actions {
   display: flex;
-  padding-right: 3px;
   align-items: center;
 }
 
@@ -180,6 +184,11 @@ const toggleMenu = () => {
 
 .button__action:hover img {
   filter: brightness(0) saturate(100%) invert(23%) sepia(86%) saturate(2128%) hue-rotate(201deg) brightness(93%) contrast(102%);
+  transition: 0.2s;
+}
+
+.button__action img {
+  transition: 0.2s;
 }
 
 .row__mobile {

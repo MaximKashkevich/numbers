@@ -1,11 +1,11 @@
 <template>
-  <div class="wrapper__signUp flex justify-between gap-[20px] pl-[60px] pr-[60px] pt-[100px] block">
+  <div class="wrapper__signUp flex justify-between gap-[20px] pl-[60px] pr-[60px] pt-[70px] block">
     <div class="w-[650px] max-w-[100%] flex flex-col justify-between min-h-[100%]">
       <div>
-        <h1 class="font-roboto text-[50px] font-medium uppercase tracking-wide leading-none w-[400px] textOne">
-        Welcome <span class="pr-[15px] sp">to</span> Numbers.ae
+        <h1 class="font-roboto text-[50px] font-medium uppercase tracking-wide leading-none w-[430px] textOne">
+        Welcome<br/> to Numbers.ae
       </h1>
-      <p class="pt-[30px]">
+      <p class="pt-[30px] max-w-[500px]">
         Numbers.ae is a Web service aimed to create an easy and convenient way
         to purchase or sell Plate and Mobile Numbers in Dubai, Abu Dhabi, and
         other Emirates.
@@ -20,16 +20,16 @@
     </div>
 
     <div class="mr-[50px]">
-      <h2 class="font-roboto text-[35px] font-medium leading-[42px] pt-[20px]">
+      <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
         Login with social networks
       </h2>
-      <div class="button-container flex flex-col gap-[20px] pt-[40px]">
-        <div class="flex gap-[20px] sm:grid sm:grid-cols-2 image">
-          <ButtonLogin>
+      <div class="button-container flex flex-col gap-[20px] pt-[30px]">
+        <div class="gap-[20px] grid grid-cols-2 image">
+          <ButtonLogin class="w-full">
             <img src="../public/assets/google-logo.svg" alt="Google" class="w-[90px] h-[30px]" />
           </ButtonLogin>
-          <ButtonLogin>
-            <img src="../public/assets/facebook-logo.webp" alt="Facebook" class="w-[100px] h-[20px]" />
+          <ButtonLogin class="w-full">
+            <img src="../public/assets/facebook.svg" alt="Facebook" class="w-[100px] h-[20px]" />
           </ButtonLogin>
         </div>
         <div class="pt-[70px]">
@@ -39,7 +39,7 @@
           </h3>
           <form @submit.prevent="handleSubmit" class="pt-[30px]">
             <div class="flex flex-col">
-              <label for="username" class="text-[14px] font-medium leading-[16.8px]">Login, e–mail or username:</label>
+              <label for="username" class="text-[14px] leading-[16.8px]">Login, e–mail or username:</label>
               <input v-model="apiLog.email" type="text" id="username"
                 class="inputs mt-2 bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom mb-[10px]"
                 placeholder="username@gmail.com or 050 123 45 67 or JohnSnow_123" />
@@ -49,7 +49,7 @@
             </div>
 
             <div class="flex flex-col">
-              <label for="password" class="text-[14px] font-medium leading-[16.8px] h-[20px]">Password:</label>
+              <label for="password" class="text-[14px] leading-[16.8px] h-[20px]">Password:</label>
               <input v-model="apiLog.password" type="password" id="password"
                 class="inputs mt-2 bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom"
                 placeholder="xxxxxxx" />
@@ -57,14 +57,14 @@
                 errors.password
               }}</span>
             </div>
-            <div class="flex items-center my-2">
+            <div class="flex items-center mt-[15px] mb-[30px]">
               <input id="remember-me" type="checkbox" v-model="form.rememberMe"
-                class="custom-checkbox h-4 w-4 border border-gray-300 rounded focus:ring-0" />
+                class="custom-checkbox h-[20px] w-[20px] border border-gray-300 rounded focus:ring-0" />
               <label for="remember-me" class="ml-2 block text-sm text-[#B3B3B3]">Remember me</label>
             </div>
 
             <NuxtLink>
-              <ButtonBlue type="submit" class="w-[15rem] py-[0.7rem]">
+              <ButtonBlue type="submit" class="w-[300px] py-[0.7rem]">
                 Sign in
               </ButtonBlue>
             </NuxtLink>
