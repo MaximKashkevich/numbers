@@ -41,10 +41,13 @@ export const usePlateStore = defineStore("plate", () => {
   const plateNumbers = ref<IPlate[]>([]);
   const regions = ref<IRegions[]>([]);
   const codes = ref<ICode[]>([]);
-  const selectedEmirate = ref("Dubai");
-  const selectedCode = ref("050");
   const plateDetails = ref<IDetails[]>([]);
   const viewedPlates = ref<IPlate[]>([]);
+
+  const selectedPlateType = ref(true);
+  const selectedEmirate = ref("Dubai");
+  const selectedCode = ref("050");
+  const selectedSort = ref("Latest");
 
   // Fetch plate numbers
   const fetchPlate = async (query?: any) => {
@@ -102,6 +105,15 @@ export const usePlateStore = defineStore("plate", () => {
     selectedEmirate.value = target.value;
   };
 
+  const handleNumberTypeChange = (numberType: boolean) => {
+    selectedPlateType.value = numberType;
+  };
+
+  const handleSortChange = (sortType: string) => {
+    selectedSort.value = sortType;
+    console.log(selectedSort.value);
+  };
+
   const filteredPlateNumbers = computed(() => {
     if (selectedEmirate.value) {
       return plateNumbers.value.filter(
@@ -109,6 +121,12 @@ export const usePlateStore = defineStore("plate", () => {
       );
     }
     return plateNumbers.value;
+  });
+
+  const filteredFeaturedPlateNumbers = computed(() => {
+    return filteredPlateNumbers.value.filter(
+      (item) => item.isFeatured === true
+    );
   });
 
   const selectedPlateId = ref<null | number>(0);
@@ -135,8 +153,13 @@ export const usePlateStore = defineStore("plate", () => {
     regions,
     fetchRegions,
     selectedEmirate,
+    selectedPlateType,
+    selectedSort,
+    handleNumberTypeChange,
     handleEmirateChange,
+    handleSortChange,
     filteredPlateNumbers,
+    filteredFeaturedPlateNumbers,
     fetchCodes,
     codes,
     selectedCode,
