@@ -54,8 +54,8 @@
         </label>
         <div @click="toggleEmirateDropdown" class="relative">
           <button
-            class="mt-[10px] text-[16px] leading-[19.2px] text-left w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px] flex items-center justify-between"
-            :class="{ select__open: isEmirateDropdownOpen }"
+            class="mt-[10px] text-[16px] leading-[19.2px] text-left w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] py-[15px] px-[20px] flex items-center justify-between"
+            :class="{ select: true, select__open: isEmirateDropdownOpen }"
           >
             {{ selectedEmirate || "Dubai" }}
             <svg
@@ -76,8 +76,8 @@
           </button>
           <ul
             v-if="isEmirateDropdownOpen"
-            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg rounded-[25px] overflow-hidden pb-2"
-            :class="{ dropdown__open: isEmirateDropdownOpen }"
+            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2"
+            :class="{ select: true, dropdown__open: isEmirateDropdownOpen }"
           >
             <div class="max-h-60 ml-5 mr-1 overflow-y-scroll">
               <li
@@ -101,8 +101,8 @@
         </label>
         <div @click="toggleCodeDropdown" class="relative">
           <button
-            class="mt-[10px] text-[16px] leading-[19.2px] text-left w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px] flex items-center justify-between"
-            :class="{ select__open: isCodeDropdownOpen }"
+            class="mt-[10px] text-[16px] leading-[19.2px] text-left w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] py-[15px] px-[20px] flex items-center justify-between"
+            :class="{ select: true, select__open: isCodeDropdownOpen }"
           >
             {{ selectedCode || "050" }}
             <svg
@@ -123,7 +123,7 @@
           </button>
           <ul
             v-if="isCodeDropdownOpen"
-            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg rounded-[25px] overflow-hidden pb-2"
+            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2"
             :class="{ dropdown__open: isCodeDropdownOpen }"
           >
             <div class="max-h-60 ml-5 mr-1 overflow-y-scroll">
@@ -148,8 +148,8 @@
         >
         <div @click="toggleSortDropdown" class="relative">
           <button
-            class="mt-[10px] text-[16px] leading-[19.2px] text-left w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] rounded-[25px] py-[15px] px-[20px] flex items-center justify-between"
-            :class="{ select__open: isSortDropdownOpen }"
+            class="mt-[10px] text-[16px] leading-[19.2px] text-left w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] py-[15px] px-[20px] flex items-center justify-between"
+            :class="{ select: true, select__open: isSortDropdownOpen }"
           >
             {{ plateStore.selectedSort || "Latest" }}
             <!-- Начальное значение -->
@@ -171,7 +171,7 @@
           </button>
           <ul
             v-if="isSortDropdownOpen"
-            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg rounded-[25px] overflow-hidden pb-2"
+            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2"
             :class="{ dropdown__open: isSortDropdownOpen }"
           >
             <li
@@ -300,6 +300,10 @@ onMounted(() => {
 
 h3 {
   font-size: clamp(32px, 10vw, 56px);
+}
+
+.select {
+  border-radius: 25px;
 }
 
 .select__open {

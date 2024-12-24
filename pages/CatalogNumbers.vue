@@ -9,7 +9,9 @@
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink class="text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer">
+          <NuxtLink
+            class="text-[#BFBFBF] hover:text-[#005DCA] transition cursor-pointer"
+          >
             Plate numbers
           </NuxtLink>
         </li>
@@ -17,7 +19,6 @@
     </nav>
     <!-- Входные данные и фильтры -->
     <Catalog />
-
   </div>
 
   <!-- <div class="px-[60px] flex flex-col gap-[50px]">
@@ -402,10 +403,8 @@ export default {
       getPhonesForPage,
       stateinput,
       shoNumbers,
-      stateinput,
       isReadonly,
       enableInput,
-      stateinput,
       isActive,
       maxprice,
       pricelow,
@@ -444,7 +443,6 @@ export default {
 }
 
 @keyframes blink {
-
   0%,
   80%,
   100% {
