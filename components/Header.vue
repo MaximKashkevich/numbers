@@ -1,5 +1,7 @@
 <template>
-  <header class="wrapper__header container__main min-w-[90%] px-8 md:px-10 lg:px-12 xl:px-16">
+  <header
+    class="wrapper__header container__main min-w-[90%] px-8 md:px-10 lg:px-12 xl:px-16"
+  >
     <div class="row__header">
       <NuxtLink class="logo" to="/">
         <img src="../public/assets/New-Logo.webp" alt="Logo" />
@@ -10,20 +12,19 @@
           Plate Numbers
         </NuxtLink>
 
-        <NuxtLink to="/BuyNumbers2">
-          Mobile Numbers
-        </NuxtLink>
+        <NuxtLink to="/BuyNumbers2"> Mobile Numbers </NuxtLink>
 
-        <NuxtLink to="/License">
-          Subscriptions for dealers
-        </NuxtLink>
+        <NuxtLink to="/License"> Subscriptions for dealers </NuxtLink>
 
         <NuxtLink to="/Discounts">Discounts</NuxtLink>
 
         <NuxtLink to="/License">Number concierge</NuxtLink>
       </div>
 
-      <button :class="[isOpen ? 'menu__mobile close' : 'menu__mobile']" @click="toggleMenu">
+      <button
+        :class="[isOpen ? 'menu__mobile close' : 'menu__mobile']"
+        @click="toggleMenu"
+      >
         <div class="menu__shape"></div>
 
         <div class="menu__shape"></div>
@@ -31,34 +32,31 @@
         <div class="menu__shape"></div>
       </button>
 
-        <div class="row__actions_inner">
-          <NuxtLink class="button__action" to="/Viewed">
-            <img src="/assets/img/icons/saw.svg" alt="view" />
-          </NuxtLink>
+      <div class="row__actions_inner">
+        <NuxtLink class="button__action" to="/Viewed">
+          <img src="/assets/img/icons/saw.svg" alt="view" />
+        </NuxtLink>
 
-          <NuxtLink class="button__action" to="/Liked">
-            <img src="/assets/img/icons/fav.svg" alt="favorites" />
-          </NuxtLink>
+        <NuxtLink class="button__action" to="/Liked">
+          <img src="/assets/img/icons/fav.svg" alt="favorites" />
+        </NuxtLink>
 
-          <button class="button__action" @click="handleClick">
-            <img src="/assets/img/icons/profile.svg" alt="general" />
-          </button>
-        </div>
-        <ButtonBlue :requiresAdapt="true" @click="goToLink('/GeneralBlockTariff')">Add Listing
-        </ButtonBlue>
+        <button class="button__action" @click="handleClick">
+          <img src="/assets/img/icons/profile.svg" alt="general" />
+        </button>
+      </div>
+      <ButtonBlue :requiresAdapt="true" @click="goToLink('/GeneralBlockTariff')"
+        >Add Listing
+      </ButtonBlue>
     </div>
     <div :class="[isOpen ? 'row__mobile' : 'row__mobile_close']">
-      <NuxtLink to="/CatalogNumbers?numberType=plate">
-        Plate Numbers
-      </NuxtLink>
+      <NuxtLink to="/CatalogNumbers?numberType=plate"> Plate Numbers </NuxtLink>
 
       <NuxtLink to="/CatalogNumbers?numberType=Mobile">
         Mobile Numbers
       </NuxtLink>
 
-      <NuxtLink to="/GeneralBlockTariff">
-        Subscriptions for dealers
-      </NuxtLink>
+      <NuxtLink to="/GeneralBlockTariff"> Subscriptions for dealers </NuxtLink>
 
       <NuxtLink to="/Discounts">Discounts</NuxtLink>
       <NuxtLink to="/License">Number concierge</NuxtLink>
@@ -73,7 +71,6 @@ import { useAuthStore } from "~/stores/auth";
 const router = useRouter();
 const authStore = useAuthStore();
 
-
 const goToLink = (page: string) => {
   router.push({
     path: page,
@@ -83,19 +80,16 @@ const goToLink = (page: string) => {
 const handleClick = () => {
   if (authStore.authToken) {
     //переход на лк
-    router.push({ name: 'GeneralEmpty' });
+    router.push({ name: "GeneralEmpty" });
   } else {
-
-    router.push({ name: 'login' });
+    router.push({ name: "login" });
   }
 };
-
 
 const isOpen = ref(false);
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
-
 };
 </script>
 <style scoped>
@@ -124,14 +118,13 @@ const toggleMenu = () => {
 
 .menu__pc a:hover {
   color: #005dca;
-  transition: 0.2s
+  transition: 0.2s;
 }
 
 a {
   transition: 0.2s;
   font-size: 16px;
 }
-
 
 .menu__mobile {
   display: none;
@@ -183,7 +176,8 @@ a {
 }
 
 .button__action:hover img {
-  filter: brightness(0) saturate(100%) invert(23%) sepia(86%) saturate(2128%) hue-rotate(201deg) brightness(93%) contrast(102%);
+  filter: brightness(0) saturate(100%) invert(23%) sepia(86%) saturate(2128%)
+    hue-rotate(201deg) brightness(93%) contrast(102%);
   transition: 0.2s;
 }
 
@@ -202,9 +196,11 @@ a {
   flex-direction: column;
   align-items: end;
   background: rgb(250, 250, 250);
-  background: linear-gradient(180deg,
-      rgba(250, 250, 250, 1) 83%,
-      rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 1) 83%,
+    rgba(0, 0, 0, 0) 100%
+  );
   padding-bottom: 70px;
 }
 

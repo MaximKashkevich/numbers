@@ -22,6 +22,7 @@
             @click="
               () => {
                 plateStore.handleNumberTypeChange(true);
+                closeAllDropdowns();
               }
             "
           >
@@ -37,6 +38,7 @@
             @click="
               () => {
                 plateStore.handleNumberTypeChange(false);
+                closeAllDropdowns();
               }
             "
           >
@@ -76,7 +78,7 @@
           </button>
           <ul
             v-if="isEmirateDropdownOpen"
-            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2"
+            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2 dropdown1"
             :class="{ select: true, dropdown__open: isEmirateDropdownOpen }"
           >
             <div class="max-h-60 ml-5 mr-1 overflow-y-scroll">
@@ -123,7 +125,7 @@
           </button>
           <ul
             v-if="isCodeDropdownOpen"
-            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2"
+            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2 dropdown2"
             :class="{ dropdown__open: isCodeDropdownOpen }"
           >
             <div class="max-h-60 ml-5 mr-1 overflow-y-scroll">
@@ -197,7 +199,14 @@
           </ul>
         </div>
       </div>
-      <ButtonBlue class="flex self-end font-bold">
+      <ButtonBlue
+        @click="
+          () => {
+            closeAllDropdowns();
+          }
+        "
+        class="flex self-end font-bold"
+      >
         Show {{ filteredPlateNumbers.length }} numbers
       </ButtonBlue>
     </div>
@@ -248,9 +257,8 @@ const isCodeDropdownOpen = ref(false);
 const isSortDropdownOpen = ref(false);
 
 const handleClick = (id: number) => {
-  plateStore.handleClick(id); // Вызываем обработчик клика для получения деталей
+  plateStore.handleClick(id);
 };
-// Обработчик изменения эмирата
 const handleEmirateChange = (emirate: string) => {
   selectedEmirate.value = emirate;
   plateStore.selectedEmirate = emirate;
@@ -265,14 +273,29 @@ const handleCodesChange = (codes: string) => {
 
 const toggleEmirateDropdown = () => {
   isEmirateDropdownOpen.value = !isEmirateDropdownOpen.value;
+
+  isCodeDropdownOpen.value = false;
+  isSortDropdownOpen.value = false;
 };
 
 const toggleCodeDropdown = () => {
   isCodeDropdownOpen.value = !isCodeDropdownOpen.value;
+
+  isEmirateDropdownOpen.value = false;
+  isSortDropdownOpen.value = false;
 };
 
 const toggleSortDropdown = () => {
   isSortDropdownOpen.value = !isSortDropdownOpen.value;
+
+  isEmirateDropdownOpen.value = false;
+  isCodeDropdownOpen.value = false;
+};
+
+const closeAllDropdowns = () => {
+  isSortDropdownOpen.value = false;
+  isEmirateDropdownOpen.value = false;
+  isCodeDropdownOpen.value = false;
 };
 
 const filteredPlateNumbers = computed(() => {
@@ -318,5 +341,13 @@ h3 {
 
 .select__option:hover {
   background-color: #fff;
+}
+
+.dropdown1 {
+  z-index: 3;
+}
+
+.dropdown2 {
+  z-index: 2;
 }
 </style>
