@@ -3,9 +3,7 @@
     <nav class="mb-6 mt-6">
       <ul class="flex gap-2 px-8">
         <li>
-          <NuxtLink
-            to="/"
-            class="text-[#005DCA] cursor-pointer transition"
+          <NuxtLink to="/" class="text-[#005DCA] cursor-pointer transition"
             >Home /</NuxtLink
           >
         </li>
@@ -25,8 +23,7 @@
       You used to watch
     </h1>
 
-        <div class="flex flex-wrap gap-4 mt-4 sm:gap-6 lg:gap-8 mt-[70px]">
-            
+    <div class="flex flex-wrap gap-4 mt-4 sm:gap-6 lg:gap-8 mt-[70px]">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
         <ViewedPlate
           v-for="plate in viewedPlates"
@@ -35,7 +32,7 @@
           :photo="plate.photo"
           :emirate="plate.emirate"
           :price="plate.price"
-          :postedAt="plate.postedAt"
+          :datePosted="plate.datePosted"
           :views="plate.views"
         />
       </div>
@@ -71,7 +68,7 @@ interface ViewedPlates {
   price: number;
   isFeatured: boolean;
   type: string;
-  postedAt: string;
+  datePosted: string;
   views: number;
 }
 

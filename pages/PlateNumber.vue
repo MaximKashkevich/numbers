@@ -132,7 +132,7 @@
 
         <div class="flex gap-[25px] mt-[30px]">
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
-            {{ postedAt }}
+            {{ datePosted }}
           </p>
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
             {{ views }} Views
@@ -277,7 +277,7 @@ export default {
       type: String,
       default: "Online",
     },
-    postedAt: {
+    datePosted: {
       type: String,
       default: "Posted Today",
     },

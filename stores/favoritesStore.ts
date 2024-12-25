@@ -10,7 +10,8 @@ export interface IFavorites {
   isFeatured: boolean;
   views: number;
   type: string;
-  postedAt: string;
+  datePosted: string;
+  phone: string;
 }
 
 export const useFavoritesStore = defineStore("favorites", () => {

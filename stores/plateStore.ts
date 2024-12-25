@@ -9,7 +9,19 @@ export interface IPlate {
   price: string;
   isFeatured: boolean;
   type: string;
-  postedAt: string;
+  datePosted: string;
+}
+
+export interface IMobile {
+  id: number;
+  phone: string;
+  emirate: string;
+  price: string;
+  discount: boolean;
+  isFeatured: boolean;
+  type: string;
+  views: number;
+  datePosted: string;
 }
 
 export interface IRegions {
@@ -33,12 +45,13 @@ export interface IDetails {
   price: string;
   isFeatured: boolean;
   type: string;
-  postedAt: string;
+  datePosted: string;
   views: string;
 }
 
 export const usePlateStore = defineStore("plate", () => {
   const plateNumbers = ref<IPlate[]>([]);
+  const mobileNumbers = ref<IMobile[]>([]);
   const regions = ref<IRegions[]>([]);
   const codes = ref<ICode[]>([]);
   const plateDetails = ref<IDetails[]>([]);
@@ -51,6 +64,7 @@ export const usePlateStore = defineStore("plate", () => {
 
   // Fetch plate numbers
   const fetchPlate = async (query?: any) => {
+    console.log(1111);
     try {
       const { data } = await axios.get<IPlate[]>(
         "https://api.dev.numbers.ae/v1/catalog/plate",
@@ -59,6 +73,21 @@ export const usePlateStore = defineStore("plate", () => {
       plateNumbers.value = data;
     } catch (e) {
       console.log("Error fetching plates:", e);
+    }
+  };
+
+  const fetchMobile = async (query?: any) => {
+    try {
+      const { data } = await axios.get<IMobile[]>(
+        "https://api.dev.numbers.ae/v1/catalog/phone",
+        { params: query }
+      );
+      mobileNumbers.value = data.map((item) => ({
+        ...item, // сохраняем остальные свойства объекта
+        phone: item.phone.replace(/[\s_-]+/g, "").toUpperCase(),
+      }));
+    } catch (e) {
+      console.log("Error fetching mobile plates:", e);
     }
   };
 
@@ -111,9 +140,9 @@ export const usePlateStore = defineStore("plate", () => {
 
   const handleSortChange = (sortType: string) => {
     selectedSort.value = sortType;
-    console.log(selectedSort.value);
   };
 
+  // filtered plate numbers
   const filteredPlateNumbers = computed(() => {
     if (selectedEmirate.value) {
       return plateNumbers.value.filter(
@@ -149,7 +178,9 @@ export const usePlateStore = defineStore("plate", () => {
   };
   return {
     plateNumbers,
+    mobileNumbers,
     fetchPlate,
+    fetchMobile,
     regions,
     fetchRegions,
     selectedEmirate,

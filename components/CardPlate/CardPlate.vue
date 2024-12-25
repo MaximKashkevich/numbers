@@ -1,10 +1,26 @@
 <template>
   <NuxtLink>
     <div
-      class="transition flex-1 min-w-[300px] max-w-[100%] p-[5px] h-[100%] rounded-[20px] bg-white border-[3px] border-[#bfbfbf]"
+      class="transition flex-1 min-w-[300px] max-w-[100%] p-[5px] pb-[20px] h-[100%] rounded-[20px] bg-white border-[3px] border-[#bfbfbf]"
       :class="{ featured: props.isFeatured }"
     >
-      <img :src="props.photo" class="mt-[40px] px-[20px]" alt="Image" />
+      <img
+        v-if="props.photo"
+        :src="props.photo"
+        class="mt-[40px] px-[20px]"
+        alt="Image"
+      />
+      <div
+        v-if="!props.photo"
+        class="w-[90%] mx-[auto] mt-[30px] flex gap-[15px] items-center"
+      >
+        <img
+          class="phone__img w-[60px] h-[60px]"
+          src="/public/assets/etisalat.png"
+          alt="etisalat logo"
+        />
+        <h1 class="phone__text text-[#70a136]">{{ props.phone }}</h1>
+      </div>
       <div class="flex items-center justify-between mt-[30px] mr-[30px]">
         <div class="w-[110px] ml-[20px]">
           <h1
@@ -39,7 +55,7 @@
         </div>
         <div class="flex gap-[25px] pt-[5px]">
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
-            Posted Today {{ props.postedAt }}
+            Posted Today {{ props.datePosted }}
           </p>
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
             {{ props.views }} Views
@@ -58,6 +74,8 @@ import type { IFavorites } from "~/stores/favoritesStore";
 const props = defineProps<
   {
     isFeaturedClass: boolean;
+    photo?: string;
+    phone?: string;
   } & IFavorites
 >();
 
@@ -71,9 +89,27 @@ const toggleLike = (favorite: IFavorites) => {
 .featured {
   border-color: #ff9c00;
 }
+
+.phone__text {
+  font-size: clamp(22px, 3vw, 55px);
+}
+
+@media (max-width: 1023px) {
+  .phone__text {
+    font-size: 40px;
+  }
+}
+
 @media (max-width: 500px) {
   .img-like {
     margin-left: -70px;
+  }
+  .phone__text {
+    font-size: 24px;
+  }
+  .phone__img {
+    width: 40px;
+    height: 40px;
   }
 }
 

@@ -10,7 +10,7 @@ export interface ISimilar {
   isFeatured: boolean;
   type: string;
   views: number;
-  postedAt: string;
+  datePosted: string;
 }
 
 export const useSimilarNumbersStore = defineStore("similarNumbers", () => {

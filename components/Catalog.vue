@@ -23,6 +23,7 @@
               () => {
                 plateStore.handleNumberTypeChange(true);
                 closeAllDropdowns();
+                plateStore.fetchMobile();
               }
             "
           >
@@ -39,6 +40,7 @@
               () => {
                 plateStore.handleNumberTypeChange(false);
                 closeAllDropdowns();
+                plateStore.fetchMobile();
               }
             "
           >
@@ -212,8 +214,18 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
       <CardPlate
-        to="/PlateNUmberCard"
+        to="/PlateNumberCard"
+        v-if="plateStore.selectedPlateType"
         v-for="item in filteredPlateNumbers"
+        @click="handleClick(item.id)"
+        :key="item.id"
+        v-bind="item"
+        :is-featured-class="false"
+      />
+      <CardPlate
+        to="/PlateNumberCard"
+        v-if="!plateStore.selectedPlateType"
+        v-for="item in mobileNumbers"
         @click="handleClick(item.id)"
         :key="item.id"
         v-bind="item"
@@ -259,6 +271,7 @@ const isSortDropdownOpen = ref(false);
 const handleClick = (id: number) => {
   plateStore.handleClick(id);
 };
+
 const handleEmirateChange = (emirate: string) => {
   selectedEmirate.value = emirate;
   plateStore.selectedEmirate = emirate;
@@ -303,6 +316,9 @@ const filteredPlateNumbers = computed(() => {
 });
 const filteredFeaturedPlateNumbers = computed(() => {
   return plateStore.filteredFeaturedPlateNumbers;
+});
+const mobileNumbers = computed(() => {
+  return plateStore.mobileNumbers;
 });
 
 onMounted(() => {

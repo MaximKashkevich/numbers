@@ -30,7 +30,7 @@
           </div>
           <div class="flex gap-[25px] pt-[5px]">
             <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
-              Today{{ plate.postedAt }}
+              Today{{ plate.datePosted }}
             </p>
             <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
               {{ plate.views }} Views

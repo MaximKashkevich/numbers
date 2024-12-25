@@ -1,27 +1,35 @@
 <template>
   <NuxtLink>
-    <div class="flex-1  h-[300px] rounded-[20px] bg-white border-[2px] border-[#BFBFBF]">
+    <div
+      class="flex-1 h-[300px] rounded-[20px] bg-white border-[2px] border-[#BFBFBF]"
+    >
       <img :src="props.imageSrc" class="mt-[40px] px-[20px]" alt="" />
       <div class="flex items-center justify-between mt-[30px] mr-[30px]">
         <div class="w-[110px] ml-[20px]">
-          <h1 class="w-[110px] h-[24px] text-[20px] font-medium leading-[24px]" v-html="props.price">
-          </h1>
+          <h1
+            class="w-[110px] h-[24px] text-[20px] font-medium leading-[24px]"
+            v-html="props.price"
+          ></h1>
         </div>
       </div>
 
       <div class="mt-[30px] pl-[20px]">
         <div class="flex gap-[10px]">
-          <p class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
+          <p
+            class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
+          >
             Emirate:
           </p>
-          <p class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
+          <p
+            class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
+          >
             {{ props.emirate }}
           </p>
         </div>
 
         <div class="flex gap-[25px] pt-[5px]">
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
-            Posted Today {{ props.postedAt }}
+            Posted Today {{ props.datePosted }}
           </p>
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
             {{ props.views }} Views
@@ -33,8 +41,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-import { number } from 'yup';
+import { defineProps } from "vue";
+import { number } from "yup";
 
 const props = defineProps({
   imageSrc: {
@@ -49,7 +57,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  postedAt: {
+  datePosted: {
     type: String,
     required: true,
   },
@@ -59,7 +67,6 @@ const props = defineProps({
   },
 });
 </script>
-
 
 <style scoped>
 @media (max-width: 500px) {

@@ -38,7 +38,7 @@
         </div>
         <div class="flex gap-[25px] pt-[5px]">
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
-            Posted Today {{ props.postedAt }}
+            Posted Today {{ props.datePosted }}
           </p>
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
             {{ props.views }} Views
@@ -52,11 +52,11 @@
 import { defineProps } from "vue";
 
 const props = defineProps({
-  photo: { type: String, required: true },
+  photo: { type: String, required: false },
   price: { type: Number, required: true },
   id: { type: Number, required: true },
   emirate: { type: String, required: true },
-  postedAt: { type: String, required: false },
+  datePosted: { type: String, required: false },
   views: { type: Number, required: true },
 });
 </script>
