@@ -356,7 +356,7 @@ h3 {
 }
 
 .select__option:hover {
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
 .dropdown1 {
