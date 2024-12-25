@@ -6,9 +6,9 @@ export interface IFavorites {
   id: number;
   photo: string;
   emirate: string;
-  price: number;
+  price: string;
   isFeatured: boolean;
-  views: string;
+  views: number;
   type: string;
   postedAt: string;
 }

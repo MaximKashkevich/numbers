@@ -6,7 +6,7 @@ export interface IPlate {
   id: number;
   photo: string;
   emirate: string;
-  price: number;
+  price: string;
   isFeatured: boolean;
   type: string;
   postedAt: string;
@@ -30,7 +30,7 @@ export interface IDetails {
   id: number;
   photo: string;
   emirate: string;
-  price: number;
+  price: string;
   isFeatured: boolean;
   type: string;
   postedAt: string;
