@@ -64,7 +64,6 @@ export const usePlateStore = defineStore("plate", () => {
 
   // Fetch plate numbers
   const fetchPlate = async (query?: any) => {
-    console.log(1111);
     try {
       const { data } = await axios.get<IPlate[]>(
         "https://api.dev.numbers.ae/v1/catalog/plate",
@@ -163,17 +162,6 @@ export const usePlateStore = defineStore("plate", () => {
   const handleClick = async (id: number) => {
     selectedPlateId.value = id;
     console.log(selectedPlateId.value);
-
-    const viewedPlatesString = localStorage.getItem("ViewedPlates");
-    let viewedPlatesArray = viewedPlatesString
-      ? JSON.parse(viewedPlatesString)
-      : [];
-
-    if (!viewedPlatesArray.includes(id)) {
-      viewedPlatesArray.push(id);
-      localStorage.setItem("ViewedPlates", JSON.stringify(viewedPlatesArray));
-    }
-
     await fetchPlateDetails(id);
   };
   return {

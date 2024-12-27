@@ -29,5 +29,6 @@ export default {
 <style scoped>
 .adapted {
   font-size: clamp(12px, 3vw, 20px);
+  height: 100%;
 }
 </style>

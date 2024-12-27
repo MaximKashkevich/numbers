@@ -1,7 +1,13 @@
 <template>
-  <NuxtLink>
+  <NuxtLink
+    :to="
+      props.type === 'plate'
+        ? `/number/plate/${props.id}`
+        : `/number/phone/${props.id}`
+    "
+  >
     <div
-      class="transition flex-1 min-w-[300px] max-w-[100%] p-[5px] pb-[20px] h-[100%] rounded-[20px] bg-white border-[3px] border-[#bfbfbf]"
+      class="transition flex-1 p-[5px] pb-[20px] h-[100%] rounded-[20px] bg-white border-[3px] border-[#bfbfbf]"
       :class="{ featured: props.isFeatured }"
     >
       <img
@@ -28,19 +34,7 @@
             v-html="props.price"
           ></h1>
         </div>
-        <div>
-          <div @click.prevent="toggleLike(props)">
-            <img
-              width="24px"
-              :src="
-                favorites.likes[props.id]
-                  ? '/assets/likeTrue.png'
-                  : '/assets/like.svg'
-              "
-              alt="favorite"
-            />
-          </div>
-        </div>
+        <ButtonLike :id="props.id" :type="props.type" />
       </div>
       <div class="mt-[30px] pl-[20px]">
         <div class="flex gap-[10px]">
@@ -68,21 +62,15 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-import { useFavoritesStore } from "~/stores/favoritesStore";
 import type { IFavorites } from "~/stores/favoritesStore";
 
 const props = defineProps<
   {
-    isFeaturedClass: boolean;
+    isFeaturedClass?: boolean;
     photo?: string;
     phone?: string;
   } & IFavorites
 >();
-
-const favorites = useFavoritesStore();
-const toggleLike = (favorite: IFavorites) => {
-  favorites.toggleLike(favorite);
-};
 </script>
 
 <style>

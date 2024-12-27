@@ -146,9 +146,8 @@
         Submit a purchase order
       </ButtonBlue>
     </div>
-
     <h3
-      class="w-[198px] h-[60px] text-[50px] font-light leading-[60px] text-left mt-[150px]"
+      class="w-[198px] h-[60px] text-[50px] font-normal leading-[60px] text-left mt-[150px]"
     >
       Licenses
     </h3>

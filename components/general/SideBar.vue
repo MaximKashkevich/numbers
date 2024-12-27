@@ -110,10 +110,13 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted, defineComponent } from "vue";
+import { ref, onMounted, defineComponent, useAttrs } from "vue";
 import axios from "axios";
 import { useAuthStore } from "~/stores/auth";
+import { useAuthRegistrationStore } from "~/stores/authReg";
 import { useFavoritesStore } from "~/stores/favoritesStore";
+
+// const userStore = useAuthRegistrationStore();
 
 // тут интерфейс
 interface UserInfo {
@@ -153,7 +156,9 @@ export default defineComponent({
 
         if (response.data.success) {
           user.value = response.data.result;
-          favoritesStore.setUserId(response.data.result.id)
+          favoritesStore.setUserId(response.data.result.id);
+          console.log(response.data.result, "success");
+          useAuthRegistrationStore().setUserData(response.data.result);
         } else {
           error.value = "Failed to fetch user data.";
         }

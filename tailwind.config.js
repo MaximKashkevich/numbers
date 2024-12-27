@@ -13,6 +13,9 @@ module.exports = {
       fontFamily: {
         "helvetica-neue": ["Helvetica Neue", "Arial", "sans-serif"],
       },
+      screens: {
+        xs: { max: "420px" },
+      },
     },
   },
 

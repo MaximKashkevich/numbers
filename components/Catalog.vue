@@ -23,7 +23,7 @@
               () => {
                 plateStore.handleNumberTypeChange(true);
                 closeAllDropdowns();
-                plateStore.fetchMobile();
+                plateStore.fetchPlate();
               }
             "
           >
@@ -207,26 +207,22 @@
             closeAllDropdowns();
           }
         "
-        class="flex self-end font-bold"
+        class="flex self-end justify-center font-bold max-w-[220px]"
       >
         Show {{ filteredPlateNumbers.length }} numbers
       </ButtonBlue>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
       <CardPlate
-        to="/PlateNumberCard"
         v-if="plateStore.selectedPlateType"
         v-for="item in filteredPlateNumbers"
-        @click="handleClick(item.id)"
         :key="item.id"
         v-bind="item"
         :is-featured-class="false"
       />
       <CardPlate
-        to="/PlateNumberCard"
         v-if="!plateStore.selectedPlateType"
         v-for="item in mobileNumbers"
-        @click="handleClick(item.id)"
         :key="item.id"
         v-bind="item"
         :is-featured-class="false"
@@ -239,12 +235,15 @@
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
       <CardPlate
-        to="/PlateNUmberCard"
         v-for="item in filteredFeaturedPlateNumbers"
-        @click="handleClick(item.id)"
         :key="item.id"
         v-bind="item"
         :is-featured-class="true"
+        :to="
+          item.type === 'plate'
+            ? `/number/plate/${item.id}`
+            : `/number/phone/${item.id}`
+        "
       />
     </div>
   </div>

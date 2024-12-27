@@ -11,8 +11,8 @@
           <NuxtLink
             to=""
             class="text-[#BFBFBF] hover:text-[#005DCA] cursor-pointer transition"
-            >You used to watch</NuxtLink
-          >
+            >You used to watch
+          </NuxtLink>
         </li>
       </ul>
     </nav>
@@ -24,23 +24,7 @@
     </h1>
 
     <div class="flex flex-wrap gap-4 mt-4 sm:gap-6 lg:gap-8 mt-[70px]">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-        <ViewedPlate
-          v-for="plate in viewedPlates"
-          :key="plate.id"
-          :id="plate.id"
-          :photo="plate.photo"
-          :emirate="plate.emirate"
-          :price="plate.price"
-          :datePosted="plate.datePosted"
-          :views="plate.views"
-        />
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-        <ViewedPlates />
-      </div>
-
+      <CardPlate v-for="plate in viewedPlates" :key="plate.id" v-bind="plate" />
       <div>
         <!-- Добавляем пагинацию -->
         <!-- <Pagination class="mt-[70px] px-[50px]" :total-pages="totalPages" :current-page="currentPage"
@@ -51,17 +35,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
-import CardPlate from "~/components/CardPlate/CardPlate.vue";
-import SimilarNumber from "../components/SimilarNumbers/SimilarNumber.vue";
-import SimilarNumberLowPrice from "../components/LowSimilarNumbers/SimilarNumberLowPrice.vue";
-import Pagination from "../components/Pagination/Pagination.vue";
-import Card from "../components/Card.vue";
-import ViewedPlates from "~/components/ViewedPlates.vue";
-import type { IDetails } from "~/stores/plateStore";
+import { reactive, onMounted } from "vue";
 import axios from "axios";
 
-interface ViewedPlates {
+const viewedPlates = reactive<ViewedPlate[]>([]);
+
+interface ViewedPlate {
   id: number;
   photo: string;
   emirate: string;
@@ -72,23 +51,61 @@ interface ViewedPlates {
   views: number;
 }
 
-const viewedPlates = ref<ViewedPlates[]>([]);
-
 onMounted(() => {
-  const viewedPlateDataString = localStorage.getItem("viewedPlates");
-  if (viewedPlateDataString) {
+  const viewedPlatesDataString = localStorage.getItem("viewedPlates");
+  const viewedPhonesDataString = localStorage.getItem("viewedPhones");
+
+  // plates
+  if (viewedPlatesDataString) {
     try {
-      const parsedData = JSON.parse(viewedPlateDataString);
+      const parsedData = JSON.parse(viewedPlatesDataString);
       if (Array.isArray(parsedData)) {
-        viewedPlates.value = parsedData;
+        fetchViewedNumbers(parsedData, true);
       }
-      console.log(viewedPlates.value);
+    } catch (e) {
+      console.error("Failed to parse viewedPlates from localStorage", e);
+    }
+  }
+
+  //phones
+  if (viewedPhonesDataString) {
+    try {
+      const parsedData = JSON.parse(viewedPhonesDataString);
+      if (Array.isArray(parsedData)) {
+        fetchViewedNumbers(parsedData, false);
+      }
     } catch (e) {
       console.error("Failed to parse viewedPlates from localStorage", e);
     }
   }
 });
 
+const fetchViewedNumbers = async (
+  plates: ViewedPlate[],
+  numberIsPlate: boolean
+) => {
+  console.log("is number a plate? ", numberIsPlate);
+  plates.map((plate) => {
+    fetchAndPushViewedPlate(plate, numberIsPlate);
+  });
+};
+
+const fetchAndPushViewedPlate = async (
+  plate: ViewedPlate,
+  numberIsPlate: boolean
+) => {
+  try {
+    const response = await axios.get(
+      // `https://api.dev.numbers.ae/v1/catalog/plate/${plate}`
+      `https://api.dev.numbers.ae/v1/catalog/${
+        numberIsPlate ? "plate" : "phone"
+      }/${plate}`
+    );
+    viewedPlates.push(response.data);
+  } catch (err) {
+    console.error(err, "ошибка фетча");
+  }
+};
 // export default {
 //     components: {
 //         CardPlate,

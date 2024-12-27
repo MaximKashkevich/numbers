@@ -17,11 +17,8 @@ export const useSignUpStore = defineStore("signUp", {
   },
 });
 
-
 // // stores/likedCards.js
 // import { defineStore } from 'pinia';
-
-
 
 // export const useLikedStore = defineStore('liked', {
 //   state: () => ({

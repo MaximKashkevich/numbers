@@ -8,6 +8,7 @@ export const useAuthStore = defineStore("auth", {
   actions: {
     setToken(token: string | null) {
       this.authToken = token;
+      console.log(token);
     },
     clearToken() {
       this.authToken = null;

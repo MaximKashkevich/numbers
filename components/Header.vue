@@ -3,7 +3,7 @@
     class="wrapper__header container__main min-w-[90%] px-8 md:px-10 lg:px-12 xl:px-16"
   >
     <div class="row__header">
-      <NuxtLink class="logo" to="/">
+      <NuxtLink class="logo mb-[10px]" to="/">
         <img src="../public/assets/New-Logo.webp" alt="Logo" />
       </NuxtLink>
 
@@ -22,6 +22,7 @@
       </div>
 
       <button
+        class="mx-[10px]"
         :class="[isOpen ? 'menu__mobile close' : 'menu__mobile']"
         @click="toggleMenu"
       >
@@ -32,7 +33,7 @@
         <div class="menu__shape"></div>
       </button>
 
-      <div class="row__actions_inner">
+      <div class="row__actions_inner mx-[10px]">
         <NuxtLink class="button__action" to="/Viewed">
           <img src="/assets/img/icons/saw.svg" alt="view" />
         </NuxtLink>

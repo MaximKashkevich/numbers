@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-import PlateNUmberCard from "@/components/PlateNUmberCard.vue";
+import number from "@/components/number.vue";
 import Catalog from "../components/Catalog.vue";
 
 const routes = [
   {
-    path: "/PlateNUmberCard/:id",
-    name: "PlateNUmberCard",
-    component: PlateNUmberCard,
+    path: "/number/:id",
+    name: "number",
+    component: number,
   },
   // other routes...
 ];

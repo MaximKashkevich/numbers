@@ -15,7 +15,7 @@ export interface IFavorites {
 }
 
 export const useFavoritesStore = defineStore("favorites", () => {
-  const favorites = ref<IFavorites[]>([]);
+  const favorites = ref<number[]>([]);
   const likes = ref<{ [key: number]: boolean }>({});
   const userId = ref<number | null>(null);
 
@@ -31,19 +31,22 @@ export const useFavoritesStore = defineStore("favorites", () => {
     }
   };
 
-  const addFavorite = async (favorite: IFavorites) => {
-    if (!userId.value || !favorite.id)
+  const addFavorite = async (favorite: number, type: string) => {
+    if (!userId.value || !favorite)
       return console.error("User ID or Favorite ID is missing");
 
     try {
-      const response = await axios.post(
-        `https://api.dev.numbers.ae/v1/watchlist/plate/add?id=${favorite.id}&user_id=${userId.value}`,
+      const response = await axios.get(
+        // `https://api.dev.numbers.ae/v1/watchlist/plate/add?id=${favorite.id}&user_id=${userId.value}`,
+        `https://api.dev.numbers.ae/v1/watchlist/${
+          type === "plate" ? "plate" : "mobile"
+        }/add?id=${favorite}&user_id=${userId.value}`,
         {}
       );
 
       if (response.status === 200 && response.data.success) {
         favorites.value.push(favorite);
-        likes.value[favorite.id] = true;
+        likes.value[favorite] = true;
       } else {
         console.error(
           "Ошибка при добавлении в избранное:",
@@ -55,13 +58,13 @@ export const useFavoritesStore = defineStore("favorites", () => {
     }
   };
 
-  const toggleLike = async (favorite: IFavorites) => {
-    if (!userId.value)
-      return console.error("User ID is required but not provided.");
+  const toggleLike = async (favorite: number, type: string) => {
+    // if (!userId.value)
+    //   return console.error("User ID is required but not provided.");
 
     // Проверка на наличие лайка; если его нет, добавляем в избранное
-    if (!likes.value[favorite.id]) {
-      await addFavorite(favorite);
+    if (!likes.value[favorite]) {
+      await addFavorite(favorite, type);
     } else {
       console.log("Этот элемент уже в избранном.");
     }
