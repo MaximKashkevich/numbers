@@ -1,7 +1,7 @@
 <template>
   <div class="px-8 md:px-10 lg:px-12 xl:px-16">
     <!-- Навигация -->
-    <nav class="mb-[30px] mt-[30px] navigation">
+    <!-- <nav class="mb-[30px] mt-[30px] navigation">
       <ul class="flex gap-[5px]">
         <li>
           <NuxtLink to="/" class="text-[#d4e0ee] cursor-pointer transition">
@@ -17,12 +17,12 @@
           >
         </li>
       </ul>
-    </nav>
+    </nav> -->
 
     <!-- Заголовок и текст -->
-    <div>
+    <div class="pt-[100px]">
       <h1
-        class="w-full sm:w-[600px] lg:w-[900px] text-[30px] sm:text-[40px] lg:text-[50px] font-medium leading-tight text-left uppercase"
+        class="w-full sm:w-[600px] lg:w-[900px] text-[30px] sm:text-[40px] lg:text-[40px] font-medium leading-tight text-left"
       >
         To publish an ad you first need to license to the service.
       </h1>
@@ -37,16 +37,10 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import axios from "axios";
 import LicenseList from "../components/LicenseList.vue";
 import { onMounted } from "vue";
-
-export default {
-  components: {
-    LicenseList,
-  },
-};
 
 const items = ref([]);
 
