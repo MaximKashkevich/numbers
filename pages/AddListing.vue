@@ -8,10 +8,10 @@
   </div>
   <main>
     <section
-      class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[34px] big-container"
+      class="flex flex-col lg:flex-row px-[20px] md:px-[10px] justify-center gap-[30px] md:gap-[50px] mt-[34px] big-container"
     >
       <SideBar />
-      <nav class="flex-1 md:ml-6 md:order-2">
+      <nav class="container__listing flex-1 md:ml-6 md:order-2">
         <h1
           class="font-medium leading-[50px] text-[32px] uppercase md:text-[50px] mb-[50px]"
         >
@@ -26,3 +26,11 @@
 import ComponentAddListing from "~/components/AddListing/ComponentAddListing.vue";
 import SideBar from "../components/general/SideBar.vue";
 </script>
+<style scoped>
+@media (max-width: 420px) {
+  .container__listing {
+    margin: 0 !important;
+    min-width: 100%;
+  }
+}
+</style>
