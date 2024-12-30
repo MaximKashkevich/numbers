@@ -305,6 +305,17 @@
         </div>
       </div>
     </div>
+    <ButtonBlue
+      v-if="!acceptPayment"
+      @click="
+        () => {
+          handleAccept();
+        }
+      "
+      class="flex self-end justify-center font-bold max-w-[250px] mt-[50px]"
+    >
+      Add plate number
+    </ButtonBlue>
   </div>
 </template>
 <script setup>

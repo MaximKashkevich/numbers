@@ -10,12 +10,12 @@
   </div>
   <main>
     <section
-      class="flex flex-col lg:flex-row px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[34px] big-container"
+      class="flex flex-col lg:flex-row px-[0px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[34px] big-container"
     >
       <SideBar />
-      <nav class="flex-1 md:ml-6 md:order-2">
+      <nav class="container__block_tariff flex-1 md:ml-6 md:order-2">
         <h1
-          class="font-medium leading-[50px] text-[32px] uppercase md:text-[50px]"
+          class="font-medium leading-[50px] text-[32px] uppercase md:text-[50px] ml-[30px]"
         >
           Add listing
         </h1>
@@ -57,4 +57,11 @@ const goToLink = (page) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@media (max-width: 420px) {
+  .container__block_tariff {
+    margin: 0 !important;
+    min-width: 100%;
+  }
+}
+</style>
