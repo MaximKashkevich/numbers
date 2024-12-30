@@ -299,7 +299,9 @@
             src="/assets/img/platePreview.png"
             alt="preview"
           />
-          <h3 class="preview__number symbols">{{ selectedHiddenNumber }}</h3>
+          <h3 class="preview__number symbols">
+            {{ selectedHiddenNumber || selectedNumber }}
+          </h3>
         </div>
       </div>
     </div>
@@ -534,7 +536,8 @@ const handleHiddenNumberInput = () => {
 }
 
 .preview__number.symbols {
-  transform: translate(-35%, -50%);
+  transform: translate(-35%, -47%);
   font-family: "LicensePlate", sans-serif;
+  font-size: 55px;
 }
 </style>
