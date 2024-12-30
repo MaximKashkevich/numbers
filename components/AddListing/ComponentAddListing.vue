@@ -282,6 +282,10 @@
             @input="handleHiddenNumberInput"
             maxlength="5"
           />
+          <p class="text-[#bfbfbf] text-sm">
+            You can hide only one digit in the number.<br />
+            Simply replace the digit with the letter X.
+          </p>
         </div>
       </div>
       <div>

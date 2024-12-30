@@ -8,7 +8,7 @@
   </div>
   <main>
     <section
-      class="flex flex-col lg:flex-row px-[20px] md:px-[10px] justify-center gap-[30px] md:gap-[50px] mt-[34px] big-container"
+      class="flex flex-col lg:flex-row px-[20px] md:px-[10px] justify-center gap-[30px] md:gap-[50px] mt-[34px] big-container max-w-[97%]"
     >
       <SideBar />
       <nav class="container__listing flex-1 md:ml-6 md:order-2">
