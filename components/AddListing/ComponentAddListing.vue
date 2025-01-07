@@ -29,98 +29,17 @@
       class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between mb-[50px]"
     >
       <!-- emirate select -->
-      <div @click="toggleEmirateDropdown" class="relative option">
-        <label
-          class="font-roboto text-[16px] font-normal leading-[19.2px]"
-          for="emirate"
-        >
-          Emirate:
-        </label>
-        <button
-          class="text-[16px] w-[100%] leading-[19.2px] text-left bg-[#FAFAFA] border border-[#BFBFBF] py-[15px] px-[20px] flex items-center justify-between"
-          :class="{ select: true, select__open: isEmirateDropdownOpen }"
-        >
-          {{ selectedEmirate || "Dubai" }}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 transition-transform duration-200"
-            :class="{ 'rotate-180': isEmirateDropdownOpen }"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </button>
-        <ul
-          v-show="isEmirateDropdownOpen"
-          class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2 dropdown1"
-          :class="{ select: true, dropdown__open: isEmirateDropdownOpen }"
-        >
-          <div class="max-h-60 ml-5 mr-1 overflow-y-scroll">
-            <li
-              v-for="region in emirateList"
-              :key="region.id"
-              @click="handleEmirateChange(region.name)"
-              class="py-2 hover:bg-gray-200 cursor-pointer font-medium select__option cursor-pointer"
-            >
-              {{ region.name }}
-            </li>
-          </div>
-        </ul>
-      </div>
-
+      <BaseDropdown
+        label="Emirate:"
+        :option-list="dropdownStore.emirateList"
+        v-model="listingParams.emirate"
+      />
+      <BaseDropdown
+        label="Code:"
+        :option-list="dropdownStore.plateCodeList"
+        v-model="listingParams.code"
+      />
       <!-- code select -->
-      <div @click="toggleCodeDropdown" class="relative option">
-        <label
-          class="font-roboto text-[16px] font-normal leading-[19.2px]"
-          for="emirate"
-        >
-          Code:
-        </label>
-        <button
-          class="text-[16px] w-[100%] leading-[19.2px] text-left bg-[#FAFAFA] border border-[#BFBFBF] py-[15px] px-[20px] flex items-center justify-between"
-          :class="{ select: true, select__open: isCodeDropdownOpen }"
-        >
-          {{ selectedCode || "AA" }}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 transition-transform duration-200"
-            :class="{ 'rotate-180': isCodeDropdownOpen }"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </button>
-        <ul
-          v-show="isCodeDropdownOpen"
-          class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2 dropdown1"
-          :class="{ select: true, dropdown__open: isCodeDropdownOpen }"
-        >
-          <div class="max-h-60 ml-5 mr-1 overflow-y-scroll">
-            <li
-              v-for="code in codeList"
-              :key="code.id"
-              @click="handleCodeChange(code.name)"
-              class="py-2 hover:bg-gray-200 cursor-pointer font-medium select__option cursor-pointer"
-            >
-              {{ code.name }}
-            </li>
-          </div>
-        </ul>
-      </div>
     </div>
     <div
       class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between"
@@ -136,14 +55,14 @@
         <input
           class="pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
           type="text"
-          v-model="rawPrice"
+          v-model="listingParams.price"
           @input="handlePriceInput"
         />
 
         <!-- checkbox price -->
         <label class="flex items-center gap-[10px] w-fit mt-[10px]">
           <div class="checkbox">
-            <input type="checkbox" v-model="checkHidePrice" />
+            <input type="checkbox" v-model="listingParams.price_hide" />
             <img
               class="checkmark"
               src="/assets/img/icons/check.svg"
@@ -170,55 +89,11 @@
       </div>
 
       <!-- design select -->
-      <div @click="toggleDesignDropdown" class="relative option">
-        <label
-          class="font-roboto text-[16px] font-normal leading-[19.2px]"
-          for="emirate"
-        >
-          Design:
-        </label>
-        <button
-          class="text-[16px] w-[100%] leading-[19.2px] text-left bg-[#FAFAFA] border border-[#BFBFBF] py-[15px] px-[20px] flex items-center justify-between"
-          :class="{ select: true, select__open: isDesignDropdownOpen }"
-        >
-          {{ selectedDesign || "Default" }}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 transition-transform duration-200"
-            :class="{ 'rotate-180': isEmirateDropdownOpen }"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </button>
-        <ul
-          v-show="isDesignDropdownOpen"
-          class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2 dropdown1"
-          :class="{ select: true, dropdown__open: isDesignDropdownOpen }"
-        >
-          <div class="max-h-60 ml-5 mr-1 overflow-y-scroll">
-            <li
-              class="py-2 hover:bg-gray-200 cursor-pointer font-medium select__option cursor-pointer"
-              @click="handleDesignChange('Default')"
-            >
-              Default
-            </li>
-            <li
-              class="py-2 hover:bg-gray-200 cursor-pointer font-medium select__option cursor-pointer"
-              @click="handleDesignChange('Alternative')"
-            >
-              Alternative
-            </li>
-          </div>
-        </ul>
-      </div>
+      <BaseDropdown
+        label="Design"
+        :option-list="designList"
+        v-model="listingParams.design"
+      />
     </div>
 
     <!-- price with discount -->
@@ -236,7 +111,7 @@
         <input
           class="pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
           type="text"
-          v-model="rawDiscountPrice"
+          v-model="listingParams.discountPrice"
           @input="handleDiscountPriceInput"
         />
       </div>
@@ -257,7 +132,7 @@
           <input
             class="input_number pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
             type="text"
-            v-model="selectedNumber"
+            v-model="listingParams.number"
             @input="handleNumberInput"
             maxlength="5"
           />
@@ -278,7 +153,7 @@
           <input
             class="input_number mt-[20px] pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
             type="text"
-            v-model="selectedHiddenNumber"
+            v-model="listingParams.hiddenNumber"
             @input="handleHiddenNumberInput"
             maxlength="5"
           />
@@ -304,13 +179,12 @@
             alt="preview"
           />
           <h3 class="preview__number symbols">
-            {{ selectedHiddenNumber || selectedNumber }}
+            {{ listingParams.hiddenNumber || listingParams.number }}
           </h3>
         </div>
       </div>
     </div>
     <ButtonBlue
-      v-if="!acceptPayment"
       @click="
         () => {
           handleAccept();
@@ -323,31 +197,30 @@
   </div>
 </template>
 <script setup>
+import BaseDropdown from "../ui/BaseDropdown.vue";
+import { useDropdownStore } from "~/stores/dropdownStore";
+const dropdownStore = useDropdownStore();
+dropdownStore.fetchDropdownData();
+
+const designList = ref([
+  { id: 1, name: "Default" },
+  { id: 2, name: "Alternative" },
+  { id: 3, name: "New" },
+]);
 const listingTypePlate = ref(true);
-
-// dropdowns
-const isEmirateDropdownOpen = ref(false);
-const isCodeDropdownOpen = ref(false);
-const isDesignDropdownOpen = ref(false);
-
-//selected values
-const selectedEmirate = ref("");
-const selectedCode = ref("");
-const selectedDesign = ref("");
-const selectedNumber = ref("");
-const selectedHiddenNumber = ref("");
-
-// fetching data lists
-const emirateList = ref("");
-const codeList = ref("");
-
-// formatting
-const rawPrice = ref("");
-const rawDiscountPrice = ref("");
+const listingParams = ref({
+  emirate: "Dubai",
+  code: "AA",
+  price: "",
+  price_hide: false,
+  price_discount: "",
+  design: "Default",
+  number: "",
+  hiddenNumber: "",
+});
 
 // checkboxes
 
-const checkHidePrice = ref(false);
 const checkAddDiscount = ref(false);
 const checkHideNumber = ref(false);
 
@@ -356,77 +229,18 @@ const toggleListingType = () => {
   listingTypePlate.value = !listingTypePlate.value;
 };
 
-// emirate
-const handleEmirateChange = (emirate) => {
-  selectedEmirate.value = emirate;
-};
-
-const toggleEmirateDropdown = () => {
-  isEmirateDropdownOpen.value = !isEmirateDropdownOpen.value;
-
-  isCodeDropdownOpen.value = false;
-  isDesignDropdownOpen.value = false;
-};
-
-// code
-const handleCodeChange = (code) => {
-  selectedCode.value = code;
-};
-
-const toggleCodeDropdown = () => {
-  isCodeDropdownOpen.value = !isCodeDropdownOpen.value;
-
-  isEmirateDropdownOpen.value = false;
-  isDesignDropdownOpen.value = false;
-};
-
-// design
-
-const handleDesignChange = (design) => {
-  selectedDesign.value = design;
-};
-
-const toggleDesignDropdown = () => {
-  isDesignDropdownOpen.value = !isDesignDropdownOpen.value;
-  isEmirateDropdownOpen.value = false;
-  isCodeDropdownOpen.value = false;
-};
-
-// shared
-const closeDropdowns = () => {
-  isCodeDropdownOpen.value = false;
-  isEmirateDropdownOpen.value = false;
-  isDesignDropdownOpen.value = false;
-};
-
-const { data: regions } = useAsyncData("regions", () =>
-  $fetch("https://api.dev.numbers.ae/v1/account/regions/list")
-);
-
-const { data: codes } = useAsyncData("codes", () =>
-  $fetch("https://api.dev.numbers.ae/v1/account/plate/codes/list")
-);
-
-if (regions.value) {
-  emirateList.value = regions.value.result.items;
-}
-
-if (codes.value) {
-  codeList.value = codes.value.result.items;
-}
-
 // price input
 
 const handlePriceInput = () => {
-  const numericValue = rawPrice.value.replace(/\D/g, "");
+  const numericValue = listingParams.value.price.replace(/\D/g, "");
 
-  rawPrice.value = formatPrice(numericValue);
+  listingParams.value.price = formatPrice(numericValue);
 };
 
 const handleDiscountPriceInput = () => {
-  const numericValue = rawDiscountPrice.value.replace(/\D/g, "");
+  const numericValue = listingParams.value.discountPrice.replace(/\D/g, "");
 
-  rawDiscountPrice.value = formatPrice(numericValue);
+  listingParams.value.discountPrice = formatPrice(numericValue);
 };
 
 const formatPrice = (value) => {
@@ -440,15 +254,15 @@ const formatPrice = (value) => {
 
 // number input
 const handleNumberInput = () => {
-  selectedNumber.value = selectedNumber.value.replace(/\D/g, "");
+  listingParams.value.number = listingParams.value.number.replace(/\D/g, "");
 };
 
 const handleHiddenNumberInput = () => {
-  const allow = new Set(["X", "x", "Х", "х"]); // Разрешенные заменители
+  const allow = new Set(["X", "x"]); // Разрешенные заменители
   let xCount = 0; // Счетчик символов X
 
   // Проверяем каждый символ
-  selectedHiddenNumber.value = selectedHiddenNumber.value
+  listingParams.value.hiddenNumber = listingParams.value.hiddenNumber
     .split("")
     .map((char, index) => {
       if (allow.has(char)) {
@@ -462,7 +276,7 @@ const handleHiddenNumberInput = () => {
         }
       }
       // Если символ совпадает с символом первого инпута
-      if (char === selectedNumber.value[index]) {
+      if (char === listingParams.value.number[index]) {
         return char;
       }
       // Удаляем некорректные символы
@@ -471,9 +285,9 @@ const handleHiddenNumberInput = () => {
     .join("");
 
   // Ограничиваем длину до длины первого инпута
-  selectedHiddenNumber.value = selectedHiddenNumber.value.slice(
+  listingParams.value.number = listingParams.value.number.slice(
     0,
-    selectedNumber.value.length
+    listingParams.value.number.length
   );
 };
 </script>

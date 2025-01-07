@@ -19,9 +19,8 @@
         >
           Add listing
         </h1>
-        <License v-if="!acceptPayment" />
+        <License />
         <ButtonBlue
-          v-if="!acceptPayment"
           @click="
             () => {
               handleAccept();
@@ -43,10 +42,8 @@ import License from "./License.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-const acceptPayment = ref(false);
 
 const handleAccept = () => {
-  acceptPayment.value = true;
   goToLink("/AddListing");
 };
 

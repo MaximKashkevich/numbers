@@ -7,7 +7,7 @@
       <div>
         <label
           class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
-          for="emirate"
+          for="type"
         >
           Type:
         </label>
@@ -19,13 +19,7 @@
                 ? 'border-[#000]'
                 : 'border-[#bfbfbf]',
             ]"
-            @click="
-              () => {
-                plateStore.handleNumberTypeChange(true);
-                closeAllDropdowns();
-                plateStore.fetchPlate();
-              }
-            "
+            @click="changeTypePlate"
           >
             Plate
           </button>
@@ -36,175 +30,43 @@
                 ? 'border-[#000]'
                 : 'border-[#bfbfbf]',
             ]"
-            @click="
-              () => {
-                plateStore.handleNumberTypeChange(false);
-                closeAllDropdowns();
-                plateStore.fetchMobile();
-              }
-            "
+            @click="changeTypePhone"
           >
             Mobile
           </button>
         </div>
       </div>
-
-      <div>
-        <label
-          class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
-          for="emirate"
-        >
-          Emirate:
-        </label>
-        <div @click="toggleEmirateDropdown" class="relative">
-          <button
-            class="mt-[10px] text-[16px] leading-[19.2px] text-left w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] py-[15px] px-[20px] flex items-center justify-between"
-            :class="{ select: true, select__open: isEmirateDropdownOpen }"
-          >
-            {{ selectedEmirate || "Dubai" }}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4 transition-transform duration-200"
-              :class="{ 'rotate-180': isEmirateDropdownOpen }"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
-          <ul
-            v-if="isEmirateDropdownOpen"
-            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2 dropdown1"
-            :class="{ select: true, dropdown__open: isEmirateDropdownOpen }"
-          >
-            <div class="max-h-60 ml-5 mr-1 overflow-y-scroll">
-              <li
-                v-for="region in plateStore.regions"
-                :key="region.id"
-                @click="handleEmirateChange(region.name)"
-                class="py-2 hover:bg-gray-200 cursor-pointer font-medium select__option cursor-pointer"
-              >
-                {{ region.name }}
-              </li>
-            </div>
-          </ul>
-        </div>
+      <div
+        class="text-[16px] text-left w-[250px] h-[85px] bg-[#FAFAFA] flex items-end justify-between"
+      >
+        <BaseDropdown
+          label="Emirate :"
+          :option-list="dropdownStore.emirateList"
+          v-model="filterParams.emirate"
+        />
       </div>
-      <div>
-        <label
-          class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
-          for="code"
-        >
-          Code:
-        </label>
-        <div @click="toggleCodeDropdown" class="relative">
-          <button
-            class="mt-[10px] text-[16px] leading-[19.2px] text-left w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] py-[15px] px-[20px] flex items-center justify-between"
-            :class="{ select: true, select__open: isCodeDropdownOpen }"
-          >
-            {{ selectedCode || "050" }}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4 transition-transform duration-200"
-              :class="{ 'rotate-180': isCodeDropdownOpen }"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
-          <ul
-            v-if="isCodeDropdownOpen"
-            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2 dropdown2"
-            :class="{ dropdown__open: isCodeDropdownOpen }"
-          >
-            <div class="max-h-60 ml-5 mr-1 overflow-y-scroll">
-              <li
-                v-for="code in plateStore.codes"
-                @click="handleCodesChange(code.name)"
-                :key="code.id"
-                class="py-2 hover:bg-gray-200 cursor-pointer font-medium select__option cursor-pointer"
-              >
-                {{ code.name }}
-              </li>
-            </div>
-          </ul>
-        </div>
+      <div
+        class="text-[16px] text-left w-[250px] h-[85px] bg-[#FAFAFA] flex items-end justify-between"
+      >
+        <BaseDropdown
+          label="Code :"
+          :option-list="dropdownStore.plateCodeList"
+          v-model="filterParams.code"
+        />
       </div>
-
-      <div>
-        <label
-          for="sort"
-          class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
-          >Sort by:</label
-        >
-        <div @click="toggleSortDropdown" class="relative">
-          <button
-            class="mt-[10px] text-[16px] leading-[19.2px] text-left w-[220px] bg-[#FAFAFA] border border-[#BFBFBF] py-[15px] px-[20px] flex items-center justify-between"
-            :class="{ select: true, select__open: isSortDropdownOpen }"
-          >
-            {{ plateStore.selectedSort || "Latest" }}
-            <!-- Начальное значение -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-4 h-4 transition-transform duration-200"
-              :class="{ 'rotate-180': isSortDropdownOpen }"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
-          <ul
-            v-if="isSortDropdownOpen"
-            class="absolute w-full bg-white border border-[#BFBFBF] shadow-lg overflow-hidden pb-2"
-            :class="{ dropdown__open: isSortDropdownOpen }"
-          >
-            <li
-              @click="
-                () => {
-                  plateStore.handleSortChange('Latest');
-                }
-              "
-              class="py-2 px-5 hover:bg-gray-200 cursor-pointer font-medium select__option cursor-pointer"
-            >
-              Latest
-            </li>
-            <li
-              @click="
-                () => {
-                  plateStore.handleSortChange('Earliest');
-                }
-              "
-              class="py-2 px-5 hover:bg-gray-200 cursor-pointer font-medium select__option cursor-pointer"
-            >
-              Earliest
-            </li>
-          </ul>
-        </div>
+      <div
+        class="text-[16px] text-left w-[250px] h-[85px] bg-[#FAFAFA] flex items-end justify-between"
+      >
+        <BaseDropdown
+          label="Sort by :"
+          :option-list="sortTypeList"
+          v-model="filterParams.sort"
+        />
       </div>
       <ButtonBlue
         @click="
           () => {
-            closeAllDropdowns();
+            dropdownStore.closeAllDropdowns();
           }
         "
         class="flex self-end justify-center font-bold max-w-[220px]"
@@ -249,66 +111,23 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, computed, nextTick } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { usePlateStore } from "~/stores/plateStore";
-import { useRouter } from "vue-router";
-
-const router = useRouter();
-
-// const goToLink = (page: string) => {
-//   router.push(page);
-//   toggleOptionIsNumbers.value = page === "/plate"; // Обновляем состояние, чтобы отобразить правильный стиль кнопки
-// };
-
+import { useRouter, useRoute } from "vue-router";
+import { watch } from "vue";
+import { useDropdownStore } from "~/stores/dropdownStore";
+import BaseDropdown from "./ui/BaseDropdown.vue";
+const dropdownStore = useDropdownStore();
 const plateStore = usePlateStore();
-const selectedEmirate = ref("Dubai");
-const selectedCode = ref("AA");
-const isEmirateDropdownOpen = ref(false);
-const isCodeDropdownOpen = ref(false);
-const isSortDropdownOpen = ref(false);
+const router = useRouter();
+const route = useRoute();
 
-const handleClick = (id: number) => {
-  plateStore.handleClick(id);
-};
+const filterParams = ref({ emirate: "Dubai", code: "AA", sort: "Latest" });
 
-const handleEmirateChange = (emirate: string) => {
-  selectedEmirate.value = emirate;
-  plateStore.selectedEmirate = emirate;
-  isEmirateDropdownOpen.value = true;
-};
-
-const handleCodesChange = (codes: string) => {
-  selectedCode.value = codes;
-  plateStore.selectedCode = codes; // Обновляем состояние в store
-  isEmirateDropdownOpen.value = false; // Закрыть дропдаун
-};
-
-const toggleEmirateDropdown = () => {
-  isEmirateDropdownOpen.value = !isEmirateDropdownOpen.value;
-
-  isCodeDropdownOpen.value = false;
-  isSortDropdownOpen.value = false;
-};
-
-const toggleCodeDropdown = () => {
-  isCodeDropdownOpen.value = !isCodeDropdownOpen.value;
-
-  isEmirateDropdownOpen.value = false;
-  isSortDropdownOpen.value = false;
-};
-
-const toggleSortDropdown = () => {
-  isSortDropdownOpen.value = !isSortDropdownOpen.value;
-
-  isEmirateDropdownOpen.value = false;
-  isCodeDropdownOpen.value = false;
-};
-
-const closeAllDropdowns = () => {
-  isSortDropdownOpen.value = false;
-  isEmirateDropdownOpen.value = false;
-  isCodeDropdownOpen.value = false;
-};
+const sortTypeList = ref([
+  { id: 1, name: "Latest" },
+  { id: 2, name: "Earliest" },
+]);
 
 const filteredPlateNumbers = computed(() => {
   return plateStore.filteredPlateNumbers;
@@ -321,10 +140,43 @@ const mobileNumbers = computed(() => {
 });
 
 onMounted(() => {
-  plateStore.fetchRegions();
-  plateStore.fetchCodes();
   plateStore.fetchPlate();
+  dropdownStore.fetchDropdownData();
 });
+
+const changeTypePlate = () => {
+  plateStore.handleNumberTypeChange(true);
+  dropdownStore.closeAllDropdowns();
+  plateStore.fetchPlate();
+  changeNumberType("plate");
+};
+
+const changeTypePhone = () => {
+  plateStore.handleNumberTypeChange(false);
+  dropdownStore.closeAllDropdowns();
+  plateStore.fetchPhone();
+  changeNumberType("phone");
+};
+
+const changeNumberType = (type: string) => {
+  router.replace({
+    query: {
+      ...route.query,
+      numberType: type,
+    },
+  });
+};
+
+watch(
+  () => route.query.numberType,
+  (newValue) => {
+    if (newValue === "plate") {
+      changeTypePlate();
+    } else {
+      changeTypePhone();
+    }
+  }
+);
 </script>
 
 <style>

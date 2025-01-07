@@ -6,8 +6,8 @@
         <NuxtLink
           href="/BuyNumbers"
           class="text-[#005DCA] transition cursor-pointer"
-          >{{ navigationLinks[0].text }} /</NuxtLink
-        >
+          >{{ navigationLinks[0].text }} /
+        </NuxtLink>
       </li>
       <li>
         <NuxtLink

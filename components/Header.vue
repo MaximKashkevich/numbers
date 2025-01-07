@@ -8,11 +8,18 @@
       </NuxtLink>
 
       <div class="menu__pc">
-        <NuxtLink to="/CatalogNumbers?numberType=plate">
+        <NuxtLink
+          to="/CatalogNumbers?numberType=plate"
+          @click="handleClickNumberLink('plate')"
+        >
           Plate Numbers
         </NuxtLink>
-
-        <NuxtLink to="/BuyNumbers2"> Mobile Numbers </NuxtLink>
+        <NuxtLink
+          to="/CatalogNumbers?numberType=phone"
+          @click="handleClickNumberLink('phone')"
+        >
+          Mobile Numbers
+        </NuxtLink>
 
         <NuxtLink to="/License"> Subscriptions for dealers </NuxtLink>
 
@@ -51,10 +58,16 @@
       </ButtonBlue>
     </div>
     <div :class="[isOpen ? 'row__mobile' : 'row__mobile_close']">
-      <NuxtLink to="/CatalogNumbers?numberType=plate"> Plate Numbers </NuxtLink>
+      <NuxtLink
+        to="/CatalogNumbers?numberType=plate"
+        @click="handleClickNumberLink('plate')"
+        >Plate Numbers
+      </NuxtLink>
 
-      <NuxtLink to="/CatalogNumbers?numberType=Mobile">
-        Mobile Numbers
+      <NuxtLink
+        to="/CatalogNumbers?numberType=phone"
+        @click="handleClickNumberLink('phone')"
+        >Mobile Numbers
       </NuxtLink>
 
       <NuxtLink to="/GeneralBlockTariff"> Subscriptions for dealers </NuxtLink>
@@ -66,10 +79,11 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import { useAuthStore } from "~/stores/auth";
-
+import { useRoute, useRouter } from "vue-router";
 const router = useRouter();
+const route = useRoute();
+
 const authStore = useAuthStore();
 
 const goToLink = (page: string) => {
@@ -91,6 +105,15 @@ const isOpen = ref(false);
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
+};
+
+const handleClickNumberLink = (type: string) => {
+  router.replace({
+    path: "CatalogNumbers",
+    query: {
+      numberType: type,
+    },
+  });
 };
 </script>
 <style scoped>

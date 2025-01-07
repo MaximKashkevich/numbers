@@ -24,20 +24,6 @@ export interface IMobile {
   datePosted: string;
 }
 
-export interface IRegions {
-  id: number;
-  name: string;
-  totalCount: number;
-  totalPage: number;
-}
-
-export interface ICode {
-  id: number;
-  name: string;
-  totalCount: number;
-  totalPage: number;
-}
-
 export interface IDetails {
   id: number;
   photo: string;
@@ -52,8 +38,6 @@ export interface IDetails {
 export const usePlateStore = defineStore("plate", () => {
   const plateNumbers = ref<IPlate[]>([]);
   const mobileNumbers = ref<IMobile[]>([]);
-  const regions = ref<IRegions[]>([]);
-  const codes = ref<ICode[]>([]);
   const plateDetails = ref<IDetails[]>([]);
   const viewedPlates = ref<IPlate[]>([]);
 
@@ -75,7 +59,7 @@ export const usePlateStore = defineStore("plate", () => {
     }
   };
 
-  const fetchMobile = async (query?: any) => {
+  const fetchPhone = async (query?: any) => {
     try {
       const { data } = await axios.get<IMobile[]>(
         "https://api.dev.numbers.ae/v1/catalog/phone",
@@ -87,30 +71,6 @@ export const usePlateStore = defineStore("plate", () => {
       }));
     } catch (e) {
       console.log("Error fetching mobile plates:", e);
-    }
-  };
-
-  // Fetch regions
-  const fetchRegions = async () => {
-    try {
-      const { data } = await axios.get(
-        "https://api.dev.numbers.ae/v1/account/regions/list"
-      );
-      regions.value = data.result.items;
-    } catch (e) {
-      console.error("Error fetching regions:", e);
-    }
-  };
-
-  // Fetch codes
-  const fetchCodes = async () => {
-    try {
-      const { data } = await axios.get(
-        "https://api.dev.numbers.ae/v1/account/plate/codes/list"
-      );
-      codes.value = data.result.items;
-    } catch (e) {
-      console.log("Error fetching codes:", e);
     }
   };
 
@@ -168,9 +128,7 @@ export const usePlateStore = defineStore("plate", () => {
     plateNumbers,
     mobileNumbers,
     fetchPlate,
-    fetchMobile,
-    regions,
-    fetchRegions,
+    fetchPhone,
     selectedEmirate,
     selectedPlateType,
     selectedSort,
@@ -179,8 +137,6 @@ export const usePlateStore = defineStore("plate", () => {
     handleSortChange,
     filteredPlateNumbers,
     filteredFeaturedPlateNumbers,
-    fetchCodes,
-    codes,
     selectedCode,
     handleClick,
     selectedPlateId,
