@@ -1,26 +1,25 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-interface ApiResponse {
-  result: {
-    items: string[];
-  };
+interface DropdownOption {
+  id: number;
+  name: string;
 }
 
 export const useDropdownStore = defineStore("dropdownStore", {
   state: () => ({
     openDropdowns: [] as number[], // Список открытых дропдаунов
-    plateCodeList: [] as string[],
-    emirateList: [] as string[],
+    plateCodeList: [] as DropdownOption[],
+    emirateList: [] as DropdownOption[],
   }),
   actions: {
     async fetchDropdownData() {
       try {
-        const plateCodesResponse = await axios.get<ApiResponse>(
+        const plateCodesResponse = await axios.get(
           "https://api.dev.numbers.ae/v1/account/plate/codes/list"
         );
         this.plateCodeList = plateCodesResponse.data.result.items;
-
+        console.log(this.plateCodeList);
         const regionsResponse = await axios.get(
           "https://api.dev.numbers.ae/v1/account/regions/list"
         );
@@ -31,7 +30,6 @@ export const useDropdownStore = defineStore("dropdownStore", {
     },
     closeAllDropdowns() {
       this.openDropdowns = []; // Закрыть все дропдауны
-      console.log("все дропдауны закрыты");
     },
     registerDropdown(id: number) {
       // Зарегистрировать дропдаун как открытый

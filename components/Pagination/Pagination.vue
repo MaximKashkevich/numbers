@@ -83,7 +83,6 @@ export default {
       if (page >= 1 && page <= this.totalPages) {
         this.$emit("update:modelValue", page);
       }
-      console.log("page change");
     },
   },
 };

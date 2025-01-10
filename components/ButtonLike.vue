@@ -2,13 +2,13 @@
   <button v-if="isLikeButtonVisible" @click.prevent="toggleLike">
     <img
       class="w-[26px]"
-      :src="favorites.likes[id] ? '/assets/likeTrue.png' : '/assets/like.svg'"
+      :src="isFavorite ? '/assets/likeTrue.png' : '/assets/like.svg'"
     />
   </button>
 </template>
 
 <script setup lang="ts">
-import { defineProps, onMounted } from "vue";
+import { computed, defineProps, onMounted } from "vue";
 import { useFavoritesStore } from "~/stores/favoritesStore";
 
 // Определяем входящие свойства с типом IFavorites
@@ -17,12 +17,15 @@ const props = defineProps<{
   type: string;
 }>();
 
+const isFavorite = computed(() => {
+  return favoritesStore.favorites.some((item) => item[props.id] === props.type);
+});
 const isLikeButtonVisible = true;
 
-const favorites = useFavoritesStore();
+const favoritesStore = useFavoritesStore();
 
 const toggleLike = (event: MouseEvent) => {
   event.stopPropagation();
-  favorites.toggleLike(props.id, props.type);
+  favoritesStore.toggleLike(props.id, props.type);
 };
 </script>

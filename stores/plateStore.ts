@@ -48,6 +48,10 @@ export const usePlateStore = defineStore("plate", () => {
 
   // Fetch plate numbers
   const fetchPlate = async (query?: any) => {
+    // const formattedQuery = {
+    //   ...query,
+    //   order: query.sort === "Latest" ? "desc" : "asc",
+    // };
     try {
       const { data } = await axios.get<IPlate[]>(
         "https://api.dev.numbers.ae/v1/catalog/plate",

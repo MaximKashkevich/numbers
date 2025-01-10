@@ -78,11 +78,12 @@
   </header>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useAuthStore } from "~/stores/auth";
 import { useRoute, useRouter } from "vue-router";
+import { useFavoritesStore } from "~/stores/favoritesStore";
+const favoriteStore = useFavoritesStore();
 const router = useRouter();
-const route = useRoute();
 
 const authStore = useAuthStore();
 
@@ -115,6 +116,10 @@ const handleClickNumberLink = (type: string) => {
     },
   });
 };
+
+onMounted(() => {
+  favoriteStore.parseLocalFavorites();
+});
 </script>
 <style scoped>
 .wrapper__header {

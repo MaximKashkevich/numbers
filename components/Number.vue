@@ -51,11 +51,11 @@
           ETISALAT VIP Prepaid Fancy Mobile number For Sale. Call or WhatsApp
           055-4400750.
         </p>
-        <a
+        <!-- <a
           :href="fullCollectionLink"
           class="text-[#005DCA] text-[20px] font-bold leading-[24px] uppercase"
           >See full collection
-        </a>
+        </a> -->
       </div>
 
       <!-- Центральная часть -->
@@ -64,10 +64,12 @@
       >
         <div class="flex justify-between w-full p-[30px]">
           <ButtonShare />
-          <ButtonLike :id="route.params.id" />
+          <ButtonLike :id="route.params.id" :type="numberType" />
         </div>
 
-        <div class="flex flex-col items-center justify-center h-full">
+        <div
+          class="flex flex-col items-center justify-center align-center h-[65%]"
+        >
           <div class="flex items-center justify-center" id="top">
             <img
               v-if="togglePlate.type === 'plate'"
@@ -89,7 +91,7 @@
               </h1>
             </div>
           </div>
-          <div id="bottom" class="flex justify-center gap-2 mt-[125px]">
+          <!-- <div id="bottom" class="flex justify-center gap-2 mt-[125px]">
             <div
               class="pagination-circle w-[8px] h-[8px] border-[#B3B3B3] bg-black rounded-full"
             ></div>
@@ -102,7 +104,7 @@
             <div
               class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"
             ></div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -143,12 +145,17 @@
           </div>
         </div>
 
-        <div class="flex gap-[25px] mt-[30px]">
+        <div class="flex gap-[25px] mt-[30px] min-w-[60px]">
           <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">
-            Emirate: {{ togglePlate.emirate }}
+            Emirate:
           </p>
           <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">
-            Posted {{ togglePlate.datePosted }}
+            {{ togglePlate.emirate }}
+          </p>
+        </div>
+        <div class="flex gap-[25px] mt-[10px] min-w-[60px]">
+          <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">
+            {{ togglePlate.datePosted }}
           </p>
           <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">
             {{ togglePlate.views }} Views
@@ -159,10 +166,10 @@
             class="w-full w-[315px] h-[54px] flex items-center justify-center"
             >Call 058 210 03 10
           </ButtonBlue>
-          <ButtonBlue
+          <!-- <ButtonBlue
             class="w-full w-[315px] h-[54px] flex items-center justify-center mt-[212px]"
             >Buy as NFT
-          </ButtonBlue>
+          </ButtonBlue> -->
         </div>
       </div>
     </div>
@@ -276,7 +283,6 @@ import LeftArrow from "../components/LeftArrow.vue";
 import SimilarNumbers from "../components/SimilarNumbers/SimilarNumber.vue";
 import CradPlate from "../components/Card.vue";
 import { ref, onMounted, computed } from "vue";
-import { usePlateStore } from "~/stores/plateStore";
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 
@@ -284,9 +290,8 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const plateStore = usePlateStore();
-
 const togglePlate = ref({});
+const numberType = ref("");
 
 onMounted(() => {
   const actions = {
@@ -308,11 +313,13 @@ const route = useRoute();
 const initPlate = () => {
   hookViewNumber("viewedPlates");
   fetchNumber(route.params.id, "plate");
+  numberType.value = "plate";
 };
 
 const initPhone = () => {
   hookViewNumber("viewedPhones");
   fetchNumber(route.params.id, "phone");
+  numberType.value = "phone";
 };
 
 const hookViewNumber = (plateType) => {

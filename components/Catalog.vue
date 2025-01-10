@@ -1,7 +1,7 @@
 <template>
   <div class="container-input mt-[150px]">
     <h3 class="2text-xl leading-[60px] text-left title-input mb-[50px]">
-      Choose your number
+      Choose your number {{ ComputedFilteredParams }}
     </h3>
     <div class="flex gap-[20px] items-center justify-between flex-wrap">
       <div>
@@ -108,6 +108,7 @@
         "
       />
     </div>
+    <Pagination :total-pages="800" v-model="filterParams.page" />
   </div>
 </template>
 <script setup lang="ts">
@@ -117,12 +118,18 @@ import { useRouter, useRoute } from "vue-router";
 import { watch } from "vue";
 import { useDropdownStore } from "~/stores/dropdownStore";
 import BaseDropdown from "./ui/BaseDropdown.vue";
+import Pagination from "./Pagination/Pagination.vue";
 const dropdownStore = useDropdownStore();
 const plateStore = usePlateStore();
 const router = useRouter();
 const route = useRoute();
 
-const filterParams = ref({ emirate: "Dubai", code: "AA", sort: "Latest" });
+const filterParams = ref({
+  emirate: "Dubai",
+  code: "AA",
+  sort: "Latest",
+  page: 1,
+});
 
 const sortTypeList = ref([
   { id: 1, name: "Latest" },
@@ -177,6 +184,31 @@ watch(
     }
   }
 );
+
+watch(
+  () => filterParams.value.page,
+  () => {
+    plateStore.fetchPlate(ComputedFilteredParams);
+    console.log("watched");
+  }
+);
+
+// вычисление параметров передаваемых при fetch запросе
+const ComputedFilteredParams = computed(() => {
+  const emirateId = dropdownStore.emirateList.find(
+    (emirate) => emirate.name === filterParams.value.emirate
+  );
+  const plateCodeId = dropdownStore.plateCodeList.find(
+    (code) => code.name === filterParams.value.code
+  );
+  const tempParams = {
+    emirate: emirateId ? emirateId.id : null,
+    code: plateCodeId ? plateCodeId.id : null,
+    order: filterParams.value.sort === "Latest" ? "desc" : "asc",
+    page: filterParams.value.page,
+  };
+  return tempParams;
+});
 </script>
 
 <style>
