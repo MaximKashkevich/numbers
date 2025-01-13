@@ -23,7 +23,7 @@
       You used to watch
     </h1>
 
-    <div class="flex flex-wrap gap-4 mt-4 sm:gap-6 lg:gap-8 mt-[70px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
       <CardPlate v-for="plate in viewedPlates" :key="plate.id" v-bind="plate" />
       <div>
         <!-- Добавляем пагинацию -->
@@ -84,9 +84,9 @@ const fetchViewedNumbers = async (
   plates: ViewedPlate[],
   numberIsPlate: boolean
 ) => {
-  console.log("is number a plate? ", numberIsPlate);
   plates.map((plate) => {
     fetchAndPushViewedPlate(plate, numberIsPlate);
+    console.log("this is a plate id!", plate, typeof plate);
   });
 };
 
@@ -101,7 +101,8 @@ const fetchAndPushViewedPlate = async (
         numberIsPlate ? "plate" : "phone"
       }/${plate}`
     );
-    viewedPlates.push(response.data);
+    const tempNumber = { ...response.data, id: plate };
+    viewedPlates.push(tempNumber);
   } catch (err) {
     console.error(err, "ошибка фетча");
   }

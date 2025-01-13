@@ -328,9 +328,8 @@ const hookViewNumber = (plateType) => {
     ? JSON.parse(viewedNumbersString)
     : [];
 
-  if (!viewedNumbersArray.includes(route.params.id)) {
-    viewedNumbersArray.push(route.params.id);
-    console.log("pushed id:", route.params.id);
+  if (!viewedNumbersArray.includes(+route.params.id)) {
+    viewedNumbersArray.push(+route.params.id);
     localStorage.setItem(plateType, JSON.stringify(viewedNumbersArray));
   }
 };

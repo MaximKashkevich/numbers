@@ -77,17 +77,17 @@
     </div>
   </header>
 </template>
-<script setup lang="ts">
+<script setup>
 import { onMounted, ref } from "vue";
 import { useAuthStore } from "~/stores/auth";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { useFavoritesStore } from "~/stores/favoritesStore";
 const favoriteStore = useFavoritesStore();
 const router = useRouter();
 
 const authStore = useAuthStore();
 
-const goToLink = (page: string) => {
+const goToLink = (page) => {
   router.push({
     path: page,
   });
@@ -108,7 +108,7 @@ const toggleMenu = () => {
   isOpen.value = !isOpen.value;
 };
 
-const handleClickNumberLink = (type: string) => {
+const handleClickNumberLink = (type) => {
   router.replace({
     path: "CatalogNumbers",
     query: {
@@ -119,6 +119,18 @@ const handleClickNumberLink = (type: string) => {
 
 onMounted(() => {
   favoriteStore.parseLocalFavorites();
+
+  // очистка локалсторейджа если надо
+  const CLEAR_LOCAL_STORAGE_KEY = "localStorageCleared_v1.0";
+
+  if (!localStorage.getItem(CLEAR_LOCAL_STORAGE_KEY)) {
+    // Очищаем localStorage
+    localStorage.clear();
+    console.log("localStorage очищен один раз для пользователя.");
+
+    // Устанавливаем флаг, чтобы больше не очищать
+    localStorage.setItem(CLEAR_LOCAL_STORAGE_KEY, "true");
+  }
 });
 </script>
 <style scoped>

@@ -8,10 +8,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, onMounted } from "vue";
+import { computed, defineProps } from "vue";
 import { useFavoritesStore } from "~/stores/favoritesStore";
 
-// Определяем входящие свойства с типом IFavorites
+// Определяем входящие свойства с типами
 const props = defineProps<{
   id: number;
   type: string;
