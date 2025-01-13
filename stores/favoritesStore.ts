@@ -26,7 +26,6 @@ export const useFavoritesStore = defineStore("favorites", () => {
     const localFavorites = localStorage.getItem("favorites");
     if (localFavorites) {
       favorites.value = JSON.parse(localFavorites);
-      console.log(favorites.value);
     }
   };
 
@@ -36,7 +35,6 @@ export const useFavoritesStore = defineStore("favorites", () => {
       const id = Object.keys(item)[0];
       let type: string = item[+id];
       const idNumber = Number(id);
-      console.log(JSON.parse(id));
       try {
         const response = await axios.get(
           `https://api.dev.numbers.ae/v1/catalog/${type}/${id}`

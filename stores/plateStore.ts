@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import axios from "axios";
 
 export interface IPlate {
@@ -58,9 +58,14 @@ export const usePlateStore = defineStore("plate", () => {
         { params: query }
       );
       plateNumbers.value = data;
+      console.log(data, "data");
     } catch (e) {
       console.log("Error fetching plates:", e);
     }
+    const response = await axios.get(
+      "https://api.dev.numbers.ae/v1/catalog/plate"
+    );
+    console.log(response.headers, "headers");
   };
 
   const fetchPhone = async (query?: any) => {
@@ -105,22 +110,6 @@ export const usePlateStore = defineStore("plate", () => {
     selectedSort.value = sortType;
   };
 
-  // filtered plate numbers
-  const filteredPlateNumbers = computed(() => {
-    if (selectedEmirate.value) {
-      return plateNumbers.value.filter(
-        (item) => item.emirate === selectedEmirate.value
-      );
-    }
-    return plateNumbers.value;
-  });
-
-  const filteredFeaturedPlateNumbers = computed(() => {
-    return filteredPlateNumbers.value.filter(
-      (item) => item.isFeatured === true
-    );
-  });
-
   const selectedPlateId = ref<null | number>(0);
 
   const handleClick = async (id: number) => {
@@ -139,8 +128,6 @@ export const usePlateStore = defineStore("plate", () => {
     handleNumberTypeChange,
     handleEmirateChange,
     handleSortChange,
-    filteredPlateNumbers,
-    filteredFeaturedPlateNumbers,
     selectedCode,
     handleClick,
     selectedPlateId,

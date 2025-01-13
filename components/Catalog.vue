@@ -1,7 +1,7 @@
 <template>
   <div class="container-input mt-[150px]">
     <h3 class="2text-xl leading-[60px] text-left title-input mb-[50px]">
-      Choose your number {{ ComputedFilteredParams }}
+      Choose your number
     </h3>
     <div class="flex gap-[20px] items-center justify-between flex-wrap">
       <div>
@@ -71,20 +71,20 @@
         "
         class="flex self-end justify-center font-bold max-w-[220px]"
       >
-        Show {{ filteredPlateNumbers.length }} numbers
+        Show {{ plateStore.plateNumbers.length }} numbers
       </ButtonBlue>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
       <CardPlate
         v-if="plateStore.selectedPlateType"
-        v-for="item in filteredPlateNumbers"
+        v-for="item in plateStore.plateNumbers"
         :key="item.id"
         v-bind="item"
         :is-featured-class="false"
       />
       <CardPlate
         v-if="!plateStore.selectedPlateType"
-        v-for="item in mobileNumbers"
+        v-for="item in plateStore.mobileNumbers"
         :key="item.id"
         v-bind="item"
         :is-featured-class="false"
@@ -96,8 +96,8 @@
       Featured:
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-      <CardPlate
-        v-for="item in filteredFeaturedPlateNumbers"
+      <!-- <CardPlate
+        v-for="item in featuredPlateNumbers"
         :key="item.id"
         v-bind="item"
         :is-featured-class="true"
@@ -106,7 +106,7 @@
             ? `/number/plate/${item.id}`
             : `/number/phone/${item.id}`
         "
-      />
+      /> -->
     </div>
     <Pagination :total-pages="800" v-model="filterParams.page" />
   </div>
@@ -136,12 +136,6 @@ const sortTypeList = ref([
   { id: 2, name: "Earliest" },
 ]);
 
-const filteredPlateNumbers = computed(() => {
-  return plateStore.filteredPlateNumbers;
-});
-const filteredFeaturedPlateNumbers = computed(() => {
-  return plateStore.filteredFeaturedPlateNumbers;
-});
 const mobileNumbers = computed(() => {
   return plateStore.mobileNumbers;
 });
@@ -186,15 +180,14 @@ watch(
 );
 
 watch(
-  () => filterParams.value.page,
+  () => filterParams.value,
   () => {
-    plateStore.fetchPlate(ComputedFilteredParams);
-    console.log("watched");
-  }
+    ComputedFiltered();
+  },
+  { deep: true }
 );
 
-// вычисление параметров передаваемых при fetch запросе
-const ComputedFilteredParams = computed(() => {
+const ComputedFiltered = () => {
   const emirateId = dropdownStore.emirateList.find(
     (emirate) => emirate.name === filterParams.value.emirate
   );
@@ -203,12 +196,12 @@ const ComputedFilteredParams = computed(() => {
   );
   const tempParams = {
     emirate: emirateId ? emirateId.id : null,
-    code: plateCodeId ? plateCodeId.id : null,
+    // code: plateCodeId ? plateCodeId.id : null,
     order: filterParams.value.sort === "Latest" ? "desc" : "asc",
     page: filterParams.value.page,
   };
-  return tempParams;
-});
+  plateStore.fetchPlate(tempParams);
+};
 </script>
 
 <style>
