@@ -168,14 +168,14 @@ const changeNumberType = (type: string) => {
   });
 };
 
+onMounted(() => {
+  handleRouteChange();
+});
+
 watch(
   () => route.query.numberType,
-  (newValue) => {
-    if (newValue === "plate") {
-      changeTypePlate();
-    } else {
-      changeTypePhone();
-    }
+  () => {
+    handleRouteChange();
   }
 );
 
@@ -201,6 +201,17 @@ const ComputedFiltered = () => {
     page: filterParams.value.page,
   };
   plateStore.fetchPlate(tempParams);
+};
+
+const handleRouteChange = () => {
+  const numberType = route.query.numberType || "plate";
+  if (numberType === "plate") {
+    plateStore.handleNumberTypeChange(true);
+    plateStore.fetchPlate();
+  } else {
+    plateStore.handleNumberTypeChange(false);
+    plateStore.fetchPhone();
+  }
 };
 </script>
 

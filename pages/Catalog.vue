@@ -18,7 +18,7 @@
       </ul>
     </nav>
     <!-- Входные данные и фильтры -->
-    <Catalog />
+    <CatalogComponent />
   </div>
 
   <!-- <div class="px-[60px] flex flex-col gap-[50px]">
@@ -82,6 +82,7 @@ import Pagination from "../components/Pagination/Pagination.vue";
 import Card from "../components/Card.vue";
 import { useAuthStore } from "@/stores/auth";
 import { usePlateStore } from "~/stores/plateStore";
+import CatalogComponent from "~/components/CatalogComponent.vue";
 
 // Stores
 const authStore = useAuthStore();

@@ -55,7 +55,7 @@
       alt=""
     />
     <div>
-      <Catalog />
+      <CatalogComponent />
       <ButtonBlue
         class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap"
       >
@@ -358,6 +358,7 @@ import "/assets/css/main.css";
 import { ref, onMounted } from "vue";
 
 import { useSimilarNumbersStore } from "~/stores/similarNumbers";
+import CatalogComponent from "~/components/CatalogComponent.vue";
 
 const similarNumbersStore = useSimilarNumbersStore();
 const similarNumbers = ref(similarNumbersStore.similarNumbers);

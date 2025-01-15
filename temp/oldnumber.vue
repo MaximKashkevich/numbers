@@ -10,7 +10,7 @@
       </li>
       <li>
         <NuxtLink
-          to="/CatalogNumbers"
+          to="/Catalog"
           class="text-[#005DCA] transition cursor-pointer"
         >
           Plate numbers /</NuxtLink

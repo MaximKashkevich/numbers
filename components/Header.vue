@@ -8,18 +8,8 @@
       </NuxtLink>
 
       <div class="menu__pc">
-        <NuxtLink
-          to="/CatalogNumbers?numberType=plate"
-          @click="handleClickNumberLink('plate')"
-        >
-          Plate Numbers
-        </NuxtLink>
-        <NuxtLink
-          to="/CatalogNumbers?numberType=phone"
-          @click="handleClickNumberLink('phone')"
-        >
-          Mobile Numbers
-        </NuxtLink>
+        <NuxtLink to="/Catalog?numberType=plate"> Plate Numbers </NuxtLink>
+        <NuxtLink to="/Catalog?numberType=phone"> Mobile Numbers </NuxtLink>
 
         <NuxtLink to="/License"> Subscriptions for dealers </NuxtLink>
 
@@ -58,17 +48,9 @@
       </ButtonBlue>
     </div>
     <div :class="[isOpen ? 'row__mobile' : 'row__mobile_close']">
-      <NuxtLink
-        to="/CatalogNumbers?numberType=plate"
-        @click="handleClickNumberLink('plate')"
-        >Plate Numbers
-      </NuxtLink>
+      <NuxtLink to="/Catalog?numberType=plate">Plate Numbers </NuxtLink>
 
-      <NuxtLink
-        to="/CatalogNumbers?numberType=phone"
-        @click="handleClickNumberLink('phone')"
-        >Mobile Numbers
-      </NuxtLink>
+      <NuxtLink to="/Catalog?numberType=phone">Mobile Numbers </NuxtLink>
 
       <NuxtLink to="/GeneralBlockTariff"> Subscriptions for dealers </NuxtLink>
 
@@ -106,15 +88,6 @@ const isOpen = ref(false);
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
-};
-
-const handleClickNumberLink = (type) => {
-  router.replace({
-    path: "CatalogNumbers",
-    query: {
-      numberType: type,
-    },
-  });
 };
 
 onMounted(() => {
