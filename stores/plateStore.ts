@@ -58,14 +58,12 @@ export const usePlateStore = defineStore("plate", () => {
         { params: query }
       );
       plateNumbers.value = data;
-      console.log(data, "data");
     } catch (e) {
       console.log("Error fetching plates:", e);
     }
     const response = await axios.get(
       "https://api.dev.numbers.ae/v1/catalog/plate"
     );
-    console.log(response.headers, "headers");
   };
 
   const fetchPhone = async (query?: any) => {

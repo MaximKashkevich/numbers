@@ -1,5 +1,4 @@
 <template>
-  <NuxtPage />
   <div class="px-8 md:px-10 lg:px-12 xl:px-16">
     <nav class="mb-[30px] mt-[30px] navigation">
       <ul class="flex gap-[5px]">

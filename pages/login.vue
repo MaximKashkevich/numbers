@@ -6,9 +6,7 @@
       class="w-[650px] max-w-[100%] flex flex-col justify-between min-h-[100%]"
     >
       <div>
-        <h1
-          class="font-roboto text-[50px] font-medium uppercase tracking-wide leading-none w-[430px] textOne"
-        >
+        <h1 class="tw-page-heading w-[430px]">
           Welcome<br />
           to Numbers.ae
         </h1>
@@ -226,12 +224,6 @@ const handleSubmit = () => {
 </script>
 
 <style scoped>
-@media (max-width: 430px) {
-  .textOne {
-    font-size: 45px;
-  }
-}
-
 @media (max-width: 430px) {
   .block {
     flex-wrap: wrap;

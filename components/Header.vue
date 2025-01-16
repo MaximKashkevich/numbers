@@ -1,7 +1,5 @@
 <template>
-  <header
-    class="wrapper__header container__main min-w-[90%] px-8 md:px-10 lg:px-12 xl:px-16"
-  >
+  <header class="py-[20px] tw-container">
     <div class="row__header">
       <NuxtLink class="logo mb-[10px]" to="/">
         <img src="../public/assets/New-Logo.webp" alt="Logo" />
@@ -107,11 +105,6 @@ onMounted(() => {
 });
 </script>
 <style scoped>
-.wrapper__header {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
 .row__header {
   display: flex;
   justify-content: space-between;

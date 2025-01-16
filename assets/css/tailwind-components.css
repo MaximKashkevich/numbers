@@ -1,0 +1,9 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .tw-page-heading {
+    @apply font-roboto text-[35px] sm:text-[50px] font-medium uppercase tracking-wide leading-none bg-red-500;
+  }
+} */

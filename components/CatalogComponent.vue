@@ -212,6 +212,15 @@ const handleRouteChange = () => {
     plateStore.handleNumberTypeChange(false);
     plateStore.fetchPhone();
   }
+
+  // router.push({
+  //   query: {
+  //     emirate: "Dubai",
+  //     code: "AA",
+  //     sort: "Latest",
+  //     page: 1,
+  //   },
+  // });
 };
 </script>
 

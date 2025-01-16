@@ -51,12 +51,12 @@
         </ul>
         <ul class="list">
           <li>
-            <a
-              href="#"
+            <NuxtLink
+              to="/about"
               class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition"
             >
-              About Us</a
-            >
+              About Us
+            </NuxtLink>
           </li>
           <li class="my-[30px]">
             <a
