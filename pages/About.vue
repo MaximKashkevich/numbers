@@ -1,6 +1,6 @@
 <template>
   <div class="tw-container wrapper__about pt-[40px]">
-    <h1 class="tw-page-heading w-[430px] lg:w-[900px] mb-10">
+    <h1 class="tw-page-heading w-[320px] lg:w-[900px] bg-red-500 mb-10">
       About Numbers.ae
     </h1>
     <div class="lg:flex justify-between mb-6 gap-6">
