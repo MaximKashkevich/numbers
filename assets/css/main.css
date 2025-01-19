@@ -53,10 +53,16 @@ input::placeholder {
 
 /* ----------------------- Tailwind components ----------------------*/
 
-.tw-container {
-  @apply max-w-[90vw] mx-auto;
+.tw-page-heading {
+  @apply text-[50px] xs:text-[30px] font-bold uppercase tracking-wide leading-none;
 }
 
-.tw-page-heading {
-  @apply text-[45px] xs:text-[30px] font-medium uppercase tracking-wide leading-none;
+/* container large */
+.tw-container {
+  @apply w-[90vw] mx-auto;
+}
+
+/* container middle*/
+.tw-container-middle {
+  @apply lg:w-[60vw] w-[90vw] mx-auto;
 }

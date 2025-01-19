@@ -52,24 +52,24 @@
         <ul class="list">
           <li>
             <NuxtLink
-              to="/about"
+              to="/About"
               class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition"
             >
               About Us
             </NuxtLink>
           </li>
           <li class="my-[30px]">
-            <a
-              href="#"
+            <NuxtLink
+              to="/Terms"
               class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition"
-              >Terms of Use</a
+              >Terms of Use</NuxtLink
             >
           </li>
           <li class="mb-[140px]">
-            <a
-              href="#"
+            <NuxtLink
+              to="Support"
               class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition"
-              >Support</a
+              >Support</NuxtLink
             >
           </li>
         </ul>
