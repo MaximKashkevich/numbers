@@ -11,40 +11,50 @@
 
     <div class="mt-[100px] containres">
       <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
-      <div class="flex gap-[50px] pt-[30px] pb-[30px] items-center flex-wrap">
-        <h2
-          class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase"
-        >
-          Total plate numbers:
-        </h2>
-        <p
-          class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1"
-        >
-          {{ totalPlateNumbers }}
-        </p>
-
-        <ButtonBlue class="flex items-center justify-center ml-auto">
-          BUY
-        </ButtonBlue>
+      <div
+        class="flex gap-[50px] pt-[30px] pb-[30px] justify-between items-center flex-wrap"
+      >
+        <div class="flex gap-[50px]">
+          <h2
+            class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase"
+          >
+            Total plate numbers:
+          </h2>
+          <p
+            class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1"
+          >
+            {{ totalPlateNumbers }}
+          </p>
+        </div>
+        <NuxtLink to="/Catalog?numberType=plate">
+          <ButtonBlue class="flex items-center justify-center ml-auto">
+            BUY
+          </ButtonBlue>
+        </NuxtLink>
       </div>
 
       <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
 
-      <div class="flex gap-[50px] pt-[30px] pb-[30px] items-center flex-wrap">
-        <h2
-          class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase"
-        >
-          Total mobile numbers:
-        </h2>
-        <p
-          class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1"
-        >
-          {{ totalMobileNumbers }}
-        </p>
-
-        <ButtonBlue class="flex items-center justify-center ml-auto">
-          BUY
-        </ButtonBlue>
+      <div
+        class="flex gap-[50px] pt-[30px] pb-[30px] justify-between items-center flex-wrap"
+      >
+        <div class="flex gap-[50px]">
+          <h2
+            class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase"
+          >
+            Total mobile numbers:
+          </h2>
+          <p
+            class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1"
+          >
+            {{ totalMobileNumbers }}
+          </p>
+        </div>
+        <NuxtLink to="/Catalog?numberType=phone">
+          <ButtonBlue class="flex items-center justify-center ml-auto">
+            BUY
+          </ButtonBlue>
+        </NuxtLink>
       </div>
     </div>
     <div class="w-full h-[1px] bg-[#BFBFBF]"></div>
