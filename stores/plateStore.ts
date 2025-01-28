@@ -53,26 +53,23 @@ export const usePlateStore = defineStore("plate", () => {
     //   order: query.sort === "Latest" ? "desc" : "asc",
     // };
     try {
-      const { data } = await axios.get<IPlate[]>(
+      const { data } = await axios.get(
         "https://api.dev.numbers.ae/v1/catalog/plate",
         { params: query }
       );
-      plateNumbers.value = data;
+      plateNumbers.value = data.data;
     } catch (e) {
       console.log("Error fetching plates:", e);
     }
-    const response = await axios.get(
-      "https://api.dev.numbers.ae/v1/catalog/plate"
-    );
   };
 
   const fetchPhone = async (query?: any) => {
     try {
-      const { data } = await axios.get<IMobile[]>(
+      const { data } = await axios.get(
         "https://api.dev.numbers.ae/v1/catalog/phone",
         { params: query }
       );
-      mobileNumbers.value = data.map((item) => ({
+      mobileNumbers.value = data.data.map((item: IMobile) => ({
         ...item, // сохраняем остальные свойства объекта
         phone: item.phone.replace(/[\s_-]+/g, "").toUpperCase(),
       }));

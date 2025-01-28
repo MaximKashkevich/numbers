@@ -90,7 +90,7 @@ export default {
     const fetchPhoneData = async () => {
       try {
         const response = await axios.get(
-          "https://api.dev.numbers.ae/v1/catalog/phone/71037"
+          "https://api.numbers.ae/v1/catalog/phone/71037"
         );
         const data = response.data;
 

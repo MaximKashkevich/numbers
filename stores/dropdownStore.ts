@@ -16,7 +16,7 @@ export const useDropdownStore = defineStore("dropdownStore", {
     async fetchDropdownData() {
       try {
         const plateCodesResponse = await axios.get(
-          "https://api.dev.numbers.ae/v1/account/plate/codes/list"
+          "https://api.dev.numbers.ae/v1/account/operators/list"
         );
         this.plateCodeList = plateCodesResponse.data.result.items;
         const regionsResponse = await axios.get(

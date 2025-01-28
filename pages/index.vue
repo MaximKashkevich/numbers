@@ -16,12 +16,12 @@
       >
         <div class="flex gap-[50px]">
           <h2
-            class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase"
+            class="w-[340px] h-[36px] text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase"
           >
             Total plate numbers:
           </h2>
           <p
-            class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1"
+            class="w-[70px] h-[36px] text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase text-1"
           >
             {{ totalPlateNumbers }}
           </p>
@@ -40,12 +40,12 @@
       >
         <div class="flex gap-[50px]">
           <h2
-            class="w-[400px] h-[36px] text-[30px] font-normal leading-[36px] uppercase"
+            class="w-[340px] h-[36px] text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase"
           >
             Total mobile numbers:
           </h2>
           <p
-            class="w-[70px] h-[36px] text-[30px] font-normal leading-[36px] uppercase text-1"
+            class="w-[70px] h-[36px] text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase text-1"
           >
             {{ totalMobileNumbers }}
           </p>
