@@ -100,11 +100,11 @@ watch(
 const handleOptionChange = (optionName) => {
   emit("update:modelValue", optionName);
   isDropdownOpen.value = true;
-  router.push({
-    query: {
-      ...route.query, // сохраняем существующие параметры
-      plateType: newPlateType, // изменяем или добавляем параметр plateType
-    },
-  });
+  // router.push({
+  //   query: {
+  //     ...route.query, // сохраняем существующие параметры
+  //     plateType: newPlateType, // изменяем или добавляем параметр plateType
+  //   },
+  // });
 };
 </script>

@@ -108,7 +108,7 @@
         "
       /> -->
     </div>
-    <Pagination :total-pages="800" v-model="filterParams.page" />
+    <!-- <Pagination :total-pages="800" v-model="filterParams.page" /> -->
   </div>
 </template>
 <script setup lang="ts">
@@ -141,7 +141,6 @@ const mobileNumbers = computed(() => {
 });
 
 onMounted(() => {
-  plateStore.fetchPlate();
   dropdownStore.fetchDropdownData();
 });
 
@@ -172,20 +171,20 @@ onMounted(() => {
   handleRouteChange();
 });
 
-watch(
-  () => route.query.numberType,
-  () => {
-    handleRouteChange();
-  }
-);
+// watch(
+//   () => route.query.numberType,
+//   () => {
+//     handleRouteChange();
+//   }
+// );
 
-watch(
-  () => filterParams.value,
-  () => {
-    ComputedFiltered();
-  },
-  { deep: true }
-);
+// watch(
+//   () => filterParams.value,
+//   () => {
+//     ComputedFiltered();
+//   },
+//   { deep: true }
+// );
 
 const ComputedFiltered = () => {
   const emirateId = dropdownStore.emirateList.find(

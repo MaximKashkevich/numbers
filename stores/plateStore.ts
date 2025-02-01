@@ -45,6 +45,7 @@ export const usePlateStore = defineStore("plate", () => {
   const selectedEmirate = ref("Dubai");
   const selectedCode = ref("050");
   const selectedSort = ref("Latest");
+  const currentPagesCount = ref(10);
 
   // Fetch plate numbers
   const fetchPlate = async (query?: any) => {
@@ -58,6 +59,8 @@ export const usePlateStore = defineStore("plate", () => {
         { params: query }
       );
       plateNumbers.value = data.data;
+      console.log(data, "asd");
+      // currentPagesCount.value = data.pagination.
     } catch (e) {
       console.log("Error fetching plates:", e);
     }

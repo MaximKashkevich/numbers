@@ -11,18 +11,44 @@ export const useDropdownStore = defineStore("dropdownStore", {
     openDropdowns: [] as number[], // Список открытых дропдаунов
     plateCodeList: [] as DropdownOption[],
     emirateList: [] as DropdownOption[],
+    operatorList: [] as DropdownOption[],
+    operatorCodeList: [] as DropdownOption[],
+    toggleDefaultCode: "not" as string,
   }),
   actions: {
     async fetchDropdownData() {
       try {
-        const plateCodesResponse = await axios.get(
-          "https://api.dev.numbers.ae/v1/account/operators/list"
-        );
-        this.plateCodeList = plateCodesResponse.data.result.items;
+        // const plateCodesResponse = await axios.get(
+        //   "https://api.dev.numbers.ae/v1/account/plate/codes/list"
+        // );
+        // this.plateCodeList = plateCodesResponse.data.result.items;
+        // console.log(this.plateCodeList, "123");
+
         const regionsResponse = await axios.get(
           "https://api.dev.numbers.ae/v1/account/regions/list"
         );
         this.emirateList = regionsResponse.data.result.items;
+        console.log(this.emirateList);
+        //
+        const operatorResponse = await axios.get(
+          "https://api.dev.numbers.ae/v1/account/operators/list"
+        );
+        this.operatorList = operatorResponse.data.result.items;
+        const operatorCodeResponse = await axios.get(
+          "https://api.dev.numbers.ae/v1/account/operators/codes/list"
+        );
+        this.operatorCodeList = operatorCodeResponse.data.result.items;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async fetchPlateCodeDropdownData(emirateId: string) {
+      try {
+        const plateCodesResponse = await axios.get(
+          `https://api.dev.numbers.ae/v1/account/plate/codes/list?emirate_id=${emirateId}`
+        );
+        this.plateCodeList = plateCodesResponse.data.items;
+        this.toggleDefaultCode = String(this.plateCodeList[0].name);
       } catch (error) {
         console.log(error);
       }
