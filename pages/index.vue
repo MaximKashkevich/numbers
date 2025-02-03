@@ -14,9 +14,11 @@
       <div
         class="flex gap-[50px] pt-[30px] pb-[30px] justify-between items-center flex-wrap"
       >
-        <div class="flex gap-[50px]">
+        <div
+          class="flex gap-[30px] h-[36px] w-full justify-between sm:justify-start items-end"
+        >
           <h2
-            class="w-[340px] h-[36px] text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase"
+            class="w-[340px] h-full text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase"
           >
             Total plate numbers:
           </h2>
@@ -38,9 +40,11 @@
       <div
         class="flex gap-[50px] pt-[30px] pb-[30px] justify-between items-center flex-wrap"
       >
-        <div class="flex gap-[50px]">
+        <div
+          class="flex gap-[30px] h-[36px] w-full justify-between sm:justify-start items-end"
+        >
           <h2
-            class="w-[340px] h-[36px] text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase"
+            class="w-[340px] h-full text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase"
           >
             Total mobile numbers:
           </h2>
@@ -516,16 +520,18 @@ const seeMore3 = () => {
 @media (max-width: 920px) {
   .title-2 {
     width: 500px;
-    font-size: 50px;
+    font-size: 48px;
     flex-wrap: wrap;
   }
 }
 
 @media (max-width: 480px) {
   .title-2 {
-    width: 370px;
+    max-width: 80vw;
     font-size: 50px;
+    font-size: clamp(42px, 12vw, 48px);
     flex-wrap: wrap;
+    margin: auto;
   }
 
   .containres {
