@@ -82,4 +82,31 @@ async function fetchPhoneData() {
     console.error("Ошибка:", error);
   }
 }
+
+import { useHead } from "#imports";
+
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/favicon.png", // путь к файлу
+    },
+  ],
+});
+
+useHead({
+  title: "Numbers", // Заголовок страницы
+  meta: [
+    {
+      name: "description",
+      content:
+        "Buy and sell car registration plates and mobile numbers in the UAE.",
+    },
+    {
+      name: "keywords",
+      content: "car registration plates, mobile numbers, UAE",
+    },
+  ],
+});
 </script>

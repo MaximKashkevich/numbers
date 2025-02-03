@@ -8,6 +8,6 @@
     "noImplicitAny": true,
     "strictNullChecks": true
   },
-  "include": ["**/*.ts", "**/*.vue"],
+  "include": ["**/*.ts", "**/*.vue", "nuxt.config.js"],
   "exclude": ["node_modules"]
 }

@@ -1,14 +1,5 @@
 <template>
   <div class="container-input pt-[150px]">
-    <h1
-      v-if="route.fullPath.includes('plate')"
-      class="tw-page-heading w-[100%] lg:w-[900px] mb-10"
-    >
-      Buy and Sell Car Registration Plates in the UAE
-    </h1>
-    <h1 v-else class="tw-page-heading w-[100%] lg:w-[900px] mb-10">
-      Buy and Sell Mobile Numbers in the UAE
-    </h1>
     <div class="flex gap-[20px] items-center justify-between flex-wrap">
       <div>
         <label

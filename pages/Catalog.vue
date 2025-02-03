@@ -16,7 +16,15 @@
         </li>
       </ul>
     </nav>
-    <!-- Входные данные и фильтры -->
+    <h1
+      v-if="route.fullPath.includes('plate')"
+      class="tw-page-heading w-[100%] lg:w-[900px] mb-10"
+    >
+      Buy and Sell Car Registration Plates in the UAE
+    </h1>
+    <h1 v-else class="tw-page-heading w-[100%] lg:w-[900px] mb-10">
+      Buy and Sell Mobile Numbers in the UAE
+    </h1>
     <CatalogComponent />
   </div>
 </template>
