@@ -21,6 +21,7 @@ export const useAuthRegistrationStore = defineStore("authReg", {
         this.token = token;
         localStorage.setItem("authToken", token);
       }
+      console.log(this.token);
     },
     // Устанавливаем данные пользователя и сохраняем их в localStorage, только на клиенте
     setUserData(data: User) {

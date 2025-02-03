@@ -49,18 +49,21 @@ export const usePlateStore = defineStore("plate", () => {
 
   // Fetch plate numbers
   const fetchPlate = async (query?: any) => {
-    // const formattedQuery = {
-    //   ...query,
-    //   order: query.sort === "Latest" ? "desc" : "asc",
-    // };
     try {
       const { data } = await axios.get(
         "https://api.dev.numbers.ae/v1/catalog/plate",
-        { params: query }
+        {
+          params: {
+            emirate: query.emirate,
+            code: query.code,
+          },
+        }
       );
       plateNumbers.value = data.data;
-      console.log(data, "asd");
-      // currentPagesCount.value = data.pagination.
+      console.log("параметры запроса :", {
+        emirate: query.emirate,
+        code: query.code,
+      });
     } catch (e) {
       console.log("Error fetching plates:", e);
     }

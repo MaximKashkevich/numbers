@@ -7,7 +7,7 @@
     "
   >
     <div
-      class="transition p-[5px] pb-[20px] lg:h-[300px] rounded-[20px] bg-white border-[3px] border-[#bfbfbf] flex flex-col justify-between"
+      class="transition p-[5px] pb-[20px] lg:h-[300px] rounded-[20px] bg-white border-[1px] border-[#bfbfbf] flex flex-col justify-between"
       :class="{ featured: props.isFeatured }"
     >
       <img

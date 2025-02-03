@@ -66,11 +66,6 @@
     />
     <div>
       <CatalogComponent />
-      <ButtonBlue
-        class="orange-button mt-[50px] w-[390px] py-[14px] min-w-[1px] border-[3px] font-bold border-[#FF9C00] rounded-[100px] text-[20px] text-[#FF9C00] hover:bg-[#FF9C00] hover:text-white transition whitespace-nowrap"
-      >
-        View all Promoted listings
-      </ButtonBlue>
     </div>
 
     <!-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
@@ -93,7 +88,7 @@
         class="w-full flex-wrap items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[20px] mt-[50px] mb-[70px]"
       >
         <div
-          class="w-[100%] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]"
+          class="w-[100%] h-[270px] rounded-[20px] border-[#BFBFBF] border-[1px] px-[20px] py-[30px]"
         >
           <div class="">
             <p class="">1/3</p>
@@ -112,7 +107,7 @@
           </div>
         </div>
         <div
-          class="w-[100%] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]"
+          class="w-[100%] h-[270px] rounded-[20px] border-[#BFBFBF] border-[1px] px-[20px] py-[30px]"
         >
           <div class="">
             <p class="">2/3</p>
@@ -131,7 +126,7 @@
           </div>
         </div>
         <div
-          class="w-[100%] h-[270px] rounded-[20px] border-[#BFBFBF] border-[2px] px-[20px] py-[30px]"
+          class="w-[100%] h-[270px] rounded-[20px] border-[#BFBFBF] border-[1px] px-[20px] py-[30px]"
         >
           <div class="">
             <p class="">3/3</p>
@@ -332,7 +327,7 @@
                   backgroundColor: 'transparent', // Делаем фон прозрачным
                   resize: 'none', // Запрещаем изменение размера textarea
                 }"
-                class="h-[50px] max-h-[150px] gap-[10px] border-opacity-80 placeholder:font-helvetica-neue border-gray-400 border-[2px] pl-[15px] placeholder:text-gray-400 placeholder:opacity-80"
+                class="h-[50px] max-h-[150px] gap-[10px] border-opacity-80 placeholder:font-helvetica-neue border-gray-400 border-[1px] pl-[15px] placeholder:text-gray-400 placeholder:opacity-80"
                 :class="field.type === 'textarea' ? 'pt-[15px]' : ''"
               />
             </li>
@@ -368,7 +363,7 @@ import "/assets/css/main.css";
 import { ref, onMounted } from "vue";
 
 import { useSimilarNumbersStore } from "~/stores/similarNumbers";
-import CatalogComponent from "~/components/CatalogComponent.vue";
+import CatalogComponent from "~/components/Catalog/CatalogComponent.vue";
 
 const similarNumbersStore = useSimilarNumbersStore();
 const similarNumbers = ref(similarNumbersStore.similarNumbers);

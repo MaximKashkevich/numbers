@@ -32,7 +32,7 @@ import Pagination from "../components/Pagination/Pagination.vue";
 import Card from "../components/Card.vue";
 import { useAuthStore } from "@/stores/auth";
 import { usePlateStore } from "~/stores/plateStore";
-import CatalogComponent from "~/components/CatalogComponent.vue";
+import CatalogComponent from "~/components/Catalog/CatalogComponent.vue";
 
 // Stores
 const authStore = useAuthStore();

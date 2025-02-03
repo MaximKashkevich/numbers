@@ -147,14 +147,19 @@
       <div
         class="relative h-[235px] flex-grow border-[1px] border-[#bfbfbf] rounded-[10px] bg-[#fff]"
       >
-        <img
+        <!-- <img
           class="preview__number max-w-[95%]"
           src="/assets/img/platePreview.png"
           alt="preview"
         />
         <h3 class="preview__number symbols">
           {{ listingParams.hiddenNumber || listingParams.number }}
-        </h3>
+        </h3> -->
+        <img
+          class="preview__number max-w-[95%]"
+          :src="previewImg"
+          alt="preview"
+        />
       </div>
     </div>
   </div>
@@ -163,9 +168,12 @@
 import { onMounted, watch } from "vue";
 import BaseDropdown from "../ui/BaseDropdown.vue";
 import { useDropdownStore } from "~/stores/dropdownStore";
+import { useAuthStore } from "~/stores/auth";
+import axios from "axios";
+const authStore = useAuthStore();
 const dropdownStore = useDropdownStore();
+const previewImg = ref("");
 dropdownStore.fetchDropdownData();
-
 const designList = ref([
   { id: 1, name: "Default" },
   { id: 2, name: "Alternative" },
@@ -250,9 +258,56 @@ const handleHiddenNumberInput = () => {
   );
 };
 
+const getPlatePreview = async () => {
+  try {
+    const selectedEmirate = toRaw(dropdownStore.emirateList).find(
+      (region) => region.name === listingParams.value.emirate
+    );
+    const selectedCode = toRaw(dropdownStore.plateCodeList).find(
+      (code) => code.name === listingParams.value.code
+    );
+
+    console.log(selectedEmirate, "айди выбранного эмирата");
+    const token = authStore.authToken;
+    console.log(token, "токен");
+    const previewResponse = await axios.post(
+      `https://api.dev.numbers.ae/v1/account/plate/generate`,
+      {
+        code: selectedCode.id,
+        number:
+          listingParams.value.number === ""
+            ? 99999
+            : listingParams.value.number,
+        region: selectedEmirate.id,
+        version: 0,
+        hide_series: 5,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(previewResponse);
+    previewImg.value = `https://api.dev.numbers.ae${previewResponse.data.default}`;
+    console.log(previewImg.value);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 onMounted(() => {
   dropdownStore.fetchPlateCodeDropdownData(1);
 });
+
+watch(
+  () => listingParams.value,
+  () => {
+    getPlatePreview();
+  },
+  { deep: true }
+);
 
 watch(
   () => listingParams.value.emirate,

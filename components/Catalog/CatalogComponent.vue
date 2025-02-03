@@ -36,7 +36,8 @@
           </button>
         </div>
       </div>
-      <div
+      <CatalogPlateFilters v-if="plateStore.selectedPlateType" />
+      <!-- <div
         class="text-[16px] text-left w-[250px] h-[85px] bg-[#FAFAFA] flex items-end justify-between"
       >
         <BaseDropdown
@@ -62,8 +63,8 @@
           :option-list="sortTypeList"
           v-model="filterParams.sort"
         />
-      </div>
-      <ButtonBlue
+      </div> -->
+      <!-- <ButtonBlue
         @click="
           () => {
             dropdownStore.closeAllDropdowns();
@@ -72,7 +73,7 @@
         class="flex self-end justify-center font-bold max-w-[220px]"
       >
         Show {{ plateStore.plateNumbers.length }} numbers
-      </ButtonBlue>
+      </ButtonBlue> -->
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
       <CardPlate
@@ -90,25 +91,6 @@
         :is-featured-class="false"
       />
     </div>
-    <h3
-      class="text-[16px] font-normal leading-[19.2px] text-left w-[67px] h-[19px] text-[#BFBFBF] mt-[100px]"
-    >
-      Featured:
-    </h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-      <!-- <CardPlate
-        v-for="item in featuredPlateNumbers"
-        :key="item.id"
-        v-bind="item"
-        :is-featured-class="true"
-        :to="
-          item.type === 'plate'
-            ? `/number/plate/${item.id}`
-            : `/number/phone/${item.id}`
-        "
-      /> -->
-    </div>
-    <!-- <Pagination :total-pages="800" v-model="filterParams.page" /> -->
   </div>
 </template>
 <script setup lang="ts">
@@ -117,8 +99,9 @@ import { usePlateStore } from "~/stores/plateStore";
 import { useRouter, useRoute } from "vue-router";
 import { watch } from "vue";
 import { useDropdownStore } from "~/stores/dropdownStore";
-import BaseDropdown from "./ui/BaseDropdown.vue";
-import Pagination from "./Pagination/Pagination.vue";
+import BaseDropdown from "../ui/BaseDropdown.vue";
+import Pagination from "../Pagination/Pagination.vue";
+import CatalogPlateFilters from "./CatalogPlateFilters.vue";
 const dropdownStore = useDropdownStore();
 const plateStore = usePlateStore();
 const router = useRouter();

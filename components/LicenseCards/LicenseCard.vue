@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col gap-[30px] min-w-[250px] w-[100%]  pt-[20px] md:pt-[30px] px-[15px] md:px-[20px] rounded-[20px] border-[#BFBFBF] border-[2px]"
+    class="flex flex-col gap-[30px] min-w-[250px] w-[100%] pt-[20px] md:pt-[30px] px-[15px] md:px-[20px] rounded-[20px] border-[#BFBFBF] border-[1px]"
   >
     <div>
       <h1
