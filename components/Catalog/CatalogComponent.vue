@@ -1,8 +1,8 @@
 <template>
-  <div class="container-input mt-[150px]">
-    <h3 class="2text-xl leading-[60px] text-left title-input mb-[50px]">
-      Choose your number
-    </h3>
+  <div class="container-input pt-[150px]">
+    <h1 class="tw-page-heading w-[100%] lg:w-[900px] mb-10">
+      Buy and Sell Car Registration Plates in the UAE
+    </h1>
     <div class="flex gap-[20px] items-center justify-between flex-wrap">
       <div>
         <label
