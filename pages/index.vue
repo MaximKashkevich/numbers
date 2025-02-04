@@ -1,7 +1,7 @@
 <template>
   <NuxtPage />
   <div
-    class="mt-[100px] container__main min-w-[90%] px-8 md:px-10 lg:px-12 xl:px-16"
+    class="mt-[100px] container__main min-w-[90%] px-8 md:px-10 lg:px-12 xl:px-16 relative"
   >
     <h1
       class="max-w-[1320px] text-[100px] font-medium leading-[100px] text-left title-2"
@@ -355,10 +355,12 @@
         />
       </div>
     </div>
+    <ScrollButton></ScrollButton>
   </div>
 </template>
 
 <script setup lang="ts">
+import ScrollButton from "../components/ui/ScrollButton.vue";
 import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
 import SimilarNumber from "../components/SimilarNumbers/SimilarNumber.vue";
 import ButtonPlus from "../components/ButtonPlus/ButtonPlus.vue";
