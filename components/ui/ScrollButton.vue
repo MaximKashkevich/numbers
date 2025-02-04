@@ -1,6 +1,6 @@
 <template>
   <button v-if="showScrollButton" @click="scrollToTop" class="button__scroll">
-    <img src="/assets/img/icons/scroll-arrow.svg" alt="scroll arrow" />
+    <img src="/assets/img/icons/scroll-arrow2.svg" alt="scroll arrow" />
   </button>
 </template>
 <script setup>
@@ -30,12 +30,18 @@ onUnmounted(() => {
   border-radius: 50%;
   right: 3vw;
   bottom: 3vh;
-  display: none;
+  border: 2px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button__scroll img {
   rotate: -90deg;
   border-radius: 50%;
+  width: 60%;
+  height: auto;
+  margin: auto;
 }
 
 @media (max-width: 760px) {
