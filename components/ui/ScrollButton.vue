@@ -24,6 +24,7 @@ onUnmounted(() => {
 </script>
 <style>
 .button__scroll {
+  display: none;
   position: fixed;
   width: 17vw;
   aspect-ratio: 1/1;
@@ -31,7 +32,6 @@ onUnmounted(() => {
   right: 3vw;
   bottom: 3vh;
   border: 2px solid #000;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -46,7 +46,7 @@ onUnmounted(() => {
 
 @media (max-width: 760px) {
   .button__scroll {
-    display: block;
+    display: flex;
   }
 }
 </style>
