@@ -122,25 +122,27 @@
               Online
             </p>
           </div>
-          <div class="relative group">
-            <!-- Изображение, при наведении на которое будет появляться всплывающее окно -->
-            <img
-              class="cursor-pointer pl-[110px] mb-[35px]"
-              src="../public/assets/iconamoon_attention-circle-light.svg"
-              alt=""
-            />
-            <!-- Всплывающее окно -->
-            <div
-              class="absolute bg-[#000000] text-white w-[326px] h-[135px] black-window left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
-              id="tooltip"
-            >
-              <p
-                class="font-roboto text-[16px] font-normal leading-[20px] text-white"
+          <div class="relative h-[60px] w-full">
+            <div class="group w-fit ml-auto mr-[50px] mt-0">
+              <!-- Изображение, при наведении на которое будет появляться всплывающее окно -->
+              <img
+                class="cursor-pointer"
+                src="../public/assets/iconamoon_attention-circle-light.svg"
+                alt=""
+              />
+              <!-- Всплывающее окно -->
+              <div
+                class="absolute bg-[#000000] text-white w-[326px] h-[135px] black-window left-[-20px] transform -translate-x-1/2 top-[calc(100%+40px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2 pointer-events-none group-hover:pointer-events-auto"
+                id="tooltip"
               >
-                Scam warning: <br />Never wire money or financial info to a
-                seller on the Internet. For your security, all transactions
-                should be done in person. Please report scams.
-              </p>
+                <p
+                  class="font-roboto text-[16px] font-normal leading-[20px] text-white"
+                >
+                  Scam warning: <br />Never wire money or financial info to a
+                  seller on the Internet. For your security, all transactions
+                  should be done in person. Please report scams.
+                </p>
+              </div>
             </div>
           </div>
         </div>

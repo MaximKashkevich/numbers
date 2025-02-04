@@ -96,7 +96,7 @@ useHead({
 });
 
 useHead({
-  title: "Numbers", // Заголовок страницы
+  title: "Numbers",
   meta: [
     {
       name: "description",
