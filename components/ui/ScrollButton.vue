@@ -7,7 +7,7 @@
 <style>
 .button__scroll {
   position: fixed;
-  width: 13vw;
+  width: 17vw;
   aspect-ratio: 1/1;
   border-radius: 50%;
   background-color: red;
