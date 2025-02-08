@@ -34,7 +34,7 @@
 import { useRoute } from "vue-router";
 import CatalogComponent from "~/components/Catalog/CatalogComponent.vue";
 import useIntersectionObserver from "~/hooks/useIntersectionObserver";
-import { usePlateFetchStore } from "~/stores/plateFetchStore.";
+import { usePlateFetchStore } from "~/stores/plateFetchStore";
 import { usePhoneFetchStore } from "~/stores/phoneFetchStore";
 
 const plateFetchStore = usePlateFetchStore();

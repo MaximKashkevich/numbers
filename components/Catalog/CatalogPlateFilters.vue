@@ -32,7 +32,7 @@ import { useDropdownStore } from "~/stores/dropdownStore";
 import { usePlateStore } from "~/stores/plateStore";
 import BaseDropdown from "../ui/BaseDropdown.vue";
 import { onMounted, toRaw } from "vue";
-import { usePlateFetchStore } from "~/stores/plateFetchStore.";
+import { usePlateFetchStore } from "~/stores/plateFetchStore";
 const plateStore = usePlateStore();
 const dropdownStore = useDropdownStore();
 const plateFetchStore = usePlateFetchStore();
