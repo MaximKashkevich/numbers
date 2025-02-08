@@ -26,248 +26,40 @@
       Buy and Sell Mobile Numbers in the UAE
     </h1>
     <CatalogComponent />
+    <div ref="loader" class="loader"></div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
-import axios from "axios";
-import CardPlate from "../components/Card.vue";
-import SimilarNumber from "../components/SimilarNumbers/SimilarNumber.vue";
-import SimilarNumberLowPrice from "../components/LowSimilarNumbers/SimilarNumberLowPrice.vue";
-import Pagination from "../components/Pagination/Pagination.vue";
-import Card from "../components/Card.vue";
-import { useAuthStore } from "@/stores/auth";
-import { usePlateStore } from "~/stores/plateStore";
 import CatalogComponent from "~/components/Catalog/CatalogComponent.vue";
+import useIntersectionObserver from "~/hooks/useIntersectionObserver";
+import { usePlateFetchStore } from "~/stores/plateFetchStore.";
+import { usePhoneFetchStore } from "~/stores/phoneFetchStore";
 
-// Stores
-const authStore = useAuthStore();
-const plateStore = usePlateStore();
+const plateFetchStore = usePlateFetchStore();
+const phoneFetchStore = usePhoneFetchStore();
+const loader = ref(null);
+const isLoaderVisible = useIntersectionObserver(loader);
 
-// Reactive variables and refs
+watch(isLoaderVisible, (visible) => {
+  if (visible) {
+    plateFetchStore.fetchFilteredPlates();
+    phoneFetchStore.fetchFilteredPhones();
+    console.log("лоадер отработал");
+  }
+});
+
 const route = useRoute();
-const isExactMatch = ref(false);
-const exactMatchValue = ref("");
-const phoneCatalog = ref([]);
-const plateCatalog = ref([]);
-const showMore = ref(false);
-const isChecked = ref(false);
-const priceFrom = ref("");
-const priceTo = ref("");
-const selectedDigits = ref([]);
-const postedDate = ref("Today");
-const isPlateSelected = ref(true);
-const activeButton = ref(null);
-const totalPages = ref(0);
-const page = ref(1);
-const itemsPerPage = 3;
-const stateinput = ref("");
-const isActive = ref(false);
-const token = authStore.authToken;
-
-const maxprice = ref("150000");
-const pricelow = ref("2000");
-const maxprice2 = ref("");
-const pricelow2 = ref("");
-
-// Computed properties
-const filteredPhoneCatalog = computed(() => {
-  if (exactMatchValue.value.trim() === "") return phoneCatalog.value;
-  return phoneCatalog.value.filter(
-    (phone) =>
-      phone.phone.includes(exactMatchValue.value) ||
-      phone.price.toString().includes(exactMatchValue.value) ||
-      phone.emirate.includes(exactMatchValue.value)
-  );
-});
-
-const filteredPlateCatalog = computed(() => {
-  if (exactMatchValue.value.trim() === "") return plateCatalog.value;
-  return plateCatalog.value.filter(
-    (plate) =>
-      plate.plate.includes(exactMatchValue.value) ||
-      plate.price.toString().includes(exactMatchValue.value) ||
-      plate.emirate.includes(exactMatchValue.value)
-  );
-});
-
-const filteredPlates = computed(() => {
-  const from = pricelow.value ? parseFloat(pricelow.value) : 0;
-  const to = maxprice.value ? parseFloat(maxprice.value) : Infinity;
-  return plateCatalog.value.filter((item) => {
-    const priceString = item.price.replace(/[^0-9.]/g, "");
-    const price = parseFloat(priceString);
-    if (isNaN(price)) {
-      console.warn(`Цена для ${item.plate} некорректна: ${item.price}`);
-      return false;
-    }
-    return price >= from && price <= to;
-  });
-});
-
-const filteredPlates2 = computed(() => {
-  const from = pricelow2.value ? parseFloat(pricelow2.value) : 0;
-  const to = maxprice2.value ? parseFloat(maxprice2.value) : Infinity;
-  return phoneCatalog.value.filter((item) => {
-    const priceString = item.price.replace(/[^0-9.]/g, "");
-    const price = parseFloat(priceString);
-    if (isNaN(price)) {
-      console.warn(`Цена для ${item.plate} некорректна: ${item.price}`);
-      return false;
-    }
-    return price >= from && price <= to;
-  });
-});
-
-const getPlatesForPage = computed(() => {
-  const start = (page.value - 1) * itemsPerPage;
-  return plateCatalog.value.slice(start, start + itemsPerPage);
-});
-
-const getPhonesForPage = computed(() => {
-  const start = (page.value - 1) * itemsPerPage;
-  return phoneCatalog.value.slice(start, start + itemsPerPage);
-});
-
-// Methods
-const clearFilters = () => {
-  stateinput.value = "";
-  selectedDigits.value = [];
-  postedDate.value = "Today";
-  isExactMatch.value = false;
-  exactMatchValue.value = "";
-};
-
-const fetchPhoneCatalog = async (pageNumber) => {
-  try {
-    const response = await axios.get(
-      `https://api.dev.numbers.ae/v1/catalog/phone?page=${pageNumber}&order=desc`
-    );
-    phoneCatalog.value = response.data.items || response.data;
-    totalPages.value = Math.ceil(
-      (phoneCatalog.value?.length || 0) / itemsPerPage
-    );
-  } catch (error) {
-    console.error("Error fetching phone data:", error);
-  }
-};
-
-const fetchPlateCatalog = async (pageNumber) => {
-  try {
-    const response = await axios.get(
-      `https://api.dev.numbers.ae/v1/catalog/plate?page=${pageNumber}&order=desc`
-    );
-    plateCatalog.value = response.data.items || response.data;
-    totalPages.value = Math.ceil(
-      (plateCatalog.value?.length || 0) / itemsPerPage
-    );
-  } catch (error) {
-    console.error("Error fetching plate data:", error);
-  }
-};
-
-const onPageChange = (newPage) => {
-  page.value = newPage;
-  fetchPhoneCatalog(page.value);
-  fetchPlateCatalog(page.value);
-};
-
-const setActive = (buttonType) => {
-  activeButton.value = buttonType;
-};
-
-const showPlate = () => {
-  isPlateSelected.value = true;
-};
-
-const showMobile = () => {
-  isPlateSelected.value = false;
-};
-
-const getSettingForSelect = async () => {
-  try {
-    await axios.get(`https://api.dev.numbers.ae/v1/account/operators/list`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-  } catch (error) {
-    console.error("Error fetching settings:", error);
-  }
-};
-
-const getOperatorList = async () => {
-  try {
-    const response = await axios.get(
-      `https://api.dev.numbers.ae/v1/account/operators/list`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    if (response.data && response.data.success) {
-      const operators = response.data.result.items;
-      const selectElement = document.getElementById("emirate");
-      selectElement.innerHTML = "";
-      operators.forEach((operator) => {
-        const option = document.createElement("option");
-        option.value = operator.id;
-        option.textContent = operator.name;
-        selectElement.appendChild(option);
-      });
-    }
-  } catch (e) {
-    console.error("Ошибка при получении операторов:", e);
-  }
-};
-
-const getNumberList = async () => {
-  try {
-    const response = await axios.get(
-      `https://api.dev.numbers.ae/v1/account/operators/codes/list`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    if (response.data && response.data.success) {
-      const codes = response.data.result.items;
-      const selectElement = document.getElementById("code-list");
-      selectElement.innerHTML = "";
-      codes.forEach((code) => {
-        const option = document.createElement("option");
-        option.value = code.id;
-        option.textContent = code.name || code.code;
-        selectElement.appendChild(option);
-      });
-    }
-  } catch (e) {
-    console.error("Ошибка при получении кодов:", e);
-  }
-};
-
-// Watchers
-watch(
-  () => route.query.numberType,
-  (newValue) => {
-    if (newValue === "plate") {
-      showPlate();
-      setActive("plate");
-    } else if (newValue === "phone") {
-      showMobile();
-      setActive("phone");
-      plateStore.handleNumberTypeChange(false);
-      plateStore.fetchPhone();
-    }
-  },
-  { immediate: true }
-);
-
-// Lifecycle hooks
-onMounted(() => {
-  fetchPhoneCatalog(page.value);
-  fetchPlateCatalog(page.value);
-  getSettingForSelect();
-  getOperatorList();
-  getNumberList();
-});
 </script>
 
 <style>
+.loader {
+  width: 1px;
+  height: 1px;
+  background-color: transparent;
+}
+
 .dots {
   display: flex;
   justify-content: center;

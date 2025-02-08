@@ -4,14 +4,14 @@ import axios from "axios";
 
 export interface IFavorites {
   id: number;
-  photo: string;
+  photo?: string;
   emirate: string;
   price: string;
   isFeatured: boolean;
-  views: number;
+  views?: number;
   type: string;
   datePosted: string;
-  phone: string;
+  phone?: string;
 }
 
 export const useFavoritesStore = defineStore("favorites", () => {

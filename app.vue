@@ -26,6 +26,7 @@
         <GeneralViewAds /> -->
 
   <!-- <SignUp /> -->
+  <ScrollButton />
 </template>
 
 <script setup lang="ts">
@@ -35,6 +36,7 @@ import { ref, onMounted } from "vue";
 import Entrance from "./components/Entrance.vue";
 import Registration from "./components/Registration/Registration.vue";
 import Verification from "./components/Verification.vue";
+import ScrollButton from "./components/ui/ScrollButton.vue";
 
 import GeneralEmpty from "./pages/GeneralEmpty.vue";
 import GeneralPrimaryPages from "./components/general/GeneralPrimaryPages.vue";

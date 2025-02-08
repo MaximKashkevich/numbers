@@ -1,17 +1,19 @@
 <template>
   <div class="container-input pt-[150px]">
-    <div class="flex gap-[20px] items-center justify-between flex-wrap">
-      <div>
+    <div
+      class="flex gap-[20px] items-center justify-between flex-wrap md:flex-nowrap"
+    >
+      <div class="w-full md:w-[30%] min-w-[250px]">
         <label
           class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
           for="type"
         >
           Type:
         </label>
-        <div class="flex mt-[10px] gap-[10px]">
+        <div class="flex mt-[10px] gap-[20px]">
           <button
             :class="[
-              'button__filter w-[130px] h-[51.2px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center',
+              'button__filter w-[50%] h-[51.2px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center',
               plateStore.selectedPlateType
                 ? 'border-[#000]'
                 : 'border-[#bfbfbf]',
@@ -22,7 +24,7 @@
           </button>
           <button
             :class="[
-              'button__filter w-[130px] h-[51.2px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center',
+              'button__filter w-[50%] h-[51.2px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center',
               !plateStore.selectedPlateType
                 ? 'border-[#000]'
                 : 'border-[#bfbfbf]',
@@ -34,173 +36,73 @@
         </div>
       </div>
       <CatalogPlateFilters v-if="plateStore.selectedPlateType" />
-      <!-- <div
-        class="text-[16px] text-left w-[250px] h-[85px] bg-[#FAFAFA] flex items-end justify-between"
-      >
-        <BaseDropdown
-          label="Emirate :"
-          :option-list="dropdownStore.emirateList"
-          v-model="filterParams.emirate"
-        />
-      </div>
-      <div
-        class="text-[16px] text-left w-[250px] h-[85px] bg-[#FAFAFA] flex items-end justify-between"
-      >
-        <BaseDropdown
-          label="Code :"
-          :option-list="dropdownStore.plateCodeList"
-          v-model="filterParams.code"
-        />
-      </div>
-      <div
-        class="text-[16px] text-left w-[250px] h-[85px] bg-[#FAFAFA] flex items-end justify-between"
-      >
-        <BaseDropdown
-          label="Sort by :"
-          :option-list="sortTypeList"
-          v-model="filterParams.sort"
-        />
-      </div> -->
-      <!-- <ButtonBlue
-        @click="
-          () => {
-            dropdownStore.closeAllDropdowns();
-          }
-        "
-        class="flex self-end justify-center font-bold max-w-[220px]"
-      >
-        Show {{ plateStore.plateNumbers.length }} numbers
-      </ButtonBlue> -->
+      <CatalogPhoneFilters v-else />
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-      <CardPlate
+    <div class="min-w-[100%] min-h-[100vh]">
+      <CatalogPage
         v-if="plateStore.selectedPlateType"
-        v-for="item in plateStore.plateNumbers"
-        :key="item.id"
-        v-bind="item"
-        :is-featured-class="false"
+        v-for="(catalogPage, index) in plateStore.plateNumbers"
+        :page-data="catalogPage"
+        page-type="plates"
       />
-      <CardPlate
-        v-if="!plateStore.selectedPlateType"
-        v-for="item in plateStore.mobileNumbers"
-        :key="item.id"
-        v-bind="item"
-        :is-featured-class="false"
+      <CatalogPage
+        v-else
+        v-for="(catalogPage, index) in plateStore.phoneNumbers"
+        :page-data="catalogPage"
+        page-type="phones"
       />
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
+import { onMounted, watch } from "vue";
 import { usePlateStore } from "~/stores/plateStore";
 import { useRouter, useRoute } from "vue-router";
-import { watch } from "vue";
 import { useDropdownStore } from "~/stores/dropdownStore";
-import BaseDropdown from "../ui/BaseDropdown.vue";
-import Pagination from "../Pagination/Pagination.vue";
 import CatalogPlateFilters from "./CatalogPlateFilters.vue";
+import CatalogPage from "./CatalogPage.vue";
+import CatalogPhoneFilters from "./CatalogPhoneFilters.vue";
 const dropdownStore = useDropdownStore();
 const plateStore = usePlateStore();
-const router = useRouter();
 const route = useRoute();
-
-const filterParams = ref({
-  emirate: "Dubai",
-  code: "AA",
-  sort: "Latest",
-  page: 1,
-});
-
-const sortTypeList = ref([
-  { id: 1, name: "Latest" },
-  { id: 2, name: "Earliest" },
-]);
-
-const mobileNumbers = computed(() => {
-  return plateStore.mobileNumbers;
-});
 
 onMounted(() => {
   dropdownStore.fetchDropdownData();
 });
 
 const changeTypePlate = () => {
+  plateStore.resetCatalogData();
   plateStore.handleNumberTypeChange(true);
   dropdownStore.closeAllDropdowns();
-  plateStore.fetchPlate();
-  changeNumberType("plate");
 };
 
 const changeTypePhone = () => {
+  plateStore.resetCatalogData();
   plateStore.handleNumberTypeChange(false);
   dropdownStore.closeAllDropdowns();
-  plateStore.fetchPhone();
-  changeNumberType("phone");
 };
 
-const changeNumberType = (type: string) => {
-  router.replace({
-    query: {
-      ...route.query,
-      numberType: type,
-    },
-  });
+watch(
+  () => route.query.numberType,
+  () => {
+    handleRouteChange();
+  }
+);
+
+const handleRouteChange = async () => {
+  if (route.query.numberType === "plate") {
+    plateStore.handleNumberTypeChange(true);
+    // plateStore.fetchPlate();
+  } else {
+    plateStore.handleNumberTypeChange(false);
+    // plateStore.fetchPhone();
+  }
 };
 
 onMounted(() => {
   handleRouteChange();
 });
-
-// watch(
-//   () => route.query.numberType,
-//   () => {
-//     handleRouteChange();
-//   }
-// );
-
-// watch(
-//   () => filterParams.value,
-//   () => {
-//     ComputedFiltered();
-//   },
-//   { deep: true }
-// );
-
-const ComputedFiltered = () => {
-  const emirateId = dropdownStore.emirateList.find(
-    (emirate) => emirate.name === filterParams.value.emirate
-  );
-  const plateCodeId = dropdownStore.plateCodeList.find(
-    (code) => code.name === filterParams.value.code
-  );
-  const tempParams = {
-    emirate: emirateId ? emirateId.id : null,
-    // code: plateCodeId ? plateCodeId.id : null,
-    order: filterParams.value.sort === "Latest" ? "desc" : "asc",
-    page: filterParams.value.page,
-  };
-  plateStore.fetchPlate(tempParams);
-};
-
-const handleRouteChange = () => {
-  const numberType = route.query.numberType || "plate";
-  if (numberType === "plate") {
-    plateStore.handleNumberTypeChange(true);
-    plateStore.fetchPlate();
-  } else {
-    plateStore.handleNumberTypeChange(false);
-    plateStore.fetchPhone();
-  }
-
-  // router.push({
-  //   query: {
-  //     emirate: "Dubai",
-  //     code: "AA",
-  //     sort: "Latest",
-  //     page: 1,
-  //   },
-  // });
-};
 </script>
 
 <style>

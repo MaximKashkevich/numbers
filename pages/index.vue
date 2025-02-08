@@ -65,13 +65,11 @@
 
     <img
       class="w-full pt-[70px] img-bg"
-      src="../public/assets/bacround.png"
+      src="../public/assets/backgroundMain.webp"
       alt=""
     />
-    <div>
-      <CatalogComponent />
-    </div>
-
+    <CatalogComponent />
+    <CatalogShowMore />
     <!-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
       <SimilarNumber v-for="item in similarNumbers" :key="item.id" :id="item.id" :imageSrc="item.photo"
         :price="item.price" :emirate="item.emirate" :postedAt="item.postedAt" :views="item.views" />
@@ -283,93 +281,22 @@
         </li>
       </ul>
     </div>
-
-    <div
-      class="grid mt-[50px] md:mt-[150px] grid-cols-1 lg:grid-cols-2 flex-wrap gap-[20px] justify-center md:justify-between"
-    >
-      <!-- Форма ввода -->
-      <form @submit.prevent="" class="flex flex-col gap-4 mb-6 w-full">
-        <fieldset>
-          <div class="">
-            <h3
-              class="text-3xl md:text-5xl font-normal leading-[40px] md:leading-[60px] text-left w-full form-title"
-            >
-              Do you still have questions or have suggestions?
-            </h3>
-            <p
-              class="text-sm md:text-base font-normal leading-[18px] md:leading-[19.2px] text-left w-full mt-[10px] md:mt-[20px] mb-[30px] md:mb-[70px]"
-            >
-              Leave your contacts and question or suggestion and we will contact
-              you to discuss.
-            </p>
-          </div>
-          <legend class="sr-only">Contact Form</legend>
-
-          <!-- Список полей ввода -->
-          <ul class="flex flex-col gap-4">
-            <li
-              v-for="(field, index) in inputTitle"
-              :key="index"
-              class="flex flex-col"
-            >
-              <label
-                :for="'field' + index"
-                class="text-sm font-medium text-gray-700"
-              >
-                {{ field.title }}
-              </label>
-              <component
-                :is="field.type === 'textarea' ? 'textarea' : 'input'"
-                :id="'field' + index"
-                :type="field.type !== 'textarea' ? field.type : undefined"
-                :placeholder="field.placeholder"
-                v-model="field.value"
-                :style="{
-                  height: field.height,
-                  borderRadius: field.borderRadius,
-                  overflow: field.type === 'textarea' ? 'hidden' : 'auto', // Убираем скролл для textarea
-                  backgroundColor: 'transparent', // Делаем фон прозрачным
-                  resize: 'none', // Запрещаем изменение размера textarea
-                }"
-                class="h-[50px] max-h-[150px] gap-[10px] border-opacity-80 placeholder:font-helvetica-neue border-gray-400 border-[1px] pl-[15px] placeholder:text-gray-400 placeholder:opacity-80"
-                :class="field.type === 'textarea' ? 'pt-[15px]' : ''"
-              />
-            </li>
-          </ul>
-
-          <ButtonBlue
-            class="w-[220px] mt-[30px] md:mt-[50px] self-start"
-            @click=""
-          >
-            Send
-          </ButtonBlue>
-        </fieldset>
-      </form>
-
-      <!-- Изображение -->
-      <div class="w-full h-full">
-        <img
-          src="../public/assets/city.png"
-          alt="City Image"
-          class="rounded-lg w-full h-full"
-        />
-      </div>
-    </div>
-    <ScrollButton></ScrollButton>
+    <ContactForm />
   </div>
 </template>
 
 <script setup lang="ts">
-import ScrollButton from "../components/ui/ScrollButton.vue";
 import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
 import SimilarNumber from "../components/SimilarNumbers/SimilarNumber.vue";
 import ButtonPlus from "../components/ButtonPlus/ButtonPlus.vue";
+import ContactForm from "../components/ContactForm/ContactForm.vue";
 
 import "/assets/css/main.css";
 import { ref, onMounted } from "vue";
 
 import { useSimilarNumbersStore } from "~/stores/similarNumbers";
 import CatalogComponent from "~/components/Catalog/CatalogComponent.vue";
+import CatalogShowMore from "~/components/Catalog/CatalogShowMore.vue";
 
 const similarNumbersStore = useSimilarNumbersStore();
 const similarNumbers = ref(similarNumbersStore.similarNumbers);
@@ -377,44 +304,6 @@ const similarNumbers = ref(similarNumbersStore.similarNumbers);
 onMounted(async () => {
   await similarNumbersStore.fetchSimilar();
 });
-
-// Определение интерфейса для Input
-interface Input {
-  title: string;
-  type: "text" | "tel" | "textarea";
-  value: string;
-  placeholder: string;
-  height: string;
-  borderRadius: string;
-}
-
-// Массив input полей
-const inputTitle = ref<Input[]>([
-  {
-    title: "",
-    type: "text",
-    value: "",
-    placeholder: "Your name",
-    height: "50px",
-    borderRadius: "100px",
-  },
-  {
-    title: " ",
-    type: "tel",
-    value: "",
-    placeholder: "+7 (___) ___-___-___",
-    height: "50px",
-    borderRadius: "100px",
-  },
-  {
-    title: " ",
-    type: "textarea",
-    value: "",
-    placeholder: "Write your question or suggestion",
-    height: "120px",
-    borderRadius: "20px",
-  },
-]);
 
 // Пропсы
 const props = defineProps({

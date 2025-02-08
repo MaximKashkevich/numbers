@@ -267,9 +267,7 @@ const getPlatePreview = async () => {
       (code) => code.name === listingParams.value.code
     );
 
-    console.log(selectedEmirate, "айди выбранного эмирата");
     const token = authStore.authToken;
-    console.log(token, "токен");
     const previewResponse = await axios.post(
       `https://api.dev.numbers.ae/v1/account/plate/generate`,
       {

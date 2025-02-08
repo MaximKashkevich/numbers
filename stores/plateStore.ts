@@ -12,7 +12,7 @@ export interface IPlate {
   datePosted: string;
 }
 
-export interface IMobile {
+export interface IPhone {
   id: number;
   phone: string;
   emirate: string;
@@ -36,54 +36,71 @@ export interface IDetails {
 }
 
 export const usePlateStore = defineStore("plate", () => {
-  const plateNumbers = ref<IPlate[]>([]);
-  const mobileNumbers = ref<IMobile[]>([]);
+  const plateNumbers = ref<IPlate[][]>([]);
+  const phoneNumbers = ref<IPhone[][]>([]);
   const plateDetails = ref<IDetails[]>([]);
   const viewedPlates = ref<IPlate[]>([]);
+  const isLoading = ref(false);
+  const showMore = ref(0);
 
   const selectedPlateType = ref(true);
-  const selectedEmirate = ref("Dubai");
-  const selectedCode = ref("050");
-  const selectedSort = ref("Latest");
-  const currentPagesCount = ref(10);
-
   // Fetch plate numbers
   const fetchPlate = async (query?: any) => {
+    if (isLoading.value) return;
     try {
+      isLoading.value = true;
       const { data } = await axios.get(
         "https://api.dev.numbers.ae/v1/catalog/plate",
         {
           params: {
-            emirate: query.emirate,
-            code: query.code,
+            emirate: query ? query.emirate : 1,
+            code: query ? query.code : "A",
+            order: query ? query.order : "desc",
+            page: plateNumbers.value.length + 1,
           },
         }
       );
-      plateNumbers.value = data.data;
-      console.log("параметры запроса :", {
-        emirate: query.emirate,
-        code: query.code,
-      });
+      plateNumbers.value.push(data.data);
+      showMore.value = data.pagination.totalCount - 12;
+      console.log(plateNumbers.value, "platenum val");
     } catch (e) {
       console.log("Error fetching plates:", e);
+    } finally {
+      isLoading.value = false;
     }
   };
 
+  // Fetch phone numbers
   const fetchPhone = async (query?: any) => {
+    if (isLoading.value) return;
     try {
+      isLoading.value = true;
       const { data } = await axios.get(
         "https://api.dev.numbers.ae/v1/catalog/phone",
-        { params: query }
+        {
+          params: {
+            operator: query ? query.operator : 1,
+            code: query ? query.code : "052",
+            order: query ? query.order : "desc",
+            page: plateNumbers.value.length + 1,
+          },
+        }
       );
-      mobileNumbers.value = data.data.map((item: IMobile) => ({
-        ...item, // сохраняем остальные свойства объекта
-        phone: item.phone.replace(/[\s_-]+/g, "").toUpperCase(),
-      }));
+      phoneNumbers.value.push(data.data);
+      showMore.value = data.pagination.totalCount - 12;
+      console.log(data.pagination, "пагинация телефонов");
+      console.log(phoneNumbers.value);
     } catch (e) {
-      console.log("Error fetching mobile plates:", e);
+      console.log("Error fetching plates:", e);
+    } finally {
+      isLoading.value = false;
     }
   };
 
+  const resetCatalogData = () => {
+    phoneNumbers.value = [];
+    plateNumbers.value = [];
+  };
   // Fetch plate details by ID
   const fetchPlateDetails = async (id: number) => {
     try {
@@ -97,43 +114,29 @@ export const usePlateStore = defineStore("plate", () => {
     }
   };
 
-  // Handle emirate change
-  const handleEmirateChange = (event: Event) => {
-    const target = event.target as HTMLSelectElement;
-    selectedEmirate.value = target.value;
-  };
-
   const handleNumberTypeChange = (numberType: boolean) => {
     selectedPlateType.value = numberType;
-  };
-
-  const handleSortChange = (sortType: string) => {
-    selectedSort.value = sortType;
   };
 
   const selectedPlateId = ref<null | number>(0);
 
   const handleClick = async (id: number) => {
     selectedPlateId.value = id;
-    console.log(selectedPlateId.value);
     await fetchPlateDetails(id);
   };
   return {
     plateNumbers,
-    mobileNumbers,
+    phoneNumbers,
     fetchPlate,
     fetchPhone,
-    selectedEmirate,
     selectedPlateType,
-    selectedSort,
     handleNumberTypeChange,
-    handleEmirateChange,
-    handleSortChange,
-    selectedCode,
     handleClick,
     selectedPlateId,
     plateDetails,
     fetchPlateDetails,
     viewedPlates,
+    showMore,
+    resetCatalogData,
   };
 });

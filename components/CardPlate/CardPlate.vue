@@ -42,7 +42,7 @@
           <ButtonLike :id="props.id" :type="props.type" />
         </div>
         <div class="mt-[30px] pl-[20px]">
-          <div class="flex gap-[10px]">
+          <div v-if="props.photo" class="flex gap-[10px]">
             <p
               class="w-[59px] h-[19px] text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
             >
@@ -70,6 +70,19 @@
 import { defineProps, computed } from "vue";
 import type { IFavorites } from "~/stores/favoritesStore";
 
+export interface ICardPlate extends IFavorites {
+  isFeaturedClass?: boolean;
+  photo?: string;
+  phone?: string;
+  id: number;
+  emirate: string;
+  price: string;
+  isFeatured: boolean;
+  views?: number;
+  type: string;
+  datePosted: string;
+}
+
 const props = defineProps<
   {
     isFeaturedClass?: boolean;
@@ -79,7 +92,9 @@ const props = defineProps<
 >();
 
 const formattedPhone = computed(() => {
-  return props.phone.replace(/[\s_-]+/g, "").toUpperCase();
+  if (props.phone) {
+    return props.phone.replace(/[\s_-]+/g, "").toUpperCase();
+  }
 });
 </script>
 

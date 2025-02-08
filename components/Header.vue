@@ -35,6 +35,12 @@
 
         <NuxtLink class="button__action" to="/Liked">
           <img src="/assets/img/icons/fav.svg" alt="favorites" />
+          <div
+            v-if="favoriteStore.favorites.length > 0"
+            class="absolute bg-red-500 w-[18px] h-[18px] top-[-8px] right-[-7px] rounded-[50%] bg-[#005dca] flex justify-center items-center border-[2px]"
+          >
+            <h3 class="h-full">{{ favoriteStore.favorites.length }}</h3>
+          </div>
         </NuxtLink>
 
         <button class="button__action" @click="handleClick">
@@ -180,6 +186,7 @@ a {
 
 .button__action {
   cursor: pointer;
+  position: relative;
 }
 
 .button__action:hover img {
@@ -190,6 +197,12 @@ a {
 
 .button__action img {
   transition: 0.2s;
+}
+
+.button__action h3 {
+  position: absolute;
+  font-size: clamp(10px, 1vw, 10px);
+  color: #fff;
 }
 
 .row__mobile {

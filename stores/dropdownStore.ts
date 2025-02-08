@@ -13,7 +13,8 @@ export const useDropdownStore = defineStore("dropdownStore", {
     emirateList: [] as DropdownOption[],
     operatorList: [] as DropdownOption[],
     operatorCodeList: [] as DropdownOption[],
-    toggleDefaultCode: "not" as string,
+    defaultPlateCode: "not" as string,
+    defaultPhoneCode: "not" as string,
   }),
   actions: {
     async fetchDropdownData() {
@@ -41,8 +42,7 @@ export const useDropdownStore = defineStore("dropdownStore", {
           `https://api.dev.numbers.ae/v1/account/plate/codes/list?emirate_id=${emirateId}`
         );
         this.plateCodeList = plateCodesResponse.data.items;
-        this.toggleDefaultCode = String(this.plateCodeList[0].name);
-        console.log(this.plateCodeList, "плейт код лист");
+        this.defaultPlateCode = String(this.plateCodeList[0].name);
       } catch (error) {
         console.log(error);
       }

@@ -3,9 +3,9 @@
     class="text-[16px] text-left w-[100%] md:w-[300px] h-[85px] bg-[#FAFAFA] flex items-end justify-between"
   >
     <BaseDropdown
-      label="Emirate :"
-      :option-list="dropdownStore.emirateList"
-      v-model="plateFetchStore.filterParams.emirate"
+      label="Operator :"
+      :option-list="dropdownStore.operatorList"
+      v-model="phoneFetchStore.filterParams.operator"
     />
   </div>
   <div
@@ -13,8 +13,8 @@
   >
     <BaseDropdown
       label="Code :"
-      :option-list="dropdownStore.plateCodeList"
-      v-model="plateFetchStore.filterParams.code"
+      :option-list="dropdownStore.operatorCodeList"
+      v-model="phoneFetchStore.filterParams.code"
     />
   </div>
   <div
@@ -23,7 +23,7 @@
     <BaseDropdown
       label="Sort by :"
       :option-list="sortTypeList"
-      v-model="plateFetchStore.filterParams.sort"
+      v-model="phoneFetchStore.filterParams.sort"
     />
   </div>
 </template>
@@ -32,55 +32,47 @@ import { useDropdownStore } from "~/stores/dropdownStore";
 import { usePlateStore } from "~/stores/plateStore";
 import BaseDropdown from "../ui/BaseDropdown.vue";
 import { onMounted, toRaw } from "vue";
-import { usePlateFetchStore } from "~/stores/plateFetchStore.";
+import { usePhoneFetchStore } from "~/stores/phoneFetchStore";
 const plateStore = usePlateStore();
 const dropdownStore = useDropdownStore();
-const plateFetchStore = usePlateFetchStore();
+const phoneFetchStore = usePhoneFetchStore();
 
 const sortTypeList = ref([
   { id: 1, name: "Latest" },
   { id: 2, name: "Earliest" },
 ]);
 
-onMounted(() => {
-  console.log(plateFetchStore.filterParams, "12321");
-});
-
 watch(
-  () => plateFetchStore.filterParams.emirate,
-  async (newEmirate) => {
-    const selectedEmirate = toRaw(dropdownStore.emirateList).find(
-      (emirate) => emirate.name === newEmirate
+  () => phoneFetchStore.filterParams.operator,
+  async (newOperator) => {
+    const selectedOperator = toRaw(dropdownStore.operatorList).find(
+      (operator) => operator.name === newOperator
     );
 
-    if (selectedEmirate) {
-      // Ждём завершения асинхронного запроса
-      await dropdownStore.fetchPlateCodeDropdownData(selectedEmirate.id);
-
-      // После получения данных устанавливаем значение
-      plateFetchStore.filterParams.code = dropdownStore.defaultPlateCode;
+    if (selectedOperator) {
+      phoneFetchStore.filterParams.code = "052";
       plateStore.plateNumbers = [];
       plateStore.phoneNumbers = [];
-      plateFetchStore.fetchFilteredPlates();
+      phoneFetchStore.fetchFilteredPhones();
     }
   }
 );
 
 watch(
   [
-    () => plateFetchStore.filterParams.code,
-    () => plateFetchStore.filterParams.sort,
+    () => phoneFetchStore.filterParams.code,
+    () => phoneFetchStore.filterParams.sort,
   ],
   () => {
     plateStore.plateNumbers = [];
     plateStore.phoneNumbers = [];
-    plateFetchStore.fetchFilteredPlates();
+    phoneFetchStore.fetchFilteredPhones();
   }
 );
 
 onMounted(async () => {
   await dropdownStore.fetchPlateCodeDropdownData(1);
   await dropdownStore.fetchDropdownData();
-  plateFetchStore.fetchFilteredPlates();
+  phoneFetchStore.fetchFilteredPhones();
 });
 </script>
