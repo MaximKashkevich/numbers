@@ -37,8 +37,11 @@
           class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px] title-2"
         >
           Dubai plate number for sale: AA 14611
+          <!-- {{ mainText }} -->
         </h1>
-        <p class="text-[14px] font-normal leading-[14.4px] opacity-30">ID:</p>
+        <p class="text-[14px] font-normal leading-[14.4px] opacity-30">
+          ID: {{ route.params.id }}
+        </p>
         <div class="flex items-center">
           <h2 class="font-medium my-4 text-2xl" v-html="togglePlate.price"></h2>
         </div>
@@ -112,14 +115,23 @@
       <div class="flex-1 max-w-[350px] right-panel">
         <div class="flex items-center space-x-2">
           <img
+            v-if="!ownerPhoto"
             src="../public/assets/avatar.svg"
-            alt=""
+            alt="user photo"
+            class="w-10 h-10 rounded-full"
+          />
+          <img
+            v-else
+            :src="ownerPhoto"
+            alt="user photo"
             class="w-10 h-10 rounded-full"
           />
           <div>
-            <h2 class="text-[35px] font-medium leading-[42px]">Suroor</h2>
+            <h2 class="text-[35px] font-medium leading-[42px]">
+              {{ owner.username }}
+            </h2>
             <p class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px]">
-              Online
+              {{ ownerLastOnline }}
             </p>
           </div>
           <div class="relative h-[60px] w-full">
@@ -152,7 +164,7 @@
             Emirate:
           </p>
           <p class="text-[15px] font-normal leading-[19.2px] text-[#B3B3B3]">
-            {{ togglePlate.emirate }}
+            {{ ownerEmirate }}
           </p>
         </div>
         <div class="flex gap-[25px] mt-[10px] min-w-[60px]">
@@ -165,8 +177,18 @@
         </div>
         <div class="w-[212] mt-[30px]">
           <ButtonBlue
+            v-if="isPhoneHidden"
             class="w-full w-[315px] h-[54px] flex items-center justify-center"
-            >Call 058 210 03 10
+            @click="togglePhoneVisibility"
+          >
+            <h2>Show number</h2>
+          </ButtonBlue>
+          <ButtonBlue
+            class="w-full w-[315px] h-[54px] flex items-center justify-center"
+            @click="callPhone"
+            v-else
+          >
+            <h2>+971{{ togglePlate.user.mobilenumber }}</h2>
           </ButtonBlue>
           <!-- <ButtonBlue
             class="w-full w-[315px] h-[54px] flex items-center justify-center mt-[212px]"
@@ -287,13 +309,56 @@ import CradPlate from "../components/Card.vue";
 import { ref, onMounted, computed } from "vue";
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-
+import { useRoute } from "vue-router";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 
+const route = useRoute();
+
+const owner = computed(() => {
+  return togglePlate.value?.user || "unknown";
+});
+
+const ownerEmirate = computed(() => {
+  switch (owner.value.emirate) {
+    case 1:
+      return "Dubai";
+    case 2:
+      return "Abu Dhabi";
+    case 3:
+      return "Ajman";
+    case 4:
+      return "Umm Al Quwain";
+    case 5:
+      return "Ras Al Khaimah";
+    case 6:
+      return "Sharjah";
+  }
+});
+
+const ownerLastOnline = computed(() => {
+  if (!owner.value?.last_visit) return "";
+
+  const timestamp = owner.value.last_visit;
+  const date = new Date(timestamp * 1000);
+
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+});
+
 const togglePlate = ref({});
 const numberType = ref("");
+
+const ownerPhoto = computed(() => {
+  if (!togglePlate.value?.user?.photo) return null;
+  return `https://dev.numbers.ae${togglePlate.value.user.photo}`;
+});
 
 onMounted(() => {
   const actions = {
@@ -309,8 +374,6 @@ onMounted(() => {
     actions[matchedAction]();
   }
 });
-import { useRoute } from "vue-router";
-const route = useRoute();
 
 const initPlate = () => {
   hookViewNumber("viewedPlates");
@@ -343,6 +406,7 @@ const fetchNumber = async (id, plateType) => {
     );
     const data = response.data;
     togglePlate.value = data;
+    console.log(data, "number res");
   } catch (error) {
     console.error(error);
   }
@@ -354,6 +418,25 @@ const formattedPhone = computed(() => {
     ? togglePlate.value.phone.replace(/[\s_-]+/g, "").toUpperCase()
     : "";
 });
+
+// показать или скрыть телефон автора
+const isPhoneHidden = ref(true);
+
+const togglePhoneVisibility = () => {
+  isPhoneHidden.value = !isPhoneHidden.value;
+};
+
+const callPhone = () => {
+  const callFormat = `+971${togglePlate.value.user.mobilenumber}`;
+  window.location.href = `tel:${callFormat}`;
+};
+
+const mainText = computed(
+  () =>
+    `${togglePlate.value.emirate} ${
+      route.path.includes("plate") ? "plate" : "phone"
+    } number for sale:`
+);
 </script>
 
 <style scoped>

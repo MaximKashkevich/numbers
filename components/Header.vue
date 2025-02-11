@@ -2,7 +2,7 @@
   <header class="py-[20px] tw-container">
     <div class="row__header">
       <NuxtLink class="logo mb-[10px]" to="/">
-        <img src="../public/assets/New-Logo.webp" alt="Logo" />
+        <img src="/assets/New-Logo.webp" alt="Logo" />
       </NuxtLink>
 
       <div class="menu__pc">
@@ -30,14 +30,14 @@
 
       <div class="row__actions_inner mx-[10px]">
         <NuxtLink class="button__action" to="/Viewed">
-          <img src="/assets/img/icons/saw.svg" alt="view" />
+          <img src="/assets/img/icons/eye.svg" alt="view" />
         </NuxtLink>
 
         <NuxtLink class="button__action" to="/Liked">
           <img src="/assets/img/icons/fav.svg" alt="favorites" />
           <div
             v-if="favoriteStore.favorites.length > 0"
-            class="absolute bg-red-500 w-[18px] h-[18px] top-[-8px] right-[-7px] rounded-[50%] bg-[#005dca] flex justify-center items-center border-[2px]"
+            class="absolute w-[18px] h-[18px] top-[-8px] right-[-7px] rounded-[50%] bg-[#005dca] flex justify-center items-center border-[2px]"
           >
             <h3 class="h-full">{{ favoriteStore.favorites.length }}</h3>
           </div>
@@ -68,6 +68,7 @@ import { onMounted, ref } from "vue";
 import { useAuthStore } from "~/stores/auth";
 import { useRouter } from "vue-router";
 import { useFavoritesStore } from "~/stores/favoritesStore";
+
 const favoriteStore = useFavoritesStore();
 const router = useRouter();
 
@@ -236,6 +237,11 @@ a {
   width: fit-content;
   text-align: end;
   display: block;
+}
+
+.button__action img {
+  width: 28px;
+  height: 28px;
 }
 
 @media (max-width: 1280px) {

@@ -1,6 +1,6 @@
 <template>
   <section
-    class="bg-white rounded-[20px] ml-[60px] gap-10 hover:shadow-2xl transition block1"
+    class="bg-white rounded-[20px] ml-[60px] gap-10 hover:shadow-2xl transition block1 bg-red-500 h-fit top-[0]"
   >
     <article class="gap-[20px] flex items-center px-6 py-4 accGeneral">
       <NuxtLink class="cursor-pointer mr-2">
@@ -8,15 +8,15 @@
       </NuxtLink>
       <div>
         <span class="text-black leading-6 text-xl accText">{{
-          user ? user.login : "Guest"
+          userData ? userData.fullName : "Guest"
         }}</span>
         <p class="leading-6 text-gray-400 accText">
-          Last login: {{ user ? user.lastLogin : "N/A" }}<br />
+          Last login: {{ userData?.lastLogin ? userData.lastLogin : "N/A"
+          }}<br />
           Change avatar
         </p>
       </div>
     </article>
-
     <div class="px-8 py-6">
       <ul>
         <li class="my-4 label">
@@ -58,7 +58,7 @@
             to="/ArchivePage"
             class="text-black leading-[24px] text-xl cursor-pointer hover:font-medium transition"
           >
-            Archive (12)
+            Archive (0)
           </NuxtLink>
         </li>
       </ul>
@@ -81,7 +81,7 @@
             Settings
           </NuxtLink>
         </li>
-        <li class="my-1 label">
+        <!-- <li class="my-1 label">
           <NuxtLink
             :class="{ activeLink: $route.path === '/PaymentHistory' }"
             to="/PaymentHistory"
@@ -89,7 +89,7 @@
           >
             Payment history
           </NuxtLink>
-        </li>
+        </li> -->
       </ul>
       <ul>
         <li class="my-1 label">
@@ -109,103 +109,48 @@
   </section>
 </template>
 
-<script lang="ts">
-import { ref, onMounted, defineComponent, useAttrs } from "vue";
+<script lang="ts" setup>
+import { ref, onMounted, computed, watch } from "vue";
 import axios from "axios";
 import { useAuthStore } from "~/stores/auth";
-import { useAuthRegistrationStore } from "~/stores/authReg";
 import { useFavoritesStore } from "~/stores/favoritesStore";
 
-// const userStore = useAuthRegistrationStore();
+// Хранилища (Pinia)
+const authStore = useAuthStore();
+const favoritesStore = useFavoritesStore();
 
-// тут интерфейс
-interface UserInfo {
-  id: number;
-  email: string;
-  lastLogin: string;
-  login: string;
-  fullName: string;
-  mobileNumber: string;
-}
+// Состояния
+const loading = ref<boolean>(true);
+const error = ref<string | null>(null);
 
-export default defineComponent({
-  // а тут тайпскриптовый export default defineComponent, и не забудь setup() {}
-  name: "SideBar",
-  setup() {
-    const user = ref<UserInfo | null>(null);
-    const loading = ref<boolean>(true);
-    const error = ref<string | null>(null);
+// Получаем токен из authStore
+const token = computed(() => authStore.token);
+const userData = computed(() => authStore.userData);
 
-    const fetchUserData = async () => {
-      const authStore = useAuthStore();
-      const favoritesStore = useFavoritesStore();
-      loading.value = true;
-      error.value = null;
-
-      try {
-        const token = authStore.authToken;
-        const response = await axios.get(
-          "https://api.dev.numbers.ae/v1/user/info",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (response.data.success) {
-          user.value = response.data.result;
-          favoritesStore.setUserId(response.data.result.id);
-          console.log(response.data.result, "success");
-          useAuthRegistrationStore().setUserData(response.data.result);
-        } else {
-          error.value = "Failed to fetch user data.";
-        }
-      } catch (err: any) {
-        if (err.response) {
-          console.error("Error response:", err.response.data);
-          error.value = "An error occurred while fetching user data.";
-        } else {
-          console.error("Error:", err);
-          error.value = "An unexpected error occurred.";
-        }
-      } finally {
-        loading.value = false;
-      }
-    };
-
-    const logout = () => {
-      localStorage.removeItem("authToken");
-      user.value = null;
-      window.location.href = "/";
-    };
-
-    onMounted(() => {
-      fetchUserData();
-    });
-
-    return {
-      user,
-      loading,
-      error,
-      fetchUserData,
-      logout,
-    };
-  },
+onMounted(() => {
+  console.log(token, "токен");
+  authStore.fetchUserData();
 });
+
+watch(token, (newValue) => {
+  console.log(newValue, " токен");
+});
+
+// Функция выхода
+const logout = () => {
+  authStore.logout();
+  window.location.href = "/";
+};
 </script>
 
 <style scoped>
 .block1 {
   width: 100%;
   max-width: 400px;
-  height: auto;
   margin-left: auto;
   margin-right: auto;
   padding: 16px;
   position: sticky;
-  top: 20px;
 }
 
 .accText {

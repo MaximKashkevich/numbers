@@ -63,7 +63,7 @@
                 v-model="apiLog.email"
                 type="text"
                 id="username"
-                class="inputs mt-2 bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom mb-[10px]"
+                class="input mt-2 bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom mb-[10px]"
                 placeholder="username@gmail.com or 050 123 45 67 or JohnSnow_123"
               />
               <span v-if="errors.username" class="text-red-500">{{
@@ -77,13 +77,32 @@
                 class="text-[14px] leading-[16.8px] h-[20px]"
                 >Password:</label
               >
-              <input
-                v-model="apiLog.password"
-                type="password"
-                id="password"
-                class="inputs mt-2 bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom"
-                placeholder="xxxxxxx"
-              />
+              <div class="relative flex items-center mt-2">
+                <input
+                  v-model="apiLog.password"
+                  :type="isPasswordVisible ? 'text' : 'password'"
+                  id="password"
+                  class="input w-full bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom"
+                  placeholder="xxxxxxx"
+                />
+                <div class="absolute right-[20px]">
+                  <button
+                    class="flex items-center"
+                    @click="toggleVisibility"
+                    type="button"
+                  >
+                    <img
+                      class="w-[28px] h-[28px]"
+                      :src="
+                        isPasswordVisible
+                          ? '/assets/img/icons/eye.svg'
+                          : '/assets/img/icons/eye-slash.svg'
+                      "
+                      alt="password visibility"
+                    />
+                  </button>
+                </div>
+              </div>
               <span v-if="errors.password" class="text-red-500">{{
                 errors.password
               }}</span>
@@ -95,7 +114,10 @@
                 v-model="form.rememberMe"
                 class="custom-checkbox h-[20px] w-[20px] border border-gray-300 rounded focus:ring-0"
               />
-              <label for="remember-me" class="ml-2 block text-sm text-[#B3B3B3]"
+              <label
+                for="remember-me"
+                class="ml-2 block text-sm text-[#B3B3B3] user-select-none"
+                :class="{ 'font-extrabold': form.rememberMe }"
                 >Remember me</label
               >
             </div>
@@ -113,7 +135,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
+import { useCookie } from "nuxt/app";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useAuthStore } from "@/stores/auth";
@@ -142,7 +165,6 @@ interface apiLOgs {
 }
 const router = useRouter();
 
-// Data binding for the form
 const form = ref<FormInterface>({
   username: "",
   password: "",
@@ -156,9 +178,14 @@ const errors = ref<errors>({
 
 const apiLog = reactive<apiLOgs>({
   email: "",
-
   password: "",
 });
+
+// toggle visibility
+const isPasswordVisible = ref(false);
+const toggleVisibility = () => {
+  isPasswordVisible.value = !isPasswordVisible.value;
+};
 
 // Form validation
 const validate = () => {
@@ -190,6 +217,12 @@ const validate = () => {
 // API login function
 const apiLogin = async () => {
   const authStore = useAuthStore();
+  const authToken = useCookie("auth_token", {
+    maxAge: 60 * 60 * 24 * 30,
+    secure: true,
+    httpOnly: false,
+    sameSite: "strict",
+  });
 
   try {
     const response = await axios.post(
@@ -206,6 +239,9 @@ const apiLogin = async () => {
 
     if (token) {
       authStore.setToken(token);
+      if (form.value.rememberMe) {
+        authToken.value = token;
+      }
       router.push("/GeneralEmpty");
     } else {
       console.error("Токен отсутствует в ответе от сервера.");
@@ -224,6 +260,11 @@ const handleSubmit = () => {
 </script>
 
 <style scoped>
+.input {
+  color: #000;
+  min-width: 100%;
+}
+
 @media (max-width: 430px) {
   .block {
     flex-wrap: wrap;
@@ -257,12 +298,13 @@ const handleSubmit = () => {
 }
 
 @media (max-width: 430px) {
-  .inputs {
-    width: clamp(200px, 90vw, 600px);
+  .input {
+    width: 90vw;
     display: block;
+    background-color: red;
   }
 
-  .inputs::placeholder {
+  .input::placeholder {
     font-size: clamp(16px, 3vw, 20px);
   }
 
@@ -302,8 +344,7 @@ const handleSubmit = () => {
 }
 
 @media (max-width: 430px) {
-  .inputs {
-    width: 250px;
+  .input {
     display: flex;
   }
 }
@@ -326,5 +367,9 @@ const handleSubmit = () => {
   .block {
     flex-wrap: wrap;
   }
+}
+
+.user-select-none {
+  user-select: none !important;
 }
 </style>

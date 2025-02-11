@@ -8,6 +8,6 @@
     "noImplicitAny": true,
     "strictNullChecks": true
   },
-  "include": ["**/*.ts", "**/*.vue", "nuxt.config.js"],
+  "include": ["**/*.ts", "**/*.vue", "nuxt.config.js", "middleware/checkToken.js"],
   "exclude": ["node_modules"]
 }

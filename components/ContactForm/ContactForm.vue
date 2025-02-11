@@ -71,7 +71,7 @@
             <textarea
               name="message"
               v-model="formData.message"
-              class="h-[50px] w-full max-h-[150px] border-gray-400 border-[1px] pl-[15px] pr-[12px] pt-[12px] placeholder:text-gray-400 placeholder:opacity-80 overflow-hidden resize-none bg-transparent rounded-[20px]"
+              class="h-[150px] w-full max-h-[150px] border-gray-400 border-[1px] pl-[15px] pr-[12px] pt-[12px] placeholder:text-gray-400 placeholder:opacity-80 overflow-hidden resize-none bg-transparent rounded-[20px]"
               placeholder="Write your question or suggestion"
               @blur="validateField('message')"
             ></textarea>
@@ -132,7 +132,7 @@ const validatePhone = (phone: string): string | null => {
 const formatPhoneInput = () => {
   let value = formData.value.phone.replace(/\D/g, ""); // Оставляем только цифры
 
-  if (value.length > 9) value = value.slice(0, 9); // Ограничиваем 9 цифрами
+  if (value.length > 9) value = value.slice(0, 10); // Ограничиваем 9 цифрами
 
   if (value.length <= 3) {
     formData.value.phone = value;

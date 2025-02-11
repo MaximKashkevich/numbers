@@ -2,7 +2,11 @@
   <button v-if="isLikeButtonVisible" @click.prevent="toggleLike">
     <img
       class="w-[26px]"
-      :src="isFavorite ? '/assets/likeTrue.png' : '/assets/like.svg'"
+      :src="
+        isFavorite
+          ? '/assets/img/icons/likeTrue.svg'
+          : '/assets/img/icons/like.svg'
+      "
     />
   </button>
 </template>

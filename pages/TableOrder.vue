@@ -11,24 +11,29 @@
     </nav>
 
     <div
-      class="flex flex-col lg:grid settings-profile px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container">
-      <div class="w-full ">
+      class="flex flex-col lg:grid settings-profile px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container"
+    >
+      <div class="w-full">
         <SideBar class="sidebar" />
       </div>
 
-
       <div class="flex-1">
-        <h1 class="text-[30px] md:text-[50px] font-medium leading-[35px] md:leading-[50px] text-left uppercase text-1">
+        <h1
+          class="text-[30px] md:text-[50px] font-medium leading-[35px] md:leading-[50px] text-left uppercase text-1"
+        >
           Numbers concierge
         </h1>
         <h2
-          class="text-[25px] md:text-[35px] font-medium leading-[30px] md:leading-[42px] text-left mt-[20px] md:mt-[50px] text-2">
+          class="text-[25px] md:text-[35px] font-medium leading-[30px] md:leading-[42px] text-left mt-[20px] md:mt-[50px] text-2"
+        >
           Plate numbers
         </h2>
 
         <!-- Карточки Plate numbers -->
-        <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 mt-[30px] container-order  w-full"
-          @click="openModal">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 mt-[30px] container-order w-full"
+          @click="openModal"
+        >
           <CardOrder />
           <CardOrder />
           <CardOrder />
@@ -36,36 +41,53 @@
           <CardOrder />
 
           <CardOrder />
-
-
 
           <div
-            class="w-full max-w-[426px] h-[328px] px-[40px] rounded-[20px] bg-[#FFFFFF] text-center flex flex-col justify-center items-center white-container">
+            class="w-full max-w-[426px] h-[328px] px-[40px] rounded-[20px] bg-[#FFFFFF] text-center flex flex-col justify-center items-center white-container"
+          >
             <p
-              class="w-[346px] h-[42px] mt-[70px] mb-[50px] text-[35px] font-medium leading-[42px] text-center font-roboto">
+              class="w-[346px] h-[42px] mt-[70px] mb-[50px] text-[35px] font-medium leading-[42px] text-center font-roboto"
+            >
               Add order
             </p>
             <NuxtLink to="/AddOrder">
               <button class="flex justify-center mb-[60px]">
-                <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1" y="1" width="98" height="98" rx="49" stroke="#005DCA" stroke-width="2" />
+                <svg
+                  width="100"
+                  height="100"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="1"
+                    y="1"
+                    width="98"
+                    height="98"
+                    rx="49"
+                    stroke="#005DCA"
+                    stroke-width="2"
+                  />
                   <path
                     d="M67.0557 47.7764V51.6387H32.9443V47.7764H67.0557ZM51.9141 31.8828V68.1133H47.8125V31.8828H51.9141Z"
-                    fill="#005DCA" />
+                    fill="#005DCA"
+                  />
                 </svg>
               </button>
             </NuxtLink>
-
           </div>
         </div>
 
         <h2
-          class="text-[25px] md:text-[35px] font-medium leading-[30px] md:leading-[42px] text-left mt-[50px] md:mt-[70px] text-2">
+          class="text-[25px] md:text-[35px] font-medium leading-[30px] md:leading-[42px] text-left mt-[50px] md:mt-[70px] text-2"
+        >
           Mobile numbers
         </h2>
 
         <!-- Карточки Mobile numbers -->
-        <div class="grid grid-cols-1 sm:grid-cols-2  gap-6 mt-[30px] container-card">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-[30px] container-card"
+        >
           <div class="max-w-[426px] w-full">
             <MoreCard />
           </div>
@@ -75,25 +97,40 @@
           <div class="max-w-[426px] w-full">
             <MoreCard />
           </div>
-
 
           <div
-            class="w-full max-w-[426px] h-[328px] px-[40px] rounded-[20px] bg-[#FFFFFF] text-center flex flex-col justify-center items-center white-container">
+            class="w-full max-w-[426px] h-[328px] px-[40px] rounded-[20px] bg-[#FFFFFF] text-center flex flex-col justify-center items-center white-container"
+          >
             <p
-              class="w-[346px] h-[42px] mt-[70px] mb-[50px] text-[35px] font-medium leading-[42px] text-center font-roboto">
+              class="w-[346px] h-[42px] mt-[70px] mb-[50px] text-[35px] font-medium leading-[42px] text-center font-roboto"
+            >
               Add order
             </p>
             <NuxtLink to="/AddOrder">
               <button class="flex justify-center mb-[60px]">
-                <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="1" y="1" width="98" height="98" rx="49" stroke="#005DCA" stroke-width="2" />
+                <svg
+                  width="100"
+                  height="100"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="1"
+                    y="1"
+                    width="98"
+                    height="98"
+                    rx="49"
+                    stroke="#005DCA"
+                    stroke-width="2"
+                  />
                   <path
                     d="M67.0557 47.7764V51.6387H32.9443V47.7764H67.0557ZM51.9141 31.8828V68.1133H47.8125V31.8828H51.9141Z"
-                    fill="#005DCA" />
+                    fill="#005DCA"
+                  />
                 </svg>
               </button>
             </NuxtLink>
-
           </div>
         </div>
         <ModalWindow v-if="isModalVisible" />
@@ -103,10 +140,10 @@
 </template>
 
 <script>
-import MoreCard from '../components/MoreCard/MoreCard.vue';
-import CardOrder from '../components/CardOrder/CardOrder.vue';
-import SideBar from '../components/general/SideBar.vue';
-import ModalWindow from '../components/ModalWindow.vue';
+import MoreCard from "../components/MoreCard/MoreCard.vue";
+import CardOrder from "../components/CardOrder/CardOrder.vue";
+import SideBar from "../components/general/SideBar.vue";
+import ModalWindow from "../components/ModalWindow.vue";
 
 export default {
   components: {

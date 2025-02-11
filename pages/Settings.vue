@@ -13,7 +13,7 @@
     <div
       class="flex flex-col lg:grid settings-profile px-[20px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[30px] flex-wrap big-container"
     >
-      <div class="w-full ">
+      <div class="w-full">
         <SideBar class="sidebar" />
       </div>
 
@@ -38,7 +38,7 @@
                     <input
                       id="fullName"
                       type="text"
-                      v-model="form.name"
+                      v-model="form.fullName"
                       @input="errors.name = ''"
                       :class="{ 'border-red-500': errors.name }"
                       class="w-[300px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-4 text-lg text-[#000000] bg-[#FAFAFA]"
@@ -57,8 +57,8 @@
                     </label>
                     <input
                       id="mobile"
-                      type="number"
-                      v-model="form.mobile"
+                      type="string"
+                      v-model="form.mobileNumber"
                       @input="errors.mobile = ''"
                       :class="{ 'border-red-500': errors.mobile }"
                       class="w-[300px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-4 text-lg text-[#000000] bg-[#FAFAFA]"
@@ -76,11 +76,11 @@
                     <label
                       for="design"
                       class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#000000]"
-                      >Design:</label
+                      >Birthday date:</label
                     >
                     <div class="relative">
                       <input
-                        id="design"
+                        id="birthday"
                         type="date"
                         class="w-[300px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-[75px] pr-[20px] text-lg text-[#000000] bg-[#FAFAFA] appearance-none"
                       />
@@ -132,7 +132,7 @@
                     <label
                       for="login"
                       class="text-[16px] font-normal leading-[19.2px] text-[#000000] mb-2"
-                      >Choose Login:</label
+                      >Your Login:</label
                     >
                     <input
                       id="login"
@@ -182,7 +182,6 @@
                 </div>
 
                 <div class="line hidden sm:block"></div>
-                <!-- Линия между полями -->
 
                 <div class="flex flex-col w-full sm:w-[430px] relative">
                   <label
@@ -220,7 +219,6 @@
 
               <div class="flex mt-[30px]">
                 <div class="flex items-center">
-                  <!-- Радио-кнопка 1 -->
                   <div class="radio-container">
                     <input
                       type="radio"
@@ -236,7 +234,6 @@
                   </div>
                   <label for="id1" class="label">Your Plate numbers</label>
 
-                  <!-- Радио-кнопка 2 -->
                   <div class="radio-container ml-[70px]">
                     <input
                       type="radio"
@@ -267,83 +264,125 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import SideBar from "../components/general/SideBar.vue";
-import MiniButton from "../components/MiniButton/MiniButton.vue";
 import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
-export default {
-  components: {
-    SideBar,
-    ButtonBlue,
-  },
-  setup() {
-    const form = ref({
-      name: "",
-      mobile: "",
-      email: "",
-      login: "",
-      emirate: "",
-    });
+import { nextTick, onMounted, ref, watch } from "vue";
+import { useAuthStore } from "~/stores/auth";
+import axios from "axios";
+const authStore = useAuthStore();
 
-    const errors = ref({
-      name: "",
-      mobile: "",
-      email: "",
-      login: "",
-    });
+onMounted(() => {
+  fetchUserData();
+});
 
-    const selectedOption = ref(null);
-    const currentPassword = ref("");
-    const newPassword = ref("");
-
-    const validateForm = () => {
-      errors.value = { name: "", mobile: "", email: "", login: "" };
-
-      if (!form.value.name) {
-        errors.value.name = "Full name is required";
-      } else if (form.value.name.length < 3) {
-        errors.value.name = "Full name must be at least 3 characters long";
+const fetchUserData = async () => {
+  const token = authStore.token;
+  try {
+    const response = await axios.get(
+      "https://api.dev.numbers.ae/v1/user/info",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       }
+    );
 
-      if (!form.value.mobile) {
-        errors.value.mobile = "Mobile number is required";
-      } else if (form.value.mobile.length < 10) {
-        errors.value.mobile = "Mobile number must be at least 10 digits";
-      }
-
-      if (!form.value.email) {
-        errors.value.email = "Email is required";
-      } else if (!validateEmail(form.value.email)) {
-        errors.value.email = "Invalid email format";
-      }
-
-      if (!form.value.login) {
-        errors.value.login = "Login is required";
-      }
-
-      if (!Object.values(errors.value).some((error) => error)) {
-        submitForm();
-      }
+    const data = response.data.result;
+    form.value = {
+      fullName: data.fullName,
+      mobileNumber: data.mobileNumber,
+      email: data.email,
+      login: data.login,
+      emirate: "Dubai",
     };
+  } catch (error) {
+    console.error("Ошибка:", error);
+  }
+};
 
-    const validateEmail = (email) => {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    };
+const form = ref({
+  login: "",
+  email: "",
+  fullName: "",
+  mobileNumber: "",
+  emirate: "",
+});
 
-    const submitForm = () => {
-      alert("Form submitted successfully");
-    };
+const errors = ref({
+  name: "",
+  mobile: "",
+  email: "",
+  login: "",
+});
 
-    return {
-      form,
-      errors,
-      selectedOption,
-      validateForm,
-      currentPassword,
-      newPassword,
-    };
-  },
+const selectedOption = ref(null);
+const currentPassword = ref("");
+const newPassword = ref("");
+
+const validateEmail = (email) => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+};
+
+onMounted(() => {
+  authStore.fetchUserData();
+  console.log("123");
+});
+
+const validateForm = () => {
+  updateRequest();
+  errors.value = { name: "", mobile: "", email: "", login: "" };
+
+  if (!form.value.fullName) {
+    errors.value.name = "Full name is required";
+  } else if (form.value.fullName.length < 3) {
+    errors.value.fullName = "Full name must be at least 3 characters long";
+  }
+
+  if (!form.value.mobileNumber) {
+    errors.value.mobileNumber = "Mobile number is required";
+  } else if (form.value.mobileNumber.length < 10) {
+    errors.value.mobile = "Mobile number must be at least 10 digits";
+  }
+
+  if (!form.value.email) {
+    errors.value.email = "Email is required";
+  } else if (!validateEmail(form.value.email)) {
+    errors.value.email = "Invalid email format";
+  }
+
+  if (!form.value.login) {
+    errors.value.login = "Login is required";
+  }
+
+  if (!Object.values(errors.value).some((error) => error)) {
+    submitForm();
+  }
+};
+
+const updateRequest = async () => {
+  const token = authStore.token;
+  try {
+    const response = await axios.post(
+      "https://api.dev.numbers.ae/v1/user/update-profile",
+      form.value,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(response, "res");
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const submitForm = () => {
+  alert("Form submitted successfully");
 };
 </script>
 

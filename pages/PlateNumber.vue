@@ -333,9 +333,6 @@ export default {
   gap: 8px;
 }
 
-#app {
-}
-
 html,
 body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
