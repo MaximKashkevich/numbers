@@ -1,3 +1,3 @@
 <template>
-  <img src="../public/assets/img/icons/liteTrue.svg" alt="" />
+  <img src="../public/assets/img/icons/likeTrue.svg" alt="" />
 </template>
