@@ -17,7 +17,9 @@
   <!-- 
         <Verification v-if="verification.signIn" /> -->
   <!-- <NuxtPage /> -->
-  <Entrance />
+  <div class="overflow-x-hidden">
+    <Entrance />
+  </div>
   <!-- <GeneralEmpty /> -->
 
   <!-- <GeneralPrimaryPages /> -->

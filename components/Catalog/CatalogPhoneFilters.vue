@@ -12,7 +12,7 @@
     class="text-[16px] text-left w-[100%] md:w-[300px] h-[85px] bg-[#FAFAFA] flex items-end justify-between"
   >
     <BaseDropdown
-      label="Code :"
+      label="Prefix :"
       :option-list="dropdownStore.operatorCodeList"
       v-model="phoneFetchStore.filterParams.code"
     />
@@ -66,7 +66,7 @@ watch(
   () => {
     plateStore.plateNumbers = [];
     plateStore.phoneNumbers = [];
-    phoneFetchStore.fetchFilteredPhones();
+    // phoneFetchStore.fetchFilteredPhones();
   }
 );
 

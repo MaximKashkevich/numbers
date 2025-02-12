@@ -32,25 +32,27 @@
       class="content__main justify-between md:gap-[80px] lg:gap-[20px] min-w-[200px] max-w-[1900px] sm:justify-center"
     >
       <!-- Левая часть -->
-      <div class="flex-1 min-w-[250px] max-w-[350px] mb-[70px] title">
+      <div class="infoblock flex-1 min-w-[fit] max-w-[350px] title">
         <h1
-          class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px] title-2"
+          class="font-medium text-[35px] text-left leading-[42px] mb-[10px] w-[315px] title-2"
         >
           Dubai plate number for sale: AA 14611
           <!-- {{ mainText }} -->
         </h1>
-        <p class="text-[14px] font-normal leading-[14.4px] opacity-30">
+        <p
+          class="text-left text-[14px] font-normal leading-[14.4px] opacity-30"
+        >
           ID: {{ route.params.id }}
         </p>
         <div class="flex items-center">
           <h2 class="font-medium my-4 text-2xl" v-html="togglePlate.price"></h2>
         </div>
         <p
-          class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px] mb-[10px]"
+          class="text-left text-[#B3B3B3] text-[16px] font-normal leading-[19.2px] mb-[10px]"
         >
           Description:
         </p>
-        <p class="text-[16px] font-normal leading-[20px] mb-[80px]">
+        <p class="text-left text-[16px] font-normal leading-[20px]">
           ETISALAT VIP Prepaid Fancy Mobile number For Sale. Call or WhatsApp
           055-4400750.
         </p>
@@ -63,7 +65,7 @@
 
       <!-- Центральная часть -->
       <div
-        class="flex-1 min-w-[360px] w-[700px] max-w-[700px] h-[450px] rounded-[20px] bg-white border-[2px] border-[#B3B3B3] mb-[70px] h-[450px]"
+        class="infoblock infoblock__img flex-1 min-w-[360px] w-[700px] max-w-[700px] h-[450px] rounded-[20px] bg-white border-[2px] border-[#B3B3B3] h-[450px]"
       >
         <div class="flex justify-between w-full p-[30px]">
           <ButtonShare />
@@ -112,7 +114,7 @@
       </div>
 
       <!-- Правая часть -->
-      <div class="flex-1 max-w-[350px] right-panel">
+      <div class="infoblock flex-1 max-w-[350px] right-panel">
         <div class="flex items-center space-x-2">
           <img
             v-if="!ownerPhoto"
@@ -134,8 +136,8 @@
               {{ ownerLastOnline }}
             </p>
           </div>
-          <div class="relative h-[60px] w-full">
-            <div class="group w-fit ml-auto mr-[50px] mt-0">
+          <div class="relative h-[60px] w-[60px] w-full">
+            <div class="group w-[24px] ml-auto mr-[50px] mt-0">
               <!-- Изображение, при наведении на которое будет появляться всплывающее окно -->
               <img
                 class="cursor-pointer"
@@ -201,7 +203,7 @@
 
   <!-- Слайдер -->
   <div class="mt-[150px] px-[30px]">
-    <div class="flex justify-center">
+    <!-- <div class="flex justify-center">
       <div
         class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center"
       >
@@ -212,7 +214,6 @@
         </h3>
         <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
         <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3 mb-[20px]">
-          <!-- Обертка для рефов -->
           <div ref="prevE2" class="w-[50px]">
             <LeftArrow />
           </div>
@@ -221,12 +222,12 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="flex justify-center items-center mt-[50px]">
+    </div> -->
+    <!-- <div class="flex justify-center items-center mt-[50px]">
       <div
         class="sm:w-[640px] md:w-[1000px] lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px] px-[30px]"
       >
-        <!-- <swiper :navigation2="{ nextE2: nextE2, prevE2: prevE2 }" :modules="modules" class="mySwiper">
+        <swiper :navigation2="{ nextE2: nextE2, prevE2: prevE2 }" :modules="modules" class="mySwiper">
           <swiper-slide>
             <SimilarNumbers />
             <SimilarNumbersLow />
@@ -242,15 +243,15 @@
             <SimilarNumbersLow />
             <SimilarNumbers />
           </swiper-slide>
-        </swiper> -->
+        </swiper>
         <SimilarNumbers />
         <SimilarNumbers />
         <SimilarNumbers />
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="mt-[150px] px-[30px]">
-    <div class="flex justify-center">
+    <!-- <div class="flex justify-center">
       <div
         class="flex flex-col lg:flex-row w-full lg:w-[1800px] mr-[50px] items-center justify-center"
       >
@@ -261,7 +262,6 @@
         </h3>
         <div class="flex-grow lg:pr-[100px] order-3 lg:order-2"></div>
         <div class="flex gap-[30px] mt-[5px] order-1 lg:order-3 mb-[20px]">
-          <!-- Обертка для рефов -->
           <div ref="prevEl" class="w-[50px]">
             <LeftArrow />
           </div>
@@ -270,8 +270,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="flex justify-center items-center mt-[50px]">
+    </div> -->
+    <!-- <div class="flex justify-center items-center mt-[50px]">
       <div
         class="sm:w-[640px] md:w-[1000px] lg:w-[1320px] h-[410px] flex flex-col lg:flex-row gap-[20px] px-[30px]"
       >
@@ -293,7 +293,7 @@
           </swiper-slide>
         </swiper>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -501,6 +501,23 @@ body {
   width: 315px;
 }
 
+@media (max-width: 839px) {
+  .infoblock {
+    margin: auto;
+    margin-bottom: 30px;
+    min-width: 100%;
+  }
+  .infoblock.infoblock__img {
+    max-height: 50vh;
+  }
+  .infoblock h1 {
+    width: 100%;
+  }
+  .phone__text {
+    font-size: clamp(24px, 8vw, 42px);
+  }
+}
+
 @media (max-width: 768px) {
   .navigation {
     display: none;
@@ -518,14 +535,8 @@ body {
 }
 
 @media (max-width: 670px) {
-  .title-2 {
-    padding-right: 70px;
-  }
 }
 
 @media (max-width: 665px) {
-  .title-2 {
-    margin-left: 55px;
-  }
 }
 </style>

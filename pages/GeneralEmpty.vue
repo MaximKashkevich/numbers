@@ -36,11 +36,7 @@
             You don’t have any featured number listings yet :(
           </p>
           <ButtonBlue
-            @click="
-              () => {
-                console.log(1232133);
-              }
-            "
+            @click="() => {}"
             class="w-full lg:w-[382px] h-[52px] justify-center flex items-center mx-auto mt-[50px] btn1"
           >
             Create and promote an ad

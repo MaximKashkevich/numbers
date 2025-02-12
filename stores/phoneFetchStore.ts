@@ -19,7 +19,7 @@ export const usePhoneFetchStore = defineStore("phoneFetch", () => {
     const selectedOperator = dropdownStore.operatorList.find(
       (item) => item.name === filterParams.value.operator
     );
-
+    console.log("fetch filtered phones");
     plateStore.fetchPhone(
       toRaw({
         ...filterParams.value,

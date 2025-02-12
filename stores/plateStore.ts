@@ -40,15 +40,17 @@ export const usePlateStore = defineStore("plate", () => {
   const phoneNumbers = ref<IPhone[][]>([]);
   const plateDetails = ref<IDetails[]>([]);
   const viewedPlates = ref<IPlate[]>([]);
-  const isLoading = ref(false);
+  const isPlatesLoading = ref(false);
+  const isPhonesLoading = ref(false);
   const showMore = ref(0);
 
   const selectedPlateType = ref(true);
   // Fetch plate numbers
   const fetchPlate = async (query?: any) => {
-    if (isLoading.value) return;
+    console.log("plates loading in store");
+    if (isPlatesLoading.value) return;
     try {
-      isLoading.value = true;
+      isPlatesLoading.value = true;
       const { data } = await axios.get(
         "https://api.dev.numbers.ae/v1/catalog/plate",
         {
@@ -62,19 +64,19 @@ export const usePlateStore = defineStore("plate", () => {
       );
       plateNumbers.value.push(data.data);
       showMore.value = data.pagination.totalCount - 12;
-      console.log(plateNumbers.value, "platenum val");
     } catch (e) {
       console.log("Error fetching plates:", e);
     } finally {
-      isLoading.value = false;
+      isPlatesLoading.value = false;
     }
   };
 
   // Fetch phone numbers
   const fetchPhone = async (query?: any) => {
-    if (isLoading.value) return;
+    if (isPhonesLoading.value) return;
+    console.log(phoneNumbers.value, " 111111111");
     try {
-      isLoading.value = true;
+      isPhonesLoading.value = true;
       const { data } = await axios.get(
         "https://api.dev.numbers.ae/v1/catalog/phone",
         {
@@ -88,12 +90,10 @@ export const usePlateStore = defineStore("plate", () => {
       );
       phoneNumbers.value.push(data.data);
       showMore.value = data.pagination.totalCount - 12;
-      console.log(data.pagination, "пагинация телефонов");
-      console.log(phoneNumbers.value);
-    } catch (e) {
-      console.log("Error fetching plates:", e);
+    } catch (error) {
+      console.error("Error fetching plates:", error);
     } finally {
-      isLoading.value = false;
+      isPhonesLoading.value = false;
     }
   };
 

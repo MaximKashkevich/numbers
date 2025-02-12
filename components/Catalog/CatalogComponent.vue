@@ -66,6 +66,7 @@ import CatalogPhoneFilters from "./CatalogPhoneFilters.vue";
 const dropdownStore = useDropdownStore();
 const plateStore = usePlateStore();
 const route = useRoute();
+const router = useRouter();
 
 onMounted(() => {
   dropdownStore.fetchDropdownData();
@@ -75,12 +76,14 @@ const changeTypePlate = () => {
   plateStore.resetCatalogData();
   plateStore.handleNumberTypeChange(true);
   dropdownStore.closeAllDropdowns();
+  router.push({ query: { ...route.query, numberType: "plate" } });
 };
 
 const changeTypePhone = () => {
   plateStore.resetCatalogData();
   plateStore.handleNumberTypeChange(false);
   dropdownStore.closeAllDropdowns();
+  router.push({ query: { ...route.query, numberType: "phone" } });
 };
 
 watch(

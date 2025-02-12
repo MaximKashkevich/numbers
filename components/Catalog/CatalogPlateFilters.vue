@@ -42,10 +42,6 @@ const sortTypeList = ref([
   { id: 2, name: "Earliest" },
 ]);
 
-onMounted(() => {
-  console.log(plateFetchStore.filterParams, "12321");
-});
-
 watch(
   () => plateFetchStore.filterParams.emirate,
   async (newEmirate) => {
@@ -74,7 +70,7 @@ watch(
   () => {
     plateStore.plateNumbers = [];
     plateStore.phoneNumbers = [];
-    plateFetchStore.fetchFilteredPlates();
+    // plateFetchStore.fetchFilteredPlates();
   }
 );
 

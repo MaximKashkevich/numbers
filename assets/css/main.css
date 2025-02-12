@@ -12,6 +12,8 @@
 body {
   font-family: "Roboto", sans-serif;
   background: #fafafa;
+  min-width: 100%;
+  width: 100%;
 }
 
 @media (min-width: 1100px) {

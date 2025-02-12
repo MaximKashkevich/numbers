@@ -230,6 +230,7 @@ a {
   opacity: 0;
   transition: opacity 0s;
   padding-bottom: 70px;
+  pointer-events: none;
 }
 
 .row__mobile button {
