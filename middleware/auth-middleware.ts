@@ -6,6 +6,11 @@ import { useAuthStore } from "~/stores/auth";
 const authStore = useAuthStore();
 
 export default defineNuxtRouteMiddleware((to, from) => {
+  const auth_token = useCookie("auth_token");
+  if (auth_token.value) {
+    return;
+  }
+
   if (!authStore.token) {
     if (to.fullPath === "/Subscription") {
       redirectStore.upcomingRedirect === "/Subscription";

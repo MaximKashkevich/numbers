@@ -99,8 +99,8 @@
       </ul>
 
       <!-- Обработка состояния загрузки и ошибок -->
-      <div v-show="loading">Loading...</div>
-      <div v-show="error" class="text-red-500">{{ error }}</div>
+      <!-- <div v-show="loading">Loading...</div>
+      <div v-show="error" class="text-red-500">{{ error }}</div> -->
     </div>
   </section>
 </template>

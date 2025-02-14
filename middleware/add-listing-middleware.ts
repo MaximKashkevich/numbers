@@ -10,7 +10,6 @@ export default defineNuxtRouteMiddleware((to) => {
 
   const subscriptionStatus = useCookie("subscription_status");
   const auth_token = useCookie("auth_token");
-  console.log("auth_token", auth_token);
   if (auth_token.value) {
     return;
   }
