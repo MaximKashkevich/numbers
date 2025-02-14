@@ -25,9 +25,13 @@
 <script setup>
 import ComponentAddListing from "~/components/AddListing/ComponentAddListing.vue";
 import SideBar from "../components/general/SideBar.vue";
+import { useAuthStore } from "~/stores/auth";
+
+const authStore = useAuthStore();
+// authStore.initAuth();
 
 definePageMeta({
-  middleware: ["subscription"],
+  middleware: ["add-listing-middleware"],
 });
 </script>
 <style scoped>

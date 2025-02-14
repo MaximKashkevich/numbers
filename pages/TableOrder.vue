@@ -167,6 +167,10 @@ export default {
     },
   },
 };
+
+definePageMeta({
+  middleware: ["subscription"],
+});
 </script>
 
 <style>

@@ -1,40 +1,63 @@
 <template>
-  <div class="pl-[60px] mt-[33px]">
-    <NuxtLink>
-      <p class="leading-[16.8px] text-blue-500 cursor-pointer">
-        <NuxtLink to="/"> Home </NuxtLink> /
-        <NuxtLink to="/Dashboard"> My Dashboard </NuxtLink> /
-        <span class="leading-[16.8px] text-gray-300">Add listing</span>
+  <div class="px-8 md:px-10 lg:px-12 xl:px-16">
+    <!-- Навигация -->
+    <!-- <nav class="mb-[30px] mt-[30px] navigation">
+      <ul class="flex gap-[5px]">
+        <li>
+          <NuxtLink to="/" class="text-[#d4e0ee] cursor-pointer transition">
+            Home /</NuxtLink
+          >
+        </li>
+        <li>
+          <NuxtLink
+            href=""
+            class="text-[#BFBFBF] hover:text-[#005DCA] cursor-pointer transition"
+          >
+            License price</NuxtLink
+          >
+        </li>
+      </ul>
+    </nav> -->
+    <div class="pt-[100px]">
+      <h1
+        class="w-full sm:w-[600px] lg:w-[900px] text-[30px] sm:text-[40px] lg:text-[40px] font-medium leading-tight text-left"
+      >
+        To publish an ad you first need to license to the service.
+      </h1>
+      <p
+        class="w-full sm:w-[400px] lg:w-[500px] text-[14px] sm:text-[16px] font-normal leading-[19px] text-left pt-[20px] sm:pt-[30px]"
+      >
+        Once you pay the rate you want, you can add listings right away.
       </p>
-    </NuxtLink>
+    </div>
+    <LicenseList></LicenseList>
   </div>
-  <main>
-    <section
-      class="flex flex-col lg:flex-row px-[0px] md:px-[60px] justify-center gap-[30px] md:gap-[50px] mt-[34px] big-container"
-    >
-      <SideBar />
-      <nav class="container__block_tariff flex-1 md:ml-6 md:order-2">
-        <h1
-          class="font-medium leading-[50px] text-[32px] uppercase md:text-[50px] ml-[30px]"
-        >
-          Add listing
-        </h1>
-        <License />
-      </nav>
-    </section>
-  </main>
 </template>
 
 <script setup>
-import SideBar from "../components/general/SideBar.vue";
-import License from "./License.vue";
-</script>
+import axios from "axios";
+import LicenseList from "../components/LicenseList.vue";
+import { onMounted } from "vue";
 
-<style scoped>
-@media (max-width: 420px) {
-  .container__block_tariff {
-    margin: 0 !important;
-    min-width: 100%;
+const items = ref([]);
+
+const fetchTariff = async () => {
+  try {
+    const { data } = await axios.get(
+      "https://api.dev.numbers.ae/v1/tariff.list"
+    );
+    items.value = data.data;
+    console.log(items.value);
+  } catch (e) {
+    console.log(e);
   }
-}
-</style>
+};
+
+onMounted(() => {
+  fetchTariff();
+});
+
+definePageMeta({
+  middleware: ["subscription"],
+});
+</script>

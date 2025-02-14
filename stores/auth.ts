@@ -16,7 +16,7 @@ interface UserData {
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
-    token: useCookie("auth_token"),
+    token: ref<string | null>(null),
     userData: ref<UserData | null>(null),
     error: ref<string>(""),
   }),
@@ -24,15 +24,22 @@ export const useAuthStore = defineStore("auth", {
     isAuthenticated: (state) => !!state.token,
   },
   actions: {
-    setToken(token: string | null) {
+    setToken(token: string | null, rememberMe: boolean) {
       this.token = token;
-      console.log(token);
+      const authToken = useCookie("auth_token", {
+        maxAge: 60 * 60 * 24 * 30,
+        secure: true,
+        httpOnly: false,
+        sameSite: "strict",
+      });
+      authToken.value = rememberMe ? token : null;
     },
-    setUserData(user: UserData) {
+    setUserData(user: UserData | null) {
       this.userData = user;
     },
     logout() {
       this.token = null;
+      useCookie("auth_token").value = null;
     },
     async fetchUserData() {
       const favoritesStore = useFavoritesStore();
@@ -66,6 +73,13 @@ export const useAuthStore = defineStore("auth", {
         this.error =
           err.response?.data?.message ||
           "Произошла ошибка при загрузке данных.";
+      }
+    },
+    initAuth() {
+      const authToken = useCookie("auth_token");
+      if (authToken.value) {
+        this.token = authToken.value;
+        console.log("Токен загружен из куки:", this.token);
       }
     },
   },

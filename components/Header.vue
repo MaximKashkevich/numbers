@@ -9,11 +9,11 @@
         <NuxtLink to="/Catalog?numberType=plate"> Plate Numbers </NuxtLink>
         <NuxtLink to="/Catalog?numberType=phone"> Mobile Numbers </NuxtLink>
 
-        <NuxtLink to="/License"> Subscriptions for dealers </NuxtLink>
+        <NuxtLink to="/Subscription"> Subscriptions for dealers </NuxtLink>
 
         <NuxtLink to="/Discounts">Discounts</NuxtLink>
 
-        <NuxtLink to="/License">Number concierge</NuxtLink>
+        <NuxtLink to="/Subscription">Number concierge</NuxtLink>
       </div>
 
       <button
@@ -43,11 +43,11 @@
           </div>
         </NuxtLink>
 
-        <button class="button__action" @click="handleClick">
+        <button class="button__action" @click="handleClickProfile">
           <img src="/assets/img/icons/profile.svg" alt="general" />
         </button>
       </div>
-      <ButtonBlue :requiresAdapt="true" @click="goToLink('/AddListing')"
+      <ButtonBlue :requiresAdapt="true" @click="handleClickAddListing"
         >Add Listing
       </ButtonBlue>
     </div>
@@ -59,7 +59,7 @@
       <NuxtLink to="/Subscription"> Subscriptions for dealers </NuxtLink>
 
       <NuxtLink to="/Discounts">Discounts</NuxtLink>
-      <NuxtLink to="/License">Number concierge</NuxtLink>
+      <NuxtLink to="/Subscription">Number concierge</NuxtLink>
     </div>
   </header>
 </template>
@@ -80,12 +80,20 @@ const goToLink = (page) => {
   });
 };
 
-const handleClick = () => {
+import { useRedirectScheduleStore } from "~/stores/redirectSchedule";
+const redirectStore = useRedirectScheduleStore();
+
+const handleClickAddListing = () => {
+  redirectStore.upcomingRedirect = "AddListing";
+  goToLink("/AddListing");
+};
+
+const handleClickProfile = () => {
   if (authStore.authToken) {
-    //переход на лк
-    router.push({ name: "Dashboard" });
+    redirectStore.upcomingRedirect = null;
+    router.push("/login");
   } else {
-    router.push({ name: "login" });
+    router.push("/Dashboard");
   }
 };
 

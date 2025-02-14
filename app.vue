@@ -26,6 +26,10 @@
 </template>
 
 <script setup lang="ts">
+import { useAuthStore } from "./stores/auth";
+const authStore = useAuthStore();
+authStore.initAuth();
+
 import Entrance from "./components/Entrance.vue";
 import ScrollButton from "./components/ui/ScrollButton.vue";
 

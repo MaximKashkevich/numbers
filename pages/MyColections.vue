@@ -99,6 +99,10 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("resize", updateText);
 });
+
+definePageMeta({
+  middleware: ["subscription"],
+});
 </script>
 
 <style scoped>

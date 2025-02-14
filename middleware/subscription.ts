@@ -1,17 +1,17 @@
 import { useCookie, navigateTo } from "nuxt/app";
 import { defineNuxtRouteMiddleware } from "nuxt/app";
+import { useRedirectScheduleStore } from "~/stores/redirectSchedule";
+const redirectStore = useRedirectScheduleStore();
+import { useAuthStore } from "~/stores/auth";
+const authStore = useAuthStore();
 
 export default defineNuxtRouteMiddleware((to, from) => {
-  if (process.server) return; // Если сервер — не выполняем
+  if (process.server) return;
 
-  const subscriptionStatus = useCookie("subscription_status");
-  const authToken = useCookie("auth_token");
-  console.log("Subscription middleware triggered on:", to.fullPath);
-  console.log("Subscription status:", subscriptionStatus.value);
-
-  if (!authToken.value) {
+  if (!authStore.token) {
+    if (redirectStore.upcomingRedirect !== "/AddListing") {
+      redirectStore.upcomingRedirect = "/Subscription";
+    }
     return navigateTo("/Login");
-  } else if (subscriptionStatus.value !== "active") {
-    return navigateTo("/Subscription");
   }
 });

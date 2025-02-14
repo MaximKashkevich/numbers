@@ -27,7 +27,7 @@
           </li>
           <li class="my-[30px]">
             <NuxtLink
-              to="/License"
+              to="/Subscription"
               class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition"
             >
               License price

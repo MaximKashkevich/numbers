@@ -131,10 +131,10 @@
         </div>
       </div>
     </div>
-    <Registration
+    <!-- <Registration
       v-if="!isAuthenticated && popupSignUpOpen"
       :togglePopup="togglePopupSignUp"
-    />
+    /> -->
 
     <!-- <Verification v-if="verification.signIn" /> -->
     <!-- верификация, будет нужна -->
@@ -148,9 +148,9 @@ import { useRouter } from "vue-router";
 import axios from "axios";
 import { useAuthStore } from "@/stores/auth";
 import Registration from "~/components/Registration/Registration.vue";
-
-const authToken = useCookie("auth_token");
-const isAuthenticated = computed(() => !!authToken.value);
+import { useRedirectScheduleStore } from "~/stores/redirectSchedule";
+const redirectStore = useRedirectScheduleStore();
+const authStore = useAuthStore();
 
 const popupSignUpOpen = ref(false);
 const togglePopupSignUp = (event: MouseEvent) => {
@@ -225,14 +225,6 @@ const validate = () => {
 
 // API login function
 const apiLogin = async () => {
-  const authStore = useAuthStore();
-  const authToken = useCookie("auth_token", {
-    maxAge: 60 * 60 * 24 * 30,
-    secure: true,
-    httpOnly: false,
-    sameSite: "strict",
-  });
-
   try {
     const response = await axios.post(
       "https://api.dev.numbers.ae/v1/auth/signin",
@@ -247,11 +239,13 @@ const apiLogin = async () => {
     const token = response.data?.result?.token;
 
     if (token) {
-      authStore.setToken(token);
-      if (form.value.rememberMe) {
-        authToken.value = token;
-      }
-      router.push("/Dashboard");
+      authStore.setToken(token, form.value.rememberMe);
+      router.push(
+        redirectStore.upcomingRedirect
+          ? redirectStore.upcomingRedirect
+          : "/Dashboard"
+      );
+      redirectStore.upcomingRedirect = "null";
     } else {
       console.error("Токен отсутствует в ответе от сервера.");
     }
