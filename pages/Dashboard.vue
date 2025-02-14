@@ -3,7 +3,7 @@
     <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
       Home /
     </NuxtLink>
-    <NuxtLink to="/GeneralEmpty" class="text-blue-500 cursor-pointer">
+    <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer">
       My Dashboard /
     </NuxtLink>
     <span class="text-[#BFBFBF]"> Add listing</span>
@@ -92,6 +92,10 @@
 <script setup>
 import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
 import SideBar from "../components/general/SideBar.vue";
+
+definePageMeta({
+  middleware: "auth-middleware",
+});
 </script>
 
 <style scoped>

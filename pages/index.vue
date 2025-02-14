@@ -18,7 +18,7 @@
           class="flex gap-[30px] h-[36px] w-full justify-between sm:justify-start items-end"
         >
           <h2
-            class="w-[340px] h-full text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase"
+            class="link__catalog_buy text-nowrap w-[340px] h-full text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase"
           >
             Total plate numbers:
           </h2>
@@ -44,7 +44,7 @@
           class="flex gap-[30px] h-[36px] w-full justify-between sm:justify-start items-end"
         >
           <h2
-            class="w-[340px] h-full text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase"
+            class="link__catalog_buy text-nowrap w-[340px] h-full text-[24px] sm:text-[30px] font-normal leading-[36px] uppercase"
           >
             Total mobile numbers:
           </h2>
@@ -448,6 +448,12 @@ const seeMore3 = () => {
 
   .form-title {
     margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 420px) {
+  .link__catalog_buy {
+    text-wrap: wrap;
   }
 }
 

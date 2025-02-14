@@ -47,7 +47,7 @@
           <img src="/assets/img/icons/profile.svg" alt="general" />
         </button>
       </div>
-      <ButtonBlue :requiresAdapt="true" @click="goToLink('/GeneralBlockTariff')"
+      <ButtonBlue :requiresAdapt="true" @click="goToLink('/AddListing')"
         >Add Listing
       </ButtonBlue>
     </div>
@@ -56,7 +56,7 @@
 
       <NuxtLink to="/Catalog?numberType=phone">Mobile Numbers </NuxtLink>
 
-      <NuxtLink to="/GeneralBlockTariff"> Subscriptions for dealers </NuxtLink>
+      <NuxtLink to="/Subscription"> Subscriptions for dealers </NuxtLink>
 
       <NuxtLink to="/Discounts">Discounts</NuxtLink>
       <NuxtLink to="/License">Number concierge</NuxtLink>
@@ -83,7 +83,7 @@ const goToLink = (page) => {
 const handleClick = () => {
   if (authStore.authToken) {
     //переход на лк
-    router.push({ name: "GeneralEmpty" });
+    router.push({ name: "Dashboard" });
   } else {
     router.push({ name: "login" });
   }

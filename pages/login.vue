@@ -20,7 +20,7 @@
       <div class="flex items-end pt-[30px] xl:pt-0">
         <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
           No account?
-          <span @click="toggleSignUp" class="text-blue-500 cursor-pointer"
+          <span @click="togglePopupSignUp" class="text-blue-500 cursor-pointer"
             >Sign Up</span
           >
         </h2>
@@ -131,21 +131,30 @@
         </div>
       </div>
     </div>
+    <Registration
+      v-if="!isAuthenticated && popupSignUpOpen"
+      :togglePopup="togglePopupSignUp"
+    />
+
+    <!-- <Verification v-if="verification.signIn" /> -->
+    <!-- верификация, будет нужна -->
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, computed } from "vue";
 import { useCookie } from "nuxt/app";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { useAuthStore } from "@/stores/auth";
-import { useSignUpStore } from "@/stores/signUp";
+import Registration from "~/components/Registration/Registration.vue";
 
-const SignUp = useSignUpStore();
+const authToken = useCookie("auth_token");
+const isAuthenticated = computed(() => !!authToken.value);
 
-const toggleSignUp = () => {
-  SignUp.onClickSignUP();
+const popupSignUpOpen = ref(false);
+const togglePopupSignUp = (event: MouseEvent) => {
+  popupSignUpOpen.value = !popupSignUpOpen.value;
 };
 
 interface FormInterface {
@@ -242,7 +251,7 @@ const apiLogin = async () => {
       if (form.value.rememberMe) {
         authToken.value = token;
       }
-      router.push("/GeneralEmpty");
+      router.push("/Dashboard");
     } else {
       console.error("Токен отсутствует в ответе от сервера.");
     }

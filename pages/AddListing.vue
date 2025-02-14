@@ -2,7 +2,7 @@
   <div class="pl-[60px] mt-[33px]">
     <p class="leading-[16.8px] text-blue-500 cursor-pointer">
       <NuxtLink to="/"> Home </NuxtLink> /
-      <NuxtLink to="/GeneralEmpty"> My Dashboard </NuxtLink> /
+      <NuxtLink to="/Dashboard"> My Dashboard </NuxtLink> /
       <span class="leading-[16.8px] text-gray-300">Add listing</span>
     </p>
   </div>
@@ -25,6 +25,10 @@
 <script setup>
 import ComponentAddListing from "~/components/AddListing/ComponentAddListing.vue";
 import SideBar from "../components/general/SideBar.vue";
+
+definePageMeta({
+  middleware: ["subscription"],
+});
 </script>
 <style scoped>
 @media (max-width: 420px) {

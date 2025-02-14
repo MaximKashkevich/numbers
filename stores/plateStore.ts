@@ -74,7 +74,6 @@ export const usePlateStore = defineStore("plate", () => {
   // Fetch phone numbers
   const fetchPhone = async (query?: any) => {
     if (isPhonesLoading.value) return;
-    console.log(phoneNumbers.value, " 111111111");
     try {
       isPhonesLoading.value = true;
       const { data } = await axios.get(

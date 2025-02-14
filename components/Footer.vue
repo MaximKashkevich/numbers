@@ -35,7 +35,7 @@
           </li>
           <li>
             <NuxtLink
-              to="/GeneralBlockTariff"
+              to="/Subscription"
               class="leading-[19.2px] text-black font-normal cursor-pointer hover:text-blue-400 transition"
             >
               Subscriptions for dealers

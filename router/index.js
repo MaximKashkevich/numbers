@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import number from "@/components/number.vue";
-import Catalog from "../components/Catalog.vue";
 
 const routes = [
   {

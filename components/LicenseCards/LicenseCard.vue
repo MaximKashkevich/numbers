@@ -45,43 +45,83 @@
       <div>
         <ButtonBlue
           class="w-[100%] mt-[50px] mb-[30px] flex justify-center items-center"
+          @click="handlePayment"
+          v-if="!subscriptionStatus"
         >
-          {{ cost }}
+          {{ subscriptionText ? subscriptionText + subscriptionTimer : cost }}
+        </ButtonBlue>
+        <ButtonBlue
+          class="w-[100%] mt-[50px] mb-[30px] flex justify-center items-center text-[10px]"
+          @click="handleUnsubscribe"
+          v-else
+        >
+          cancel subscription
         </ButtonBlue>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { defineComponent } from "vue";
+<script setup>
+import { defineProps, ref } from "vue";
+import { useCookie, useRouter } from "nuxt/app";
+const router = useRouter();
 
-export default defineComponent({
-  props: {
-    title: {
-      type: String,
-      default: "title error ",
-    },
-    duration: {
-      type: String,
-      default: "",
-    },
-    text1: {
-      type: String,
-      default: "Plate or phone",
-    },
-    text2: {
-      type: String,
-      default: "Any number of ads",
-    },
-    text3: {
-      type: String,
-      default: "Updates every 7 days",
-    },
-    cost: {
-      type: String,
-      default: "FREE 1 MONTH",
-    },
+const props = defineProps({
+  title: {
+    type: String,
+    default: "title error",
+  },
+  duration: {
+    type: String,
+    default: "",
+  },
+  text1: {
+    type: String,
+    default: "Plate or phone",
+  },
+  text2: {
+    type: String,
+    default: "Any number of ads",
+  },
+  text3: {
+    type: String,
+    default: "Updates every 7 days",
+  },
+  cost: {
+    type: String,
+    default: "FREE 1 MONTH",
   },
 });
+
+const subscriptionText = ref(null);
+const subscriptionTimer = ref(5);
+const subscriptionStatus = useCookie("subscription_status");
+
+const handlePayment = () => {
+  console.log(subscriptionStatus.value, "status");
+  subscriptionText.value = "paid, redirecting...";
+  let timer;
+  timer = setInterval(() => {
+    if (subscriptionTimer.value > 0) {
+      subscriptionTimer.value -= 1;
+    } else {
+      subscriptionStatus.value = "active";
+      clearInterval(timer);
+      console.log("redirecting...");
+      goToLink("Addlisting");
+    }
+  }, 1000);
+};
+
+const handleUnsubscribe = () => {
+  subscriptionStatus.value = null;
+  console.log(subscriptionStatus.value);
+};
+
+const goToLink = (page) => {
+  router.push({
+    path: page,
+  });
+};
 </script>

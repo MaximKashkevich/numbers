@@ -24,7 +24,7 @@
           aria-label="Close"
         >
           <svg
-            @click="toggleSignUp"
+            @click="togglePopup"
             class="cursor-pointer"
             width="20"
             height="20"
@@ -111,7 +111,6 @@ import ButtonBlue from "../Button-blue/ButtonBlue.vue";
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
-import { useSignUpStore } from "../../stores/signUp";
 import { useAuthRegistrationStore } from "~/stores/authReg";
 
 interface ApiRegisterData {
@@ -129,12 +128,9 @@ interface InputField {
   placeholder: string;
 }
 
-const signUpStore = useSignUpStore();
 const router = useRouter();
 
-const toggleSignUp = () => {
-  signUpStore.onClickSignUP();
-};
+defineProps<{ togglePopup: (event: MouseEvent) => void }>();
 
 const errors = ref<string[]>([]);
 const apiRegisterData = reactive<ApiRegisterData>({
@@ -255,8 +251,7 @@ const onSubmit = async () => {
 
     authStore.setUserData(apiRegisterData); // Установка данных пользователя через store
 
-    router.push("/GeneralEmpty");
-    signUpStore.signUp = !signUpStore.signUp;
+    router.push("/Dashboard");
   } catch (error: any) {
     if (error.response) {
       console.error("Error response:", error.response.data);

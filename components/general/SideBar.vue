@@ -10,19 +10,15 @@
         <span class="text-black leading-6 text-xl accText">{{
           userData ? userData.fullName : "Guest"
         }}</span>
-        <p class="leading-6 text-gray-400 accText">
-          Last login: {{ userData?.lastLogin ? userData.lastLogin : "N/A"
-          }}<br />
-          Change avatar
-        </p>
+        <p class="leading-6 text-gray-400 accText">Change avatar</p>
       </div>
     </article>
     <div class="px-8 py-6">
       <ul>
         <li class="my-4 label">
           <NuxtLink
-            :class="{ activeLink: $route.path === '/GeneralBlockTariff' }"
-            to="/GeneralBlockTariff"
+            :class="{ activeLink: $route.path === '/Subscription' }"
+            to="/Subscription"
             class="text-black leading-[24px] text-xl cursor-pointer font-medium uppercase hover:font-medium transition"
           >
             Add listing
@@ -110,30 +106,21 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, computed, watch } from "vue";
-import axios from "axios";
+import { ref, onMounted, computed } from "vue";
 import { useAuthStore } from "~/stores/auth";
-import { useFavoritesStore } from "~/stores/favoritesStore";
 
 // Хранилища (Pinia)
 const authStore = useAuthStore();
-const favoritesStore = useFavoritesStore();
 
 // Состояния
 const loading = ref<boolean>(true);
 const error = ref<string | null>(null);
 
 // Получаем токен из authStore
-const token = computed(() => authStore.token);
 const userData = computed(() => authStore.userData);
 
 onMounted(() => {
-  console.log(token, "токен");
   authStore.fetchUserData();
-});
-
-watch(token, (newValue) => {
-  console.log(newValue, " токен");
 });
 
 // Функция выхода
