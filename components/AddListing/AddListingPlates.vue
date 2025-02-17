@@ -1,13 +1,22 @@
 <template>
-  <div
-    class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between mb-[50px]"
-  >
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between mb-[30px]">
     <!-- emirate select -->
-    <BaseDropdown
-      label="Emirate:"
-      :option-list="dropdownStore.emirateList"
-      v-model="listingParams.emirate"
-    />
+    <div>
+      <BaseDropdown
+        label="Emirate:"
+        :option-list="dropdownStore.emirateList"
+        v-model="listingParams.emirate"
+      />
+      <label class="flex items-center gap-[10px] w-fit mt-[10px]">
+        <div class="checkbox">
+          <input type="checkbox" v-model="listingParams.series_hide" />
+          <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
+          <div class="checkmark__off"></div>
+        </div>
+        <p>Hide series</p>
+      </label>
+    </div>
+
     <BaseDropdown
       label="Code:"
       :option-list="dropdownStore.plateCodeList"
@@ -15,15 +24,10 @@
     />
     <!-- code select -->
   </div>
-  <div
-    class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between"
-  >
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between">
     <!-- price input -->
     <div class="option option__input">
-      <label
-        class="font-roboto text-[16px] font-normal leading-[19.2px]"
-        for="emirate"
-      >
+      <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
         Price:
       </label>
       <input
@@ -37,11 +41,7 @@
       <label class="flex items-center gap-[10px] w-fit mt-[10px]">
         <div class="checkbox">
           <input type="checkbox" v-model="listingParams.price_hide" />
-          <img
-            class="checkmark"
-            src="/assets/img/icons/check.svg"
-            alt="hide price"
-          />
+          <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
           <div class="checkmark__off"></div>
         </div>
         <p class="top-[10%]">Hide price</p>
@@ -50,112 +50,64 @@
       <!-- checkbox discount -->
       <label class="flex items-center gap-[10px] w-fit mt-[10px]">
         <div class="checkbox">
-          <input type="checkbox" v-model="checkAddDiscount" />
-          <img
-            class="checkmark"
-            src="/assets/img/icons/check.svg"
-            alt="hide price"
-          />
+          <input type="checkbox" v-model="listingParams.discount" />
+          <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
           <div class="checkmark__off"></div>
         </div>
         <p>Add a discount</p>
       </label>
     </div>
-
-    <!-- design select -->
-    <BaseDropdown
-      label="Design"
-      :option-list="designList"
-      v-model="listingParams.design"
-    />
-  </div>
-
-  <!-- price with discount -->
-  <div
-    v-show="checkAddDiscount"
-    class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between mt-[20px]"
-  >
-    <div class="option option__input input_discount">
-      <label
-        class="font-roboto text-[16px] font-normal leading-[19.2px]"
-        for="emirate"
-      >
-        Price with discount:
+    <div class="option">
+      <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
+        Number:
       </label>
       <input
-        class="pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
+        class="input_number pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
         type="text"
-        v-model="listingParams.discountPrice"
-        @input="handleDiscountPriceInput"
+        v-model="listingParams.number"
+        @input="handleNumberInput"
+        maxlength="5"
       />
-    </div>
-  </div>
-
-  <!-- number/hide number and preview -->
-  <div
-    class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between mt-[20px]"
-  >
-    <div>
-      <div class="option">
-        <label
-          class="font-roboto text-[16px] font-normal leading-[19.2px]"
-          for="emirate"
-        >
-          Number:
-        </label>
-        <input
-          class="input_number pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
-          type="text"
-          v-model="listingParams.number"
-          @input="handleNumberInput"
-          maxlength="5"
-        />
-        <label class="flex items-center gap-[10px] w-fit mt-[10px]">
+      <!-- <label class="flex items-center gap-[10px] w-fit mt-[10px]">
           <div class="checkbox">
             <input type="checkbox" v-model="checkHideNumber" />
-            <img
-              class="checkmark"
-              src="/assets/img/icons/check.svg"
-              alt="hide price"
-            />
+            <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
             <div class="checkmark__off"></div>
           </div>
           <p>Hide number</p>
+        </label> -->
+    </div>
+    <!-- design select -->
+    <!-- <BaseDropdown label="Design" :option-list="designList" v-model="listingParams.design" /> -->
+  </div>
+
+  <!-- price with discount -->
+
+  <!-- number/hide number and preview -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between mt-[20px]">
+    <div>
+      <div class="option option__input input_discount" v-show="checkAddDiscount">
+        <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
+          Price with discount:
         </label>
-      </div>
-      <div v-show="checkHideNumber" class="option">
         <input
-          class="input_number mt-[20px] pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
+          class="pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
           type="text"
-          v-model="listingParams.hiddenNumber"
-          @input="handleHiddenNumberInput"
-          maxlength="5"
+          v-model="listingParams.discount"
+          @input="handleDiscountPriceInput"
         />
-        <p class="text-[#bfbfbf] text-sm">
-          You can hide only one digit in the number.<br />
-          Simply replace the digit with the letter X.
-        </p>
       </div>
     </div>
+
     <div>
-      <label
-        class="font-roboto text-[16px] font-normal leading-[19.2px]"
-        for="emirate"
-      >
+      <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
         Preview:
       </label>
       <div
         class="relative h-[235px] flex-grow border-[1px] border-[#bfbfbf] rounded-[10px] bg-[#fff]"
       >
-        <!-- <img
-          class="preview__number max-w-[95%]"
-          src="/assets/img/platePreview.png"
-          alt="preview"
-        />
-        <h3 class="preview__number symbols">
-          {{ listingParams.hiddenNumber || listingParams.number }}
-        </h3> -->
         <img
+          v-if="previewImg"
           class="preview__number max-w-[95%]"
           :src="previewImg"
           alt="preview"
@@ -165,72 +117,63 @@
   </div>
 </template>
 <script setup>
-import { onMounted, watch } from "vue";
-import BaseDropdown from "../ui/BaseDropdown.vue";
-import { useDropdownStore } from "~/stores/dropdownStore";
-import { useAuthStore } from "~/stores/auth";
-import axios from "axios";
+import { onMounted, watch } from 'vue';
+import BaseDropdown from '../ui/BaseDropdown.vue';
+import { useDropdownStore } from '~/stores/dropdownStore';
+import { useAuthStore } from '~/stores/auth';
+import axios from 'axios';
 const authStore = useAuthStore();
 const dropdownStore = useDropdownStore();
-const previewImg = ref("");
+const previewImg = ref('');
+const checkAddDiscount = ref(false);
 dropdownStore.fetchDropdownData();
-const designList = ref([
-  { id: 1, name: "Default" },
-  { id: 2, name: "Alternative" },
-  { id: 3, name: "New" },
-]);
 
 const listingParams = ref({
-  emirate: "Dubai",
-  code: "None",
-  price: "",
+  code: 'A',
+  emirate: 'Dubai',
+  number: '',
+  price: '',
+  series_hide: false,
   price_hide: false,
-  price_discount: "",
-  design: "Default",
-  number: "",
-  hiddenNumber: "",
+  description: '',
+  discount: 0,
 });
-
-// checkboxes
-
-const checkAddDiscount = ref(false);
-const checkHideNumber = ref(false);
 
 // price input
 
 const handlePriceInput = () => {
-  const numericValue = listingParams.value.price.replace(/\D/g, "");
+  const numericValue = listingParams.value.price.replace(/\D/g, '');
 
   listingParams.value.price = formatPrice(numericValue);
 };
 
 const handleDiscountPriceInput = () => {
-  const numericValue = listingParams.value.discountPrice.replace(/\D/g, "");
+  const numericValue = listingParams.value.discountPrice.replace(/\D/g, '');
 
   listingParams.value.discountPrice = formatPrice(numericValue);
 };
 
 const formatPrice = (value) => {
-  const formatter = new Intl.NumberFormat("en-US", {
-    style: "decimal",
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'decimal',
     useGrouping: true,
   });
 
-  return value ? formatter.format(Number(value)).replace(/,/g, " ") : "";
+  return value ? formatter.format(Number(value)).replace(/,/g, ' ') : '';
 };
 
 // number input
 const handleNumberInput = () => {
-  listingParams.value.number = listingParams.value.number.replace(/\D/g, "");
+  listingParams.value.number = listingParams.value.number.replace(/\D/g, '');
 };
 
 const handleHiddenNumberInput = () => {
-  const allow = new Set(["X", "x"]); // Разрешенные заменители
+  const allow = new Set(['X', 'x']); // Разрешенные заменители
   let xCount = 0; // Счетчик символов X
 
   // Проверяем каждый символ
   listingParams.value.hiddenNumber = listingParams.value.hiddenNumber
-    .split("")
+    .split('')
     .map((char, index) => {
       if (allow.has(char)) {
         // Если символ X или его вариации, увеличиваем счетчик
@@ -239,7 +182,7 @@ const handleHiddenNumberInput = () => {
           return char;
         } else {
           // Если символ X уже был, удаляем его
-          return "";
+          return '';
         }
       }
       // Если символ совпадает с символом первого инпута
@@ -247,9 +190,9 @@ const handleHiddenNumberInput = () => {
         return char;
       }
       // Удаляем некорректные символы
-      return "";
+      return '';
     })
-    .join("");
+    .join('');
 
   // Ограничиваем длину до длины первого инпута
   listingParams.value.number = listingParams.value.number.slice(
@@ -257,6 +200,8 @@ const handleHiddenNumberInput = () => {
     listingParams.value.number.length
   );
 };
+
+const authToken = authStore.token;
 
 const getPlatePreview = async () => {
   try {
@@ -266,43 +211,39 @@ const getPlatePreview = async () => {
     const selectedCode = toRaw(dropdownStore.plateCodeList).find(
       (code) => code.name === listingParams.value.code
     );
-
-    const token = authStore.authToken;
     const previewResponse = await axios.post(
       `https://api.dev.numbers.ae/v1/account/plate/generate`,
       {
         code: selectedCode.id,
-        number:
-          listingParams.value.number === ""
-            ? 99999
-            : listingParams.value.number,
+        number: listingParams.value.number === '' ? 99999 : listingParams.value.number,
         region: selectedEmirate.id,
         version: 0,
-        hide_series: 5,
+        hide_series: listingParams.series_hide === true ? 1 : 0,
       },
       {
         headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json',
         },
       }
     );
-    console.log(previewResponse);
     previewImg.value = `https://api.dev.numbers.ae${previewResponse.data.default}`;
-    console.log(previewImg.value);
+    console.log(previewResponse, 'preview response');
   } catch (error) {
     console.log(error);
   }
 };
 
-onMounted(() => {
-  dropdownStore.fetchPlateCodeDropdownData(1);
+onMounted(async () => {
+  await dropdownStore.fetchPlateCodeDropdownData(1);
+  getPlatePreview();
 });
 
 watch(
   () => listingParams.value,
   () => {
     getPlatePreview();
+    console.log(listingParams.value);
   },
   { deep: true }
 );
@@ -313,14 +254,11 @@ watch(
     const selectedEmirate = toRaw(dropdownStore.emirateList).find(
       (item) => item.name === newEmirate
     );
+    await dropdownStore.fetchPlateCodeDropdownData(selectedEmirate.id);
 
-    if (selectedEmirate) {
-      // Ждём завершения асинхронного запроса
-      await dropdownStore.fetchPlateCodeDropdownData(selectedEmirate.id);
-
-      // После получения данных устанавливаем значение
-      listingParams.value.code = dropdownStore.toggleDefaultCode;
-    }
+    // После получения данных устанавливаем значение
+    // listingParams.value.code = dropdownStore.toggleDefaultCode;
+    listingParams.value.code = dropdownStore.defaultPlateCode;
   }
 );
 </script>
@@ -336,7 +274,7 @@ watch(
 }
 
 .option__input::after {
-  content: "AED";
+  content: 'AED';
   display: block;
   position: absolute;
   right: 30px;
@@ -399,7 +337,7 @@ watch(
 
 .preview__number.symbols {
   transform: translate(-35%, -47%);
-  font-family: "LicensePlate", sans-serif;
+  font-family: 'LicensePlate', sans-serif;
   font-size: 55px;
 }
 </style>

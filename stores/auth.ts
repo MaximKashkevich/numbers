@@ -33,6 +33,7 @@ export const useAuthStore = defineStore("auth", {
         sameSite: "strict",
       });
       authToken.value = rememberMe ? token : null;
+      console.log(authToken.value, "token");
     },
     setUserData(user: UserData | null) {
       this.userData = user;

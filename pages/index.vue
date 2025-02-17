@@ -152,6 +152,7 @@
       >
         Submit a purchase order
       </ButtonBlue>
+      <!-- <PopupPurchaseOrder ref="popupRef"></PopupPurchaseOrder> -->
     </div>
     <h3
       class="w-[198px] h-[60px] text-[50px] font-normal leading-[60px] text-left mt-[150px]"
@@ -287,9 +288,9 @@
 
 <script setup lang="ts">
 import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
-import SimilarNumber from "../components/SimilarNumbers/SimilarNumber.vue";
 import ButtonPlus from "../components/ButtonPlus/ButtonPlus.vue";
 import ContactForm from "../components/ContactForm/ContactForm.vue";
+import PopupPurchaseOrder from "../components/ui/PopupPurchaseOrder.vue";
 
 import "/assets/css/main.css";
 import { ref, onMounted } from "vue";
@@ -316,6 +317,15 @@ const props = defineProps({
     default: 7353,
   },
 });
+
+// popup
+// const popupRef = ref(null);
+
+// const handleClickPopup = () => {
+//   if (popupRef.value) {
+//     popupRef.value.togglePopup();
+//   }
+// };
 
 // Состояние
 const showMore = ref(false);

@@ -1,35 +1,35 @@
-import { defineStore } from "pinia";
-import axios from "axios";
+import { defineStore } from 'pinia';
+import axios from 'axios';
 
 interface DropdownOption {
   id: number;
   name: string;
 }
 
-export const useDropdownStore = defineStore("dropdownStore", {
+export const useDropdownStore = defineStore('dropdownStore', {
   state: () => ({
     openDropdowns: [] as number[], // Список открытых дропдаунов
     plateCodeList: [] as DropdownOption[],
     emirateList: [] as DropdownOption[],
     operatorList: [] as DropdownOption[],
     operatorCodeList: [] as DropdownOption[],
-    defaultPlateCode: "not" as string,
-    defaultPhoneCode: "not" as string,
+    defaultPlateCode: 'not' as string,
+    defaultPhoneCode: 'not' as string,
   }),
   actions: {
     async fetchDropdownData() {
       try {
         const regionsResponse = await axios.get(
-          "https://api.dev.numbers.ae/v1/account/regions/list"
+          'https://api.dev.numbers.ae/v1/account/regions/list'
         );
         this.emirateList = regionsResponse.data.result.items;
         //
         const operatorResponse = await axios.get(
-          "https://api.dev.numbers.ae/v1/account/operators/list"
+          'https://api.dev.numbers.ae/v1/account/operators/list'
         );
         this.operatorList = operatorResponse.data.result.items;
         const operatorCodeResponse = await axios.get(
-          "https://api.dev.numbers.ae/v1/account/operators/codes/list"
+          'https://api.dev.numbers.ae/v1/account/operators/codes/list'
         );
         this.operatorCodeList = operatorCodeResponse.data.result.items;
       } catch (error) {
@@ -43,6 +43,7 @@ export const useDropdownStore = defineStore("dropdownStore", {
         );
         this.plateCodeList = plateCodesResponse.data.items;
         this.defaultPlateCode = String(this.plateCodeList[0].name);
+        console.log(this.defaultPlateCode, 'default plate code');
       } catch (error) {
         console.log(error);
       }
@@ -58,9 +59,7 @@ export const useDropdownStore = defineStore("dropdownStore", {
     },
     unregisterDropdown(id: number) {
       // Удалить дропдаун из списка открытых
-      this.openDropdowns = this.openDropdowns.filter(
-        (dropdownId: number) => dropdownId !== id
-      );
+      this.openDropdowns = this.openDropdowns.filter((dropdownId: number) => dropdownId !== id);
     },
     isDropdownOpen(id: number) {
       // Проверить, открыт ли конкретный дропдаун

@@ -1,8 +1,6 @@
 <template>
   <div class="container-input pt-[150px]">
-    <div
-      class="flex gap-[20px] items-center justify-between flex-wrap md:flex-nowrap"
-    >
+    <div class="flex gap-[20px] items-center justify-between flex-wrap md:flex-nowrap">
       <div class="w-full md:w-[30%] min-w-[250px]">
         <label
           class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]"
@@ -14,9 +12,7 @@
           <button
             :class="[
               'button__filter w-[50%] h-[51.2px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center',
-              plateStore.selectedPlateType
-                ? 'border-[#000]'
-                : 'border-[#bfbfbf]',
+              plateStore.selectedPlateType ? 'border-[#000]' : 'border-[#bfbfbf]',
             ]"
             @click="changeTypePlate"
           >
@@ -25,9 +21,7 @@
           <button
             :class="[
               'button__filter w-[50%] h-[51.2px] rounded-[100px] border font-roboto text-[16px] font-normal leading-[19.2px] flex justify-center items-center text-center',
-              !plateStore.selectedPlateType
-                ? 'border-[#000]'
-                : 'border-[#bfbfbf]',
+              !plateStore.selectedPlateType ? 'border-[#000]' : 'border-[#bfbfbf]',
             ]"
             @click="changeTypePhone"
           >
@@ -56,13 +50,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch } from "vue";
-import { usePlateStore } from "~/stores/plateStore";
-import { useRouter, useRoute } from "vue-router";
-import { useDropdownStore } from "~/stores/dropdownStore";
-import CatalogPlateFilters from "./CatalogPlateFilters.vue";
-import CatalogPage from "./CatalogPage.vue";
-import CatalogPhoneFilters from "./CatalogPhoneFilters.vue";
+import { onMounted, watch } from 'vue';
+import { usePlateStore } from '~/stores/plateStore';
+import { useRouter, useRoute } from 'vue-router';
+import { useDropdownStore } from '~/stores/dropdownStore';
+import CatalogPlateFilters from './CatalogPlateFilters.vue';
+import CatalogPage from './CatalogPage.vue';
+import CatalogPhoneFilters from './CatalogPhoneFilters.vue';
 const dropdownStore = useDropdownStore();
 const plateStore = usePlateStore();
 const route = useRoute();
@@ -76,14 +70,14 @@ const changeTypePlate = () => {
   plateStore.resetCatalogData();
   plateStore.handleNumberTypeChange(true);
   dropdownStore.closeAllDropdowns();
-  router.push({ query: { ...route.query, numberType: "plate" } });
+  router.push({ query: { ...route.query, numberType: 'plate' } });
 };
 
 const changeTypePhone = () => {
   plateStore.resetCatalogData();
   plateStore.handleNumberTypeChange(false);
   dropdownStore.closeAllDropdowns();
-  router.push({ query: { ...route.query, numberType: "phone" } });
+  router.push({ query: { ...route.query, numberType: 'phone' } });
 };
 
 watch(
@@ -94,11 +88,11 @@ watch(
 );
 
 const handleRouteChange = async () => {
-  if (route.query.numberType === "plate") {
-    plateStore.handleNumberTypeChange(true);
+  if (route.query.numberType === 'phone') {
+    plateStore.handleNumberTypeChange(false);
     // plateStore.fetchPlate();
   } else {
-    plateStore.handleNumberTypeChange(false);
+    plateStore.handleNumberTypeChange(true);
     // plateStore.fetchPhone();
   }
 };
