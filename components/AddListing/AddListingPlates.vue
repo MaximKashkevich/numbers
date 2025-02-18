@@ -365,6 +365,7 @@ const handleAddPlate = async () => {
         },
       }
     );
+    console.log(addListingResponse, 'ответ на add listing');
     if (addListingResponse.status === 200) {
       alert('Plate successfully added');
     } else {
