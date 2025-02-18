@@ -1,57 +1,38 @@
 <template>
-  <div
-    class="wrapper__signUp flex justify-between gap-[20px] pl-[60px] pr-[60px] pt-[70px] block"
-  >
-    <div
-      class="w-[650px] max-w-[100%] flex flex-col justify-between min-h-[100%]"
-    >
+  <div class="wrapper__signUp flex justify-between gap-[20px] pl-[60px] pr-[60px] pt-[70px] block">
+    <div class="w-[650px] max-w-[100%] flex flex-col justify-between min-h-[100%]">
       <div>
         <h1 class="tw-page-heading w-[430px]">
           Welcome<br />
           to Numbers.ae
         </h1>
         <p class="pt-[30px] max-w-[500px]">
-          Numbers.ae is a Web service aimed to create an easy and convenient way
-          to purchase or sell Plate and Mobile Numbers in Dubai, Abu Dhabi, and
-          other Emirates.
+          Numbers.ae is a Web service aimed to create an easy and convenient way to purchase or sell
+          Plate and Mobile Numbers in Dubai, Abu Dhabi, and other Emirates.
         </p>
       </div>
 
       <div class="flex items-end pt-[30px] xl:pt-0">
         <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
           No account?
-          <span @click="togglePopupSignUp" class="text-blue-500 cursor-pointer"
-            >Sign Up</span
-          >
+          <span @click="togglePopupSignUp" class="text-blue-500 cursor-pointer">Sign Up</span>
         </h2>
       </div>
     </div>
 
     <div class="mr-[50px]">
-      <h2 class="font-roboto text-[35px] font-medium leading-[42px]">
-        Login with social networks
-      </h2>
+      <h2 class="font-roboto text-[35px] font-medium leading-[42px]">Login with social networks</h2>
       <div class="button-container flex flex-col gap-[20px] pt-[30px]">
         <div class="gap-[20px] grid grid-cols-2 image">
           <ButtonLogin class="w-full">
-            <img
-              src="../public/assets/google-logo.svg"
-              alt="Google"
-              class="w-[90px] h-[30px]"
-            />
+            <img src="../public/assets/google-logo.svg" alt="Google" class="w-[90px] h-[30px]" />
           </ButtonLogin>
           <ButtonLogin class="w-full">
-            <img
-              src="../public/assets/facebook.svg"
-              alt="Facebook"
-              class="w-[100px] h-[20px]"
-            />
+            <img src="../public/assets/facebook.svg" alt="Facebook" class="w-[100px] h-[20px]" />
           </ButtonLogin>
         </div>
         <div class="pt-[70px]">
-          <h3
-            class="font-roboto text-[35px] font-medium leading-[42px] text-left flex-wrap"
-          >
+          <h3 class="font-roboto text-[35px] font-medium leading-[42px] text-left flex-wrap">
             Or login with username and password
           </h3>
           <form @submit.prevent="handleSubmit" class="pt-[30px]">
@@ -64,19 +45,13 @@
                 type="text"
                 id="username"
                 class="input mt-2 bg-[#fff] h-[52px] border-[1px] pl-[20px] text-[#B3B3B3] border-[#B3B3B3] rounded-[50px] placeholder-custom mb-[10px]"
-                placeholder="username@gmail.com or 050 123 45 67 or JohnSnow_123"
+                placeholder="username@gmail.com or JohnSnow_123"
               />
-              <span v-if="errors.username" class="text-red-500">{{
-                errors.username
-              }}</span>
+              <span v-if="errors.username" class="text-red-500">{{ errors.username }}</span>
             </div>
 
             <div class="flex flex-col">
-              <label
-                for="password"
-                class="text-[14px] leading-[16.8px] h-[20px]"
-                >Password:</label
-              >
+              <label for="password" class="text-[14px] leading-[16.8px] h-[20px]">Password:</label>
               <div class="relative flex items-center mt-2">
                 <input
                   v-model="apiLog.password"
@@ -86,11 +61,7 @@
                   placeholder="xxxxxxx"
                 />
                 <div class="absolute right-[20px]">
-                  <button
-                    class="flex items-center"
-                    @click="toggleVisibility"
-                    type="button"
-                  >
+                  <button class="flex items-center" @click="toggleVisibility" type="button">
                     <img
                       class="w-[28px] h-[28px]"
                       :src="
@@ -103,9 +74,7 @@
                   </button>
                 </div>
               </div>
-              <span v-if="errors.password" class="text-red-500">{{
-                errors.password
-              }}</span>
+              <span v-if="errors.password" class="text-red-500">{{ errors.password }}</span>
             </div>
             <div class="flex items-center mt-[15px] mb-[30px]">
               <input
@@ -123,9 +92,7 @@
             </div>
 
             <NuxtLink>
-              <ButtonBlue type="submit" class="w-[300px] py-[0.7rem]">
-                Sign in
-              </ButtonBlue>
+              <ButtonBlue type="submit" class="w-[300px] py-[0.7rem]"> Sign in </ButtonBlue>
             </NuxtLink>
           </form>
         </div>
@@ -142,13 +109,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed } from "vue";
-import { useCookie } from "nuxt/app";
-import { useRouter } from "vue-router";
-import axios from "axios";
-import { useAuthStore } from "@/stores/auth";
-import Registration from "~/components/Registration/Registration.vue";
-import { useRedirectScheduleStore } from "~/stores/redirectSchedule";
+import { ref, reactive, computed } from 'vue';
+import { useCookie } from 'nuxt/app';
+import { useRouter } from 'vue-router';
+import axios from 'axios';
+import { useAuthStore } from '@/stores/auth';
+import Registration from '~/components/Registration/Registration.vue';
+import { useRedirectScheduleStore } from '~/stores/redirectSchedule';
 const redirectStore = useRedirectScheduleStore();
 const authStore = useAuthStore();
 
@@ -175,19 +142,19 @@ interface apiLOgs {
 const router = useRouter();
 
 const form = ref<FormInterface>({
-  username: "",
-  password: "",
+  username: '',
+  password: '',
   rememberMe: false,
 });
 
 const errors = ref<errors>({
-  username: "",
-  password: "",
+  username: '',
+  password: '',
 });
 
 const apiLog = reactive<apiLOgs>({
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 });
 
 // toggle visibility
@@ -198,59 +165,48 @@ const toggleVisibility = () => {
 
 // Form validation
 const validate = () => {
-  errors.value.username = "";
-  errors.value.password = "";
+  errors.value.username = '';
+  errors.value.password = '';
 
   const username = apiLog.email;
 
   if (!username) {
-    errors.value.username = "Username is required.";
+    errors.value.username = 'Username is required.';
   } else if (
     !/^[a-zA-Z0-9_]+$/.test(username) &&
     !/^[\w.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(username) &&
-    !/^\+?\d{1,3}[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/.test(
-      username
-    )
+    !/^\+?\d{1,3}[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/.test(username)
   ) {
-    errors.value.username =
-      "Please enter a valid email, phone number, or username.";
+    errors.value.username = 'Please enter a valid email, phone number, or username.';
   }
 
   if (!apiLog.password) {
-    errors.value.password = "Password is required.";
+    errors.value.password = 'Password is required.';
   } else if (apiLog.password.length < 6) {
-    errors.value.password = "Password must be at least 6 characters.";
+    errors.value.password = 'Password must be at least 6 characters.';
   }
 };
 
 // API login function
 const apiLogin = async () => {
   try {
-    const response = await axios.post(
-      "https://api.dev.numbers.ae/v1/auth/signin",
-      apiLog,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await axios.post('https://api.dev.numbers.ae/v1/auth/signin', apiLog, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
     const token = response.data?.result?.token;
 
     if (token) {
       authStore.setToken(token, form.value.rememberMe);
-      router.push(
-        redirectStore.upcomingRedirect
-          ? redirectStore.upcomingRedirect
-          : "/Dashboard"
-      );
-      redirectStore.upcomingRedirect = "null";
+      router.push(redirectStore.upcomingRedirect ? redirectStore.upcomingRedirect : '/Dashboard');
+      redirectStore.upcomingRedirect = 'null';
     } else {
-      console.error("Токен отсутствует в ответе от сервера.");
+      console.error('Токен отсутствует в ответе от сервера.');
     }
   } catch (error) {
-    console.error("Ошибка при логине:", error);
+    console.error('Ошибка при логине:', error);
   }
 };
 

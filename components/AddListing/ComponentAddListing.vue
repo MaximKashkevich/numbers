@@ -27,22 +27,12 @@
     </div>
     <AddListingPlates v-if="listingTypePlate" />
     <AddListingPhones v-if="!listingTypePlate" />
-    <ButtonBlue
-      @click="
-        () => {
-          handleAccept();
-        }
-      "
-      class="flex self-end justify-center font-bold max-w-[250px] mt-[50px]"
-    >
-      Add plate number
-    </ButtonBlue>
   </div>
 </template>
 <script setup>
-import { useDropdownStore } from "~/stores/dropdownStore";
-import AddListingPlates from "./AddListingPlates.vue";
-import AddListingPhones from "./AddListingPhones.vue";
+import { useDropdownStore } from '~/stores/dropdownStore';
+import AddListingPlates from './AddListingPlates.vue';
+import AddListingPhones from './AddListingPhones.vue';
 const dropdownStore = useDropdownStore();
 dropdownStore.fetchDropdownData();
 const listingTypePlate = ref(true);
@@ -64,7 +54,7 @@ const toggleListingType = () => {
 }
 
 .option__input::after {
-  content: "AED";
+  content: 'AED';
   display: block;
   position: absolute;
   right: 30px;
@@ -127,7 +117,7 @@ const toggleListingType = () => {
 
 .preview__number.symbols {
   transform: translate(-35%, -47%);
-  font-family: "LicensePlate", sans-serif;
+  font-family: 'LicensePlate', sans-serif;
   font-size: 55px;
 }
 </style>

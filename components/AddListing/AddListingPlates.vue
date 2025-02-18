@@ -9,7 +9,7 @@
       />
       <label class="flex items-center gap-[10px] w-fit mt-[10px]">
         <div class="checkbox">
-          <input type="checkbox" v-model="listingParams.series_hide" />
+          <input type="checkbox" v-model="listingParams.hide_series" />
           <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
           <div class="checkmark__off"></div>
         </div>
@@ -50,7 +50,7 @@
       <!-- checkbox discount -->
       <label class="flex items-center gap-[10px] w-fit mt-[10px]">
         <div class="checkbox">
-          <input type="checkbox" v-model="listingParams.discount" />
+          <input type="checkbox" v-model="checkAddDiscount" />
           <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
           <div class="checkmark__off"></div>
         </div>
@@ -114,6 +114,7 @@
         />
       </div>
     </div>
+    <ButtonBlue @click="handleAddPlate" class="w-fit">Add Plate Number</ButtonBlue>
   </div>
 </template>
 <script setup>
@@ -122,21 +123,23 @@ import BaseDropdown from '../ui/BaseDropdown.vue';
 import { useDropdownStore } from '~/stores/dropdownStore';
 import { useAuthStore } from '~/stores/auth';
 import axios from 'axios';
+import ButtonBlue from '../Button-blue/ButtonBlue.vue';
 const authStore = useAuthStore();
+const authToken = authStore.token;
 const dropdownStore = useDropdownStore();
+dropdownStore.fetchDropdownData();
 const previewImg = ref('');
 const checkAddDiscount = ref(false);
-dropdownStore.fetchDropdownData();
 
 const listingParams = ref({
   code: 'A',
   emirate: 'Dubai',
   number: '',
   price: '',
-  series_hide: false,
+  hide_series: false,
   price_hide: false,
   description: '',
-  discount: 0,
+  discount: '',
 });
 
 // price input
@@ -148,9 +151,11 @@ const handlePriceInput = () => {
 };
 
 const handleDiscountPriceInput = () => {
-  const numericValue = listingParams.value.discountPrice.replace(/\D/g, '');
+  const numericValue = listingParams.value.discount.replace(/\D/g, '');
 
-  listingParams.value.discountPrice = formatPrice(numericValue);
+  listingParams.value.discount = formatPrice(numericValue);
+  console.log(listingParams.value.discount, 'discount');
+  console.log(typeof listingParams.value.discount);
 };
 
 const formatPrice = (value) => {
@@ -167,6 +172,7 @@ const handleNumberInput = () => {
   listingParams.value.number = listingParams.value.number.replace(/\D/g, '');
 };
 
+// превью
 const handleHiddenNumberInput = () => {
   const allow = new Set(['X', 'x']); // Разрешенные заменители
   let xCount = 0; // Счетчик символов X
@@ -201,8 +207,6 @@ const handleHiddenNumberInput = () => {
   );
 };
 
-const authToken = authStore.token;
-
 const getPlatePreview = async () => {
   try {
     const selectedEmirate = toRaw(dropdownStore.emirateList).find(
@@ -218,7 +222,8 @@ const getPlatePreview = async () => {
         number: listingParams.value.number === '' ? 99999 : listingParams.value.number,
         region: selectedEmirate.id,
         version: 0,
-        hide_series: listingParams.series_hide === true ? 1 : 0,
+        // hide_series: listingParams.hide_series === true ? 0 : 1,
+        hide_series: listingParams.value.hide_series === true ? 1 : 0,
       },
       {
         headers: {
@@ -228,7 +233,6 @@ const getPlatePreview = async () => {
       }
     );
     previewImg.value = `https://api.dev.numbers.ae${previewResponse.data.default}`;
-    console.log(previewResponse, 'preview response');
   } catch (error) {
     console.log(error);
   }
@@ -243,7 +247,6 @@ watch(
   () => listingParams.value,
   () => {
     getPlatePreview();
-    console.log(listingParams.value);
   },
   { deep: true }
 );
@@ -261,6 +264,56 @@ watch(
     listingParams.value.code = dropdownStore.defaultPlateCode;
   }
 );
+
+const handleAddPlate = async () => {
+  try {
+    const selectedEmirate = toRaw(dropdownStore.emirateList).find(
+      (region) => region.name === listingParams.value.emirate
+    );
+    const selectedCode = toRaw(dropdownStore.plateCodeList).find(
+      (code) => code.name === listingParams.value.code
+    );
+    const formattedPrice = listingParams.value.price.replace(/\s/g, '');
+    const formattedDiscount = Number(listingParams.value.discount.replace(/\s/g, ''));
+    //////////////////
+    console.log(
+      {
+        code: selectedCode.id,
+        emirate: String(selectedEmirate.id),
+        number: listingParams.value.number,
+        price: formattedPrice,
+        series_hide: listingParams.value.hide_series,
+        price_hide: listingParams.value.price_hide,
+        description: '',
+        discount: formattedDiscount,
+      },
+      'pre add listing'
+    );
+    /////////////////
+    const addListingResponse = await axios.post(
+      `https://api.dev.numbers.ae/v1/account/plate/add`,
+      {
+        code: selectedCode.id,
+        emirate: String(selectedEmirate.id),
+        number: listingParams.value.number,
+        price: formattedPrice,
+        series_hide: listingParams.value.hide_series,
+        price_hide: listingParams.value.price_hide,
+        description: '',
+        discount: formattedDiscount,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    console.log(addListingResponse);
+  } catch (error) {
+    console.error(error);
+  }
+};
 </script>
 <style scoped>
 .option {
