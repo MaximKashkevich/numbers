@@ -1,8 +1,6 @@
 <template>
   <div @click="toggleDropdown" class="relative option w-[100%]">
-    <label
-      class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#b3b3b3]"
-    >
+    <label class="font-roboto text-[16px] font-normal leading-[19.2px] text-[#000]">
       {{ label }}
     </label>
     <button
@@ -18,12 +16,7 @@
         viewBox="0 0 24 24"
         stroke="currentColor"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M19 9l-7 7-7-7"
-        />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
     </button>
     <ul
@@ -45,8 +38,8 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
-import { useDropdownStore } from "~/stores/dropdownStore";
+import { ref } from 'vue';
+import { useDropdownStore } from '~/stores/dropdownStore';
 
 const props = defineProps({
   label: {
@@ -63,7 +56,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(['update:modelValue']);
 const isDropdownOpen = ref(false);
 
 const dropdownStore = useDropdownStore();
@@ -98,7 +91,7 @@ watch(
 );
 
 const handleOptionChange = (optionName) => {
-  emit("update:modelValue", optionName);
+  emit('update:modelValue', optionName);
   isDropdownOpen.value = true;
   // router.push({
   //   query: {

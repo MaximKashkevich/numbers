@@ -26,79 +26,70 @@
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between">
     <!-- price input -->
-    <div class="option option__input">
-      <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
-        Price:
-      </label>
-      <input
-        class="pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
-        type="text"
-        v-model="listingParams.price"
-        @input="handlePriceInput"
-      />
-
-      <!-- checkbox price -->
-      <label class="flex items-center gap-[10px] w-fit mt-[10px]">
-        <div class="checkbox">
-          <input type="checkbox" v-model="listingParams.price_hide" />
-          <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
-          <div class="checkmark__off"></div>
-        </div>
-        <p class="top-[10%]">Hide price</p>
-      </label>
-
-      <!-- checkbox discount -->
-      <label class="flex items-center gap-[10px] w-fit mt-[10px]">
-        <div class="checkbox">
-          <input type="checkbox" v-model="checkAddDiscount" />
-          <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
-          <div class="checkmark__off"></div>
-        </div>
-        <p>Add a discount</p>
-      </label>
-    </div>
-    <div class="option">
-      <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
-        Number:
-      </label>
-      <input
-        class="input_number pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
-        type="text"
-        v-model="listingParams.number"
-        @input="handleNumberInput"
-        maxlength="5"
-      />
-      <!-- <label class="flex items-center gap-[10px] w-fit mt-[10px]">
+    <div>
+      <div class="option option__input mb-[20px]">
+        <label
+          class="font-roboto text-[16px] font-normal leading-[19.2px] flex gap-4"
+          for="emirate"
+        >
+          <h4>Price:</h4>
+        </label>
+        <input
+          class="pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px] cursor-text"
+          :class="{ 'border-red-500': priceErrors !== '' }"
+          type="text"
+          v-model="listingParams.price"
+          @input="handlePriceInput"
+        />
+        <p class="text-red-500" v-show="priceErrors.price !== ''">{{ priceErrors }}</p>
+        <!-- checkbox price -->
+        <label class="flex items-center gap-[10px] w-fit mt-[10px]">
           <div class="checkbox">
-            <input type="checkbox" v-model="checkHideNumber" />
+            <input type="checkbox" v-model="listingParams.price_hide" />
             <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
             <div class="checkmark__off"></div>
           </div>
-          <p>Hide number</p>
-        </label> -->
-    </div>
-    <!-- design select -->
-    <!-- <BaseDropdown label="Design" :option-list="designList" v-model="listingParams.design" /> -->
-  </div>
+          <p class="top-[10%]">Hide price</p>
+        </label>
 
-  <!-- price with discount -->
-
-  <!-- number/hide number and preview -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between mt-[20px]">
-    <div>
+        <!-- checkbox discount -->
+        <label class="flex items-center gap-[10px] w-fit mt-[10px]">
+          <div class="checkbox">
+            <input type="checkbox" v-model="checkAddDiscount" />
+            <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
+            <div class="checkmark__off"></div>
+          </div>
+          <p>Add a discount</p>
+        </label>
+      </div>
       <div class="option option__input input_discount" v-show="checkAddDiscount">
         <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
           Price with discount:
         </label>
         <input
-          class="pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px]"
+          class="pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px] cursor-text"
+          :class="{ 'border-red-500': discountErrors }"
           type="text"
           v-model="listingParams.discount"
           @input="handleDiscountPriceInput"
         />
+        <p class="text-red-500" v-show="discountErrors !== ''">{{ discountErrors }}</p>
+      </div>
+      <div class="option">
+        <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
+          Number:
+        </label>
+        <input
+          class="input_number pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px] cursor-text"
+          :class="{ 'border-red-500': numberErrors }"
+          type="text"
+          v-model="listingParams.number"
+          @input="handleNumberInput"
+          maxlength="5"
+        />
+        <p class="text-red-500" v-show="numberErrors">{{ numberErrors }}</p>
       </div>
     </div>
-
     <div>
       <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
         Preview:
@@ -114,8 +105,28 @@
         />
       </div>
     </div>
-    <ButtonBlue @click="handleAddPlate" class="w-fit">Add Plate Number</ButtonBlue>
+    <!-- design select -->
+    <!-- <BaseDropdown label="Design" :option-list="designList" v-model="listingParams.design" /> -->
   </div>
+
+  <!-- price with discount -->
+
+  <!-- number/hide number and preview -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between mt-[20px]">
+    <div></div>
+  </div>
+  <div class="mt-[30px] mb-[30px]">
+    <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
+      Description:
+    </label>
+    <textarea
+      name="message"
+      v-model="listingParams.description"
+      class="h-[150px] w-full max-h-[150px] border-[#bfbfbf] border-[1px] pl-[15px] pr-[12px] pt-[12px] placeholder:text-gray-400 placeholder:opacity-80 overflow-hidden resize-none rounded-[20px]"
+      placeholder="Write something important that the buyer needs to know"
+    ></textarea>
+  </div>
+  <ButtonBlue @click="formatListing" class="w-fit">Add Plate Number</ButtonBlue>
 </template>
 <script setup>
 import { onMounted, watch } from 'vue';
@@ -142,20 +153,24 @@ const listingParams = ref({
   discount: '',
 });
 
+const priceErrors = ref('');
+const discountErrors = ref('');
+const numberErrors = ref('');
+
 // price input
 
 const handlePriceInput = () => {
   const numericValue = listingParams.value.price.replace(/\D/g, '');
 
   listingParams.value.price = formatPrice(numericValue);
+  handlePriceErrors();
 };
 
 const handleDiscountPriceInput = () => {
   const numericValue = listingParams.value.discount.replace(/\D/g, '');
 
   listingParams.value.discount = formatPrice(numericValue);
-  console.log(listingParams.value.discount, 'discount');
-  console.log(typeof listingParams.value.discount);
+  handleDiscountErrors();
 };
 
 const formatPrice = (value) => {
@@ -170,6 +185,7 @@ const formatPrice = (value) => {
 // number input
 const handleNumberInput = () => {
   listingParams.value.number = listingParams.value.number.replace(/\D/g, '');
+  handleNumberErrors();
 };
 
 // превью
@@ -259,11 +275,51 @@ watch(
     );
     await dropdownStore.fetchPlateCodeDropdownData(selectedEmirate.id);
 
-    // После получения данных устанавливаем значение
-    // listingParams.value.code = dropdownStore.toggleDefaultCode;
     listingParams.value.code = dropdownStore.defaultPlateCode;
   }
 );
+
+const handlePriceErrors = () => {
+  const formattedPrice = listingParams.value.price.replace(/\s/g, '');
+  if (formattedPrice.length < 1) {
+    priceErrors.value = 'Price is required';
+  } else if (formattedPrice.length > 9) {
+    priceErrors.value = 'The price is too high';
+  } else {
+    priceErrors.value = '';
+  }
+};
+
+const handleDiscountErrors = () => {
+  const formattedDiscount = listingParams.value.discount.replace(/\s/g, '');
+  const formattedPrice = listingParams.value.price.replace(/\s/g, '');
+  if (checkAddDiscount.value) {
+    if (Number(formattedDiscount) >= Number(formattedPrice)) {
+      discountErrors.value = 'The discount must be lower than the price';
+    } else {
+      discountErrors.value = '';
+    }
+  }
+};
+
+const handleNumberErrors = () => {
+  if (listingParams.value.number < 1) {
+    numberErrors.value = 'Plate number is required';
+  } else {
+    numberErrors.value = '';
+  }
+};
+
+const formatListing = () => {
+  handlePriceErrors();
+  handleDiscountErrors();
+  handleNumberErrors();
+
+  if (!priceErrors.value && !discountErrors.value && !numberErrors.value) {
+    handleAddPlate();
+    console.log('handle add plate');
+  }
+};
 
 const handleAddPlate = async () => {
   try {
@@ -275,7 +331,7 @@ const handleAddPlate = async () => {
     );
     const formattedPrice = listingParams.value.price.replace(/\s/g, '');
     const formattedDiscount = Number(listingParams.value.discount.replace(/\s/g, ''));
-    //////////////////
+
     console.log(
       {
         code: selectedCode.id,
@@ -287,9 +343,9 @@ const handleAddPlate = async () => {
         description: '',
         discount: formattedDiscount,
       },
-      'pre add listing'
+      'formatted add listing'
     );
-    /////////////////
+
     const addListingResponse = await axios.post(
       `https://api.dev.numbers.ae/v1/account/plate/add`,
       {
@@ -309,7 +365,11 @@ const handleAddPlate = async () => {
         },
       }
     );
-    console.log(addListingResponse);
+    if (addListingResponse.status === 200) {
+      alert('Plate successfully added');
+    } else {
+      alert('Could not add plate');
+    }
   } catch (error) {
     console.error(error);
   }
@@ -331,11 +391,11 @@ const handleAddPlate = async () => {
   display: block;
   position: absolute;
   right: 30px;
-  top: 26%;
+  top: 33px;
 }
 
 .input_discount::after {
-  top: 49%;
+  top: 38px;
 }
 
 /* checkbox */
