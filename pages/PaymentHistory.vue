@@ -1,12 +1,8 @@
 <template>
   <div>
     <nav class="px-[20px] md:px-[60px] mt-[30px]">
-      <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
-        Home /
-      </NuxtLink>
-      <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer">
-        My Dashboard /
-      </NuxtLink>
+      <NuxtLink to="/" class="text-blue-500 cursor-pointer"> Home / </NuxtLink>
+      <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer"> My Dashboard / </NuxtLink>
       <span class="text-[#BFBFBF]"> Payment history</span>
     </nav>
 
@@ -29,37 +25,27 @@
             class="w-full max-w-[872px] h-[52px] rounded-[10px] border border-[#BFBFBF] bg-[#FFFFFF] flex justify-between items-center mt-[30px] text-[16px] md:text-[14px]"
           >
             <li class="w-[100px] md:w-[80px]">
-              <p class="font-roboto font-medium ml-[15px] text-[16px] text--1">
-                Number
-              </p>
+              <p class="font-roboto font-medium ml-[15px] text-[16px] text--1">Number</p>
             </li>
             <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
 
             <li class="w-[330px] md:w-[200px]">
-              <p class="font-roboto font-medium ml-[15px] text-[16px] text--1">
-                Name of payment
-              </p>
+              <p class="font-roboto font-medium ml-[15px] text-[16px] text--1">Name of payment</p>
             </li>
             <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
 
             <li class="w-[140px] md:w-[100px]">
-              <p class="font-roboto font-medium w-[100px] text-[16px] text--1">
-                Amount, AED
-              </p>
+              <p class="font-roboto font-medium w-[100px] text-[16px] text--1">Amount, AED</p>
             </li>
             <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
 
             <li class="w-[100px] md:w-[80px]">
-              <p class="font-roboto font-medium ml-[15px] text-[16px] text--1">
-                Date
-              </p>
+              <p class="font-roboto font-medium ml-[15px] text-[16px] text--1">Date</p>
             </li>
             <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-[50px]"></div>
 
             <li class="w-[140px]">
-              <p class="font-roboto font-medium ml-[15px] text-[16px] text--1">
-                Status
-              </p>
+              <p class="font-roboto font-medium ml-[15px] text-[16px] text--1">Status</p>
             </li>
           </ul>
 
@@ -74,9 +60,7 @@
                 </li>
                 <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-auto"></div>
                 <li class="w-[330px container-1 ] md:w-[200px]">
-                  <p class="font-roboto mt-[15px] ml-[15px] text--2">
-                    6 months tariff
-                  </p>
+                  <p class="font-roboto mt-[15px] ml-[15px] text--2">6 months tariff</p>
                 </li>
                 <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-auto"></div>
                 <li class="w-[140px] container-1 md:w-[100px]">
@@ -84,21 +68,15 @@
                 </li>
                 <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-auto"></div>
                 <li class="w-[100px] container-1 md:w-[80px]">
-                  <p class="font-roboto mt-[15px] ml-[15px] text--2">
-                    24.12.24
-                  </p>
+                  <p class="font-roboto mt-[15px] ml-[15px] text--2">24.12.24</p>
                 </li>
                 <div class="bg-[#BFBFBF] opacity-50 w-[1px] h-auto"></div>
                 <li class="w-[140px] container-1">
-                  <p
-                    class="font-roboto mt-[15px] text-[#EA0038] text--2 pb-[10px]"
-                  >
+                  <p class="font-roboto mt-[15px] text-[#EA0038] text--2 pb-[10px]">
                     Payment error
                   </p>
                 </li>
-                <div
-                  class="w-full max-w-[872px] border-b border-[#BFBFBF]"
-                ></div>
+                <div class="w-full max-w-[872px] border-b border-[#BFBFBF]"></div>
               </ul>
             </li>
             <!-- Other table rows go here -->
@@ -110,10 +88,10 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
-import SideBar from "../components/general/SideBar.vue";
-import MiniButton from "../components/MiniButton/MiniButton.vue";
-import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
+import { ref, computed } from 'vue';
+import SideBar from '../components/general/SideBar.vue';
+import MiniButton from '../components/MiniButton/MiniButton.vue';
+import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
 
 export default {
   components: {
@@ -133,27 +111,27 @@ export default {
 
     const getButtonClass = (buttonType) => {
       return {
-        "border-[#000000] text-[#000000]": activeButton.value === buttonType,
-        "border-[#BFBFBF] text-[#BFBFBF]": activeButton.value !== buttonType,
+        'border-[#000000] text-[#000000]': activeButton.value === buttonType,
+        'border-[#BFBFBF] text-[#BFBFBF]': activeButton.value !== buttonType,
       };
     };
 
     const selectClasses = computed(() => ({
-      "mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]": true,
-      "border-[#BFBFBF] text-[#BFBFBF]": !isCheckboxChecked.value,
-      "cursor-not-allowed": !isCheckboxChecked.value,
+      'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]': true,
+      'border-[#BFBFBF] text-[#BFBFBF]': !isCheckboxChecked.value,
+      'cursor-not-allowed': !isCheckboxChecked.value,
     }));
 
     const selectClasses2 = computed(() => ({
-      "mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]": true,
-      "border-[#BFBFBF] text-[#BFBFBF]": !isCheckboxChecked2.value,
-      "cursor-not-allowed": !isCheckboxChecked2.value,
+      'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]': true,
+      'border-[#BFBFBF] text-[#BFBFBF]': !isCheckboxChecked2.value,
+      'cursor-not-allowed': !isCheckboxChecked2.value,
     }));
 
     const selectClasses3 = computed(() => ({
-      "border-[#BFBFBF] text-[#BFBFBF]": !isCheckboxChecked3.value,
-      "cursor-not-allowed": !isCheckboxChecked3.value,
-      "mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-full py-[15px] px-[20px]": true,
+      'border-[#BFBFBF] text-[#BFBFBF]': !isCheckboxChecked3.value,
+      'cursor-not-allowed': !isCheckboxChecked3.value,
+      'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-full py-[15px] px-[20px]': true,
     }));
 
     return {

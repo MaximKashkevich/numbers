@@ -1,9 +1,7 @@
 <template>
   <div>
     <nav class="px-[20px] md:px-[60px] mt-[30px]">
-      <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
-        Home /
-      </NuxtLink>
+      <NuxtLink to="/" class="text-blue-500 cursor-pointer"> Home / </NuxtLink>
       <span class="text-[#BFBFBF]"> My Dashboard</span>
     </nav>
 
@@ -21,12 +19,8 @@
           My collections
         </h1>
         <div class="w-full h-[52px] mt-[65px]">
-          <div
-            class="flex items-center flex-wrap justify-between mt-[65px] gap-[20px]"
-          >
-            <p class="font-normal text-[20px]">
-              You have some collections. Create more.
-            </p>
+          <div class="flex items-center flex-wrap justify-between mt-[65px] gap-[20px]">
+            <p class="font-normal text-[20px]">You have some collections. Create more.</p>
             <ButtonBlue
               class="w-[272px] h-[52px] flex justify-center items-center px-[40px] button--blue"
             >
@@ -35,11 +29,7 @@
           </div>
 
           <div class="flex gap-[50px] items-center mt-[70px]">
-            <input
-              type="text"
-              placeholder="Name the collection"
-              class="input--2 text-[#BFBFBF]"
-            />
+            <input type="text" placeholder="Name the collection" class="input--2 text-[#BFBFBF]" />
             <svg
               width="30"
               height="30"
@@ -101,11 +91,7 @@
           </div>
         </div>
         <div class="flex gap-[50px] items-center mt-[70px]">
-          <input
-            type="text"
-            placeholder="Name the collection"
-            class="input--2 text-[#BFBFBF]"
-          />
+          <input type="text" placeholder="Name the collection" class="input--2 text-[#BFBFBF]" />
           <svg
             width="30"
             height="30"
@@ -171,11 +157,11 @@
 </template>
 
 <script>
-import SideBar from "../components/general/SideBar.vue";
-import MiniButton from "../components/MiniButton/MiniButton.vue";
-import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
-import Card2 from "../components/ButtonPLuss/Card2.vue";
-import Card3 from "../components/ButtonPLuss/Card3.vue";
+import SideBar from '../components/general/SideBar.vue';
+import MiniButton from '../components/MiniButton/MiniButton.vue';
+import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
+import Card2 from '../components/ButtonPLuss/Card2.vue';
+import Card3 from '../components/ButtonPLuss/Card3.vue';
 
 export default {
   components: {
@@ -186,12 +172,12 @@ export default {
     Card2,
   },
 };
-import { ref } from "vue";
+import { ref } from 'vue';
 
-const collectionName = ref("");
+const collectionName = ref('');
 
 definePageMeta({
-  middleware: ["subscription"],
+  middleware: ['subscription'],
 });
 </script>
 <style>

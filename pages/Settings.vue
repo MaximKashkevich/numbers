@@ -1,12 +1,8 @@
 <template>
   <div>
     <nav class="px-[20px] md:px-[60px] mt-[30px]">
-      <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
-        Home /
-      </NuxtLink>
-      <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer">
-        My Dashboard /
-      </NuxtLink>
+      <NuxtLink to="/" class="text-blue-500 cursor-pointer"> Home / </NuxtLink>
+      <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer"> My Dashboard / </NuxtLink>
       <span class="text-[#BFBFBF]"> Settings</span>
     </nav>
 
@@ -18,9 +14,7 @@
       </div>
 
       <div class="flex-1">
-        <h1
-          class="w-full md:w-[872px] text-[50px] font-medium leading-[50px] text-left uppercase"
-        >
+        <h1 class="w-full md:w-[872px] text-[50px] font-medium leading-[50px] text-left uppercase">
           Settings
         </h1>
         <div>
@@ -43,9 +37,7 @@
                       :class="{ 'border-red-500': errors.name }"
                       class="w-[300px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-4 text-lg text-[#000000] bg-[#FAFAFA]"
                     />
-                    <span v-if="errors.name" class="text-red-500">{{
-                      errors.name
-                    }}</span>
+                    <span v-if="errors.name" class="text-red-500">{{ errors.name }}</span>
                   </div>
 
                   <div class="w-full">
@@ -63,15 +55,11 @@
                       :class="{ 'border-red-500': errors.mobile }"
                       class="w-[300px] max-w-[426px] lg:w-[430px] sm:w-[430px] h-[50px] mt-[5px] rounded-full border block border-[#BFBFBF] pl-4 text-lg text-[#000000] bg-[#FAFAFA]"
                     />
-                    <span v-if="errors.mobile" class="text-red-500">{{
-                      errors.mobile
-                    }}</span>
+                    <span v-if="errors.mobile" class="text-red-500">{{ errors.mobile }}</span>
                   </div>
                 </div>
 
-                <div
-                  class="flex flex-col md:flex-row gap-[20px] mt-[30px] mb-[30px]"
-                >
+                <div class="flex flex-col md:flex-row gap-[20px] mt-[30px] mb-[30px]">
                   <div>
                     <label
                       for="design"
@@ -123,9 +111,7 @@
                       :class="{ 'border-red-500': errors.email }"
                       class="h-[50px] w-full rounded-full border border-[#BFBFBF] pl-4 text-lg text-[#000000] bg-[#FAFAFA]"
                     />
-                    <span v-if="errors.email" class="text-red-500">{{
-                      errors.email
-                    }}</span>
+                    <span v-if="errors.email" class="text-red-500">{{ errors.email }}</span>
                   </div>
 
                   <div class="flex flex-col w-full sm:w-[430px] relative">
@@ -142,17 +128,13 @@
                       :class="{ 'border-red-500': errors.login }"
                       class="h-[50px] w-full rounded-full border border-[#BFBFBF] pl-4 text-lg text-[#000000] bg-[#FAFAFA]"
                     />
-                    <span v-if="errors.login" class="text-red-500">{{
-                      errors.login
-                    }}</span>
+                    <span v-if="errors.login" class="text-red-500">{{ errors.login }}</span>
                   </div>
                 </div>
               </fieldset>
             </form>
             <div class="mt-[30px]">
-              <h2
-                class="w-full md:w-[872px] text-[35px] font-medium leading-[50px] text-left"
-              >
+              <h2 class="w-full md:w-[872px] text-[35px] font-medium leading-[50px] text-left">
                 Change your password
               </h2>
               <p
@@ -204,16 +186,14 @@
                 </div>
               </div>
               <div class="mt-[70px]">
-                <h2
-                  class="w-full md:w-[872px] text-[35px] font-medium leading-[50px] text-left"
-                >
+                <h2 class="w-full md:w-[872px] text-[35px] font-medium leading-[50px] text-left">
                   What would you like to see first?
                 </h2>
                 <p
                   class="w-[380px] h-[40px] font-normal text-[16px text-[#000000] mt-[30px] text-[#BFBFBF]"
                 >
-                  This setting will affect the order of listing types both in
-                  the main page and your dashboard.
+                  This setting will affect the order of listing types both in the main page and your
+                  dashboard.
                 </p>
               </div>
 
@@ -227,10 +207,7 @@
                       value="plate"
                       v-model="selectedOption"
                     />
-                    <span
-                      class="fake"
-                      :class="{ active: selectedOption === 'plate' }"
-                    ></span>
+                    <span class="fake" :class="{ active: selectedOption === 'plate' }"></span>
                   </div>
                   <label for="id1" class="label">Your Plate numbers</label>
 
@@ -242,19 +219,13 @@
                       value="mobile"
                       v-model="selectedOption"
                     />
-                    <span
-                      class="fake"
-                      :class="{ active: selectedOption === 'mobile' }"
-                    ></span>
+                    <span class="fake" :class="{ active: selectedOption === 'mobile' }"></span>
                   </div>
                   <label for="id2" class="label">Your Mobile numbers</label>
                 </div>
               </div>
             </div>
-            <ButtonBlue
-              class="w-[330px] lg:w-[500px] mt-[70px]"
-              @click="validateForm"
-            >
+            <ButtonBlue class="w-[330px] lg:w-[500px] mt-[70px]" @click="validateForm">
               Save changes
             </ButtonBlue>
           </div>
@@ -265,11 +236,11 @@
 </template>
 
 <script setup>
-import SideBar from "../components/general/SideBar.vue";
-import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
-import { nextTick, onMounted, ref, watch } from "vue";
-import { useAuthStore } from "~/stores/auth";
-import axios from "axios";
+import SideBar from '../components/general/SideBar.vue';
+import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
+import { nextTick, onMounted, ref, watch } from 'vue';
+import { useAuthStore } from '~/stores/auth';
+import axios from 'axios';
 const authStore = useAuthStore();
 
 onMounted(() => {
@@ -279,15 +250,12 @@ onMounted(() => {
 const fetchUserData = async () => {
   const token = authStore.token;
   try {
-    const response = await axios.get(
-      "https://api.dev.numbers.ae/v1/user/info",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await axios.get('https://api.dev.numbers.ae/v1/user/info', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
 
     const data = response.data.result;
     form.value = {
@@ -295,31 +263,31 @@ const fetchUserData = async () => {
       mobileNumber: data.mobileNumber,
       email: data.email,
       login: data.login,
-      emirate: "Dubai",
+      emirate: 'Dubai',
     };
   } catch (error) {
-    console.error("Ошибка:", error);
+    console.error('Ошибка:', error);
   }
 };
 
 const form = ref({
-  login: "",
-  email: "",
-  fullName: "",
-  mobileNumber: "",
-  emirate: "",
+  login: '',
+  email: '',
+  fullName: '',
+  mobileNumber: '',
+  emirate: '',
 });
 
 const errors = ref({
-  name: "",
-  mobile: "",
-  email: "",
-  login: "",
+  name: '',
+  mobile: '',
+  email: '',
+  login: '',
 });
 
 const selectedOption = ref(null);
-const currentPassword = ref("");
-const newPassword = ref("");
+const currentPassword = ref('');
+const newPassword = ref('');
 
 const validateEmail = (email) => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -328,33 +296,33 @@ const validateEmail = (email) => {
 
 onMounted(() => {
   authStore.fetchUserData();
-  console.log("123");
+  console.log('123');
 });
 
 const validateForm = () => {
   updateRequest();
-  errors.value = { name: "", mobile: "", email: "", login: "" };
+  errors.value = { name: '', mobile: '', email: '', login: '' };
 
   if (!form.value.fullName) {
-    errors.value.name = "Full name is required";
+    errors.value.name = 'Full name is required';
   } else if (form.value.fullName.length < 3) {
-    errors.value.fullName = "Full name must be at least 3 characters long";
+    errors.value.fullName = 'Full name must be at least 3 characters long';
   }
 
   if (!form.value.mobileNumber) {
-    errors.value.mobileNumber = "Mobile number is required";
+    errors.value.mobileNumber = 'Mobile number is required';
   } else if (form.value.mobileNumber.length < 10) {
-    errors.value.mobile = "Mobile number must be at least 10 digits";
+    errors.value.mobile = 'Mobile number must be at least 10 digits';
   }
 
   if (!form.value.email) {
-    errors.value.email = "Email is required";
+    errors.value.email = 'Email is required';
   } else if (!validateEmail(form.value.email)) {
-    errors.value.email = "Invalid email format";
+    errors.value.email = 'Invalid email format';
   }
 
   if (!form.value.login) {
-    errors.value.login = "Login is required";
+    errors.value.login = 'Login is required';
   }
 
   if (!Object.values(errors.value).some((error) => error)) {
@@ -366,23 +334,23 @@ const updateRequest = async () => {
   const token = authStore.token;
   try {
     const response = await axios.post(
-      "https://api.dev.numbers.ae/v1/user/update-profile",
+      'https://api.dev.numbers.ae/v1/user/update-profile',
       form.value,
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       }
     );
-    console.log(response, "res");
+    console.log(response, 'res');
   } catch (error) {
     console.error(error);
   }
 };
 
 const submitForm = () => {
-  alert("Form submitted successfully");
+  alert('Form submitted successfully');
 };
 </script>
 
@@ -394,7 +362,7 @@ const submitForm = () => {
 }
 
 .checkbox:checked::before {
-  content: "✓";
+  content: '✓';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -468,7 +436,7 @@ const submitForm = () => {
   }
 }
 
-input[type="date"] {
+input[type='date'] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

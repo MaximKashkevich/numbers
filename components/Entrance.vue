@@ -5,8 +5,7 @@
 </template>
 
 <script setup>
-import Header from "./Header.vue";
-// import BuyNumbers from '../pages/BuyNumbers.vue';
-import Login from "../pages/login.vue";
-import Footer from "./Footer.vue";
+import Header from './Header.vue';
+import Login from '../pages/login.vue';
+import Footer from './Footer.vue';
 </script>

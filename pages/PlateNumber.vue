@@ -3,16 +3,12 @@
   <nav class="mb-[30px] mt-[30px] navigation">
     <ul class="flex gap-[5px] px-[70px]">
       <li>
-        <NuxtLink
-          href="/BuyNumbers"
-          class="text-[#005DCA] transition cursor-pointer"
+        <NuxtLink href="/" class="text-[#005DCA] transition cursor-pointer"
           >{{ navigationLinks[0].text }} /
         </NuxtLink>
       </li>
       <li>
-        <NuxtLink
-          :href="navigationLinks[1].href"
-          class="text-[#005DCA] transition cursor-pointer"
+        <NuxtLink :href="navigationLinks[1].href" class="text-[#005DCA] transition cursor-pointer"
           >{{ navigationLinks[1].text }} /</NuxtLink
         >
       </li>
@@ -34,18 +30,12 @@
     >
       <!-- Левая часть -->
       <div class="flex-1 min-w-[250px] w-[650px] max-w-[50px] mb-[70px] title">
-        <h1
-          class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px] title-2"
-        >
+        <h1 class="font-medium text-[35px] leading-[42px] mb-[10px] w-[315px] title-2">
           {{ leftTitle }}
         </h1>
-        <p class="text-[12px] font-normal leading-[14.4px] opacity-30">
-          ID: {{ id }}
-        </p>
+        <p class="text-[12px] font-normal leading-[14.4px] opacity-30">ID: {{ id }}</p>
         <h2 class="font-medium text-[35px] mt-[50px] mb-[70px]">{{ price }}</h2>
-        <p
-          class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px] mb-[10px]"
-        >
+        <p class="text-[#B3B3B3] text-[16px] font-normal leading-[19.2px] mb-[10px]">
           Description:
         </p>
         <p class="text-[16px] font-normal leading-[20px] mb-[80px]">
@@ -78,15 +68,9 @@
             <div
               class="pagination-circle w-[8px] h-[8px] border-[#B3B3B3] bg-black rounded-full"
             ></div>
-            <div
-              class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"
-            ></div>
-            <div
-              class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"
-            ></div>
-            <div
-              class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"
-            ></div>
+            <div class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"></div>
+            <div class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"></div>
+            <div class="pagination-circle w-[8px] h-[8px] bg-[#B3B3B3] rounded-full"></div>
           </nav>
         </div>
       </div>
@@ -94,11 +78,7 @@
       <!-- Правая часть -->
       <div class="flex-1 max-w-[350px] right-panel">
         <div class="flex items-center space-x-2">
-          <img
-            src="../public/assets/avatar.svg"
-            alt=""
-            class="w-10 h-10 rounded-full"
-          />
+          <img src="../public/assets/avatar.svg" alt="" class="w-10 h-10 rounded-full" />
           <div>
             <h2 class="text-[35px] font-medium leading-[42px]">
               {{ rightPanelName }}
@@ -119,12 +99,9 @@
               class="absolute bg-[#000000] text-white w-[326px] h-[135px] black-window left-[-20px] transform -translate-x-1/2 top-[calc(100%+20px)] p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px] gap-2"
               id="tooltip"
             >
-              <p
-                class="font-roboto text-[16px] font-normal leading-[20px] text-white"
-              >
-                Scam warning: <br />Never wire money or financial info to a
-                seller on the Internet. For your security, all transactions
-                should be done in person. Please report scams.
+              <p class="font-roboto text-[16px] font-normal leading-[20px] text-white">
+                Scam warning: <br />Never wire money or financial info to a seller on the Internet.
+                For your security, all transactions should be done in person. Please report scams.
               </p>
             </div>
           </div>
@@ -134,17 +111,13 @@
           <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
             {{ datePosted }}
           </p>
-          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">
-            {{ views }} Views
-          </p>
+          <p class="text-[16px] font-normal leading-[19.2px] text-[#B3B3B3]">{{ views }} Views</p>
         </div>
         <div class="w-[212] mt-[30px]">
-          <ButtonBlue
-            class="w-full w-[315px] h-[54px] flex items-center justify-center"
+          <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center"
             >{{ callButtonText }}
           </ButtonBlue>
-          <ButtonBlue
-            class="w-full w-[315px] h-[54px] flex items-center justify-center mt-[212px]"
+          <ButtonBlue class="w-full w-[315px] h-[54px] flex items-center justify-center mt-[212px]"
             >{{ buyButtonText }}
           </ButtonBlue>
         </div>
@@ -206,23 +179,23 @@
 </template>
 
 <script>
-import ButtonShare from "../components/ButtonShare.vue";
-import ButtonLike from "../components/ButtonLike.vue";
-import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
-import RightArrow from "../components/RightArrow.vue";
-import LeftArrow from "../components/LeftArrow.vue";
-import Card from "../components/Card.vue";
-import { ref, onMounted } from "vue";
+import ButtonShare from '../components/ButtonShare.vue';
+import ButtonLike from '../components/ButtonLike.vue';
+import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
+import RightArrow from '../components/RightArrow.vue';
+import LeftArrow from '../components/LeftArrow.vue';
+import Card from '../components/Card.vue';
+import { ref, onMounted } from 'vue';
 
 // Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from "swiper/vue";
+import { Swiper, SwiperSlide } from 'swiper/vue';
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 // Import required modules
-import { Navigation } from "swiper/modules";
+import { Navigation } from 'swiper/modules';
 
 export default {
   components: {
@@ -239,47 +212,46 @@ export default {
     navigationLinks: {
       type: Array,
       default: () => [
-        { href: "#", text: "Home" },
-        { href: "#", text: "Plate numbers" },
-        { href: "#", text: "Dubai plate number for sale: AA 14611" },
+        { href: '#', text: 'Home' },
+        { href: '#', text: 'Plate numbers' },
+        { href: '#', text: 'Dubai plate number for sale: AA 14611' },
       ],
     },
     leftTitle: {
       type: String,
-      default: "Du mobile number for sale",
+      default: 'Du mobile number for sale',
     },
     id: {
       type: String,
-      default: "65131",
+      default: '65131',
     },
     price: {
       type: String,
-      default: "20 000 AED",
+      default: '20 000 AED',
     },
     description: {
       type: String,
-      default:
-        "ETISALAT VIP Prepaid Fancy Mobile number For Sale. Call or WhatsApp 055-4400750.",
+      default: 'ETISALAT VIP Prepaid Fancy Mobile number For Sale. Call or WhatsApp 055-4400750.',
     },
     fullCollectionLink: {
       type: String,
-      default: "#",
+      default: '#',
     },
     fullCollectionText: {
       type: String,
-      default: "See full collection",
+      default: 'See full collection',
     },
     rightPanelName: {
       type: String,
-      default: "Suroor",
+      default: 'Suroor',
     },
     rightPanelStatus: {
       type: String,
-      default: "Online",
+      default: 'Online',
     },
     datePosted: {
       type: String,
-      default: "Posted Today",
+      default: 'Posted Today',
     },
     views: {
       type: Number,
@@ -287,15 +259,15 @@ export default {
     },
     callButtonText: {
       type: String,
-      default: "Call 058 210 03 10",
+      default: 'Call 058 210 03 10',
     },
     buyButtonText: {
       type: String,
-      default: "Buy as NFT",
+      default: 'Buy as NFT',
     },
     sliderTitle: {
       type: String,
-      default: "Similar numbers:",
+      default: 'Similar numbers:',
     },
   },
   setup() {
@@ -304,7 +276,7 @@ export default {
 
     onMounted(() => {
       if (!nextEl.value || !prevEl.value) {
-        console.error("Navigation elements not found");
+        console.error('Navigation elements not found');
       }
     });
 

@@ -1,6 +1,6 @@
 <template>
   <nav class="px-[20px] md:px-[60px] mt-[30px]">
-    <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer"> Home / </NuxtLink>
+    <NuxtLink to="/" class="text-blue-500 cursor-pointer"> Home / </NuxtLink>
     <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer"> My Dashboard / </NuxtLink>
     <span class="text-[#BFBFBF]"> Add listing</span>
   </nav>

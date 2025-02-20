@@ -5,13 +5,13 @@ import { useAuthStore } from './auth';
 
 export interface listedNumber {
   datePosted: string;
-  description: string | null;
+  description?: string | null;
   discount: boolean | string;
   emirate: string;
   id: number;
   isFeatured: false;
-  photo: string;
-  phone: string | undefined;
+  photo?: string;
+  phone?: string | undefined;
   price: string;
   status: number;
   type: string;

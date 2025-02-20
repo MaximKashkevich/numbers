@@ -1,12 +1,8 @@
 <template>
   <div>
     <nav class="px-[20px] md:px-[60px] mt-[30px]">
-      <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
-        Home /
-      </NuxtLink>
-      <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer">
-        My Dashboard /
-      </NuxtLink>
+      <NuxtLink to="/" class="text-blue-500 cursor-pointer"> Home / </NuxtLink>
+      <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer"> My Dashboard / </NuxtLink>
       <span class="text-[#BFBFBF]"> Add listing</span>
     </nav>
 
@@ -18,16 +14,12 @@
       </div>
 
       <div class="flex-1">
-        <h1
-          class="w-full md:w-[872px] text-[50px] font-medium leading-[50px] text-left uppercase"
-        >
+        <h1 class="w-full md:w-[872px] text-[50px] font-medium leading-[50px] text-left uppercase">
           Add purchase orders
         </h1>
         <div>
           <div>
-            <div
-              class="flex flex-col flex-wrap md:flex-row gap-[20px] mt-[50px] mb-[70px]"
-            >
+            <div class="flex flex-col flex-wrap md:flex-row gap-[20px] mt-[50px] mb-[70px]">
               <button
                 @click="setActive('plate')"
                 :class="getButtonClass('plate')"
@@ -74,10 +66,7 @@
                         v-model="isCheckboxChecked"
                         class="w-[20px] h-[20px] rounded-[3px] border-[1px] border-[#BFBFBF] checkbox"
                       />
-                      <label
-                        for="custom-checkbox-1"
-                        class="relative flex items-center gap-[10px]"
-                      >
+                      <label for="custom-checkbox-1" class="relative flex items-center gap-[10px]">
                         Any emirate
                       </label>
                     </div>
@@ -105,18 +94,13 @@
                         v-model="isCheckboxChecked2"
                         class="w-[20px] h-[20px] rounded-[3px] border-[1px] border-[#BFBFBF] checkbox"
                       />
-                      <label
-                        for="custom-checkbox-2"
-                        class="relative flex items-center gap-[10px]"
-                      >
+                      <label for="custom-checkbox-2" class="relative flex items-center gap-[10px]">
                         Any code
                       </label>
                     </div>
                   </div>
                 </div>
-                <div
-                  class="flex flex-col md:flex-row gap-[20px] mt-[30px] mb-[30px]"
-                >
+                <div class="flex flex-col md:flex-row gap-[20px] mt-[30px] mb-[30px]">
                   <div class="">
                     <label
                       for="sort"
@@ -138,19 +122,9 @@
                       >Price:</label
                     >
                     <div class="pon flex flex-wrap gap-[10px]">
-                      <input
-                        type="text"
-                        :class="selectClasses3"
-                        class="input"
-                        placeholder="From"
-                      />
+                      <input type="text" :class="selectClasses3" class="input" placeholder="From" />
 
-                      <input
-                        type="text"
-                        :class="selectClasses3"
-                        class="input"
-                        placeholder="To"
-                      />
+                      <input type="text" :class="selectClasses3" class="input" placeholder="To" />
                     </div>
 
                     <div class="mt-[15px] flex gap-[10px]">
@@ -160,18 +134,13 @@
                         v-model="isCheckboxChecked3"
                         class="w-[20px] h-[20px] rounded-[3px] border-[1px] border-[#BFBFBF] checkbox border-[#000000]"
                       />
-                      <label
-                        for="custom-checkbox-3"
-                        class="relative flex items-center gap-[10px]"
-                      >
+                      <label for="custom-checkbox-3" class="relative flex items-center gap-[10px]">
                         Hide price
                       </label>
                     </div>
                   </div>
                 </div>
-                <label
-                  for=""
-                  class="w-full md:w-[872px] text-[16px] font-normal leading-[19.2px]"
+                <label for="" class="w-full md:w-[872px] text-[16px] font-normal leading-[19.2px]"
                   >Number of digits:</label
                 >
                 <div class="flex flex-wrap gap-[10px] mt-[10px]">
@@ -205,9 +174,7 @@
                   </p>
                 </div>
                 <div class="mt-[30px]">
-                  <label for="" class="w-full flex flex-box md:w-[872px]"
-                    >Mobile number:</label
-                  >
+                  <label for="" class="w-full flex flex-box md:w-[872px]">Mobile number:</label>
                   <input
                     type="number"
                     class="w-full md:w-[872px] h-[50px] rounded-[50px] pl-[30px] border-[1px] border-[#BFBFBF] bg-[#FAFAFA] text-[16px] font-normal leading-[19.2px] text-left"
@@ -228,10 +195,10 @@
 </template>
 
 <script>
-import { ref, computed } from "vue";
-import SideBar from "../components/general/SideBar.vue";
-import MiniButton from "../components/MiniButton/MiniButton.vue";
-import ButtonBlue from "../components/Button-blue/ButtonBlue.vue";
+import { ref, computed } from 'vue';
+import SideBar from '../components/general/SideBar.vue';
+import MiniButton from '../components/MiniButton/MiniButton.vue';
+import ButtonBlue from '../components/Button-blue/ButtonBlue.vue';
 
 export default {
   components: {
@@ -251,32 +218,32 @@ export default {
 
     const getButtonClass = (buttonType) => {
       return {
-        "border-[#000000] text-[#000000]": activeButton.value === buttonType,
-        "border-[#BFBFBF] text-[#BFBFBF]": activeButton.value !== buttonType,
+        'border-[#000000] text-[#000000]': activeButton.value === buttonType,
+        'border-[#BFBFBF] text-[#BFBFBF]': activeButton.value !== buttonType,
       };
     };
 
     const selectClasses = computed(() => {
       return {
-        "mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]": true,
-        "border-[#BFBFBF] text-[#BFBFBF]": !isCheckboxChecked.value,
-        "cursor-not-allowed": !isCheckboxChecked.value,
+        'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]': true,
+        'border-[#BFBFBF] text-[#BFBFBF]': !isCheckboxChecked.value,
+        'cursor-not-allowed': !isCheckboxChecked.value,
       };
     });
 
     const selectClasses2 = computed(() => {
       return {
-        "mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]": true,
-        "border-[#BFBFBF] text-[#BFBFBF]": !isCheckboxChecked2.value,
-        "cursor-not-allowed": !isCheckboxChecked2.value,
+        'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-[25px] py-[15px] px-[20px]': true,
+        'border-[#BFBFBF] text-[#BFBFBF]': !isCheckboxChecked2.value,
+        'cursor-not-allowed': !isCheckboxChecked2.value,
       };
     });
 
     const selectClasses3 = computed(() => {
       return {
-        "border-[#BFBFBF] text-[#BFBFBF]": !isCheckboxChecked3.value,
-        "cursor-not-allowed": !isCheckboxChecked3.value,
-        "mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-full py-[15px] px-[20px]": true,
+        'border-[#BFBFBF] text-[#BFBFBF]': !isCheckboxChecked3.value,
+        'cursor-not-allowed': !isCheckboxChecked3.value,
+        'mt-[5px] text-[16px] font-normal leading-[19.2px] text-left block w-full md:w-[430px] bg-[#FAFAFA] border rounded-full py-[15px] px-[20px]': true,
       };
     });
 
@@ -303,7 +270,7 @@ export default {
 }
 
 .checkbox:checked::before {
-  content: "✓";
+  content: '✓';
   position: absolute;
   top: 50%;
   left: 50%;

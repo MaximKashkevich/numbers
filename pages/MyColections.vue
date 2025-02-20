@@ -1,12 +1,8 @@
 <template>
   <div>
     <nav class="px-[20px] md:px-[60px] mt-[30px]">
-      <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
-        Home /
-      </NuxtLink>
-      <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer">
-        My Dashboard /
-      </NuxtLink>
+      <NuxtLink to="/" class="text-blue-500 cursor-pointer"> Home / </NuxtLink>
+      <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer"> My Dashboard / </NuxtLink>
       <span class="text-[#BFBFBF]"> My collections</span>
     </nav>
 
@@ -18,18 +14,14 @@
       </div>
 
       <div class="flex-1">
-        <h1
-          class="w-full md:w-[872px] text-[50px] font-medium leading-[50px] text-left uppercase"
-        >
+        <h1 class="w-full md:w-[872px] text-[50px] font-medium leading-[50px] text-left uppercase">
           My collections
         </h1>
         <div
           class="w-full white-conatiner max-w-[870px] h-[345px] bg-[#FFFFFF] rounded-[20px] mt-[50px] flex justify-center"
         >
           <div class="flex flex-col items-center justify-center gap-[20px] p-6">
-            <h2
-              class="w-full max-w-[650px] font-medium text-[35px] text-center"
-            >
+            <h2 class="w-full max-w-[650px] font-medium text-[35px] text-center">
               {{ displayText }}
             </h2>
             <button @click="openModal">
@@ -66,9 +58,9 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from "vue";
-import SideBar from "../components/general/SideBar.vue";
-import ModalAddColection from "../components/ModalAddColection.vue";
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+import SideBar from '../components/general/SideBar.vue';
+import ModalAddColection from '../components/ModalAddColection.vue';
 
 // Логика для модального окна
 const isVisible = ref(false);
@@ -82,26 +74,26 @@ const closeModal = () => {
 };
 
 // Логика для отображения текста в зависимости от ширины окна
-const displayText = ref("");
+const displayText = ref('');
 
 const updateText = () => {
   displayText.value =
     window.innerWidth <= 574
-      ? "Create new collections"
+      ? 'Create new collections'
       : "You don't have any collections yet. To add a collection, click on + and select the numbers you want to add.";
 };
 
 onMounted(() => {
   updateText();
-  window.addEventListener("resize", updateText);
+  window.addEventListener('resize', updateText);
 });
 
 onUnmounted(() => {
-  window.removeEventListener("resize", updateText);
+  window.removeEventListener('resize', updateText);
 });
 
 definePageMeta({
-  middleware: ["subscription"],
+  middleware: ['subscription'],
 });
 </script>
 
@@ -112,7 +104,7 @@ definePageMeta({
   background: #fff;
 }
 .checkbox:checked::before {
-  content: "✓";
+  content: '✓';
   position: absolute;
   top: 50%;
   left: 50%;

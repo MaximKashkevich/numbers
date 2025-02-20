@@ -10,7 +10,7 @@
       <label class="flex items-center gap-[10px] w-fit mt-[10px]">
         <div class="checkbox">
           <input type="checkbox" v-model="listingParams.hide_series" />
-          <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
+          <img class="checkmark" src="/assets/img/icons/check.svg" alt="checkbox" />
           <div class="checkmark__off"></div>
         </div>
         <p>Hide series</p>
@@ -26,11 +26,11 @@
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between">
     <!-- price input -->
-    <div>
+    <div class="flex flex-col justify-between">
       <div class="option option__input mb-[20px]">
         <label
-          class="font-roboto text-[16px] font-normal leading-[19.2px] flex gap-4"
-          for="emirate"
+          class="font-roboto text-[16px] font-normal leading-[19.2px] flex gap-4 mb-[6px]"
+          for="price"
         >
           <h4>Price:</h4>
         </label>
@@ -56,14 +56,17 @@
         <label class="flex items-center gap-[10px] w-fit mt-[10px]">
           <div class="checkbox">
             <input type="checkbox" v-model="checkAddDiscount" />
-            <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
+            <img class="checkmark" src="/assets/img/icons/check.svg" alt="add a discount" />
             <div class="checkmark__off"></div>
           </div>
           <p>Add a discount</p>
         </label>
       </div>
       <div class="option option__input input_discount" v-show="checkAddDiscount">
-        <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
+        <label
+          class="font-roboto text-[16px] font-normal leading-[19.2px]"
+          for="price with discount"
+        >
           Price with discount:
         </label>
         <input
@@ -75,23 +78,9 @@
         />
         <p class="text-red-500" v-show="discountErrors !== ''">{{ discountErrors }}</p>
       </div>
-      <div class="option">
-        <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
-          Number:
-        </label>
-        <input
-          class="input_number pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px] cursor-text"
-          :class="{ 'border-red-500': numberErrors }"
-          type="text"
-          v-model="listingParams.number"
-          @input="handleNumberInput"
-          maxlength="5"
-        />
-        <p class="text-red-500" v-show="numberErrors">{{ numberErrors }}</p>
-      </div>
     </div>
-    <div>
-      <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
+    <div class="h-fit">
+      <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="preview">
         Preview:
       </label>
       <div
@@ -105,18 +94,51 @@
         />
       </div>
     </div>
-    <!-- design select -->
-    <!-- <BaseDropdown label="Design" :option-list="designList" v-model="listingParams.design" /> -->
   </div>
-
-  <!-- price with discount -->
-
-  <!-- number/hide number and preview -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-[20px] flex-wrap justify-between mt-[20px]">
-    <div></div>
+  <div class="gap-[20px] mt-[20px] block md:flex">
+    <div class="option mb-[20px]">
+      <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="plate number">
+        Number:
+      </label>
+      <input
+        class="input_number pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px] cursor-text"
+        :class="{ 'border-red-500': numberErrors }"
+        type="text"
+        v-model="listingParams.number"
+        @input="handleNumberInput"
+        maxlength="5"
+      />
+      <p class="text-red-500" v-show="numberErrors">{{ numberErrors }}</p>
+      <label class="flex items-center gap-[10px] w-fit mt-[10px]">
+        <div class="checkbox">
+          <input type="checkbox" v-model="checkHideNumber" />
+          <img class="checkmark" src="/assets/img/icons/check.svg" alt="checkbox" />
+          <div class="checkmark__off"></div>
+        </div>
+        <p>Hide number</p>
+      </label>
+    </div>
+    <div v-if="checkHideNumber" class="option">
+      <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="hidden digit">
+        Hidden digit:
+      </label>
+      <input
+        class="input_number pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px] cursor-text"
+        :class="{ 'border-red-500': numberErrors }"
+        type="text"
+        v-model="listingParams.hide_number"
+        @input="handleHiddenNumberInput"
+        maxlength="5"
+      />
+      <p class="text-red-500" v-show="numberErrors">{{ numberErrors }}</p>
+      <h4 class="text-[12px] text-[#bfbfbf]">
+        You can hide only one digit in the number.<br />
+        Simply replace the digit with the letter X.
+      </h4>
+    </div>
   </div>
-  <div class="mt-[30px] mb-[30px]">
-    <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="emirate">
+  <div class="mb-[30px]">
+    <label class="font-roboto text-[16px] font-normal leading-[19.2px]" for="description">
       Description:
     </label>
     <textarea
@@ -141,6 +163,7 @@ const dropdownStore = useDropdownStore();
 dropdownStore.fetchDropdownData();
 const previewImg = ref('');
 const checkAddDiscount = ref(false);
+const checkHideNumber = ref(false);
 
 const listingParams = ref({
   code: 'A',
@@ -194,7 +217,7 @@ const handleHiddenNumberInput = () => {
   let xCount = 0; // Счетчик символов X
 
   // Проверяем каждый символ
-  listingParams.value.hiddenNumber = listingParams.value.hiddenNumber
+  listingParams.value.hide_number = listingParams.value.hide_number
     .split('')
     .map((char, index) => {
       if (allow.has(char)) {
@@ -240,6 +263,7 @@ const getPlatePreview = async () => {
         version: 0,
         // hide_series: listingParams.hide_series === true ? 0 : 1,
         hide_series: listingParams.value.hide_series === true ? 1 : 0,
+        hide_number: listingParams.value.hide_number,
       },
       {
         headers: {
@@ -392,7 +416,7 @@ const handleAddPlate = async () => {
   display: block;
   position: absolute;
   right: 30px;
-  top: 33px;
+  top: 38px;
 }
 
 .input_discount::after {

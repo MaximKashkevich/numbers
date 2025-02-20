@@ -1,12 +1,8 @@
 <template>
   <div>
     <nav class="px-[20px] md:px-[60px] mt-[30px]">
-      <NuxtLink to="/BuyNumbers" class="text-blue-500 cursor-pointer">
-        Home /
-      </NuxtLink>
-      <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer">
-        My Dashboard /
-      </NuxtLink>
+      <NuxtLink to="/" class="text-blue-500 cursor-pointer"> Home / </NuxtLink>
+      <NuxtLink to="/Dashboard" class="text-blue-500 cursor-pointer"> My Dashboard / </NuxtLink>
       <span class="text-[#BFBFBF]"> Add listing</span>
     </nav>
 
@@ -85,9 +81,7 @@
         </h2>
 
         <!-- Карточки Mobile numbers -->
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-[30px] container-card"
-        >
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-[30px] container-card">
           <div class="max-w-[426px] w-full">
             <MoreCard />
           </div>
@@ -140,10 +134,10 @@
 </template>
 
 <script>
-import MoreCard from "../components/MoreCard/MoreCard.vue";
-import CardOrder from "../components/CardOrder/CardOrder.vue";
-import SideBar from "../components/general/SideBar.vue";
-import ModalWindow from "../components/ModalWindow.vue";
+import MoreCard from '../components/MoreCard/MoreCard.vue';
+import CardOrder from '../components/CardOrder/CardOrder.vue';
+import SideBar from '../components/general/SideBar.vue';
+import ModalWindow from '../components/ModalWindow.vue';
 
 export default {
   components: {
@@ -169,7 +163,7 @@ export default {
 };
 
 definePageMeta({
-  middleware: ["subscription"],
+  middleware: ['subscription'],
 });
 </script>
 
