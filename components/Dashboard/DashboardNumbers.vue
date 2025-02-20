@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb-[40px]">
     <h2 class="leading-[42px] text-[35px] font-medium mb-[30px]">
       My {{ numberType ? 'plate' : 'phone' }} numbers
     </h2>
