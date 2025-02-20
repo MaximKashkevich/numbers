@@ -260,7 +260,6 @@ const handleSubmit = () => {
   .input {
     width: 90vw;
     display: block;
-    background-color: red;
   }
 
   .input::placeholder {
