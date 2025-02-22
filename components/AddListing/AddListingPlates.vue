@@ -13,7 +13,7 @@
           <img class="checkmark" src="/assets/img/icons/check.svg" alt="checkbox" />
           <div class="checkmark__off"></div>
         </div>
-        <p>Hide series</p>
+        <p class="user-select-none">Hide series</p>
       </label>
     </div>
 
@@ -43,13 +43,13 @@
         />
         <p class="text-red-500" v-show="priceErrors.price !== ''">{{ priceErrors }}</p>
         <!-- checkbox price -->
-        <label class="flex items-center gap-[10px] w-fit mt-[10px]">
+        <label class="flex items-center gap-[10px] w-fit mt-[10px] user-select-none">
           <div class="checkbox">
             <input type="checkbox" v-model="listingParams.price_hide" />
             <img class="checkmark" src="/assets/img/icons/check.svg" alt="hide price" />
             <div class="checkmark__off"></div>
           </div>
-          <p class="top-[10%]">Hide price</p>
+          <p class="top-[10%] user-select-none">Hide price</p>
         </label>
 
         <!-- checkbox discount -->
@@ -59,10 +59,10 @@
             <img class="checkmark" src="/assets/img/icons/check.svg" alt="add a discount" />
             <div class="checkmark__off"></div>
           </div>
-          <p>Add a discount</p>
+          <p class="user-select-none">Add a discount</p>
         </label>
       </div>
-      <div class="option option__input input_discount" v-show="checkAddDiscount">
+      <div class="option option__input input_discount" :class="{ 'opacity-40': !checkAddDiscount }">
         <label
           class="font-roboto text-[16px] font-normal leading-[19.2px]"
           for="price with discount"
@@ -71,10 +71,11 @@
         </label>
         <input
           class="pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px] cursor-text"
-          :class="{ 'border-red-500': discountErrors }"
+          :class="{ 'border-red-500': discountErrors, 'cursor-default': !checkAddDiscount }"
           type="text"
           v-model="listingParams.discount"
           @input="handleDiscountPriceInput"
+          :disabled="!checkAddDiscount"
         />
         <p class="text-red-500" v-show="discountErrors !== ''">{{ discountErrors }}</p>
       </div>
@@ -115,7 +116,7 @@
           <img class="checkmark" src="/assets/img/icons/check.svg" alt="checkbox" />
           <div class="checkmark__off"></div>
         </div>
-        <p>Hide number</p>
+        <p class="user-select-none">Hide number</p>
       </label>
     </div>
     <div v-if="checkHideNumber" class="option">
@@ -124,13 +125,11 @@
       </label>
       <input
         class="input_number pl-5 pr-[70px] w-[100%] h-[51.2px] rounded-[100px] border-[1px] border-[#bfbfbf] font-roboto text-[16px] leading-[19.2px] cursor-text"
-        :class="{ 'border-red-500': numberErrors }"
         type="text"
         v-model="listingParams.hide_number"
         @input="handleHiddenNumberInput"
         maxlength="5"
       />
-      <p class="text-red-500" v-show="numberErrors">{{ numberErrors }}</p>
       <h4 class="text-[12px] text-[#bfbfbf]">
         You can hide only one digit in the number.<br />
         Simply replace the digit with the letter X.
@@ -477,5 +476,10 @@ const handleAddPlate = async () => {
   transform: translate(-35%, -47%);
   font-family: 'LicensePlate', sans-serif;
   font-size: 55px;
+}
+
+/* user select */
+.user-select-none {
+  user-select: none;
 }
 </style>

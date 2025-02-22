@@ -1,9 +1,9 @@
 <template>
-  <div class="flex justify-between gap-[10px]">
+  <div class="flex justify-between gap-[10px] max-h-[60px]">
     <img class="w-[14%]" src="/assets/etisalat.png" alt="" />
     <div class="flex-grow flex justify-end">
-      <h4 class="text-[#70a136] leading-none phone__text font-light">
-        {{ phone }}
+      <h4 class="text-[#70a136] leading-none phone__text font-light text-nowrap">
+        {{ phone?.replace(/\D/g, '') }}
       </h4>
     </div>
   </div>

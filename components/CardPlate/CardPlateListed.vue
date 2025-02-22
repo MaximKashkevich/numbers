@@ -1,5 +1,7 @@
 <template>
-  <div class="w-[100%] rounded-[20px] p-[40px_20px_30px_20px] border border-[#bfbfbf]">
+  <div
+    class="w-[100%] rounded-[20px] p-[40px_20px_30px_20px] border border-[#bfbfbf] overflow-hidden"
+  >
     <div v-if="type === 'plate'">
       <img :src="photo" alt="number" />
     </div>
